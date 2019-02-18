@@ -41,7 +41,9 @@ class NavFootPatient extends PureComponent {
 							key={nav.pathname}
 							onClick={() => this.props.history.replace(nav.pathname)}
 						>
-							{nav.isActive ? <img src={nav.selectedIcon} alt=''/> : <img src={nav.icon} alt=''/>}{nav.path}
+						 <img src={nav.selectedIcon} alt='' style={{display:nav.isActive?'block':'none'}}/>
+						 <img src={nav.icon} alt='' style={{display:nav.isActive?'none':'block'}}/>
+							{nav.path}
 						</span>
 					)
 				}

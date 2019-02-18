@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa712d2f-7332-4f35-a587-1a96bf631666" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/blue@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/blue@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/doc.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/home-s.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/home.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/my-s.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/NavFoot/imgs/my.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/NavFoot/NavFootPatient.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavFoot/NavFootPatient.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NavFoot/nav-foot.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavFoot/nav-foot.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/NavFoot/NavFootPatient.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="32" column="91" lean-forward="true" selection-start-line="32" selection-start-column="91" selection-end-line="32" selection-end-column="91" />
+            <state relative-caret-position="598">
+              <caret line="44" column="82" selection-start-line="44" selection-start-column="82" selection-end-line="44" selection-end-column="82" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -298,7 +289,7 @@
       <updated>1550461622112</updated>
       <workItem from="1550461623802" duration="10981000" />
       <workItem from="1550475390879" duration="183000" />
-      <workItem from="1550475581396" duration="8714000" />
+      <workItem from="1550475581396" duration="9364000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1550461882565</created>
@@ -398,11 +389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550477164819</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="底部导航">
+      <created>1550485473606</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1550485473606</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19878000" />
+    <option name="totallyTimeSpent" value="20528000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -498,7 +496,8 @@
     <MESSAGE value="引入 prop-types" />
     <MESSAGE value="引入 reset css" />
     <MESSAGE value="设置 mate 禁止缩放" />
-    <option name="LAST_COMMIT_MESSAGE" value="设置 mate 禁止缩放" />
+    <MESSAGE value="底部导航" />
+    <option name="LAST_COMMIT_MESSAGE" value="底部导航" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/redux/action-types.js">
@@ -731,8 +730,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NavFoot/NavFootPatient.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="32" column="91" lean-forward="true" selection-start-line="32" selection-start-column="91" selection-end-line="32" selection-end-column="91" />
+        <state relative-caret-position="598">
+          <caret line="44" column="82" selection-start-line="44" selection-start-column="82" selection-end-line="44" selection-end-column="82" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
