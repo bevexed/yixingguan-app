@@ -70,6 +70,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### 技术选型
 * 前台数据展示/交互/组件化
     * react
+    * react-router
     * react-router-dom
     * redux
     * antd-mobile
