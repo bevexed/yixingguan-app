@@ -13,7 +13,8 @@ class Main extends Component {
 		return (
 			<div>
 				<Switch>
-					<Route path={'patient-index'} component={PatientIndex}/>
+					<Route path='/patient-index' component={PatientIndex}/>
+					<Route path='/personal' component={PatientIndex}/>
 					<Route component={NotFound}/>
 				</Switch>
 				{<NavFootPatient/>}

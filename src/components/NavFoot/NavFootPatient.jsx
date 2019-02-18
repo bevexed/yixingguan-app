@@ -21,7 +21,7 @@ class NavFootPatient extends PureComponent {
 			selectedIcon: require('./imgs/doc.svg')
 		},
 		{
-			pathname: '/person',
+			pathname: '/personal',
 			path: '我的',
 			isActive: false,
 			icon: require('./imgs/my.svg'),
@@ -41,8 +41,8 @@ class NavFootPatient extends PureComponent {
 							key={nav.pathname}
 							onClick={() => this.props.history.replace(nav.pathname)}
 						>
-						 <img src={nav.selectedIcon} alt='' style={{display:nav.isActive?'block':'none'}}/>
-						 <img src={nav.icon} alt='' style={{display:nav.isActive?'none':'block'}}/>
+						 <img src={nav.selectedIcon} alt='' style={{display: nav.isActive ? 'block' : 'none'}}/>
+						 <img src={nav.icon} alt='' style={{display: nav.isActive ? 'none' : 'block'}}/>
 							{nav.path}
 						</span>
 					)
