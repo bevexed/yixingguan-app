@@ -7,7 +7,7 @@ class NavFootPatient extends PureComponent {
 
 	navs = [
 		{
-			pathname: '/',
+			pathname: '/patient-index',
 			path: '首页',
 			isActive: false,
 			icon: require('./imgs/home.svg'),
