@@ -79,8 +79,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     * ajax 请求
         * axios
         * async / await
-    * 测试 API 接口
-        * postman
+   * js-cookie
 * 模块化
     * ES6
     * babel
