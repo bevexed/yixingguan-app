@@ -73,6 +73,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     * react-router
     * react-router-dom
     * redux
+    * react-redux
+    * redux-devtools-extension
+    * redux-thunk
     * antd-mobile
 
 * 前后台交互
