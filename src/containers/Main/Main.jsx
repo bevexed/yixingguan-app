@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Switch,Route} from "react-router-dom";
 
 import NotFound from '../../components/NotFound/NotFound'
+import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 
 class Main extends Component {
 	render() {
@@ -12,6 +13,7 @@ class Main extends Component {
 				<Switch>
 					<Route component={NotFound}/>
 				</Switch>
+				{<NavFootPatient/>}
 			</div>
 		);
 	}

@@ -6,6 +6,8 @@ import store from './redux/store'
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import 'reset-css';
+
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import Main from "./containers/Main/Main";
