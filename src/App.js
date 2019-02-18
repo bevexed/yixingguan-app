@@ -6,9 +6,7 @@ import store from './redux/store'
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Test from './components/test/test'
-import NotFound from './components/NotFound/NotFound'
-import {Button} from "antd-mobile";
+import Main from "./containers/Main/Main";
 
 class App extends Component {
 	render() {
@@ -18,11 +16,9 @@ class App extends Component {
 					<BrowserRouter>
 						<Switch>
 							<Route exact path='/'/>
-							<Route path='/test' component={Test}/>
-							<Route component={NotFound}/> {/* 默认路由*/}
+							<Route component={Main}/>
 						</Switch>
 					</BrowserRouter>
-					<Button type="primary" size="small" inline>small</Button>
 				</Provider>
 			</div>
 		);
