@@ -66,3 +66,28 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### 技术选型
+* 前台数据展示/交互/组件化
+    * react
+    * react-router-dom
+    * redux
+    * antd-mobile
+
+* 前后台交互
+    * ajax 请求
+        * axios
+        * async / await
+    * 测试 API 接口
+        * postman
+* 模块化
+    * ES6
+    * babel
+* 项目构建/工程化
+    * webpack
+    * react-create-app
+    * eslint
+* 其他相关库
+    * blueimp-md5
+    * js-cookie
+    * rc-queue-anim
