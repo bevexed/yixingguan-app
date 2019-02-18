@@ -6,6 +6,8 @@ import store from './redux/store'
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import Login from './containers/Login/Login'
+import Register from './containers/Register/Register'
 import Main from "./containers/Main/Main";
 
 class App extends Component {
@@ -15,7 +17,8 @@ class App extends Component {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Switch>
-							<Route exact path='/'/>
+							<Route path='/register' component={Register}/>
+							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>
 					</BrowserRouter>
