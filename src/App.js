@@ -13,7 +13,8 @@ import 'reset-css';
 
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
-import Main from "./containers/Main/Main";
+// import Main from "./containers/Main/Main";
+import Record from './content/Record/Record'
 
 class App extends Component {
 	render() {
@@ -33,7 +34,7 @@ class App extends Component {
 						<Switch>
 							<Route path='/register' component={Register}/>
 							<Route path='/login' component={Login}/>
-							<Route component={Main}/>
+							<Route component={Record}/>
 						</Switch>
 					</BrowserRouter>
 				</Provider>
