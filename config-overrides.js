@@ -16,6 +16,7 @@ module.exports = override(
 		modifyVars: require('./package.json').theme
 	}),
 	addPostcssPlugins([
+		// require('postcss-px2rem')({ remUnit: 37.5 })
 		require('postcss-pxtorem')({
 			rootValue: 37.5,
 			unitPrecision: 5,
