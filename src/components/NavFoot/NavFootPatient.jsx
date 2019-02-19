@@ -10,29 +10,29 @@ class NavFootPatient extends PureComponent {
 			pathname: '/patient-index',
 			path: '首页',
 			isActive: false,
-			icon: require('./imgs/home.svg'),
-			selectedIcon: require('./imgs/home-s.svg')
+			icon: require('./img/home.svg'),
+			selectedIcon: require('./img/home-s.svg')
 		},
 		{
 			pathname: '/doc',
 			path: '',
 			isActive: false,
-			icon: require('./imgs/doc.svg'),
-			selectedIcon: require('./imgs/doc.svg')
+			icon: require('./img/doc.svg'),
+			selectedIcon: require('./img/doc.svg')
 		},
 		{
 			pathname: '/personal',
 			path: '我的',
 			isActive: false,
-			icon: require('./imgs/my.svg'),
-			selectedIcon: require('./imgs/my-s.svg')
+			icon: require('./img/my.svg'),
+			selectedIcon: require('./img/my-s.svg')
 		}
 	];
 
 	render() {
 		this.navs.forEach(nav => nav.isActive = this.props.location.pathname === nav.pathname);
 		return (
-			<div className='nav-foot'>
+			<div className="nav-foot">
 				{
 					this.navs.map(nav =>
 

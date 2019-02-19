@@ -1,41 +1,43 @@
 .nav-foot {
 	position: fixed;
-	width: 375px;
+	width: 100%;
+	max-width: 450px;
 	bottom: 0;
 	height: 80px;
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-end;
-	background: url("./imgs/blue@3x.png");
+	background: url("img/blue@3x.png");
 	background-size: 375px 100%;
 	background-position-x: center;
-}
 
-span {
-	height: 50px;
-	color: #333;
-	align-self: flex-end;
-	justify-content: flex-end;
-	flex-direction: column;
-	width: 33%;
-	display: flex;
-	font-size: 12px;
-	text-underline: none;
-	text-decoration: none;
-	padding-bottom: 4px;
-
-	&:active, &.active {
-		font-weight: bold;
-		color: hsla(170, 69%, 65%, 1);
-	}
-
-	&:focus {
-		outline: none;
-	}
-
-	img {
+	span {
+		height: 50px;
+		color: #333;
+		align-self: flex-end;
+		justify-content: flex-end;
+		flex-direction: column;
+		width: 33%;
+		display: flex;
+		font-size: 12px;
+		text-underline: none;
+		text-decoration: none;
 		padding-bottom: 4px;
-		height: 20px;
+		text-align: center;
+
+		&:active, &.active {
+			font-weight: bold;
+			color: hsla(170, 69%, 65%, 1);
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		img {
+			padding-bottom: 4px;
+			height: 20px;
+		}
 	}
 }
 

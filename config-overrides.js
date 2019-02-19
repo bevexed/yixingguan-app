@@ -2,7 +2,7 @@ const {
 	override,
 	fixBabelImports,
 	addLessLoader,
-	addPostcssPlugins
+	// addPostcssPlugins
 } = require("customize-cra");
 
 
@@ -15,15 +15,15 @@ module.exports = override(
 		javascriptEnabled: true,
 		modifyVars: require('./package.json').theme
 	}),
-	addPostcssPlugins([
-		require('postcss-pxtorem')({
-			rootValue: 37.5,
-			unitPrecision: 5,
-			propList: ['*'],
-			selectorBlackList: [],
-			replace: true,
-			mediaQuery: true,
-			minPixelValue: 16
-		}),
-	]),
+	// addPostcssPlugins([
+	// 	require('postcss-pxtorem')({
+	// 		rootValue: 37.5,
+	// 		unitPrecision: 5,
+	// 		propList: ['*'],
+	// 		selectorBlackList: ['am'],
+	// 		replace: true,
+	// 		mediaQuery: false,
+	// 		minPixelValue: 16
+	// 	}),
+	// ]),
 );
