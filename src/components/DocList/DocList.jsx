@@ -5,7 +5,8 @@ import './DocList.less'
 
 import {
 	List,
-	Badge
+	Badge,
+	Button
 } from "antd-mobile";
 
 const Item = List.Item;
@@ -16,7 +17,7 @@ class DocList extends Component {
 			<div>
 				<List className={'doc-list'}>
 					<Badge text={'温情推荐'} corner>
-						<Item>
+						<Item align={'middle'}>
 							<div className={'doc'}>
 								<img className="header-img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>
 								<div className={'brief'}>
@@ -38,9 +39,11 @@ class DocList extends Component {
 										<span className={'hospital'}>浙江省同立德医院</span>
 									</section>
 									<footer>
-											<span className={'master'}>擅长：小二流行性感冒、小儿感冒、奶痫</span>
+										<p className={'master ellipsis'}>擅长：小二流行性感冒、小儿感冒、奶痫</p>
 									</footer>
 								</div>
+
+								<Button size="small" style={{width:65,backgroundColor:'#68e3ce',color: '#fff',height:30,borderRadius:15 }}>预约</Button>
 
 							</div>
 						</Item>

@@ -1,4 +1,5 @@
 .doc-list {
+	position: relative;
 	.am-badge-corner {
 		width: 80px;
 		padding: 8px;
@@ -15,8 +16,10 @@
 	}
 
 	.doc {
+		width: 375px;
 		display: flex;
-		padding: 12px;
+		align-items: center;
+		justify-content: space-around;
 
 		.header-img {
 			display: inline-block;
@@ -25,10 +28,10 @@
 			width: 50px;
 			height: 50px;
 			border-radius: 50%;
-			margin-right: 12px;
 		}
 
 		.brief {
+			width: 60%;
 			span {
 				margin-right: 10px;
 			}
@@ -56,6 +59,7 @@
 
 			footer {
 				.master {
+					width: 100%;
 					font-size: 15px;
 					color: #999999;
 				}
