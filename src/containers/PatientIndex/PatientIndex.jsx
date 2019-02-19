@@ -10,8 +10,9 @@ import {
 	ActivityIndicator,
 	Button,
 	Flex,
-	Icon
+	Icon,
 } from "antd-mobile";
+import DocList from '../../components/DocList/DocList'
 
 const data = [
 	{
@@ -155,17 +156,24 @@ class PatientIndex extends Component {
 						<Flex.Item justify={'center'} align={'center'}>
 							<Button
 								onClick={this.handleClick}
-							>所有城市 <Icon type={'down'} /></Button>
+							>所有城市 <Icon type={'down'}/></Button>
 						</Flex.Item>
 						<Flex.Item>
 							<Button
 								onClick={this.handleClick}
-							>所有城市 <Icon type={'down'} /> </Button>
+							>所有城市 <Icon type={'down'}/> </Button>
 						</Flex.Item>
 					</Flex>
 					{show ? initData ? menuEl : loadingEl : null}
 					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : null}
 				</div>
+
+
+				<DocList/>
+				<DocList/>
+				<DocList/>
+				<DocList/>
+				<DocList/>
 
 			</div>
 		);
