@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",
+    "amfe-flexible": "^2.2.1",
     "antd-mobile": "^2.2.8",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
@@ -42,6 +43,7 @@
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
+    "postcss-pxtorem": "^4.0.1",
     "postcss-safe-parser": "4.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
@@ -142,5 +144,5 @@
     "color-text-base": "red",
     "@button-font-size": "100 * @hd"
   },
-	"homepage": "."
+  "homepage": "."
 }
