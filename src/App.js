@@ -9,8 +9,6 @@ import store from './redux/store'
 
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import 'reset-css';
-
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import Main from "./containers/Main/Main";
@@ -26,6 +24,7 @@ class App extends Component {
 						content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
 					/>
 					<title>星医馆</title>
+
 				</Helmet>
 
 				<Provider store={store}>
