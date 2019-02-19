@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'reset-css';
 import './index.css';
-// 媒体查询 js
-// import 'amfe-flexible'
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

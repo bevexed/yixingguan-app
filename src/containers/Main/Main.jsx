@@ -18,7 +18,7 @@ class Main extends Component {
 					<Route path='/personal' component={Personal}/>
 					<Route component={NotFound}/>
 				</Switch>
-				{<NavFootPatient/>}
+				<NavFootPatient/>
 			</div>
 		);
 	}

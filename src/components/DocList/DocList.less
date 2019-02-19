@@ -1,0 +1,70 @@
+.doc-list {
+	position: relative;
+	.am-badge-corner {
+		width: 80px;
+		padding: 8px;
+		position: absolute;
+		left: -32px;
+		top: 8px;
+		background-color: #FF9900;
+		color: #fff;
+		white-space: nowrap;
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		text-align: center;
+		font-size: 8px;
+	}
+
+	.doc {
+		width: 345px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		.header-img {
+			display: inline-block;
+			background: #68e3ce;
+			margin-top: 4px;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+
+		.brief {
+			width: 60%;
+			span {
+				margin-right: 10px;
+			}
+
+			header {
+
+				.name {
+					color: #333333;
+					font-size: 18px;
+					font-weight: bold;
+				}
+
+				.subject, .level {
+					color: #999999;
+					font-size: 14px;
+				}
+			}
+
+			section {
+				.hospital {
+					font-size: 16px;
+					color: #333333;
+				}
+			}
+
+			footer {
+				.master {
+					width: 210px;
+					font-size: 15px;
+					color: #999999;
+				}
+			}
+
+		}
+	}
+}
