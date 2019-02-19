@@ -32,21 +32,25 @@ class NavFootPatient extends PureComponent {
 	render() {
 		this.navs.forEach(nav => nav.isActive = this.props.location.pathname === nav.pathname);
 		return (
-			<div className="nav-foot">
-				{
-					this.navs.map(nav =>
+			<div>
+				<div className={'white-space'}>{null}</div>
+				<div className="nav-foot">
 
-						<span
-							className={nav.isActive ? 'active' : null}
-							key={nav.pathname}
-							onClick={() => this.props.history.replace(nav.pathname)}
-						>
+					{
+						this.navs.map(nav =>
+
+								<span
+									className={nav.isActive ? 'active' : null}
+									key={nav.pathname}
+									onClick={() => this.props.history.replace(nav.pathname)}
+								>
 						 <img src={nav.selectedIcon} alt='' style={{display: nav.isActive ? 'block' : 'none'}}/>
 						 <img src={nav.icon} alt='' style={{display: nav.isActive ? 'none' : 'block'}}/>
-							{nav.path}
+									{nav.path}
 						</span>
-					)
-				}
+						)
+					}
+				</div>
 			</div>
 		);
 	}

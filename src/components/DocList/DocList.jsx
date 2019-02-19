@@ -5,10 +5,8 @@ import './DocList.less'
 
 import {
 	List,
-	WhiteSpace,
 	Badge
 } from "antd-mobile";
-import Login from "../../containers/Login/Login";
 
 const Item = List.Item;
 
