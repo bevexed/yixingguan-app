@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import './OrderDoc.less'
+import  './OrderDoc.less'
 
 import {
 	Badge,
@@ -34,7 +34,7 @@ class OrderDoc extends Component {
 	render() {
 		const {files} = this.state;
 		return (
-			<div>
+			<div className={'order-doc'}>
 
 				<Card
 					full
