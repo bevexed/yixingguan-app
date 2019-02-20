@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import './PatientIndex.less'
 
+import {reqBanner} from "../../api";
+
 import {
 	Carousel,
 	SearchBar,
@@ -40,6 +42,10 @@ class PatientIndex extends Component {
 		initData: '',
 		show: false,
 	};
+
+	componentWillMount() {
+		reqBanner()
+	}
 
 	// SearchInput 输入
 	handleChange = (name, val) => {
