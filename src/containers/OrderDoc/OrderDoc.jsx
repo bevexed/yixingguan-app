@@ -11,7 +11,9 @@ import {
 	Icon,
 	WhiteSpace,
 	InputItem,
-	TextareaItem, ImagePicker
+	TextareaItem,
+	ImagePicker,
+	NavBar
 } from "antd-mobile";
 
 const Header = Card.Header;
@@ -37,14 +39,12 @@ class OrderDoc extends Component {
 				<Card
 					full
 				>
-					<div className={'back'}>
-						<Icon
-							type={'left'}
-							size={'lg'}
-							color={'white'}
-							onClick={() => this.props.history.goBack()}
-						/>
-					</div>
+					<NavBar
+						mode="light"
+						icon={<Icon type="left" color={'#fff'} size={'lg'} />}
+						onLeftClick={() => this.props.history.goBack()}
+					><span style={{color:'#fff'}}>医生</span></NavBar>
+
 					<Header
 						style={{background: '#68e3ce', padding: 10}}
 						thumb={<img className={'header-img'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>}

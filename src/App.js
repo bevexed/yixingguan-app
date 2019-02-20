@@ -14,6 +14,7 @@ import Register from './containers/Register/Register'
 import Main from "./containers/Main/Main";
 
 class App extends Component {
+
 	render() {
 		return (
 			<div className="App">

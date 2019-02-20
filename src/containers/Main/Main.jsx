@@ -9,6 +9,7 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import PatientIndex from '../PatientIndex/PatientIndex'
 import Personal from "../Personal/Personal";
 import OrderDoc from '../OrderDoc/OrderDoc'
+import Dcoters from '../Doctors/Doctors'
 
 class Main extends Component {
 	navs = [
@@ -26,7 +27,7 @@ class Main extends Component {
 			isActive: false,
 			icon: 'doc.svg',
 			selectedIcon: 'doc.svg',
-			component: PatientIndex
+			component: Dcoters
 		},
 		{
 			pathname: '/personal',
@@ -35,7 +36,7 @@ class Main extends Component {
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
 			component: Personal
-		}
+		},
 	];
 
 	render() {
