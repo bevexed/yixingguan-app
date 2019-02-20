@@ -43,14 +43,14 @@ class Main extends Component {
 			<div>
 				<Switch>
 					{
-						this.navs.map(nav=>
-						<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
+						this.navs.map(nav =>
+							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 					}
 					<Route path='/order-doc/:docId' component={OrderDoc}/>
 					<Route component={NotFound}/>
 				</Switch>
-				<NavFootPatient navs={this.navs}/>
+				{this.navs.some(nav => nav.pathname === this.props.location.pathname) === true ? <NavFootPatient navs={this.navs}/> : null}
 			</div>
 		);
 	}
