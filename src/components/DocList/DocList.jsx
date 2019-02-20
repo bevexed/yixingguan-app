@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
 
 import './DocList.less'
@@ -9,6 +8,7 @@ import {
 	Badge,
 	Button
 } from "antd-mobile";
+
 
 const Item = List.Item;
 
@@ -59,10 +59,4 @@ class DocList extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
-
-export default connect(
-	mapStateToProps,
-)(withRouter(DocList));
+export default withRouter(DocList);
