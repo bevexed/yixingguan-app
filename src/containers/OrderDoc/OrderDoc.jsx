@@ -3,16 +3,28 @@ import {connect} from 'react-redux';
 
 import './OrderDoc.less'
 
-import {Badge, Card} from "antd-mobile";
+import {
+	Badge,
+	Card,
+	List,
+	Accordion
+} from "antd-mobile";
 
 const Header = Card.Header;
-const Body = Card.Body;
 const Footer = Card.Footer;
 
+const Item = List.Item;
+const Brief = Item.Brief;
+
 class OrderDoc extends Component {
+	onChange = (key) => {
+		console.log(key);
+	};
+
 	render() {
 		return (
 			<div>
+
 				<Card
 					full
 				>
@@ -55,7 +67,34 @@ class OrderDoc extends Component {
 					/>
 				</Card>
 
+				<List>
+					<Item
+						multipleLine
+					>擅长:
+						<Brief>泌尿外科</Brief>
+						<Brief>泌尿外科</Brief>
+						<Brief>泌尿外科</Brief>
+						<Brief>泌尿外科</Brief>
+						<Brief>泌尿外科</Brief>
+					</Item>
 
+					<Item
+						multipleLine
+					>简介:
+						<Brief>泌尿外科</Brief>
+					</Item>
+
+					<Accordion defaultActiveKey="" onChange={this.onChange}>
+						<Accordion.Panel header={<span className={'accordion-header'}>查看详情</span>}>
+							<List className="my-list">
+								<List.Item>content 1</List.Item>
+								<List.Item>content 2</List.Item>
+								<List.Item>content 3</List.Item>
+							</List>
+						</Accordion.Panel>
+					</Accordion>
+
+				</List>
 
 			</div>
 		);
