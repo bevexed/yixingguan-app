@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 
 import './DocList.less'
 
@@ -43,7 +44,11 @@ class DocList extends Component {
 									</footer>
 								</div>
 
-								<Button size="small" style={{width:65,backgroundColor:'#68e3ce',color: '#fff',height:30,borderRadius:15 }}>预约</Button>
+								<Button
+									size="small"
+									style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
+									onClick={() => this.props.history.push('/order-doc/1')}
+								>预约</Button>
 
 							</div>
 						</Item>
@@ -60,4 +65,4 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-)(DocList);
+)(withRouter(DocList));

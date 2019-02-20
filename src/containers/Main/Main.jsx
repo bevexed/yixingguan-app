@@ -8,6 +8,7 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
 import Personal from "../Personal/Personal";
+import OrderDoc from '../OrderDoc/OrderDoc'
 
 class Main extends Component {
 	render() {
@@ -16,6 +17,7 @@ class Main extends Component {
 				<Switch>
 					<Route path='/patient-index' component={PatientIndex}/>
 					<Route path='/personal' component={Personal}/>
+					<Route path='/order-doc/:docId' component={OrderDoc}/>
 					<Route component={NotFound}/>
 				</Switch>
 				<NavFootPatient/>

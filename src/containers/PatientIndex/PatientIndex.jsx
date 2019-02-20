@@ -120,10 +120,11 @@ class PatientIndex extends Component {
 		return (
 			<div>
 				<Carousel
-					autoplay={false}
+					autoplay={true}
 					infinite
 					beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
 					afterChange={index => console.log('slide to', index)}
+					style={{minHeight:'170Px'}}
 				>
 					{this.state.bannerData.map(val => (
 						<a
