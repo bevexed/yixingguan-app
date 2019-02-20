@@ -50,7 +50,9 @@ class Main extends Component {
 					<Route path='/order-doc/:docId' component={OrderDoc}/>
 					<Route component={NotFound}/>
 				</Switch>
-				{this.navs.some(nav => nav.pathname === this.props.location.pathname) === true ? <NavFootPatient navs={this.navs}/> : null}
+				{
+					this.navs.some(nav => nav.pathname === this.props.location.pathname)? <NavFootPatient navs={this.navs}/> : null
+				}
 			</div>
 		);
 	}

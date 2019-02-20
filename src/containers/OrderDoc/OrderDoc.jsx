@@ -153,6 +153,11 @@ class OrderDoc extends Component {
 						/>
 					</div>
 				</List>
+
+				<div style={{height:50}}>{null}</div>
+				<div className={'footer'}>
+						<span>立即预约</span>
+				</div>
 			</div>
 
 		);
