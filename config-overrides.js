@@ -21,7 +21,7 @@ module.exports = override(
 			rootValue: 37.5,
 			unitPrecision: 5,
 			propList: ['*'],
-			selectorBlackList: ['am'],
+			selectorBlackList: ['am-','slider'],
 			replace: true,
 			mediaQuery: false,
 			minPixelValue: 12
