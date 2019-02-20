@@ -8,7 +8,10 @@ import {
 	Card,
 	List,
 	Accordion,
-	Icon
+	Icon,
+	WhiteSpace,
+	InputItem,
+	TextareaItem
 } from "antd-mobile";
 
 const Header = Card.Header;
@@ -34,7 +37,7 @@ class OrderDoc extends Component {
 							type={'left'}
 							size={'lg'}
 							color={'white'}
-							onClick={()=>this.props.history.goBack()}
+							onClick={() => this.props.history.goBack()}
 						/>
 					</div>
 					<Header
@@ -102,10 +105,38 @@ class OrderDoc extends Component {
 							</List>
 						</Accordion.Panel>
 					</Accordion>
-
 				</List>
 
+				<WhiteSpace/>
+
+				<List renderHeader={() => '患者信息'}>
+					<InputItem
+						clear
+						placeholder="请输入患者名称"
+					>患者名称</InputItem>
+					<InputItem
+						clear
+						type="phone"
+						placeholder="请输入手机号"
+					>手机号</InputItem>
+					<InputItem
+						clear
+						type="number"
+						placeholder="请输入验证码"
+						extra={<span className={'code'}>获取</span>}
+						onExtraClick={()=>alert('发送')}
+					>验证码</InputItem>
+
+					<TextareaItem
+						clear
+						title="症状描述"
+						rows={4}
+						placeholder="请输入详细症状"
+					/>
+
+				</List>
 			</div>
+
 		);
 	}
 }
