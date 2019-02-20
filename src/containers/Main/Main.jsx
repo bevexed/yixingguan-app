@@ -9,7 +9,9 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import PatientIndex from '../PatientIndex/PatientIndex'
 import Personal from "../Personal/Personal";
 import OrderDoc from '../OrderDoc/OrderDoc'
-import Dcoters from '../Doctors/Doctors'
+import Doctors from '../Doctors/Doctors'
+
+import Message from '../Message/Message'
 
 class Main extends Component {
 	navs = [
@@ -27,7 +29,7 @@ class Main extends Component {
 			isActive: false,
 			icon: 'doc.svg',
 			selectedIcon: 'doc.svg',
-			component: Dcoters
+			component: Doctors
 		},
 		{
 			pathname: '/personal',
@@ -49,10 +51,11 @@ class Main extends Component {
 						)
 					}
 					<Route path='/order-doc/:docId' component={OrderDoc}/>
+					<Route path='/message/:to' component={Message}/>
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					this.navs.some(nav => nav.pathname === this.props.location.pathname)? <NavFootPatient navs={this.navs}/> : null
+					this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
 				}
 			</div>
 		);

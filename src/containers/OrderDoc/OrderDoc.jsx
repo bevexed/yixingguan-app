@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import  './OrderDoc.less'
+import './OrderDoc.less'
 
 import {
 	Badge,
@@ -41,9 +41,9 @@ class OrderDoc extends Component {
 				>
 					<NavBar
 						mode="light"
-						icon={<Icon type="left" color={'#fff'} size={'lg'} />}
+						icon={<Icon type="left" color={'#fff'} size={'lg'}/>}
 						onLeftClick={() => this.props.history.goBack()}
-					><span style={{color:'#fff'}}>医生</span></NavBar>
+					><span style={{color: '#fff'}}>医生</span></NavBar>
 
 					<Header
 						style={{background: '#68e3ce', padding: 10}}
@@ -155,9 +155,9 @@ class OrderDoc extends Component {
 				</List>
 
 				<div className={'phone'}>客服热线：400-XXX-XXXX</div>
-				<div style={{height:50}}>{null}</div>
+				<div style={{height: 50}}>{null}</div>
 				<div className={'footer'}>
-						<span>立即预约</span>
+					<span>立即预约</span>
 				</div>
 			</div>
 

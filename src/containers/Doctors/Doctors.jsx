@@ -19,6 +19,11 @@ class Doctors extends Component {
 		console.log(key);
 	};
 
+	toMessage = (el, id) => {
+		el.stopPropagation();
+		this.props.history.push(`/message/${id}`)
+	};
+
 
 	render() {
 		return (
@@ -50,10 +55,7 @@ class Doctors extends Component {
 							key={doc}
 							header={
 								<div className={'content'}
-										 onClick={(el) => {
-											 el.stopPropagation();
-											 console.log(el);
-										 }}
+										 onClick={el => this.toMessage(el, doc)}
 								>
 									<img className={'header-img'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>
 									<div className={'doc-brief ellipsis'}>
