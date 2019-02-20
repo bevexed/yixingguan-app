@@ -17,21 +17,24 @@ class Main extends Component {
 			path: '首页',
 			isActive: false,
 			icon: 'home.svg',
-			selectedIcon: 'home-s.svg'
+			selectedIcon: 'home-s.svg',
+			component: PatientIndex
 		},
 		{
 			pathname: '/doc',
 			path: '',
 			isActive: false,
 			icon: 'doc.svg',
-			selectedIcon: 'doc.svg'
+			selectedIcon: 'doc.svg',
+			component: PatientIndex
 		},
 		{
 			pathname: '/personal',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
-			selectedIcon: 'my-s.svg'
+			selectedIcon: 'my-s.svg',
+			component: Personal
 		}
 	];
 
@@ -39,8 +42,11 @@ class Main extends Component {
 		return (
 			<div>
 				<Switch>
-					<Route path='/patient-index' component={PatientIndex}/>
-					<Route path='/personal' component={Personal}/>
+					{
+						this.navs.map(nav=>
+						<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
+						)
+					}
 					<Route path='/order-doc/:docId' component={OrderDoc}/>
 					<Route component={NotFound}/>
 				</Switch>
