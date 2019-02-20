@@ -11,7 +11,7 @@ import {
 	Icon,
 	WhiteSpace,
 	InputItem,
-	TextareaItem
+	TextareaItem, ImagePicker
 } from "antd-mobile";
 
 const Header = Card.Header;
@@ -21,11 +21,16 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 class OrderDoc extends Component {
+	state = {
+		files: [],
+	};
+
 	onChange = (key) => {
 		console.log(key);
 	};
 
 	render() {
+		const {files} = this.state;
 		return (
 			<div>
 
@@ -124,7 +129,7 @@ class OrderDoc extends Component {
 						type="number"
 						placeholder="请输入验证码"
 						extra={<span className={'code'}>获取</span>}
-						onExtraClick={()=>alert('发送')}
+						onExtraClick={() => alert('发送')}
 					>验证码</InputItem>
 
 					<TextareaItem
@@ -134,6 +139,19 @@ class OrderDoc extends Component {
 						placeholder="请输入详细症状"
 					/>
 
+					<div className={'img-pick'}>
+						<p>检查报告图片:<span>（病理报告、激光拍片等）会确定您的隐私</span></p>
+						<ImagePicker
+							files={files}
+							length={3}
+							onChange={(files, type, index) => {
+								console.log(files, type, index);
+								this.setState({
+									files,
+								})
+							}}
+						/>
+					</div>
 				</List>
 			</div>
 

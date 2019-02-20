@@ -11,6 +11,30 @@ import Personal from "../Personal/Personal";
 import OrderDoc from '../OrderDoc/OrderDoc'
 
 class Main extends Component {
+	navs = [
+		{
+			pathname: '/patient-index',
+			path: '首页',
+			isActive: false,
+			icon: 'home.svg',
+			selectedIcon: 'home-s.svg'
+		},
+		{
+			pathname: '/doc',
+			path: '',
+			isActive: false,
+			icon: 'doc.svg',
+			selectedIcon: 'doc.svg'
+		},
+		{
+			pathname: '/personal',
+			path: '我的',
+			isActive: false,
+			icon: 'my.svg',
+			selectedIcon: 'my-s.svg'
+		}
+	];
+
 	render() {
 		return (
 			<div>
@@ -20,7 +44,7 @@ class Main extends Component {
 					<Route path='/order-doc/:docId' component={OrderDoc}/>
 					<Route component={NotFound}/>
 				</Switch>
-				<NavFootPatient/>
+				<NavFootPatient navs={this.navs}/>
 			</div>
 		);
 	}
