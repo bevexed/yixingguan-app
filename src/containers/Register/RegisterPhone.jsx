@@ -23,11 +23,15 @@ class MyComponent extends Component {
 						placeholder=""
 						type="number"
 						extra={<span className={'code'}>获取</span>}
-						onExtraClick={()=>alert(1)}
+						onExtraClick={() => alert(1)}
 					>验证码</InputItem>
 
 				</List>
-				<div className='button'>注册/登录</div>
+				<div
+					className='button'
+					onClick={() => this.props.history.push('/select-player')}
+				>注册/登录
+				</div>
 			</div>
 		);
 	}

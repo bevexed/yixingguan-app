@@ -12,6 +12,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Login from './containers/Login/Login'
 import RegisterIndex from './containers/Register/RegisterIndex';
 import RegisterPhone from './containers/Register/RegisterPhone';
+import SelectPlayer from './containers/Register/SelectPlayer';
 import Main from "./containers/Main/Main";
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
 						<Switch>
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
+							<Route path='/select-player' component={SelectPlayer}/>
 
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
