@@ -4,17 +4,19 @@ import {
 	RECEIVE_DOCTOR_LIST
 } from "./action-types";
 
-const initUser = {};
-const user = (state = initUser, action) => {
-	switch (action.type) {
-		case 1:
-			return state;
-		default:
-			return state
+const initDoctorList = [
+	{
+		"id": "",
+		"avator": "",
+		"name": "",
+		"department": "",
+		"with_title": "",
+		"hospital_level": "",
+		"affiliated_hospital": "",
+		"good_at": "",
+		"is_reference": ""
 	}
-};
-
-const initDoctorList = {};
+];
 
 const doctorList = (state = initDoctorList, action) => {
 	switch (action.type) {
@@ -27,6 +29,5 @@ const doctorList = (state = initDoctorList, action) => {
 
 
 export default combineReducers({
-	user,
 	doctorList
 })

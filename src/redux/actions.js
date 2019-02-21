@@ -13,7 +13,7 @@ export const getDoctorList = () => {
 		reqDoctorList().then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveDoctorList(res.data))
+					dispatch(receiveDoctorList(res.data.data))
 				}
 			}
 		)
