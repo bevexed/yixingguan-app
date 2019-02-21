@@ -9,11 +9,6 @@ const Item = List.Item;
 
 
 class PersonalPatient extends Component {
-
-	horizontal = () => {
-		return 'horizontal'
-	};
-
 	render() {
 		return (
 			<div className={'personal-patient'}>
@@ -25,42 +20,39 @@ class PersonalPatient extends Component {
 				</Card>
 				<WhiteSpace size={'lg'}/>
 
-				<div className={'gray'}>
-					<List>
-						<Item
-							extra={'王小丫'}
-						>姓名</Item>
-						<Item
-							extra={'暂无'}
-							arrow={this.horizontal()}
-						>单位</Item>
-						<Item
-							extra={'12312321321'}
-							arrow={this.horizontal()}
-						>手机号</Item>
-					</List>
-					<WhiteSpace size={'lg'}/>
+				<List>
+					<Item
+						extra={'王小丫'}
+					>姓名</Item>
+					<Item
+						extra={'暂无'}
+						arrow={'horizontal'}
+					>单位</Item>
+					<Item
+						extra={'12312321321'}
+						arrow={'horizontal'}
+					>手机号</Item>
+				</List>
+				<WhiteSpace size={'lg'}/>
 
-					<List>
-						<Item
-							extra={<Badge dot/>}
-							arrow={this.horizontal()}
-						>预约受理记录</Item>
-					</List>
+				<List>
+					<Item
+						extra={<Badge dot/>}
+						arrow={'horizontal'}
+					>预约受理记录</Item>
+				</List>
 
-					<WhiteSpace size={'lg'}/>
+				<WhiteSpace size={'lg'}/>
 
-					<List>
-						<Item
-							arrow={this.horizontal()}
-						>邀请好友</Item>
-						<Item
-							arrow={this.horizontal()}
-						>设置</Item>
-					</List>
+				<List>
+					<Item
+						arrow={'horizontal'}
+					>邀请好友</Item>
+					<Item
+						arrow={'horizontal'}
+					>设置</Item>
+				</List>
 
-
-				</div>
 
 			</div>
 
