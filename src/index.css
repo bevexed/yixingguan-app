@@ -2,4 +2,8 @@
 	max-width: 450px;
 	margin: 0 auto;
 	overflow: hidden;
+	background: #fff;
+}
+a:hover {
+	text-decoration: none;
 }

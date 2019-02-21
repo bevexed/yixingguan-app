@@ -11,8 +11,10 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
-// import Main from "./containers/Main/Main";
+import Main from "./containers/Main/Main";
 import Record from './content/Record/Record'
+import Count from './content/Count/Count'
+import MyHelper from './content/MyHelper/MyHelper'
 
 class App extends Component {
 
@@ -35,7 +37,7 @@ class App extends Component {
 						<Switch>
 							<Route path='/register' component={Register}/>
 							<Route path='/login' component={Login}/>
-							<Route component={Record}/>
+							<Route component={MyHelper}/>
 						</Switch>
 					</BrowserRouter>
 				</Provider>

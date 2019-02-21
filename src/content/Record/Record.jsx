@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Switch, Route} from "react-router-dom";
-
 import HeaderMain from '../HeaderMain/HeaderMain'
 import RecordList from '../RecordList/RecordList'
 
 class Record extends Component {
+		constructor(props){
+			super(props)
+			this.obj = {
+				title:'预约受理记录'
+			}
+		}
     render() {
         return (
             <div>
-							<Switch>
-								<Route component={HeaderMain}/>
-								<Route component={RecordList}/>
-							</Switch>
+							<HeaderMain title='预约受理记录'/>
+							<RecordList/>
             </div>
         );
     }

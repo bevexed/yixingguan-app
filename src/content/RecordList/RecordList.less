@@ -1,0 +1,82 @@
+.recordList {
+	padding: 9px 0 0 0;
+	margin-bottom: 42px;
+	.recordP {
+		width:96px;
+		height:44px;
+		background:rgba(254,82,82,1);
+		color: #fff;
+		font-size:15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.recordDiv {
+		margin: 8px 20px 0;
+		padding-bottom: 9px;
+		font-size: 14px;
+		border-bottom: 2px #eee solid;
+		>div:nth-child(1){
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			>div {
+				display: flex;
+				justify-content: space-between;
+			}
+			>span {
+				font-size: 10px;
+				align-self: flex-start;
+				margin-top: 6px;
+				color: #999;
+			}
+		}
+		.appointAvatar {
+			width: 50px;
+			height: 50px;
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+			margin-right: 12px;
+		}
+		.appointInfo {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			>div {
+				display: flex;
+				align-items: center;
+				color: #666;
+				.appointName {
+					font-size:16px;
+					font-weight: bold;
+					color: #000;
+				}
+				.appointSpan {
+					margin: 0 5px;
+				}
+				.appointGrade {
+					border-radius:1px;
+					border:1px solid rgba(255,153,0,1);
+					color: #FF9900;
+					text-align: center;
+					margin-right: 5px;
+					font-size: 11px;
+					padding: 2px 4px;
+				}
+			}
+		}
+		.recordBottomDiv {
+			margin-top: 8px;
+			>p {
+				color: #000;
+				font-size: 15px;
+				font-weight: bold;
+				display: inline-block;
+			}
+			>span {
+				color: #666;
+			}
+		}
+	}
+}

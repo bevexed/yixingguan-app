@@ -1,21 +1,31 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {PureComponent} from 'react';
+// import {connect} from 'react-redux';
 import './header.less'
-class HeaderMain extends Component {
+import PropTypes from 'prop-types';
+// import {withRouter} from 'react-router-dom'
+
+class HeaderMain extends PureComponent {
+	static propTypes = {
+		title: PropTypes.string.isRequired,
+		isAdd:PropTypes.bool.isRequired
+	}
 	render() {
+		let span = null;
+		if(this.props.isAdd){
+			span = <span className='iconfont icon-add addIcon'></span>
+		}
 		return (
 			<div className='headerDiv'>
 				<img src={require('./img/fanhui@2x.png')} alt=''/>
-				<span>预约受理记录</span>
+				<span>{this.props.title}</span>
+				{span}
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
+// function mapStateToProps(state) {
+// 	return {};
+// }
 
-export default connect(
-	mapStateToProps,
-)(HeaderMain);
+export default HeaderMain;
