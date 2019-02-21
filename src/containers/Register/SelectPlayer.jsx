@@ -31,6 +31,7 @@ class SelectPlayer extends Component {
 
 	render() {
 		const {type,phone} = this.props.user;
+		console.log(phone);
 		if (type) {
 			return <Redirect to={getRedirectTo(type,phone)}/>
 		}

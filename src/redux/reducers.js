@@ -26,7 +26,7 @@ const user = (state = initUser, action) => {
 		case RESET_USER:
 			return state;
 		case RECEIVE_USER:
-			return action.data;
+			return {...state,...action.data};
 		default:
 			return state;
 	}

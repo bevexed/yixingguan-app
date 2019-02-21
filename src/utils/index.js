@@ -1,6 +1,7 @@
-export function getRedirectTo(type, phone) {
+export const getRedirectTo = (type, phone) => {
 	let path = '';
 	console.log(type);
+	console.log(phone);
 	if (!phone) {
 		return 'register-index'
 	}
@@ -12,5 +13,6 @@ export function getRedirectTo(type, phone) {
 
 	path += '-index';
 
+	console.log(path);
 	return path
-}
+};

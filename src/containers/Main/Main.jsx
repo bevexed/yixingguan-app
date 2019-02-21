@@ -68,6 +68,7 @@ class Main extends Component {
 
 	render() {
 		const {type,phone} = this.props.user;
+		console.log(1);
 		if (!type) {
 			return <Redirect to={getRedirectTo(type, phone)}/>
 		}

@@ -2,9 +2,30 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Register.less'
 
+import {Redirect} from "react-router-dom";
+
+import {receiveUser} from "../../redux/actions";
+
 import {List, InputItem, WhiteSpace} from "antd-mobile";
 
 class MyComponent extends Component {
+	state = {
+		phone: ''
+	};
+
+	handleChange = (name, val) => {
+		this.setState({
+			[name]: val
+		});
+	};
+
+	getPhone = () => {
+		this.props.receiveUser({
+			phone: this.state.phone
+		});
+		this.props.history.push('/select-player')
+	};
+
 	render() {
 		return (
 			<div className={'register-phone'}>
@@ -16,6 +37,7 @@ class MyComponent extends Component {
 						clear
 						type="phone"
 						placeholder=""
+						onChange={val => this.handleChange('phone', val)}
 					>手机号码</InputItem>
 					<WhiteSpace/>
 					<InputItem
@@ -29,7 +51,7 @@ class MyComponent extends Component {
 				</List>
 				<div
 					className='button'
-					onClick={() => this.props.history.push('/select-player')}
+					onClick={this.getPhone}
 				>注册/登录
 				</div>
 			</div>
@@ -38,9 +60,12 @@ class MyComponent extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
 	mapStateToProps,
+	{receiveUser}
 )(MyComponent);
