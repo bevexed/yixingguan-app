@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {getDoctorDetail} from "../../redux/actions";
 
 import './OrderDoc.less'
 
@@ -27,12 +28,17 @@ class OrderDoc extends Component {
 		files: [],
 	};
 
+	componentWillMount() {
+		this.props.getDoctorDetail(this.props.match.params.docId);
+	}
+
 	onChange = (key) => {
 		console.log(key);
 	};
 
 	render() {
 		const {files} = this.state;
+		const {doctorDetail} = this.props;
 		return (
 			<div className={'order-doc'}>
 
@@ -47,17 +53,17 @@ class OrderDoc extends Component {
 
 					<Header
 						style={{background: '#68e3ce', padding: 10}}
-						thumb={<img className={'header-img'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>}
+						thumb={<img className={'header-img'} src={doctorDetail.avator} alt=""/>}
 						title={
 							<div>
 								<header className={'title'}>
-									<span className={'name'}>李峰</span>
-									<span className={'subject'}>呼吸内科</span>
-									<span className={'level'}>主治医师</span>
+									<span className={'name'}>{doctorDetail.name}</span>
+									<span className={'subject'}>{doctorDetail.department}</span>
+									<span className={'level'}>{doctorDetail.with_title}</span>
 								</header>
 
 								<section className={'hospital'}>
-									<Badge text="三级甲等"
+									<Badge text={doctorDetail.hospital_level}
 												 style={{
 													 padding: '0 5px',
 													 borderRadius: 2,
@@ -65,7 +71,7 @@ class OrderDoc extends Component {
 													 background: '#FF9900',
 													 fontSize: '12px'
 												 }}/>
-									<span>浙江省同立德医院</span>
+									<span>{doctorDetail.affiliated_hospital}</span>
 								</section>
 
 								<footer>
@@ -88,17 +94,13 @@ class OrderDoc extends Component {
 					<Item
 						multipleLine
 					>擅长:
-						<Brief>泌尿外科</Brief>
-						<Brief>泌尿外科</Brief>
-						<Brief>泌尿外科</Brief>
-						<Brief>泌尿外科</Brief>
-						<Brief>泌尿外科</Brief>
+						<Brief>{doctorDetail.good_at}</Brief>
 					</Item>
 
 					<Item
 						multipleLine
 					>简介:
-						<Brief>泌尿外科</Brief>
+						<Brief>{doctorDetail.introduction}</Brief>
 					</Item>
 
 					<Accordion defaultActiveKey="" onChange={this.onChange}>
@@ -166,9 +168,12 @@ class OrderDoc extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		doctorDetail:state.doctorDetail
+	};
 }
 
 export default connect(
 	mapStateToProps,
+	{getDoctorDetail}
 )(OrderDoc);

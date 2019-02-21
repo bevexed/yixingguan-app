@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import './PatientIndex.less'
 
-import {reqBanner} from "../../api";
-
 import {
 	Carousel,
 	SearchBar,
@@ -15,7 +13,9 @@ import {
 	Icon,
 } from "antd-mobile";
 import DocList from '../../components/DocList/DocList'
+
 import {getDoctorList} from "../../redux/actions";
+import {reqBanner} from "../../api";
 
 const data = [
 	{
