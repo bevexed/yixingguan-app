@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class PersonalDoc extends Component {
+class PersonalPatient extends Component {
 	render() {
 		return (
 			<div>
@@ -17,4 +17,4 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-)(PersonalDoc);
+)(PersonalPatient);

@@ -7,7 +7,7 @@ import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
-import Personal from "../Personal-Doc/Personal-Doc";
+import Personal from "../PersonalDoc/PersonalPatient";
 import OrderDoc from '../OrderDoc/OrderDoc'
 import Doctors from '../Doctors/Doctors'
 
