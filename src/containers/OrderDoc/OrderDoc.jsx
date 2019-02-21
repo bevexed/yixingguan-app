@@ -85,7 +85,7 @@ class OrderDoc extends Component {
 						style={{background: '#68e3ce', padding: 10}}
 						extra={<div style={{display: 'flex', justifyContent: 'flex-end'}}>
 							<img height={14} style={{marginRight: 6}} src={require('../../asset/img/message.svg')} alt=""/>
-							<span style={{color: '#fff'}}> 访问量 5670</span>
+							<span style={{color: '#fff'}}> 访问量 {doctorDetail.seeing}</span>
 						</div>}
 					/>
 				</Card>

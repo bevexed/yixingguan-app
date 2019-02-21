@@ -38,7 +38,8 @@ const initDoctorDetail = {
 	"affiliated_hospital": "",
 	"good_at": "",
 	"is_reference": 0,
-	"introduction": ""
+	"introduction": "",
+	"seeing":0
 };
 
 const doctorDetail = (state = initDoctorDetail, action) => {
