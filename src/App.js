@@ -10,7 +10,8 @@ import store from './redux/store'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from './containers/Login/Login'
-import Register from './containers/Register/Register'
+import RegisterIndex from './containers/Register/RegisterIndex';
+import RegisterPhone from './containers/Register/RegisterPhone';
 import Main from "./containers/Main/Main";
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Helmet>
-					<meta charSet="utf-8" />
+					<meta charSet="utf-8"/>
 					<meta
 						name="viewport"
 						content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
@@ -32,7 +33,9 @@ class App extends Component {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Switch>
-							<Route path='/register' component={Register}/>
+							<Route path='/register-index' component={RegisterIndex}/>
+							<Route path='/register-phone' component={RegisterPhone}/>
+
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>
