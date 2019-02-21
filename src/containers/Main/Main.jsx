@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 
 import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
+import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
 import Personal from "../PersonalDoc/PersonalPatient";
@@ -13,7 +14,13 @@ import Doctors from '../Doctors/Doctors'
 
 import Message from '../Message/Message'
 
+import {getRedirectTo} from "../../utils";
+
 class Main extends Component {
+	state = {
+		type: 'doctor'
+	};
+
 	navs = [
 		{
 			pathname: '/patient-index',
@@ -41,7 +48,30 @@ class Main extends Component {
 		},
 	];
 
+	patientNav = [
+		{
+			pathname: '/doctor-index',
+			path: '患者',
+			isActive: false,
+			icon: 'patient-@3x.png',
+			selectedIcon: 'patient-s@3x.png',
+			component: Personal
+		}, {
+			pathname: '/patient-detail',
+			path: '我的',
+			isActive: false,
+			icon: 'my.svg',
+			selectedIcon: 'my-s.svg',
+			component: Personal
+		}
+	];
+
 	render() {
+		const type = this.props.user.type;
+		if (!type) {
+			return <Redirect to={'/login'}/>
+		}
+
 		return (
 			<div>
 				<Switch>
@@ -55,7 +85,9 @@ class Main extends Component {
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
+					type === 'doctor' ?
+						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
+						: < NavFootDoc patientNav={this.patientNav}/>
 				}
 			</div>
 		);
@@ -63,7 +95,9 @@ class Main extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
