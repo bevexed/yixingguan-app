@@ -1,6 +1,9 @@
-export function getRedirectTo(type, header) {
+export function getRedirectTo(type, phone) {
 	let path = '';
 	console.log(type);
+	if (!phone) {
+		return 'register-index'
+	}
 	if (type === 'doctor') {
 		path = 'doctor'
 	} else {
@@ -8,18 +11,6 @@ export function getRedirectTo(type, header) {
 	}
 
 	path += '-index';
-
-	// if (!header) {
-	// 	path += '-info'
-	// }
-
-	// if (header) {
-	// 	if (type === 'dashen') {
-	// 		path = 'laoban'
-	// 	} else {
-	// 		path = 'dashen'
-	// 	}
-	// }
 
 	return path
 }
