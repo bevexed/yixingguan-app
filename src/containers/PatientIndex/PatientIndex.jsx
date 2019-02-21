@@ -14,6 +14,9 @@ import {
 } from "antd-mobile";
 import DocList from '../../components/DocList/DocList'
 
+import {getDoctorList} from "../../redux/actions";
+import {reqBanner} from "../../api";
+
 const data = [
 	{
 		value: '1',
@@ -32,7 +35,7 @@ const data = [
 
 class PatientIndex extends Component {
 	state = {
-		bannerData: ['123', '123', '123'],
+		bannerData: [],
 		imgHeight: 170,
 
 		searchWord: '',
@@ -40,6 +43,19 @@ class PatientIndex extends Component {
 		initData: '',
 		show: false,
 	};
+
+
+	componentWillMount() {
+		this.props.getDoctorList()
+
+		reqBanner().then(
+			res => {
+				if (res.code === 1) {
+					this.setState({bannerData: res.data})
+				}
+			}
+		)
+	}
 
 	// SearchInput 输入
 	handleChange = (name, val) => {
@@ -89,17 +105,10 @@ class PatientIndex extends Component {
 		});
 	};
 
-	componentDidMount() {
-		// simulate img loading
-		setTimeout(() => {
-			this.setState({
-				bannerData: ['123', '123', '123'],
-			});
-		}, 100);
-	}
-
 	render() {
 		const {initData, show} = this.state;
+		const {doctorList} = this.props;
+
 		const menuEl = (
 			<Menu
 				className="single-foo-menu"
@@ -120,20 +129,21 @@ class PatientIndex extends Component {
 		return (
 			<div>
 				<Carousel
-					autoplay={false}
+					autoplay={true}
 					infinite
 					beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
 					afterChange={index => console.log('slide to', index)}
+					style={{minHeight: '170Px'}}
 				>
 					{this.state.bannerData.map(val => (
 						<a
-							key={val}
-							href="/"
+							key={val.id}
+							href={val.url}
 							style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
 						>
 							<img
-								src={require(`./img/${val}.png`)}
-								alt=""
+								src={val.picture}
+								alt={val.name}
 								style={{width: '100%', verticalAlign: 'top'}}
 								onLoad={() => {
 									// fire window resize event to change height
@@ -169,11 +179,7 @@ class PatientIndex extends Component {
 				</div>
 
 
-				<DocList/>
-				<DocList/>
-				<DocList/>
-				<DocList/>
-				<DocList/>
+				<DocList doctorList={doctorList}/>
 
 			</div>
 		);
@@ -181,10 +187,13 @@ class PatientIndex extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		doctorList: state.doctorList
+	};
 }
 
 export default connect(
 	mapStateToProps,
+	{getDoctorList}
 )(PatientIndex);
 

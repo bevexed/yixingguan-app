@@ -8,17 +8,55 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
 import Personal from "../Personal/Personal";
+import OrderDoc from '../OrderDoc/OrderDoc'
+import Doctors from '../Doctors/Doctors'
+
+import Message from '../Message/Message'
 
 class Main extends Component {
+	navs = [
+		{
+			pathname: '/patient-index',
+			path: '首页',
+			isActive: false,
+			icon: 'home.svg',
+			selectedIcon: 'home-s.svg',
+			component: PatientIndex
+		},
+		{
+			pathname: '/doc',
+			path: '',
+			isActive: false,
+			icon: 'doc.svg',
+			selectedIcon: 'doc.svg',
+			component: Doctors
+		},
+		{
+			pathname: '/personal',
+			path: '我的',
+			isActive: false,
+			icon: 'my.svg',
+			selectedIcon: 'my-s.svg',
+			component: Personal
+		},
+	];
+
 	render() {
 		return (
 			<div>
 				<Switch>
-					<Route path='/patient-index' component={PatientIndex}/>
-					<Route path='/personal' component={Personal}/>
+					{
+						this.navs.map(nav =>
+							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
+						)
+					}
+					<Route path='/order-doc/:docId' component={OrderDoc}/>
+					<Route path='/message/:to' component={Message}/>
 					<Route component={NotFound}/>
 				</Switch>
-				<NavFootPatient/>
+				{
+					this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
+				}
 			</div>
 		);
 	}

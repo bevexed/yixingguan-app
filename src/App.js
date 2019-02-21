@@ -15,6 +15,7 @@ import Register from './containers/Register/Register'
 import Record from './content/Record/Record'
 
 class App extends Component {
+
 	render() {
 		return (
 			<div className="App">
@@ -24,6 +25,7 @@ class App extends Component {
 						name="viewport"
 						content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
 					/>
+					<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js">{null}</script>
 					<title>星医馆</title>
 
 				</Helmet>

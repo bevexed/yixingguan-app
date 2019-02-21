@@ -146,5 +146,6 @@
     "color-text-base": "red",
     "@button-font-size": "100 * @hd"
   },
-  "homepage": "."
+  "homepage": ".",
+	"proxy": "http://47.75.74.89"
 }
