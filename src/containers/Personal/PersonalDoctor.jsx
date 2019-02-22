@@ -16,28 +16,57 @@ const grid = [
 	},
 	{
 		icon: 2,
-		name:'我的助手'
+		name: '我的助手'
 	},
 	{
-		icon:3,
-		name:'钱包'
+		icon: 3,
+		name: '钱包'
 	},
 	{
-		icon:4,
-		name:'工作室'
+		icon: 4,
+		name: '工作室'
 	},
 	{
-		icon:5,
-		name:'发布图文'
+		icon: 5,
+		name: '发布图文'
 	},
 	{
-		icon:6,
-		name:'邀请同行'
+		icon: 6,
+		name: '邀请同行'
+	}
+];
+
+const grid2 = [
+	{
+		icon: 7,
+		name: '统计'
+	},
+	{
+		icon: 8,
+		name: '我的助手'
+	},
+	{
+		icon: 9,
+		name: '钱包'
+	},
+	{
+		icon: 4,
+		name: '申请工作室'
+	},
+	{
+		icon: 10,
+		name: '发布图文'
+	},
+	{
+		icon: 11,
+		name: '邀请同行'
 	}
 ];
 
 class MyComponent extends Component {
 	render() {
+		const {isActive} = this.props.user;
+
 		return (
 			<div className={'personal-doctor'}>
 				<Result
@@ -45,12 +74,12 @@ class MyComponent extends Component {
 					title={<p className={'name'}>李医生 <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 				/>
 				<WhiteSpace/>
-				<Grid data={grid}
+				<Grid data={isActive ? grid : grid2}
 							columnNum={3}
 							renderItem={(dataItem, index) => (
 								<div className={'item'}>
 									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
-									<div style={{color: '#888', fontSize: '14px', marginTop: '12px'}}>
+									<div style={{color: isActive ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
 										<span>{dataItem.name}</span>
 									</div>
 								</div>
@@ -62,7 +91,9 @@ class MyComponent extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(

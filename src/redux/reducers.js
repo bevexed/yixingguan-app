@@ -11,8 +11,9 @@ import {
 
 const initUser = {
 	username: '',
-	phone:'123',
+	phone: '123',
 	type: 'doctor',
+	isActive: false,
 	msg: '',
 	redirectTo: '' // 需要自动重定向的路由路径
 };
@@ -26,7 +27,7 @@ const user = (state = initUser, action) => {
 		case RESET_USER:
 			return state;
 		case RECEIVE_USER:
-			return {...state,...action.data};
+			return {...state, ...action.data};
 		default:
 			return state;
 	}
