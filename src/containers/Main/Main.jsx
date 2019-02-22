@@ -86,14 +86,15 @@ class Main extends Component {
 	doctorRoute = [
 		...this.doctorNav,
 		{
-			pathname:'/new-patient/:docId',
-			component:NewPatient
+			pathname: '/new-patient/:docId',
+			component: NewPatient
 		},
 	];
 
 	render() {
 		const {type, phone} = this.props.user;
-		console.log(1);
+		const route = type === 'patient' ? this.patientRoute : this.doctorRoute;
+
 		if (!type) {
 			return <Redirect to={getRedirectTo(type, phone)}/>
 		}
@@ -101,12 +102,8 @@ class Main extends Component {
 		return (
 			<div>
 				<Switch>
-					{type === 'patient' ?
-						this.patientRoute.map(nav =>
-							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
-						)
-						:
-						this.doctorRoute.map(nav =>
+					{
+						route.map(nav =>
 							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 					}
