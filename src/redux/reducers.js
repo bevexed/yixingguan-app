@@ -2,8 +2,37 @@ import {combineReducers} from "redux";
 
 import {
 	RECEIVE_DOCTOR_LIST,
-	RECEIVE_DOCTOR_DETAILS
+	RECEIVE_DOCTOR_DETAILS,
+	AUTH_SUCCESS,
+	ERROR_MSG,
+	RECEIVE_USER,
+	RESET_USER
 } from "./action-types";
+
+const initUser = {
+	username: '',
+	phone: '123',
+	type: 'doctor',
+	isActive: true,
+	msg: '',
+	redirectTo: '' // 需要自动重定向的路由路径
+};
+
+const user = (state = initUser, action) => {
+	switch (action.type) {
+		case AUTH_SUCCESS:
+			return state;
+		case ERROR_MSG:
+			return state;
+		case RESET_USER:
+			return state;
+		case RECEIVE_USER:
+			return {...state, ...action.data};
+		default:
+			return state;
+	}
+};
+
 
 const initDoctorList = [
 	{
@@ -38,7 +67,8 @@ const initDoctorDetail = {
 	"affiliated_hospital": "",
 	"good_at": "",
 	"is_reference": 0,
-	"introduction": ""
+	"introduction": "",
+	"seeing": 0
 };
 
 const doctorDetail = (state = initDoctorDetail, action) => {
@@ -52,6 +82,7 @@ const doctorDetail = (state = initDoctorDetail, action) => {
 
 
 export default combineReducers({
+	user,
 	doctorList,
 	doctorDetail
 })

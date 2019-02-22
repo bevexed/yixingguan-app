@@ -127,7 +127,7 @@ class PatientIndex extends Component {
 
 
 		return (
-			<div>
+			<div className={'patient-index'}>
 				<Carousel
 					autoplay={true}
 					infinite

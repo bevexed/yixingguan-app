@@ -12,10 +12,10 @@ class NavFootPatient extends PureComponent {
 
 	render() {
 		const {navs} = this.props;
-
 		navs.forEach(nav => nav.isActive = this.props.location.pathname === nav.pathname);
 		return (
-			<div>
+			<div className='nav-foot-patient'>
+				<div className={'phone'}>客服热线：400-XXX-XXXX</div>
 				<div className={'white-space'}>{null}</div>
 				<div className="nav-foot">
 

@@ -6,7 +6,7 @@ import {
 	Accordion,
 	Icon,
 	NavBar,
-	Button
+	Button, WhiteSpace
 } from "antd-mobile";
 
 const Panel = Accordion.Panel;
@@ -41,6 +41,11 @@ class Doctors extends Component {
 				>
 					我的医生
 				</NavBar>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 
 				<Accordion
 					accordion

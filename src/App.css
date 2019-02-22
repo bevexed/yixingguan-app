@@ -12,3 +12,9 @@ html{
 	text-overflow:ellipsis;
 	white-space: nowrap;
 }
+
+.am-navbar{
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+}
