@@ -7,8 +7,8 @@ import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
-import PatientIndex from '../PatientIndex/PatientIndex'
-import DoctorIndex from '../DoctorIndex/DoctorIndex';
+import PatientIndex from '../Index/PatientIndex'
+import DoctorIndex from '../Index/DoctorIndex';
 import PersonalPatient from "../Personal/PersonalPatient";
 import PersonalDoctor from "../Personal/PersonalDoctor";
 import OrderDoc from '../OrderDoc/OrderDoc'
