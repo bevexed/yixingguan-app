@@ -85,7 +85,7 @@ class DoctorIndex extends Component {
 						thumb={<img src={require('./img/Medical@3x.png')} alt=""/>}
 						arrow={'horizontal'}
 						extra={<Badge text={77} overflowCount={99}/>}
-						onClick={() => this.props.history.push('/new-patient/12')}
+						onClick={() => this.props.history.push('/new-patient')}
 					>新增患者</Item>
 				</List>
 

@@ -39,7 +39,7 @@ const grid = [
 const grid2 = [
 	{
 		icon: 7,
-		name: '统计'
+		name: '统计',
 	},
 	{
 		icon: 8,
@@ -52,8 +52,8 @@ const grid2 = [
 	{
 		icon: 4,
 		name: '申请工作室',
-		onClick: (el,id) => {
-			el.props.history.push(`/doctor-complete-information/${1}`)
+		onClick: (el) => {
+			el.props.history.push(`/doctor-complete-information`)
 		}
 	},
 	{
@@ -72,14 +72,18 @@ class MyComponent extends Component {
 
 		return (
 			<div className={'personal-doctor'}>
-				<Result
-					img={<img className={'avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
-					title={<p className={'name'}>李医生 <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
-				/>
+				<div onClick={() => this.props.history.push('/doctor-detail')}>
+					<Result
+						img={<img className={'avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
+						title={<p className={'name'}>李医生 <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
+					/>
+				</div>
+
 				<WhiteSpace/>
 				<Grid data={isActive ? grid : grid2}
 							columnNum={3}
-							onClick={dataItem => dataItem.onClick(this)}
+							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this) : () => {
+							}}
 							renderItem={dataItem => (
 								<div className={'item'}>
 									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>

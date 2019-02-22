@@ -6,7 +6,7 @@ import {
 	ListView,
 	NavBar,
 	Icon,
-	Button, WhiteSpace
+	WhiteSpace
 } from "antd-mobile";
 
 const data = [
@@ -103,12 +103,12 @@ class NewPatient extends Component {
 			return (
 				<div key={rowID} style={{padding: '0 15px'}}>
 					<div className={'item'}>
-						<img style={{height: '40px', marginRight: '15px',borderRadius:'50%'}} src={obj.img} alt=""/>
-						<div style={{width:'80%'}}>
+						<img style={{height: '40px', marginRight: '15px', borderRadius: '50%'}} src={obj.img} alt=""/>
+						<div style={{width: '80%'}}>
 							<div className={'title'}>{obj.des}</div>
-							<div className={'time'} >{obj.time}</div>
+							<div className={'time'}>{obj.time}</div>
 						</div>
-						<div className={'button'} >接受</div>
+						<div className={'button'}>接受</div>
 					</div>
 				</div>
 			);

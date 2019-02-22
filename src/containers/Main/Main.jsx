@@ -16,6 +16,7 @@ import Doctors from '../Doctors/Doctors'
 import NewPatient from '../NewPatient/NewPatient'
 import Message from '../Message/Message'
 import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInformation'
+import DoctorDetail from '../Detail/DoctorDetail'
 
 import {getRedirectTo} from "../../utils";
 
@@ -87,12 +88,16 @@ class Main extends Component {
 	doctorRoute = [
 		...this.doctorNav,
 		{
-			pathname: '/new-patient/:docId',
+			pathname: '/new-patient',
 			component: NewPatient
 		},
 		{
-			pathname:'/doctor-complete-information/:docId',
-			component:DoctorCompleteInformation
+			pathname: '/doctor-complete-information',
+			component: DoctorCompleteInformation
+		},
+		{
+			pathname: '/doctor-detail',
+			component: DoctorDetail
 		}
 	];
 

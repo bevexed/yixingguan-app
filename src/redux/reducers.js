@@ -13,7 +13,7 @@ const initUser = {
 	username: '',
 	phone: '123',
 	type: 'doctor',
-	isActive: false,
+	isActive: true,
 	msg: '',
 	redirectTo: '' // 需要自动重定向的路由路径
 };
