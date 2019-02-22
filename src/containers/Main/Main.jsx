@@ -12,7 +12,7 @@ import DoctorIndex from '../DoctorIndex/DoctorIndex';
 import Personal from "../PersonalDoc/PersonalPatient";
 import OrderDoc from '../OrderDoc/OrderDoc'
 import Doctors from '../Doctors/Doctors'
-
+import NewPatient from '../NewPatient/NewPatient'
 import Message from '../Message/Message'
 
 import {getRedirectTo} from "../../utils";
@@ -30,7 +30,6 @@ class Main extends Component {
 			icon: 'home.svg',
 			selectedIcon: 'home-s.svg',
 			component: PatientIndex,
-			show: true
 		},
 		{
 			pathname: '/doc',
@@ -39,7 +38,6 @@ class Main extends Component {
 			icon: 'doc.svg',
 			selectedIcon: 'doc.svg',
 			component: Doctors,
-			show: true
 		},
 		{
 			pathname: '/patient-detail',
@@ -48,7 +46,6 @@ class Main extends Component {
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
 			component: Personal,
-			show: true
 		},
 	];
 
@@ -87,6 +84,10 @@ class Main extends Component {
 
 	doctorRoute = [
 		...this.doctorNav,
+		{
+			pathname:'/new-patient/:docId',
+			component:NewPatient
+		}
 	];
 
 	render() {
@@ -112,8 +113,8 @@ class Main extends Component {
 				</Switch>
 				{
 					type === 'patient' ?
-						this.navs.some(nav => nav.show) ? <NavFootPatient navs={this.navs}/> : null
-						: this.doctorNav.some(nav => nav.show) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
+						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
+						: this.doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
 				}
 			</div>
 		);
