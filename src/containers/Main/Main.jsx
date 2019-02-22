@@ -29,7 +29,8 @@ class Main extends Component {
 			isActive: false,
 			icon: 'home.svg',
 			selectedIcon: 'home-s.svg',
-			component: PatientIndex
+			component: PatientIndex,
+			show: true
 		},
 		{
 			pathname: '/doc',
@@ -37,7 +38,8 @@ class Main extends Component {
 			isActive: false,
 			icon: 'doc.svg',
 			selectedIcon: 'doc.svg',
-			component: Doctors
+			component: Doctors,
+			show: true
 		},
 		{
 			pathname: '/patient-detail',
@@ -45,8 +47,17 @@ class Main extends Component {
 			isActive: false,
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
-			component: Personal
+			component: Personal,
+			show: true
 		},
+		{
+			pathname: '/order-doc/:docId',
+			component: OrderDoc,
+		},
+		{
+			pathname: '/message/:to',
+			component: Message,
+		}
 	];
 
 	doctorNav = [
@@ -56,14 +67,17 @@ class Main extends Component {
 			isActive: false,
 			icon: 'patient-@3x.png',
 			selectedIcon: 'patient-s@3x.png',
-			component: DoctorIndex
-		}, {
+			component: DoctorIndex,
+			show: true
+		},
+		{
 			pathname: '/doctor-detail',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
-			component: Personal
+			component: Personal,
+			show: true
 		}
 	];
 
@@ -86,14 +100,12 @@ class Main extends Component {
 							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 					}
-					<Route path='/order-doc/:docId' component={OrderDoc}/>
-					<Route path='/message/:to' component={Message}/>
 					<Route component={NotFound}/>
 				</Switch>
 				{
 					type === 'patient' ?
-						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
-						: this.doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
+						this.navs.some(nav => nav.show) ? <NavFootPatient navs={this.navs}/> : null
+						: this.doctorNav.some(nav => nav.show) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
 				}
 			</div>
 		);
