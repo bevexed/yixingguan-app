@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import './App.css';
-import './static/flexible'
-// mate 标签
 import {Helmet} from "react-helmet";
-
 import {Provider} from 'react-redux';
-import store from './redux/store'
 
+import store from './redux/store'
 import {BrowserRouter, Route, Switch,HashRouter} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
 import RegisterIndex from './containers/Register/RegisterIndex';
+
 import RegisterPhone from './containers/Register/RegisterPhone';
 import SelectPlayer from './containers/Register/SelectPlayer';
 import Main from "./containers/Main/Main";
+// mate 标签
+require('./static/flexible');
 
 class App extends Component {
 

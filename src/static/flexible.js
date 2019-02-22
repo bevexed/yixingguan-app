@@ -1,44 +1,117 @@
-(function flexible (window, document) {
-	var docEl = document.documentElement
-	var dpr = window.devicePixelRatio || 1
-
-	// adjust body font size
-	function setBodyFontSize () {
-		if (document.body) {
-			document.body.style.fontSize = (12 * dpr) + 'px'
+;(function(win, lib) {
+	let doc = win.document;
+	let docEl = doc.documentElement;
+	let metaEl = doc.querySelector('meta[name="viewport"]');
+	let flexibleEl = doc.querySelector('meta[name="flexible"]');
+	let dpr = 0;
+	let scale = 0;
+	let tid;
+	let flexible = lib.flexible || (lib.flexible = {});
+	let fontSizeCoefficient = 1;
+	if (metaEl) {
+		console.warn('将根据已有的meta标签来设置缩放比例');
+		let match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+		if (match) {
+			scale = parseFloat(match[1]);
+			dpr = parseInt(1 / scale);
 		}
-		else {
-			document.addEventListener('DOMContentLoaded', setBodyFontSize)
+	} else if (flexibleEl) {
+		let content = flexibleEl.getAttribute('content');
+		if (content) {
+			let initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+			let maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+			if (initialDpr) {
+				dpr = parseFloat(initialDpr[1]);
+				scale = parseFloat((1 / dpr).toFixed(2));
+			}
+			if (maximumDpr) {
+				dpr = parseFloat(maximumDpr[1]);
+				scale = parseFloat((1 / dpr).toFixed(2));
+			}
 		}
 	}
-	setBodyFontSize();
 
-	// set 1rem = viewWidth / 10
-	function setRemUnit () {
-		var rem = docEl.clientWidth / 10
-		docEl.style.fontSize = rem + 'px'
+	if (!dpr && !scale) {
+		let isAndroid = win.navigator.appVersion.match(/android/gi);
+		let isIPhone = win.navigator.appVersion.match(/iphone/gi);
+		let devicePixelRatio = win.devicePixelRatio;
+		if (isIPhone) {
+			// iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+			if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+				dpr = 2;
+			} else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+				dpr = 2;
+			} else {
+				dpr = 1;
+			}
+		} else {
+			// 其他设备下，仍旧使用1倍的方案
+			dpr = 1;
+		}
+		scale = 1 / dpr;
 	}
 
-	setRemUnit()
+	docEl.setAttribute('data-dpr', dpr);
+	if (!metaEl) {
+		metaEl = doc.createElement('meta');
+		metaEl.setAttribute('name', 'viewport');
+		metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+		if (docEl.firstElementChild) {
+			docEl.firstElementChild.appendChild(metaEl);
+		} else {
+			let wrap = doc.createElement('div');
+			wrap.appendChild(metaEl);
+			doc.write(wrap.innerHTML);
+		}
+	}
 
-	// reset rem unit on page resize
-	window.addEventListener('resize', setRemUnit)
-	window.addEventListener('pageshow', function (e) {
+	function refreshRem(){
+		let width = docEl.getBoundingClientRect().width;
+		if (width / dpr > 540) {
+			width = 540 * dpr;
+		}
+		let rem = width / 10;
+		docEl.style.fontSize = rem * fontSizeCoefficient + "px";
+		let finalFontSize = parseFloat(window
+			.getComputedStyle(docEl)
+			.getPropertyValue("font-size"));
+		let tempCoefficient = rem / finalFontSize;
+		if (tempCoefficient !== 1) {
+			fontSizeCoefficient = tempCoefficient;
+			docEl.style.fontSize = rem * fontSizeCoefficient + "px";
+		}
+		flexible.rem = win.rem = rem;
+	}
+
+	win.addEventListener('resize', function() {
+		clearTimeout(tid);
+		tid = setTimeout(refreshRem, 300);
+	}, false);
+	win.addEventListener('pageshow', function(e) {
 		if (e.persisted) {
-			setRemUnit()
+			clearTimeout(tid);
+			tid = setTimeout(refreshRem, 300);
 		}
-	})
+	}, false);
 
-	// detect 0.5px supports
-	if (dpr >= 2) {
-		var fakeBody = document.createElement('body')
-		var testElement = document.createElement('div')
-		testElement.style.border = '.5px solid transparent'
-		fakeBody.appendChild(testElement)
-		docEl.appendChild(fakeBody)
-		if (testElement.offsetHeight === 1) {
-			docEl.classList.add('hairlines')
+
+	refreshRem();
+	// setTimeout(refreshRem, 800);
+
+	flexible.dpr = win.dpr = dpr;
+	flexible.refreshRem = refreshRem;
+	flexible.rem2px = function(d) {
+		let val = parseFloat(d) * this.rem;
+		if (typeof d === 'string' && d.match(/rem$/)) {
+			val += 'px';
 		}
-		docEl.removeChild(fakeBody)
+		return val;
 	}
-}(window, document))
+	flexible.px2rem = function(d) {
+		let val = parseFloat(d) / this.rem;
+		if (typeof d === 'string' && d.match(/px$/)) {
+			val += 'rem';
+		}
+		return val;
+	}
+})(window, window['lib'] || (window['lib'] = {}));
