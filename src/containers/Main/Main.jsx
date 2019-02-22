@@ -17,6 +17,7 @@ import NewPatient from '../NewPatient/NewPatient'
 import Message from '../Message/Message'
 import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInformation'
 import DoctorDetail from '../Detail/DoctorDetail'
+import DoctorWallet from '../Wallet/DoctorWallet'
 
 import {getRedirectTo} from "../../utils";
 
@@ -98,6 +99,10 @@ class Main extends Component {
 		{
 			pathname: '/doctor-detail',
 			component: DoctorDetail
+		},
+		{
+			pathname:'/doctor-wallet',
+			component: DoctorWallet
 		}
 	];
 

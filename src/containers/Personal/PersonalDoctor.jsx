@@ -20,7 +20,10 @@ const grid = [
 	},
 	{
 		icon: 3,
-		name: '钱包'
+		name: '钱包',
+		onClick:  (el) => {
+			el.props.history.push(`/doctor-wallet`)
+		}
 	},
 	{
 		icon: 4,

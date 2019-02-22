@@ -10,11 +10,7 @@ import store from './redux/store'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from './containers/Login/Login'
-import Register from './containers/Register/Register'
-import Main from "./containers/Main/Main";
-import Record from './content/Record/Record'
-import Count from './content/Count/Count'
-import MyHelper from './content/MyHelper/MyHelper'
+
 import RegisterIndex from './containers/Register/RegisterIndex';
 import RegisterPhone from './containers/Register/RegisterPhone';
 import SelectPlayer from './containers/Register/SelectPlayer';
@@ -44,7 +40,6 @@ class App extends Component {
 							<Route path='/select-player' component={SelectPlayer}/>
 
 							<Route path='/login' component={Login}/>
-							<Route component={MyHelper}/>
 							<Route component={Main}/>
 						</Switch>
 					</BrowserRouter>
