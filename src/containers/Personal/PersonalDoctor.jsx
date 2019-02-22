@@ -27,7 +27,10 @@ const grid = [
 	},
 	{
 		icon: 4,
-		name: '工作室'
+		name: '工作室',
+		onClick:(el)=>{
+			el.props.history.push('./doctor-detail')
+		}
 	},
 	{
 		icon: 5,
