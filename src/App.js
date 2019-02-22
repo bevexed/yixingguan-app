@@ -14,7 +14,7 @@ import RegisterPhone from './containers/Register/RegisterPhone';
 import SelectPlayer from './containers/Register/SelectPlayer';
 import Main from "./containers/Main/Main";
 // mate 标签
-require('./static/flexible');
+// require('./static/flexible');
 
 class App extends Component {
 
@@ -27,13 +27,13 @@ class App extends Component {
 						name="viewport"
 						content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
 					/>
-				 	{/*<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js">{null}</script>*/}
+				 	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js">{null}</script>
 					<title>星医馆</title>
 
 				</Helmet>
 
 				<Provider store={store}>
-					<HashRouter>
+					<BrowserRouter>
 						<Switch>
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
@@ -42,7 +42,7 @@ class App extends Component {
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>
-					</HashRouter>
+					</BrowserRouter>
 				</Provider>
 			</div>
 		);
