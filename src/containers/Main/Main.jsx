@@ -15,6 +15,7 @@ import OrderDoc from '../OrderDoc/OrderDoc'
 import Doctors from '../Doctors/Doctors'
 import NewPatient from '../NewPatient/NewPatient'
 import Message from '../Message/Message'
+import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInformation'
 
 import {getRedirectTo} from "../../utils";
 
@@ -59,7 +60,7 @@ class Main extends Component {
 		{
 			pathname: '/message/:to',
 			component: Message,
-		}
+		},
 	];
 
 	doctorNav = [
@@ -89,6 +90,10 @@ class Main extends Component {
 			pathname: '/new-patient/:docId',
 			component: NewPatient
 		},
+		{
+			pathname:'/doctor-complete-information/:docId',
+			component:DoctorCompleteInformation
+		}
 	];
 
 	render() {

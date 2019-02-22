@@ -51,7 +51,10 @@ const grid2 = [
 	},
 	{
 		icon: 4,
-		name: '申请工作室'
+		name: '申请工作室',
+		onClick: (el,id) => {
+			el.props.history.push(`/doctor-complete-information/${1}`)
+		}
 	},
 	{
 		icon: 10,
@@ -76,7 +79,8 @@ class MyComponent extends Component {
 				<WhiteSpace/>
 				<Grid data={isActive ? grid : grid2}
 							columnNum={3}
-							renderItem={(dataItem, index) => (
+							onClick={dataItem => dataItem.onClick(this)}
+							renderItem={dataItem => (
 								<div className={'item'}>
 									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
 									<div style={{color: isActive ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
