@@ -6,8 +6,8 @@
 	}
 
 	.avator {
-		width: 70px;
-		height: 70px;
+		width: 60px;
+		height: 60px;
 		border-radius: 50%;
 	}
 
@@ -47,9 +47,55 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-end;
+
 		.time {
 			font-size: 10px;
 			color: #999999;
+		}
+	}
+}
+
+.pain {
+	.list {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		.item {
+			margin: 10px 10px 5px 0;
+			padding: 0 5Px;
+			height: 28Px;
+			line-height: 28Px;
+			border-radius: 14Px;
+			color: #999999;
+			border: 1px solid #999999;
+
+			&.active {
+				color: #68e3ce;
+				border-color: #68e3ce;
+			}
+		}
+
+	}
+
+	.footer {
+		display: flex;
+		bottom: 0;
+		justify-content: space-around;
+
+		.button {
+			width: 110Px;
+			height: 38Px;
+			line-height: 38Px;
+			border-radius: 19Px;
+			font-size: 16px;
+			border: 1px solid #b3b3b3;
+
+			&:last-child{
+				border-color: #68e3ce;
+				background-color: #68e3ce;
+				color: white;
+			}
 		}
 	}
 }
