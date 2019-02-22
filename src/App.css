@@ -1,20 +1,28 @@
-*{
+* {
 	-webkit-tap-highlight-color: transparent;
 	font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", SimSun, sans-serif;
 }
 
-html{
+html {
 	background: transparent !important;
 }
 
-.ellipsis{
+.ellipsis {
 	overflow: hidden;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-.am-navbar{
+.am-navbar {
 	position: fixed;
 	width: 100%;
 	z-index: 9999;
+}
+
+a:active {
+	text-underline: none !important;
+}
+
+a:link {
+	text-underline: none !important;
 }
