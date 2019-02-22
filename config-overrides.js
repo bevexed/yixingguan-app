@@ -24,7 +24,8 @@ module.exports = override(
 			selectorBlackList: ['am-','slider'],
 			replace: true,
 			mediaQuery: false,
-			minPixelValue: 12
+			minPixelValue: 12,
+			maxPixelValue: 470
 		}),
 	]),
 );
