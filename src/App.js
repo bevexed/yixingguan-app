@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './App.css';
-
+import './static/flexible'
 // mate 标签
 import {Helmet} from "react-helmet";
 
 import {Provider} from 'react-redux';
 import store from './redux/store'
 
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch,HashRouter} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
@@ -27,13 +27,13 @@ class App extends Component {
 						name="viewport"
 						content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
 					/>
-					<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js">{null}</script>
+				 	{/*<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js">{null}</script>*/}
 					<title>星医馆</title>
 
 				</Helmet>
 
 				<Provider store={store}>
-					<BrowserRouter>
+					<HashRouter>
 						<Switch>
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
@@ -42,7 +42,7 @@ class App extends Component {
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>
-					</BrowserRouter>
+					</HashRouter>
 				</Provider>
 			</div>
 		);
