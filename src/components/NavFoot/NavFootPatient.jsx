@@ -12,7 +12,6 @@ class NavFootPatient extends PureComponent {
 
 	render() {
 		const {navs} = this.props;
-
 		navs.forEach(nav => nav.isActive = this.props.location.pathname === nav.pathname);
 		return (
 			<div className='nav-foot-patient'>

@@ -50,6 +50,10 @@ class Main extends Component {
 			component: Personal,
 			show: true
 		},
+	];
+
+	patientRoute = [
+		...this.navs,
 		{
 			pathname: '/order-doc/:docId',
 			component: OrderDoc,
@@ -81,6 +85,10 @@ class Main extends Component {
 		}
 	];
 
+	doctorRoute = [
+		...this.doctorNav,
+	];
+
 	render() {
 		const {type, phone} = this.props.user;
 		console.log(1);
@@ -92,11 +100,11 @@ class Main extends Component {
 			<div>
 				<Switch>
 					{type === 'patient' ?
-						this.navs.map(nav =>
+						this.patientRoute.map(nav =>
 							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 						:
-						this.doctorNav.map(nav =>
+						this.doctorRoute.map(nav =>
 							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 					}
