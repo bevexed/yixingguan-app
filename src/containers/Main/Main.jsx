@@ -9,7 +9,8 @@ import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
 import DoctorIndex from '../DoctorIndex/DoctorIndex';
-import Personal from "../PersonalDoc/PersonalPatient";
+import PersonalPatient from "../Personal/PersonalPatient";
+import PersonalDoctor from "../Personal/PersonalDoctor";
 import OrderDoc from '../OrderDoc/OrderDoc'
 import Doctors from '../Doctors/Doctors'
 import NewPatient from '../NewPatient/NewPatient'
@@ -40,12 +41,12 @@ class Main extends Component {
 			component: Doctors,
 		},
 		{
-			pathname: '/patient-detail',
+			pathname: '/patient-personal',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
-			component: Personal,
+			component: PersonalPatient,
 		},
 	];
 
@@ -72,12 +73,12 @@ class Main extends Component {
 			show: true
 		},
 		{
-			pathname: '/doctor-detail',
+			pathname: '/doctor-personal',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
 			selectedIcon: 'my-s.svg',
-			component: Personal,
+			component: PersonalDoctor,
 			show: true
 		}
 	];
@@ -87,7 +88,7 @@ class Main extends Component {
 		{
 			pathname:'/new-patient/:docId',
 			component:NewPatient
-		}
+		},
 	];
 
 	render() {
