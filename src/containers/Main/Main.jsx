@@ -8,6 +8,7 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
 import PatientIndex from '../PatientIndex/PatientIndex'
+import DoctorIndex from '../DoctorIndex/DoctorIndex';
 import Personal from "../PersonalDoc/PersonalPatient";
 import OrderDoc from '../OrderDoc/OrderDoc'
 import Doctors from '../Doctors/Doctors'
@@ -39,7 +40,7 @@ class Main extends Component {
 			component: Doctors
 		},
 		{
-			pathname: '/personal',
+			pathname: '/patient-detail',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
@@ -48,16 +49,16 @@ class Main extends Component {
 		},
 	];
 
-	patientNav = [
+	doctorNav = [
 		{
 			pathname: '/doctor-index',
 			path: '患者',
 			isActive: false,
 			icon: 'patient-@3x.png',
 			selectedIcon: 'patient-s@3x.png',
-			component: Personal
+			component: DoctorIndex
 		}, {
-			pathname: '/patient-detail',
+			pathname: '/doctor-detail',
 			path: '我的',
 			isActive: false,
 			icon: 'my.svg',
@@ -67,7 +68,7 @@ class Main extends Component {
 	];
 
 	render() {
-		const {type,phone} = this.props.user;
+		const {type, phone} = this.props.user;
 		console.log(1);
 		if (!type) {
 			return <Redirect to={getRedirectTo(type, phone)}/>
@@ -76,8 +77,12 @@ class Main extends Component {
 		return (
 			<div>
 				<Switch>
-					{
+					{type === 'patient' ?
 						this.navs.map(nav =>
+							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
+						)
+						:
+						this.doctorNav.map(nav =>
 							<Route key={nav.pathname} path={nav.pathname} component={nav.component}/>
 						)
 					}
@@ -86,9 +91,9 @@ class Main extends Component {
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					type === 'doctor' ?
+					type === 'patient' ?
 						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
-						: < NavFootDoc patientNav={this.patientNav}/>
+						: this.doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
 				}
 			</div>
 		);

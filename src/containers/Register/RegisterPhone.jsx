@@ -23,10 +23,15 @@ class MyComponent extends Component {
 		this.props.receiveUser({
 			phone: this.state.phone
 		});
-		this.props.history.push('/select-player')
 	};
 
 	render() {
+		const {phone} = this.props.user;
+		console.log(phone);
+		if (phone){
+			return <Redirect to={'/select-player'}/>
+		}
+
 		return (
 			<div className={'register-phone'}>
 				<WhiteSpace size={'lg'}/>
@@ -41,7 +46,7 @@ class MyComponent extends Component {
 					>手机号码</InputItem>
 					<WhiteSpace/>
 					<InputItem
-						clear
+						maxLength={6}
 						placeholder=""
 						type="number"
 						extra={<span className={'code'}>获取</span>}

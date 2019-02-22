@@ -11,8 +11,8 @@ import {
 
 const initUser = {
 	username: '',
-	phone:'',
-	type: '',
+	phone:'123',
+	type: 'doctor',
 	msg: '',
 	redirectTo: '' // 需要自动重定向的路由路径
 };

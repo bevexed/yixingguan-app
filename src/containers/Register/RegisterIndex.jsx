@@ -12,7 +12,7 @@ class RegisterIndex extends Component {
 				<img className={'background'} src={require('../../asset/img/78-01@3x.png')} alt=""/>
 				<div
 					className={'button'}
-					onClick={() => this.props.history.push('/register-phone')}
+					onClick={() => this.props.history.replace('/register-phone')}
 				>登录/注册
 				</div>
 			</div>
