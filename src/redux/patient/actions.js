@@ -17,7 +17,7 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 		reqDoctorList({locating_city, page, city, department}).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveDoctorList(res.data.data))
+					dispatch(receiveDoctorList(res.data))
 				}
 			}
 		)

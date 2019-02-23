@@ -115,7 +115,7 @@ class PatientIndex extends Component {
 
 	render() {
 		const {initData, show} = this.state;
-		const {doctorList} = this.props;
+		const DoctorListData = this.props.doctorList.data;
 
 		const menuEl = (
 			<Menu
@@ -187,7 +187,7 @@ class PatientIndex extends Component {
 				</div>
 
 
-				<DocList doctorList={doctorList}/>
+				<DocList doctorList={DoctorListData}/>
 
 			</div>
 		);

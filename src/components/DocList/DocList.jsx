@@ -21,6 +21,7 @@ class DocList extends Component {
 
 	render() {
 		const doctorList = this.props.doctorList;
+		// noinspection JSUnresolvedVariable
 		return (
 			<div>
 				<List className={'doc-list'}>
@@ -29,7 +30,7 @@ class DocList extends Component {
 							<Badge text={'温情推荐'} corner key={doctor.id} style={{display: doctor.is_reference ? 'block' : 'none'}}>
 								<Item align={'middle'}>
 									<div className={'doc'}>
-										<img className="header-img" src={doctor.avator} alt=""/>
+										<img className="header-img" src={doctor.avatar} alt=""/>
 										<div className={'brief'}>
 											<header>
 												<span className={'name'}>{doctor.name}</span>
@@ -49,7 +50,7 @@ class DocList extends Component {
 												<span className={'hospital'}>{doctor.affiliated_hospital}</span>
 											</section>
 											<footer>
-												<p className={'master ellipsis'}>擅长：{doctor.good_at}</p>
+												<p className={'master ellipsis'}>擅长：{doctor.introduction}</p>
 											</footer>
 										</div>
 

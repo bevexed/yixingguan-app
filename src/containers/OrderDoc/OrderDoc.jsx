@@ -60,7 +60,7 @@ class OrderDoc extends Component {
 
 					<Header
 						style={{background: '#68e3ce', padding: 10}}
-						thumb={<img className={'header-img'} src={doctorDetail.avator} alt=""/>}
+						thumb={<img className='header-img' src={doctorDetail.avatar} alt=""/>}
 						title={
 							<div>
 								<header className={'title'}>
