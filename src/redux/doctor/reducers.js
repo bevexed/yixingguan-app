@@ -7,7 +7,7 @@ import {
 	ERROR_MSG,
 	RECEIVE_USER,
 	RESET_USER
-} from "./action-types";
+} from "../action-types";
 
 const initUser = {
 	username: '',

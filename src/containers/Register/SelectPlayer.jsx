@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './Register.less'
 import {Redirect} from "react-router-dom";
 
-import {receiveUser} from "../../redux/actions";
+import {receiveUser} from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 

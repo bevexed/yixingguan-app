@@ -1,13 +1,13 @@
 import {
 	reqDoctorList,
 	reqDoctorDetail
-} from "../api";
+} from "../../api";
 
 import {
 	RECEIVE_DOCTOR_LIST,
 	RECEIVE_DOCTOR_DETAILS,
 	RECEIVE_USER,
-} from "./action-types";
+} from "../action-types";
 
 // 首页 医生 列表
 const receiveDoctorList = doctorList => ({type: RECEIVE_DOCTOR_LIST, data: doctorList});

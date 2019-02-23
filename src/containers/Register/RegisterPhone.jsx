@@ -4,7 +4,7 @@ import './Register.less'
 
 import {Redirect} from "react-router-dom";
 
-import {receiveUser} from "../../redux/actions";
+import {receiveUser} from "../../redux/user/actions";
 
 import {List, InputItem, WhiteSpace} from "antd-mobile";
 
