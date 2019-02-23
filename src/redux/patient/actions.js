@@ -1,6 +1,7 @@
 import {
 	reqDoctorList,
-	reqDoctorDetail
+	reqDoctorDetail,
+
 } from "../../api/patient";
 
 import {
@@ -11,9 +12,9 @@ import {
 // 首页 医生 列表
 const receiveDoctorList = doctorList => ({type: RECEIVE_DOCTOR_LIST, data: doctorList});
 
-export const getDoctorList = () => {
+export const getDoctorList = ({locating_city, page, city, department}) => {
 	return async dispatch => {
-		reqDoctorList().then(
+		reqDoctorList({locating_city, page, city, department}).then(
 			res => {
 				if (res.code === 1) {
 					dispatch(receiveDoctorList(res.data.data))

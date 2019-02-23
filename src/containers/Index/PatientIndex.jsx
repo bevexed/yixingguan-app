@@ -9,13 +9,15 @@ import {
 	Menu,
 	ActivityIndicator,
 	Button,
-	Flex,
 	Icon,
+	List
 } from "antd-mobile";
 import DocList from '../../components/DocList/DocList'
 
 import {getDoctorList} from "../../redux/patient/actions";
 import {reqBanner} from "../../api/patient";
+
+const Item = List.Item;
 
 const data = [
 	{
@@ -46,11 +48,16 @@ class PatientIndex extends Component {
 
 
 	componentWillMount() {
-		this.props.getDoctorList();
+		const params = {
+			locating_city: '成都',
+			page: '' || 1,
+			city: '' || null,
+			department: '' || null
+		};
+		this.props.getDoctorList(params);
 
 		reqBanner().then(
 			res => {
-				console.log(res);
 				if (res.code === 1) {
 					this.setState({bannerData: res.data})
 				}
@@ -132,8 +139,8 @@ class PatientIndex extends Component {
 				<Carousel
 					autoplay={true}
 					infinite
-					beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-					afterChange={index => console.log('slide to', index)}
+					beforeChange={(from, to) => to}
+					afterChange={index => index}
 					style={{minHeight: '170Px'}}
 				>
 					{this.state.bannerData.map(val => (
@@ -156,25 +163,25 @@ class PatientIndex extends Component {
 					))}
 				</Carousel>
 
-				<SearchBar
-					placeholder="搜疾病、医生、医科"
-					maxLength={30}
-					onChange={val => this.handleChange('searchWord', val)}
-				/>
+				<Item>
+					<SearchBar
+						placeholder="搜疾病、医生、医科"
+						maxLength={30}
+						onChange={val => this.handleChange('searchWord', val)}
+					/>
+				</Item>
 
 				<div className={'double-select'}>
-					<Flex>
-						<Flex.Item justify={'center'} align={'center'}>
+					<List>
+						<div className={'button'}>
 							<Button
 								onClick={this.handleClick}
 							>所有城市 <Icon type={'down'}/></Button>
-						</Flex.Item>
-						<Flex.Item>
 							<Button
 								onClick={this.handleClick}
 							>所有城市 <Icon type={'down'}/> </Button>
-						</Flex.Item>
-					</Flex>
+						</div>
+					</List>
 					{show ? initData ? menuEl : loadingEl : null}
 					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : null}
 				</div>
