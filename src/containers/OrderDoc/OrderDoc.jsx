@@ -50,6 +50,13 @@ class OrderDoc extends Component {
 						icon={<Icon type="left" color={'#fff'} size={'lg'}/>}
 						onLeftClick={() => this.props.history.goBack()}
 					><span style={{color: '#fff'}}>医生</span></NavBar>
+					<WhiteSpace/>
+					<WhiteSpace/>
+					<WhiteSpace/>
+					<WhiteSpace/>
+					<WhiteSpace/>
+					<WhiteSpace/>
+
 
 					<Header
 						style={{background: '#68e3ce', padding: 10}}

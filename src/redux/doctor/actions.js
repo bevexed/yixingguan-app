@@ -1,6 +1,6 @@
 import {
 
-} from "../../api";
+} from "../../api/patient";
 
 import {
 

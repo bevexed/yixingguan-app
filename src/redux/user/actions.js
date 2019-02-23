@@ -1,6 +1,6 @@
 import {
 	reqDoctorDetail
-} from "../../api";
+} from "../../api/patient";
 
 import {
 	RECEIVE_DOCTOR_DETAILS,

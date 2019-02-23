@@ -15,7 +15,7 @@ import {
 import DocList from '../../components/DocList/DocList'
 
 import {getDoctorList} from "../../redux/patient/actions";
-import {reqBanner} from "../../api";
+import {reqBanner} from "../../api/patient";
 
 const data = [
 	{
@@ -46,10 +46,11 @@ class PatientIndex extends Component {
 
 
 	componentWillMount() {
-		this.props.getDoctorList()
+		this.props.getDoctorList();
 
 		reqBanner().then(
 			res => {
+				console.log(res);
 				if (res.code === 1) {
 					this.setState({bannerData: res.data})
 				}
