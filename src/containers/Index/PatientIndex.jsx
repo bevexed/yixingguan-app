@@ -14,7 +14,7 @@ import {
 } from "antd-mobile";
 import DocList from '../../components/DocList/DocList'
 
-import {getDoctorList} from "../../redux/user/actions";
+import {getDoctorList} from "../../redux/patient/actions";
 import {reqBanner} from "../../api";
 
 const data = [
