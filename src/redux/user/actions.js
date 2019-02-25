@@ -1,8 +1,13 @@
 import {
-	reqDoctorDetail
+	reqDoctorDetail,
 } from "../../api/patient";
 
 import {
+	doLogin
+} from "../../api";
+
+import {
+	AUTH_SUCCESS, ERROR_MSG,
 	RECEIVE_DOCTOR_DETAILS,
 	RECEIVE_USER,
 } from "../action-types";
@@ -24,4 +29,20 @@ export const getDoctorDetail = doctorId => {
 };
 
 export const receiveUser = user => ({type: RECEIVE_USER, data: user});
+export const authSuccess = user => ({type: AUTH_SUCCESS, data: user});
+export const errorMsg = msg => ({type: ERROR_MSG, data: msg});
+
+export const getUser = userData => {
+	return async dispatch => {
+		doLogin(userData).then(
+			res => {
+				if (res.code === 1) {
+					dispatch(authSuccess(res.data));
+				}else {
+					dispatch(errorMsg(res.message));
+				}
+			}
+		)
+	}
+};
 

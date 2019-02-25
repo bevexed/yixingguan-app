@@ -3,14 +3,26 @@ import {
 	ERROR_MSG,
 	RECEIVE_USER,
 	RESET_USER
-} from "../action-types";
+} from '../action-types';
 
 const initUser = {
-	username: '',
-	phone: '123',
-	type: 'patient',
-	isActive: true,
-	msg: '',
+	avatar: '',
+	name: '',
+	sex: 1,
+	birth: '',
+	affiliated_hospital: '',
+	hospital_level: '',
+	city: '',
+	department: '',
+	with_title: '',
+	introduction: '',
+	vocational_certificate: '',
+	is_reference: 0,
+	seeing: 0,
+	is_audit: false,
+	institutions: '',
+	phone: '',
+	identity: '',
 	redirectTo: '' // 需要自动重定向的路由路径
 };
 
@@ -19,7 +31,7 @@ export const user = (state = initUser, action) => {
 		case AUTH_SUCCESS:
 			return state;
 		case ERROR_MSG:
-			return state;
+			return action.data;
 		case RESET_USER:
 			return state;
 		case RECEIVE_USER:

@@ -107,11 +107,11 @@ class Main extends Component {
 	];
 
 	render() {
-		const {type, phone} = this.props.user;
-		const route = type === 'patient' ? this.patientRoute : this.doctorRoute;
+		const {identity, phone} = this.props.user;
+		const route = identity === 'patient' ? this.patientRoute : this.doctorRoute;
 
-		if (!type) {
-			return <Redirect to={getRedirectTo(type, phone)}/>
+		if (!phone) {
+			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
 		return (
@@ -125,7 +125,7 @@ class Main extends Component {
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					type === 'patient' ?
+					identity === 'patient' ?
 						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
 						: this.doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
 				}

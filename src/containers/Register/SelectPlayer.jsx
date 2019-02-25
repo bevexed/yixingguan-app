@@ -3,7 +3,10 @@ import {connect} from 'react-redux';
 import './Register.less'
 import {Redirect} from "react-router-dom";
 
-import {receiveUser} from "../../redux/user/actions";
+import {
+	receiveUser,
+	getUser
+} from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 
@@ -11,32 +14,36 @@ class SelectPlayer extends Component {
 
 
 	state = {
-		selected: 'doctor'
+		identity: 'doctor'
 	};
 
 	goMain = () => {
-		this.props.receiveUser({
-			username: '',
-			type: this.state.selected,
-			msg: '',
-			redirectTo: '' // 需要自动重定向的路由路径
-		});
+		const {phone, auto_code, identity} = this.props.user;
+		const userData = {
+			phone: phone || '',
+			auto_code: auto_code || '',
+			identity: identity || '',
+			open_id: '',
+			name: ''
+		};
+		this.props.getUser(userData);
 	};
+
 
 	select = (player) => {
 		this.setState({
-			selected: player
-		})
+			identity: player
+		});
 	};
 
 	render() {
-		const {type,phone} = this.props.user;
-		console.log(phone);
-		if (type) {
-			return <Redirect to={getRedirectTo(type,phone)}/>
+		const {identity, phone} = this.props.user;
+
+		if (identity) {
+			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
-		const selected = this.state.selected;
+		const selected = this.state.identity;
 
 		return (
 			<div className={'selector-player'}>
@@ -73,5 +80,8 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	{receiveUser}
+	{
+		receiveUser,
+		getUser
+	}
 )(SelectPlayer);

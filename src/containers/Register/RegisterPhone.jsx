@@ -4,7 +4,9 @@ import './Register.less'
 
 import {Redirect} from "react-router-dom";
 
-import {receiveUser} from "../../redux/user/actions";
+import {
+	receiveUser
+} from "../../redux/user/actions";
 
 import {List, InputItem, WhiteSpace} from "antd-mobile";
 
@@ -21,14 +23,15 @@ class MyComponent extends Component {
 
 	getPhone = () => {
 		this.props.receiveUser({
-			phone: this.state.phone
+			phone: this.state.phone,
+			code: 123,
 		});
 	};
 
 	render() {
 		const {phone} = this.props.user;
-		console.log(phone);
-		if (phone){
+
+		if (phone) {
 			return <Redirect to={'/select-player'}/>
 		}
 
