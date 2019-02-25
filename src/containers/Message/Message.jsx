@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {NavBar, Icon, WhiteSpace, List, InputItem} from "antd-mobile";
+import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
 
-import './Message.less'
-
-const Item = List.Item;
+import './Message.less';
 
 class Message extends Component {
 	state = {
 		inputType: 'input',
 		input: '',
-		show: false
+		menuShow: false
 	};
 
 	changeInputType = (inputType) => {
@@ -29,9 +27,15 @@ class Message extends Component {
 		)
 	};
 
-	render() {
-		const {inputType, show} = this.state;
+	showKeyboard = () => {
+		window.scrollTo(0,document.body.scrollHeight);
+		this.setState({
+			menuShow:false
+		})
+	};
 
+	render() {
+		const {inputType, menuShow} = this.state;
 
 		return (
 			<div className={'message'}>
@@ -45,11 +49,23 @@ class Message extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
+				<div style={{height: 1000}}>12</div>
 
+				<div className={'tip'}
+						 onClick={() => window.scrollTo(0, document.body.scrollHeight / 100)}
+				>
+					123
+				</div>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 
 				<div>
-					<div className={'tip'}>
-
+					<div className={'tip'}
+					>
+						123
 					</div>
 
 					<div className={'speak-input-wrap'}>
@@ -60,10 +76,12 @@ class Message extends Component {
 								onClick={() => this.changeInputType(inputType)}
 								alt=""/>
 							{
-								inputType === 'input' ? <div>
+								inputType === 'input' ? <div style={{width: '70%'}}>
 										<InputItem
 											placeholder={'请输入...'}
 											onChange={val => this.handleChange('input', val)}
+											onFocus={this.showKeyboard}
+											onBlur={this.showKeyboard}
 										/>
 									</div> :
 									< div className={'speak'}>
@@ -72,18 +90,19 @@ class Message extends Component {
 							}
 							<img src={require('./img/biaoqing@3x.png')} alt=""/>
 							<img src={require('./img/tianjia-3@3x.png')}
-									 onClick={() => this.setState({show: !show})}
+									 onClick={() => this.setState({menuShow: !menuShow})}
 									 alt=""/>
 						</div>
 
-						<div className={'alert'} style={{height: show ? 200 : 0}}>
-
+						<div className={'alert'} style={{height: menuShow ? 110 : 0}}>
+							<img src={require('./img/拍照@3x.png')} alt=""/>
+							<img src={require('./img/相册@3x.png')} alt=""/>
 						</div>
 
 
 					</div>
-
 				</div>
+
 			</div>
 		);
 	}
