@@ -28,9 +28,9 @@ class Message extends Component {
 	};
 
 	showKeyboard = () => {
-		window.scrollTo(0,document.body.scrollHeight);
+		window.scrollTo(0, document.body.scrollHeight);
 		this.setState({
-			menuShow:false
+			menuShow: false
 		})
 	};
 
@@ -49,12 +49,14 @@ class Message extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				<div style={{height: 1000}}>12</div>
-
-				<div className={'tip'}
-						 onClick={() => window.scrollTo(0, document.body.scrollHeight / 100)}
-				>
-					123
+				<div className={'chat'}>
+					<div className={'from'}>
+						<img src={require('./img/biaoqing@3x.png')} alt=""/><span>有个问题想有个问题想咨想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一</span>
+					</div>
+					<WhiteSpace/>
+					<div className={'to'}>
+						<img src={require('./img/biaoqing@3x.png')} alt=""/><span>您好，问题，有个问题想咨询您一 。</span>
+					</div>
 				</div>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -62,12 +64,11 @@ class Message extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<div>
+				<div className={'bottom-input'}>
 					<div className={'tip'}
 					>
-						123
+						<img src={require('./img/分组@3x.png')} alt=""/>
 					</div>
-
 					<div className={'speak-input-wrap'}>
 						<div className={'voice'}>
 
