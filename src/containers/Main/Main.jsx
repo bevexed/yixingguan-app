@@ -18,6 +18,7 @@ import Message from '../Message/Message'
 import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInformation'
 import DoctorDetail from '../Detail/DoctorDetail'
 import DoctorWallet from '../Wallet/DoctorWallet'
+import Tips from '../Tips/Tips'
 
 import {getRedirectTo} from "../../utils";
 
@@ -63,6 +64,10 @@ class Main extends Component {
 			pathname: '/message/:to',
 			component: Message,
 		},
+		{
+			pathname:'/tips/:docId',
+			component:Tips
+		}
 	];
 
 	doctorNav = [
