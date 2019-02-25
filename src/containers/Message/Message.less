@@ -1,0 +1,39 @@
+.message {
+	.speak-input-wrap {
+		max-width: 450px;
+		box-sizing: border-box;
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		padding: 10px;
+		background-color: white;
+
+		.voice {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+
+			>img{
+				margin-right: 5px;
+				height: 32Px;
+			}
+			.speak {
+				font-size: 15Px;
+				margin: 0 10px;
+				width: 70%;
+				height: 32Px;
+				line-height: 32Px;
+				text-align: center;
+				border: 1Px solid #999999;
+				border-radius: 4Px;
+			}
+		}
+	}
+	.alert{
+		transition: height .3s ease;
+	}
+
+	.tip {
+		position: fixed;
+	}
+}

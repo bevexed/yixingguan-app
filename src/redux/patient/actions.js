@@ -1,7 +1,7 @@
 import {
 	reqDoctorList,
 	reqDoctorDetail,
-
+	reqSeeks
 } from "../../api/patient";
 
 import {
@@ -17,6 +17,18 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 		reqDoctorList({locating_city, page, city, department}).then(
 			res => {
 				if (res.code === 1) {
+					dispatch(receiveDoctorList(res.data))
+				}
+			}
+		)
+	}
+};
+
+export const getSeekDoctorList = title => {
+	return async dispatch => {
+		reqSeeks(title).then(
+			res => {
+				if (res.code === 1 && res.data) {
 					dispatch(receiveDoctorList(res.data))
 				}
 			}

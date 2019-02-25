@@ -14,7 +14,10 @@ import {
 } from "antd-mobile";
 import DocList from '../../components/DocList/DocList'
 
-import {getDoctorList} from "../../redux/patient/actions";
+import {
+	getDoctorList,
+	getSeekDoctorList
+} from "../../redux/patient/actions";
 import {reqBanner} from "../../api/patient";
 
 const Item = List.Item;
@@ -71,6 +74,11 @@ class PatientIndex extends Component {
 		this.setState({
 			[name]: val
 		})
+	};
+
+	seek = title => {
+		console.log(title);
+		this.props.getSeekDoctorList(title)
 	};
 
 
@@ -168,6 +176,8 @@ class PatientIndex extends Component {
 						placeholder="搜疾病、医生、医科"
 						maxLength={30}
 						onChange={val => this.handleChange('searchWord', val)}
+						cancelText={'搜索'}
+						onCancel={val=>this.seek(val)}
 					/>
 				</Item>
 
@@ -179,7 +189,7 @@ class PatientIndex extends Component {
 							>所有城市 <Icon type={'down'}/></Button>
 							<Button
 								onClick={this.handleClick}
-							>所有城市 <Icon type={'down'}/> </Button>
+							>全部科室 <Icon type={'down'}/> </Button>
 						</div>
 					</List>
 					{show ? initData ? menuEl : loadingEl : null}
@@ -202,6 +212,9 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	{getDoctorList}
+	{
+		getDoctorList,
+		getSeekDoctorList
+	}
 )(PatientIndex);
 

@@ -5,14 +5,19 @@ import './Register.less'
 import {Redirect} from "react-router-dom";
 
 import {
-	receiveUser
+	receiveUser,
 } from "../../redux/user/actions";
+
+import {
+	doLogin
+} from "../../api";
 
 import {List, InputItem, WhiteSpace} from "antd-mobile";
 
-class MyComponent extends Component {
+class RegisterPhone extends Component {
 	state = {
-		phone: ''
+		phone: '',
+		auto_code: '',
 	};
 
 	handleChange = (name, val) => {
@@ -20,6 +25,20 @@ class MyComponent extends Component {
 			[name]: val
 		});
 	};
+
+	checkCode = () => {
+		const {phone, auto_code} = this.state;
+		doLogin({phone,auto_code}).then(
+			res => {
+				if (res.code === 1) {
+
+				} else {
+
+				}
+			}
+		)
+	};
+
 
 	getPhone = () => {
 		this.props.receiveUser({
@@ -52,14 +71,15 @@ class MyComponent extends Component {
 						maxLength={6}
 						placeholder=""
 						type="number"
+						onChange={val => this.handleChange('auto_code', val)}
 						extra={<span className={'code'}>获取</span>}
-						onExtraClick={() => alert(1)}
+						onExtraClick={() => alert('获取验证码')}
 					>验证码</InputItem>
 
 				</List>
 				<div
 					className='button'
-					onClick={this.getPhone}
+					onClick={this.checkCode}
 				>注册/登录
 				</div>
 			</div>
@@ -75,5 +95,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	{receiveUser}
-)(MyComponent);
+	{
+		receiveUser,
+	}
+)(RegisterPhone);
