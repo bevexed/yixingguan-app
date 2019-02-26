@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Icon, NavBar, List, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
 import './PatientDetail.less'
 
 const Item = List.Item;
+const prompt = Modal.prompt;
 
-const groups = ['心脏病', '糖尿病', '高血压','心脏病', '糖尿病', '高血压','心脏病', '糖尿病', '高血压'];
+const groups = ['心脏病', '糖尿病', '高血压', '心脏病', '糖尿病', '高血压', '心脏病', '糖尿病', '高血压'];
 
 
 class PatientDetail extends Component {
+	state={
+		painTags:groups
+	};
+
+	addPainTag = painTag =>{
+		const newPainTags = [...this.state.painTags,painTag];
+		this.setState({
+			painTags: newPainTags
+		})
+	};
+
 	render() {
+		const {painTags} = this.state;
+
 		return (
 			<div className={'patient-detail'}>
 				<NavBar
@@ -44,7 +58,7 @@ class PatientDetail extends Component {
 						病症描述:
 						<WhiteSpace/>
 						<p className={'pain-detail'}>
-						 	我怎么怎么，哈哈哈哈啊啊啊，可能这里不是很好呀？
+							我怎么怎么，哈哈哈哈啊啊啊，可能这里不是很好呀？
 						</p>
 					</Item>
 
@@ -64,12 +78,18 @@ class PatientDetail extends Component {
 						<WhiteSpace/>
 						<div className={'tag'}>
 							{
-								groups.map(pain =>
-									<span className={'pain'}>{pain}</span>
+								painTags.map((pain,index) =>
+									<span key={index} className={'pain'}>{pain}</span>
 								)
 							}
-							<span className={'pain'}
-								onClick={()=>alert(1)}
+							<span
+								className={'pain'}
+								onClick={() => prompt(
+									'添加患者分类',
+									null,
+									painTag => this.addPainTag(painTag),
+									['请输入分类']
+								)}
 							>+</span>
 						</div>
 						<WhiteSpace/>
