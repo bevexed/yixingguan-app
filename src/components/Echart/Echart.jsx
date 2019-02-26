@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import {Icon, NavBar, WhiteSpace} from "antd-mobile";
-
 // 引入 ECharts 主模块
 import echarts from 'echarts/lib/echarts';
 // 引入柱状图

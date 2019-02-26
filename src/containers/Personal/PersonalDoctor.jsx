@@ -19,7 +19,10 @@ const grid = [
 	},
 	{
 		icon: 2,
-		name: '我的助手'
+		name: '我的助手',
+		onClick:(el)=>{
+			el.props.history.push(`/my-help`)
+		}
 	},
 	{
 		icon: 3,
