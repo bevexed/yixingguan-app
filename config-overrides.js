@@ -9,7 +9,7 @@ const {
 module.exports = override(
 	fixBabelImports("antd-mobile",
 		{
-			libraryDirectory: "es", style: 'css' // change importing css to less
+			libraryDirectory: "es", style: true // change importing css to less
 		}),
 	addLessLoader({
 		javascriptEnabled: true,

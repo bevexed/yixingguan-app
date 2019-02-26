@@ -5,7 +5,7 @@ import {
 
 const initDoctorList = {
 	current_page: 1,
-	data: [{
+	list: [{
 		"id": 0,
 		"avatar": "",
 		"name": "",

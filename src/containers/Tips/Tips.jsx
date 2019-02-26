@@ -6,7 +6,7 @@ import {
 	List,
 	WhiteSpace,
 	Stepper,
-	Radio
+	Radio, Button
 } from "antd-mobile";
 
 import './Tips.less'
@@ -35,21 +35,24 @@ class Tips extends Component {
 
 	state = {
 		payType: 0,
-		moneyIndex: 1,
+		moneyIndex: -1,
 		money: 0,
+		disabled: false
 	};
+
 
 	onHandleChange = (name, val) => {
 		this.setState({
 			[name]: val
 		});
+	};
 
-		if (name === 'moneyIndex') {
-			console.log(1);
-			this.setState(
-				{money: money[val]}
-			)
-		}
+	onSelectMoney = (name, val) => {
+		this.setState({
+			[name]: val,
+			money: money[val],
+			disabled: true
+		});
 	};
 
 	render() {
@@ -73,15 +76,17 @@ class Tips extends Component {
 					renderFooter={() => '您与李薇薇医生共聊了18分钟'}
 				>
 					<Item
+						onClick={() => this.setState({disabled: false})}
 						extra={
 							<Stepper
 								style={{width: '100%', minWidth: '100px'}}
+								min={0}
 								showNumber
 								size="small"
 								step={1}
 								defaultValue={this.state.money}
-								onChange={val => console.log(val)}
-								// value={this.state.money}
+								disabled={this.state.disabled}
+								onChange={val => this.setState({money: val})}
 							/>}
 					>
 						打赏金额
@@ -93,7 +98,7 @@ class Tips extends Component {
 							money.map((item, index) =>
 								<span
 									className={this.state.moneyIndex === index ? 'active' : null}
-									onClick={() => this.onHandleChange('moneyIndex', index)}
+									onClick={() => this.onSelectMoney('moneyIndex', index)}
 									key={index}>{item}元</span>
 							)
 						}
@@ -110,7 +115,12 @@ class Tips extends Component {
 					))}
 				</List>
 
-
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+			<div className={'button'}>确认支付</div>
 			</div>
 		);
 	}
