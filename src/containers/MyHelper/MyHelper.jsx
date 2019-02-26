@@ -9,7 +9,7 @@ class myHelper extends Component {
 		const arr = [0, 1, 2];
 
 		return (
-			<div>
+			<div className={'my-help'}>
 				<NavBar
 					mode="light"
 					className={'nav-bar'}
@@ -29,7 +29,7 @@ class myHelper extends Component {
 						return (
 							<div key={index}>
 								<div>
-									<img alt='' src='http://hbimg.b0.upaiyun.com/67ff9abc06fccb83a33ea83ad261b58687a1177e1855e-WdQOs0_fw658'/>
+									<img alt='' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg'/>
 									<span>x</span>
 								</div>
 								<p>朱小鱼</p>
