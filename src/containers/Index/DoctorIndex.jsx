@@ -114,7 +114,7 @@ class DoctorIndex extends Component {
 					>
 						照应听
 						<Brief>
-							<p className={'patient-message'}>
+							<p className='patient-message'>
 								向您发送了一张照片 <span className={'time'}>2019-02-13 13:13</span>
 							</p>
 						</Brief>
