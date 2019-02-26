@@ -7,114 +7,24 @@ import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
-import PatientIndex from '../Index/PatientIndex'
-import DoctorIndex from '../Index/DoctorIndex';
-import PersonalPatient from "../Personal/PersonalPatient";
-import PersonalDoctor from "../Personal/PersonalDoctor";
-import OrderDoc from '../OrderDoc/OrderDoc'
-import Doctors from '../Doctors/Doctors'
-import NewPatient from '../NewPatient/NewPatient'
-import Message from '../Message/Message'
-import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInformation'
-import DoctorDetail from '../Detail/DoctorDetail'
-import DoctorWallet from '../Wallet/DoctorWallet'
-import Tips from '../Tips/Tips'
-import PaySuccess from '../PaySuccess/PaySuccess'
-
 import {getRedirectTo} from "../../utils";
+
+import {patientNav, patientRoute} from '../../router/patient'
+
+import {doctorNav, doctorRoute} from "../../router/doctor";
 
 class Main extends Component {
 	state = {
 		type: 'doctor'
 	};
 
-	navs = [
-		{
-			pathname: '/patient-index',
-			path: '首页',
-			isActive: false,
-			icon: 'home.svg',
-			selectedIcon: 'home-s.svg',
-			component: PatientIndex,
-		},
-		{
-			pathname: '/doc',
-			path: '',
-			isActive: false,
-			icon: 'doc.svg',
-			selectedIcon: 'doc.svg',
-			component: Doctors,
-		},
-		{
-			pathname: '/patient-personal',
-			path: '我的',
-			isActive: false,
-			icon: 'my.svg',
-			selectedIcon: 'my-s.svg',
-			component: PersonalPatient,
-		},
-	];
+	navs = patientNav;
 
-	patientRoute = [
-		...this.navs,
-		{
-			pathname: '/order-doc/:docId',
-			component: OrderDoc,
-		},
-		{
-			pathname: '/message/:to',
-			component: Message,
-		},
-		{
-			pathname:'/tips/:docId',
-			component:Tips
-		},
-		{
-			pathname:'/pay-success/:money',
-			component:PaySuccess
-		}
-	];
+	doctorNav = doctorNav;
 
-	doctorNav = [
-		{
-			pathname: '/doctor-index',
-			path: '患者',
-			isActive: false,
-			icon: 'patient-@3x.png',
-			selectedIcon: 'patient-s@3x.png',
-			component: DoctorIndex,
-			show: true
-		},
-		{
-			pathname: '/doctor-personal',
-			path: '我的',
-			isActive: false,
-			icon: 'my.svg',
-			selectedIcon: 'my-s.svg',
-			component: PersonalDoctor,
-			show: true
-		}
-	];
+	patientRoute = patientRoute;
 
-	doctorRoute = [
-		...this.doctorNav,
-		{
-			pathname: '/new-patient',
-			component: NewPatient
-		},
-		{
-			pathname: '/doctor-complete-information',
-			component: DoctorCompleteInformation
-		},
-		{
-			pathname: '/doctor-detail',
-			component: DoctorDetail
-		},
-		{
-			pathname:'/doctor-wallet',
-			component: DoctorWallet
-		}
-	];
+	doctorRoute = doctorRoute;
 
 	render() {
 		const {identity, phone} = this.props.user;
@@ -124,8 +34,8 @@ class Main extends Component {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
-		if (this.props.location.pathname==='/'){
-			return <Redirect to={getRedirectTo(identity,phone)}/>
+		if (this.props.location.pathname === '/') {
+			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
 		return (
