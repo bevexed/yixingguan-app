@@ -72,7 +72,7 @@ class NewPatient extends Component {
 		if (this.state.isLoading && !this.state.hasMore) {
 			return;
 		}
-		console.log('reach end', event);
+
 		this.setState({isLoading: true});
 		setTimeout(() => {
 			this.rData = {...this.rData, ...genData(++pageIndex)};
@@ -100,8 +100,13 @@ class NewPatient extends Component {
 				index = data.length - 1;
 			}
 			const obj = data[index--];
+
+			// 列表
 			return (
-				<div key={rowID} style={{padding: '0 15px'}}>
+				<div key={rowID}
+						 style={{padding: '0 15px'}}
+						 onClick={()=>this.props.history.push('/patient-detail/1')}
+				>
 					<div className={'item'}>
 						<img style={{height: '40px', marginRight: '15px', borderRadius: '50%'}} src={obj.img} alt=""/>
 						<div style={{width: '80%'}}>
@@ -113,6 +118,7 @@ class NewPatient extends Component {
 				</div>
 			);
 		};
+
 		return (
 			<div className={'new-patient'}>
 				<NavBar
