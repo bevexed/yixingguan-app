@@ -18,17 +18,9 @@ class Main extends Component {
 		type: 'doctor'
 	};
 
-	navs = patientNav;
-
-	doctorNav = doctorNav;
-
-	patientRoute = patientRoute;
-
-	doctorRoute = doctorRoute;
-
 	render() {
 		const {identity, phone} = this.props.user;
-		const route = identity === 'patient' ? this.patientRoute : this.doctorRoute;
+		const route = identity === 'patient' ? patientRoute : doctorRoute;
 
 		if (!phone) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
@@ -50,8 +42,8 @@ class Main extends Component {
 				</Switch>
 				{
 					identity === 'patient' ?
-						this.navs.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={this.navs}/> : null
-						: this.doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={this.doctorNav}/> : null
+						patientNav.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={patientNav}/> : null
+						: doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={doctorNav}/> : null
 				}
 			</div>
 		);
