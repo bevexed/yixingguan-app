@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import HeaderMain from '../HeaderMain/HeaderMain'
 import './Count.less'
-import '../../iconfont/iconfont.css'
+import '../../static/iconfont/iconfont.css'
 
-import Echarts from '../Echarts/Echarts'
+import Echarts from '../../containers/Statistics/Statistics'
 class Count extends Component {
 	constructor(props){
 		super(props)

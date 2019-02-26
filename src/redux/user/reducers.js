@@ -19,7 +19,7 @@ const initUser = {
 	vocational_certificate: '',
 	is_reference: 0,
 	seeing: 0,
-	is_audit: false,
+	is_audit: true,
 	institutions: '',
 	phone: 123123123,
 	identity: 'doctor',

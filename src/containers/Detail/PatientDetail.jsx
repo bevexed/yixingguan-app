@@ -105,6 +105,12 @@ class PatientDetail extends Component {
 				<div className={'button'}>
 					添加患者
 				</div>
+
+				<WhiteSpace/>
+
+				<div className={'button'}>
+					删除患者
+				</div>
 			</div>
 		);
 	}

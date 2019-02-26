@@ -6,7 +6,8 @@ import NewPatient from "../containers/NewPatient/NewPatient";
 import DoctorCompleteInformation from "../containers/CompleteInformation/DoctorCompleteInformation";
 import DoctorDetail from "../containers/Detail/DoctorDetail";
 import DoctorWallet from "../containers/Wallet/DoctorWallet";
-import PatientDetail from "../containers/PatientDetail/PatientDetail";
+import PatientDetail from "../containers/Detail/PatientDetail";
+import Statistics from "../containers/Statistics/Statistics";
 
 export const doctorNav = [
 	{
@@ -45,11 +46,15 @@ export const doctorRoute = [
 		component: DoctorDetail
 	},
 	{
-		pathname:'/doctor-wallet',
+		pathname: '/doctor-wallet',
 		component: DoctorWallet
 	},
 	{
-		pathname:'/patient-detail/:patientId',
+		pathname: '/patient-detail/:patientId',
 		component: PatientDetail
+	},
+	{
+		pathname: '/statistics',
+		component: Statistics
 	}
 ];

@@ -12,7 +12,10 @@ import './PersonalDoctor.less'
 const grid = [
 	{
 		icon: 1,
-		name: '统计'
+		name: '统计',
+		onClick:(el)=>{
+			el.props.history.push(`/statistics`)
+		}
 	},
 	{
 		icon: 2,
@@ -74,7 +77,7 @@ const grid2 = [
 
 class MyComponent extends Component {
 	render() {
-		const {isActive} = this.props.user;
+		const {is_audit} = this.props.user;
 
 		return (
 			<div className={'personal-doctor'}>
@@ -86,14 +89,14 @@ class MyComponent extends Component {
 				</div>
 
 				<WhiteSpace/>
-				<Grid data={isActive ? grid : grid2}
+				<Grid data={is_audit ? grid : grid2}
 							columnNum={3}
 							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this) : () => {
 							}}
 							renderItem={dataItem => (
 								<div className={'item'}>
 									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
-									<div style={{color: isActive ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
+									<div style={{color: is_audit ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
 										<span>{dataItem.name}</span>
 									</div>
 								</div>
