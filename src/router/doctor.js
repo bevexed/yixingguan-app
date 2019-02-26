@@ -1,3 +1,5 @@
+import {commonRoute} from "./common";
+
 import DoctorIndex from "../containers/Index/DoctorIndex";
 import PersonalDoctor from "../containers/Personal/PersonalDoctor";
 import NewPatient from "../containers/NewPatient/NewPatient";
@@ -28,6 +30,7 @@ export const doctorNav = [
 
 export const doctorRoute = [
 	...doctorNav,
+	...commonRoute,
 	{
 		pathname: '/new-patient',
 		component: NewPatient

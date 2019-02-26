@@ -1,8 +1,9 @@
+import {commonRoute} from "./common";
+
 import PatientIndex from "../containers/Index/PatientIndex";
 import Doctors from "../containers/Doctors/Doctors";
 import PersonalPatient from "../containers/Personal/PersonalPatient";
 import OrderDoc from "../containers/OrderDoc/OrderDoc";
-import Message from "../containers/Message/Message";
 import Tips from "../containers/Tips/Tips";
 import PaySuccess from "../containers/PaySuccess/PaySuccess";
 
@@ -35,13 +36,10 @@ export const patientNav = [
 
 export const patientRoute = [
 	...patientNav,
+	...commonRoute,
 	{
 		pathname: '/order-doc/:docId',
 		component: OrderDoc,
-	},
-	{
-		pathname: '/message/:to',
-		component: Message,
 	},
 	{
 		pathname:'/tips/:docId',

@@ -22,7 +22,7 @@ const initUser = {
 	is_audit: false,
 	institutions: '',
 	phone: 123123123,
-	identity: 'patient',
+	identity: 'doctor',
 	redirectTo: '' // 需要自动重定向的路由路径
 };
 
