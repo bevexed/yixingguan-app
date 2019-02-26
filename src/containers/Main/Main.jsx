@@ -20,13 +20,16 @@ class Main extends Component {
 
 	render() {
 		const {identity, phone} = this.props.user;
+		const {pathname} = this.props.location;
 		const route = identity === 'patient' ? patientRoute : doctorRoute;
+		const nav = identity === 'patient' ? patientNav : patientNav;
+		const showNav = nav.some(nav => nav.pathname === pathname);
 
 		if (!phone) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
-		if (this.props.location.pathname === '/') {
+		if (pathname === '/') {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
@@ -41,9 +44,7 @@ class Main extends Component {
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					identity === 'patient' ?
-						patientNav.some(nav => nav.pathname === this.props.location.pathname) ? <NavFootPatient navs={patientNav}/> : null
-						: doctorNav.some(nav => nav.pathname === this.props.location.pathname) ? < NavFootDoc doctorNav={doctorNav}/> : null
+					showNav ? <NavFootPatient navs={patientNav}/> : < NavFootDoc doctorNav={doctorNav}/>
 				}
 			</div>
 		);
