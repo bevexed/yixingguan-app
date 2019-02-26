@@ -19,6 +19,7 @@ import DoctorCompleteInformation from '../CompleteInformation/DoctorCompleteInfo
 import DoctorDetail from '../Detail/DoctorDetail'
 import DoctorWallet from '../Wallet/DoctorWallet'
 import Tips from '../Tips/Tips'
+import PaySuccess from '../PaySuccess/PaySuccess'
 
 import {getRedirectTo} from "../../utils";
 
@@ -67,6 +68,10 @@ class Main extends Component {
 		{
 			pathname:'/tips/:docId',
 			component:Tips
+		},
+		{
+			pathname:'/pay-success/:money',
+			component:PaySuccess
 		}
 	];
 

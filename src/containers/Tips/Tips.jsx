@@ -6,7 +6,7 @@ import {
 	List,
 	WhiteSpace,
 	Stepper,
-	Radio, Button
+	Radio,
 } from "antd-mobile";
 
 import './Tips.less'
@@ -76,7 +76,8 @@ class Tips extends Component {
 					renderFooter={() => '您与李薇薇医生共聊了18分钟'}
 				>
 					<Item
-						onClick={() => this.setState({disabled: false})}
+						activeStyle={{}}
+						onClick={() => this.setState({disabled: false, moneyIndex: -1})}
 						extra={
 							<Stepper
 								style={{width: '100%', minWidth: '100px'}}
@@ -120,7 +121,10 @@ class Tips extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-			<div className={'button'}>确认支付</div>
+				<div
+					className={'button'}
+					onClick={()=>this.props.history.replace('/pay-success/'+this.state.money)}
+				>确认支付</div>
 			</div>
 		);
 	}
