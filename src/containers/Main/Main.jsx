@@ -22,7 +22,7 @@ class Main extends Component {
 		const {identity, phone} = this.props.user;
 		const {pathname} = this.props.location;
 		const route = identity === 'patient' ? patientRoute : doctorRoute;
-		const nav = identity === 'patient' ? patientNav : patientNav;
+		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
 		if (!phone) {
@@ -44,7 +44,9 @@ class Main extends Component {
 					<Route component={NotFound}/>
 				</Switch>
 				{
-					showNav ? <NavFootPatient navs={patientNav}/> : < NavFootDoc doctorNav={doctorNav}/>
+					showNav ?
+						identity === 'patient' ? <NavFootPatient navs={nav}/> : < NavFootDoc doctorNav={nav}/>
+						: null
 				}
 			</div>
 		);

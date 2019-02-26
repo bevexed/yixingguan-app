@@ -91,6 +91,7 @@ class DoctorIndex extends Component {
 
 				<WhiteSpace/>
 
+
 				<List>
 					<Item
 					>
@@ -103,7 +104,11 @@ class DoctorIndex extends Component {
 						/>
 						<WhiteSpace/>
 					</Item>
+
+
+					{/*病人列表*/}
 					<Item
+						onClick={()=>this.props.history.push('/message/1')}
 						thumb={<img className={'patient-avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
 						multipleLine
 					>
@@ -116,6 +121,8 @@ class DoctorIndex extends Component {
 					</Item>
 				</List>
 
+
+				{/*弹出层*/}
 				<Modal
 					className={'pain'}
 					visible={this.state.modal}
