@@ -1,6 +1,7 @@
 import {
 	RECEIVE_DOCTOR_LIST,
 	RECEIVE_DOCTOR_DETAILS,
+	SEEK_DOCTOR_LIST
 } from "../action-types";
 
 const initDoctorList = {
@@ -23,6 +24,8 @@ export const doctorList = (state = initDoctorList, action) => {
 	switch (action.type) {
 		case RECEIVE_DOCTOR_LIST:
 			return {...action.data};
+		case SEEK_DOCTOR_LIST:
+			return {current_page: 1,list:[...action.data],total: 1};
 		default:
 			return state;
 	}

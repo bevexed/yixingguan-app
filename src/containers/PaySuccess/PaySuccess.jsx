@@ -31,7 +31,9 @@ class PaySuccess extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<div className={'button'}>支付成功</div>
+				<div className={'button'}
+					onClick={()=>this.props.history.replace('/patient-index')}
+				>支付成功</div>
 			</div>
 		);
 	}

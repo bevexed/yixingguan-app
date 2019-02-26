@@ -124,6 +124,10 @@ class Main extends Component {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
+		if (this.props.location.pathname==='/'){
+			return <Redirect to={getRedirectTo(identity,phone)}/>
+		}
+
 		return (
 			<div>
 				<Switch>
