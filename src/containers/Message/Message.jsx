@@ -36,6 +36,7 @@ class Message extends Component {
 
 	render() {
 		const {inputType, menuShow} = this.state;
+		const {identity} = this.props.user;
 
 		return (
 			<div className={'message'}>
@@ -50,6 +51,7 @@ class Message extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
+				{/*聊天内容*/}
 				<div className={'chat'}>
 					<div className={'from'}>
 						<img src={require('./img/biaoqing@3x.png')} alt=""/><span>有个问题想有个问题想咨想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一</span>
@@ -65,12 +67,18 @@ class Message extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
+				{/*打赏*/}
 				<div className={'bottom-input'}>
-					<div className={'tip'}
-							 onClick={()=>this.props.history.push('/tips/'+this.props.match.params.to)}
-					>
-						<img src={require('./img/分组@3x.png')} alt=""/>
-					</div>
+					{identity === 'patient' ?
+						<div className={'tip'}
+								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.to)}
+						>
+							<img src={require('./img/分组@3x.png')} alt=""/>
+						</div>
+						: null
+					}
+
+					{/*输入框*/}
 					<div className={'speak-input-wrap'}>
 						<div className={'voice'}>
 
@@ -97,6 +105,7 @@ class Message extends Component {
 									 alt=""/>
 						</div>
 
+						{/*弹出框*/}
 						<div className={'alert'} style={{height: menuShow ? 110 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt=""/>
 							<img src={require('./img/相册@3x.png')} alt=""/>
@@ -112,7 +121,9 @@ class Message extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
