@@ -35,7 +35,9 @@ class PersonalPatient extends Component {
 				</List>
 				<WhiteSpace size={'lg'}/>
 
-				<List>
+				<List
+					onClick={()=>this.props.history.push('/record-list')}
+				>
 					<Item
 						extra={<Badge dot/>}
 						arrow={'horizontal'}

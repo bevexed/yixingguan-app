@@ -6,6 +6,7 @@ import PersonalPatient from "../containers/Personal/PersonalPatient";
 import OrderDoc from "../containers/OrderDoc/OrderDoc";
 import Tips from "../containers/Tips/Tips";
 import PaySuccess from "../containers/PaySuccess/PaySuccess";
+import RecordList from "../containers/RecordList/RecordList";
 
 export const patientNav = [
 	{
@@ -48,5 +49,9 @@ export const patientRoute = [
 	{
 		pathname:'/pay-success/:money',
 		component:PaySuccess
+	},
+	{
+		pathname:'/record-list',
+		component:RecordList
 	}
 ];

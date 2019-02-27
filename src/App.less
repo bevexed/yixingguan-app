@@ -1,10 +1,12 @@
+@import "./static/common";
+
 * {
 	-webkit-tap-highlight-color: transparent;
 	font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", SimSun, sans-serif;
 }
 
 .App {
-	max-width: 450px;
+	max-width: @maxWrapWith;
 	margin: 0 auto;
 	overflow: hidden;
 	background: transparent;
@@ -25,7 +27,7 @@ html {
 
 .am-navbar {
 	position: fixed;
-	max-width: 450px;
+	max-width: @maxWrapWith;
 	width: 100%;
 	z-index: 9999;
 }

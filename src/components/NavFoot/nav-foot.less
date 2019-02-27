@@ -1,9 +1,11 @@
+@import "../../static/common";
+
 .nav-foot-patient {
 	.phone {
 		z-index: -1;
 		width: 100%;
 		position: fixed;
-		max-width: 450px;
+		max-width: @maxWrapWith;
 		bottom: 80px;
 		margin-top: 0;
 		padding: 10px;
@@ -16,7 +18,7 @@
 		z-index: 999;
 		position: fixed;
 		width: 100%;
-		max-width: 450px;
+		max-width: @maxWrapWith;
 		bottom: 0;
 		height: 80px;
 		display: flex;
@@ -63,7 +65,7 @@
 
 .nav-foot-doc {
 	width: 100%;
-	max-width: 425px;
+	max-width: @maxWrapWith;
 	position: fixed;
 	bottom: 0;
 }

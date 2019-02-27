@@ -61,5 +61,5 @@ export const doctorRoute = [
 	{
 		pathname:'/my-help',
 		component: MyHelper
-	}
+	},
 ];

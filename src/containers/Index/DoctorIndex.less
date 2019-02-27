@@ -1,8 +1,10 @@
+@import "../../static/common";
+
 .doctor-index {
 	width: 375px;
 
 	.am-result {
-		max-width: 425px;
+		max-width: @maxWrapWith;
 		padding: 50Px 0 20Px;
 	}
 
@@ -13,7 +15,7 @@
 	}
 
 	.name {
-		max-width: 425px;
+		max-width: @maxWrapWith;
 		text-align: center;
 		font-size: 16px;
 		margin-top: 30px;
@@ -23,9 +25,10 @@
 		}
 	}
 
-	.am-list{
-		max-width: 425px;
+	.am-list {
+		max-width: @maxWrapWith;
 	}
+
 	.am-search {
 		height: 36Px;
 		background-color: transparent;
@@ -96,7 +99,7 @@
 			font-size: 16px;
 			border: 1px solid #b3b3b3;
 
-			&:last-child{
+			&:last-child {
 				border-color: #68e3ce;
 				background-color: #68e3ce;
 				color: white;
