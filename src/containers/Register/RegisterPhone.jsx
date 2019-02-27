@@ -27,16 +27,20 @@ class RegisterPhone extends Component {
 	};
 
 	checkCode = () => {
-		const {phone, auto_code} = this.state;
-		doLogin({phone,auto_code}).then(
-			res => {
-				if (res.code === 1) {
+		this.props.receiveUser({
+			phone:123
+		})
 
-				} else {
-
-				}
-			}
-		)
+		// const {phone, auto_code} = this.state;
+		// doLogin({phone,auto_code}).then(
+		// 	res => {
+		// 		if (res.code === 1) {
+		//
+		// 		} else {
+		//
+		// 		}
+		// 	}
+		// )
 	};
 
 

@@ -14,7 +14,7 @@ class SelectPlayer extends Component {
 
 
 	state = {
-		identity: 'doctor'
+		identity: ''
 	};
 
 	goMain = () => {
@@ -34,6 +34,10 @@ class SelectPlayer extends Component {
 		this.setState({
 			identity: player
 		});
+
+		this.props.receiveUser({
+			identity:player
+		})
 	};
 
 	render() {

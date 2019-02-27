@@ -148,5 +148,5 @@
     "color-text-base": "#000"
   },
   "homepage": ".",
-  "proxy": "http://47.75.74.89"
+  "proxy": "http://47.75.74.89:81"
 }
