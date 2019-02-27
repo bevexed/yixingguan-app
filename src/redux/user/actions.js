@@ -3,7 +3,8 @@ import {
 } from "../../api/patient";
 
 import {
-	doLogin
+	doLogin,
+	reqCode
 } from "../../api";
 
 import {
@@ -11,6 +12,15 @@ import {
 	RECEIVE_DOCTOR_DETAILS,
 	RECEIVE_USER,
 } from "../action-types";
+
+// 获取 微信验证
+export const getWxCode = (appId,redirect_uri)=> {
+	reqCode(appId,redirect_uri).then(
+		res=>{
+			console.log(res);
+		}
+	)
+};
 
 // order-doc 医生详情
 

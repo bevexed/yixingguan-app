@@ -36,7 +36,7 @@ class App extends Component {
 				</Helmet>
 
 				<Provider store={store}>
-					<BrowserRouter>
+					<HashRouter>
 						<Switch>
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
@@ -45,7 +45,7 @@ class App extends Component {
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>
-					</BrowserRouter>
+					</HashRouter>
 				</Provider>
 			</div>
 		);
