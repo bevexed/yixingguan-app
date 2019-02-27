@@ -20,7 +20,7 @@ module.exports = override(
 		require('postcss-pxtorem')({
 			rootValue: 37.5,
 			unitPrecision: 5,
-			propList: ['width','height','font-size','background-size','padding','margin','bottom','top','padding'],
+			propList: ['width','height','background-size','padding','margin','bottom','top','padding'],
 			selectorBlackList: ['am-','slider'],
 			replace: true,
 			mediaQuery: false,
