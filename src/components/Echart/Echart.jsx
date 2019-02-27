@@ -1,70 +1,65 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-// 引入 ECharts 主模块
-import echarts from 'echarts/lib/echarts';
-// 引入柱状图
-import 'echarts/lib/chart/line';
-// 引入提示框和标题组件
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
+import ReactEcharts from 'echarts-for-react';
 
 class Echart extends Component {
-	componentDidMount() {
-		// 基于准备好的dom，初始化echarts实例
-		// let myChart = echarts.init(document.getElementById('main'));
-		let echartsWarp = document.getElementById('main');
-		let resizeWorldMapContainer = function () {//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
-			echartsWarp.style.width = window.screen.width - 50 + 'px';
-			// echartsWarp.style.height = window.innerHeight+'px';
-		};
-		resizeWorldMapContainer();//设置容器高宽
-		let myChart = echarts.init(echartsWarp);// 基于准备好的dom，初始化echarts实例
 
-		// 绘制图表
-		myChart.setOption({
-			title: {
-				text: '成交量',
-				textStyle: {
-					color: '#333',
-					fontSize: 15,
-					fontWeight: 'normal'
-				},
-				left: 20
+	getOption = () => {
+		 return {
+			legend: {},
+			tooltip: {
+				trigger: 'axis',
+				showContent: false
 			},
-			tooltip: {},
-			xAxis: {
-				name: '天',
-				data: ["2/2", "2/3", "2/4", "2/5", "2/6", "2/7"],
-				axisTick: {
-					show: false
+			dataset: {
+				source: [
+					['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+					['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
+					['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
+					['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
+					['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
+				]
+			},
+			xAxis: {type: 'category'},
+			yAxis: {gridIndex: 0},
+			grid: {top: '55%'},
+			series: [
+				{type: 'line', smooth: true, seriesLayoutBy: 'row'},
+				{type: 'line', smooth: true, seriesLayoutBy: 'row'},
+				{type: 'line', smooth: true, seriesLayoutBy: 'row'},
+				{type: 'line', smooth: true, seriesLayoutBy: 'row'},
+				{
+					type: 'pie',
+					id: 'pie',
+					radius: '30%',
+					center: ['50%', '25%'],
+					label: {
+						formatter: '{b}: {@2012} ({d}%)'
+					},
+					encode: {
+						itemName: 'product',
+						value: '2012',
+						tooltip: '2012'
+					}
 				}
-			},
-			yAxis: {
-				name: '量',
-				axisTick: {
-					show: false
-				},
-				axisLabel: {
-					show: false
-				},
-				splitLine: {
-					show: false
-				},
-			},
-			series: [{
-				name: '销量',
-				type: 'line',
-				data: [820, 932, 901, 934, 1290, 1330, 1320],
-				smooth: true
-			}]
-		});
-	}
+			]
+		};
+
+	};
 
 	render() {
 		return (
 			<div className={'statistics'}>
-				<div id="main" style={{width: 400, height: 400, marginTop: 26}}>null</div>
+				<ReactEcharts
+					option={this.getOption()}
+					// notMerge={true}
+					lazyUpdate={true}
+					// theme={"theme_name"}
+					// onChartReady={this.onChartReadyCallback}
+					// onEvents={EventsDict}
+					// opts={}
+				/>
 			</div>
 		);
 	}

@@ -23,15 +23,9 @@ class Statistics extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				<div className='countTop'>
-					<span>2019/01/01-2019/02/14</span>
-					<img src={require('./img/shaixuan.png')} alt=''/>
-				</div>
-				<div className='showDiv'>
-					<span className='iconfont icon-back'></span>
-					<Echarts/>
-					<span className='iconfont icon-next'></span>
-				</div>
+
+				<Echarts/>
+
 
 			</div>
 		);
