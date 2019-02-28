@@ -14,14 +14,20 @@ import {
 	RECEIVE_DOCTOR_DETAILS,
 	RECEIVE_USER,
 } from "../action-types";
+import {GetQueryString} from "../../utils";
 
 // 获取 微信验证
 export const getWxCode = () => {
-	console.log(config.wx);
 	let appId = config.wx.appID;
 	let redirect_uri = config.wx.redirect_uri;
 	let scope = config.wx.scope;
-	reqCode(appId, redirect_uri, scope)
+	let code = GetQueryString('code');
+
+	if (!code) {
+		reqCode(appId, redirect_uri, scope)
+	} else {
+		alert('获取微信授权成功')
+	}
 };
 
 // order-doc 医生详情

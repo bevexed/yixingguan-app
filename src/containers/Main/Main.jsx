@@ -17,20 +17,12 @@ import {getWxCode} from "../../redux/user/actions";
 class Main extends Component {
 	state = {
 		type: 'doctor',
-		code: '',
+
 	};
 
 
 	componentWillMount() {
-		let code = GetQueryString('code');
-
-		if (!code) {
-			getWxCode()
-		} else {
-			this.setState({
-				code
-			});
-		}
+		getWxCode()
 	}
 
 	render() {
