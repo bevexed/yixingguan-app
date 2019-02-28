@@ -10,24 +10,29 @@ import {
 } from "../../api";
 
 import {
-	AUTH_SUCCESS, ERROR_MSG,
+	AUTH_SUCCESS,
+	ERROR_MSG,
 	RECEIVE_DOCTOR_DETAILS,
 	RECEIVE_USER,
 } from "../action-types";
+
 import {GetQueryString} from "../../utils";
 
 // 获取 微信验证
 export const getWxCode = () => {
 	let appId = config.wx.appID;
-	let redirect_uri = config.wx.redirect_uri;
 	let scope = config.wx.scope;
+	let redirect_uri = window.location.href;
 	let code = GetQueryString('code');
 
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
-		alert('获取微信授权成功')
+		localStorage.code = code;
+		alert('授权成功')
 	}
+
+
 };
 
 // order-doc 医生详情

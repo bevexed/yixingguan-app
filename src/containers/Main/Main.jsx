@@ -7,12 +7,12 @@ import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
-import {GetQueryString, getRedirectTo} from "../../utils";
-
 import {patientNav, patientRoute} from '../../router/patient'
 
 import {doctorNav, doctorRoute} from "../../router/doctor";
 import {getWxCode} from "../../redux/user/actions";
+
+import {getRedirectTo} from "../../utils";
 
 class Main extends Component {
 	state = {
@@ -22,7 +22,10 @@ class Main extends Component {
 
 
 	componentWillMount() {
-		getWxCode()
+		const {identity, phone} = this.props.user;
+		if (!identity||!phone){
+			getWxCode()
+		}
 	}
 
 	render() {
@@ -32,10 +35,12 @@ class Main extends Component {
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
+		// 没有电话 拦截 到组测页面
 		if (!phone) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
+		// 重定向 '/' 到 指定的 home 页面
 		if (pathname === '/') {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}

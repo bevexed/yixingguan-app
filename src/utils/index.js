@@ -12,7 +12,6 @@ export const getRedirectTo = (type, phone) => {
 
 	path += '-index';
 
-	console.log(path);
 	return path
 };
 
