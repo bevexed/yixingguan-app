@@ -4,8 +4,7 @@ import './Register.less'
 import {Redirect} from "react-router-dom";
 
 import {
-	receiveUser,
-	getUser
+	updataUserType
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
@@ -18,15 +17,14 @@ class SelectPlayer extends Component {
 	};
 
 	goMain = () => {
-		const {phone, auto_code, identity} = this.props.user;
+		const {phone, auto_code} = this.props.user;
+		const {identity} = this.state;
 		const userData = {
 			phone: phone || '',
 			auto_code: auto_code || '',
 			identity: identity || '',
-			open_id: '',
-			name: ''
 		};
-		this.props.getUser(userData);
+		this.props.updataUserType(userData);
 	};
 
 
@@ -34,16 +32,12 @@ class SelectPlayer extends Component {
 		this.setState({
 			identity: player
 		});
-
-		this.props.receiveUser({
-			identity:player
-		})
 	};
 
 	render() {
 		const {identity, phone} = this.props.user;
 
-		if (identity) {
+		if (!phone || identity) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
@@ -85,7 +79,6 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		receiveUser,
-		getUser
+		updataUserType,
 	}
 )(SelectPlayer);

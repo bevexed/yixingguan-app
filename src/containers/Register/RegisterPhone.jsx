@@ -5,7 +5,6 @@ import './Register.less'
 import {Redirect} from "react-router-dom";
 
 import {
-	receiveUser,
 	updataPhone
 } from "../../redux/user/actions";
 
@@ -50,13 +49,6 @@ class RegisterPhone extends Component {
 		this.props.updataPhone(phone, auto_code)
 	};
 
-
-	getPhone = () => {
-		this.props.receiveUser({
-			phone: this.state.phone,
-			code: 123,
-		});
-	};
 
 	render() {
 		const {phone} = this.props.user;
@@ -109,7 +101,6 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		receiveUser,
 		updataPhone
 	}
 )(RegisterPhone);

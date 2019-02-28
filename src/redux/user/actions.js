@@ -76,24 +76,34 @@ export const updataPhone = (phone, auto_code) => {
 
 		phone = phone.replace(/\s+/g, "");
 		if (!phone || phone.length < 11) {
-			Toast.fail('手机号格式有误',1);
+			Toast.fail('手机号格式有误', 1);
 			return
 		}
 
-		if (!auto_code){
-			Toast.fail('请输入验证码',1);
+		if (!auto_code) {
+			Toast.fail('请输入验证码', 1);
 			return
 		}
 
 		checkCode({phone, auto_code}).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveUser({phone}))
+					dispatch(receiveUser({phone,auto_code}))
 				} else {
 					Toast.fail(res.message, 1);
 				}
 			}
 		);
+	}
+};
+
+export const updataUserType = userData => {
+	return dispatch => {
+		doLogin({...userData}).then(
+			res=>{
+				console.log(res);
+			}
+		)
 	}
 };
 
