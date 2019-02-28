@@ -6,7 +6,8 @@ import config from '../../../package.json'
 
 import {
 	doLogin,
-	reqCode
+	reqCode,
+	reqToken
 } from "../../api";
 
 import {
@@ -25,11 +26,20 @@ export const getWxCode = () => {
 	let redirect_uri = window.location.href;
 	let code = GetQueryString('code');
 
+	if (localStorage.token){
+		return
+	}
+
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
-		localStorage.code = code;
-		alert('授权成功')
+		reqToken(code).then(
+			res => {
+				if (res.code === 1) {
+					localStorage.token = res.data;
+				}
+			}
+		)
 	}
 
 
