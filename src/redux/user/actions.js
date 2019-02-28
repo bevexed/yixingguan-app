@@ -26,10 +26,12 @@ export const getWxCode = () => {
 	let redirect_uri = window.location.href;
 	let code = GetQueryString('code');
 
+	// 如果 本地 token 不存在 则去 获得code
 	if (localStorage.token){
 		return
 	}
 
+	// code 换取 token
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
