@@ -72,14 +72,19 @@ export const authSuccess = user => ({type: AUTH_SUCCESS, data: user});
 export const errorMsg = msg => ({type: ERROR_MSG, data: msg});
 
 export const updataPhone = (phone, auto_code) => {
-	if (!phone){
-		Toast.fail('请填写手机号', 1);
-		return
-	}
-
-	phone = phone.replace(/\s+/g, "");
-
 	return async dispatch => {
+
+		phone = phone.replace(/\s+/g, "");
+		if (!phone || phone.length < 11) {
+			Toast.fail('手机号格式有误',1);
+			return
+		}
+
+		if (!auto_code){
+			Toast.fail('请输入验证码',1);
+			return
+		}
+
 		checkCode({phone, auto_code}).then(
 			res => {
 				if (res.code === 1) {
