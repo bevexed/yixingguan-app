@@ -7,16 +7,33 @@ import NotFound from '../../components/NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
-import {getRedirectTo} from "../../utils";
+import {GetQueryString, getRedirectTo} from "../../utils";
 
 import {patientNav, patientRoute} from '../../router/patient'
 
 import {doctorNav, doctorRoute} from "../../router/doctor";
+import {getWxCode} from "../../redux/user/actions";
 
 class Main extends Component {
 	state = {
-		type: 'doctor'
+		type: 'doctor',
+		code: '',
 	};
+
+
+	componentWillMount() {
+		let code = GetQueryString('code');
+
+		if (!code) {
+			getWxCode()
+		} else {
+			this.setState({
+				code
+			});
+		}
+
+		console.log(code)
+	}
 
 	render() {
 		const {identity, phone} = this.props.user;

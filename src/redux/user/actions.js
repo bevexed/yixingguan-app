@@ -14,12 +14,11 @@ import {
 } from "../action-types";
 
 // 获取 微信验证
-export const getWxCode = (appId,redirect_uri)=> {
-	reqCode(appId,redirect_uri).then(
-		res=>{
-			console.log(res);
-		}
-	)
+export const getWxCode = () => {
+	let appId = 'wx6ad3262297242b11';
+	let redirect_uri = 'http://192.168.1.8:3000';
+	let scope = 'snsapi_base';
+	reqCode(appId, redirect_uri, scope)
 };
 
 // order-doc 医生详情
@@ -48,7 +47,7 @@ export const getUser = userData => {
 			res => {
 				if (res.code === 1) {
 					dispatch(authSuccess(res.data));
-				}else {
+				} else {
 					dispatch(errorMsg(res.message));
 				}
 			}
