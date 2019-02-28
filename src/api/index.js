@@ -6,3 +6,5 @@ export const reqCode = (appId,redirect_uri,scope) => window.location.assign(`htt
 export const reqToken = code => ajax('/api/wx/get_token',{code},'GET');
 
 export const doLogin = ({phone,auto_code,identity,open_id,name}) => ajax('/api/login/do_login',{phone,auto_code,identity,open_id,name});
+
+export const checkCode = ({phone,auto_code}) => ajax('/api/login/verify_landing',{phone,auto_code});

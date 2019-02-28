@@ -6,41 +6,48 @@ import {Redirect} from "react-router-dom";
 
 import {
 	receiveUser,
+	updataPhone
 } from "../../redux/user/actions";
 
 import {
 	doLogin
 } from "../../api";
 
-import {List, InputItem, WhiteSpace} from "antd-mobile";
+import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 
 class RegisterPhone extends Component {
 	state = {
 		phone: '',
+		hasError: false,
 		auto_code: '',
 	};
 
+	onErrorClick = () => {
+		if (this.state.hasError) {
+			Toast.info('手机号码格式不对');
+		}
+	};
+
 	handleChange = (name, val) => {
+		if (name === 'phone') {
+			if (val.replace(/\s/g, '').length < 11) {
+				this.setState({
+					hasError: true,
+				});
+			} else {
+				this.setState({
+					hasError: false,
+				});
+			}
+		}
 		this.setState({
 			[name]: val
 		});
 	};
 
 	checkCode = () => {
-		// this.props.receiveUser({
-		// 	phone:123
-		// })
-
 		const {phone, auto_code} = this.state;
-		doLogin({phone,auto_code}).then(
-			res => {
-				if (res.code === 1) {
-
-				} else {
-
-				}
-			}
-		)
+		this.props.updataPhone(phone, auto_code)
 	};
 
 
@@ -68,6 +75,8 @@ class RegisterPhone extends Component {
 						clear
 						type="phone"
 						placeholder=""
+						onErrorClick={this.onErrorClick}
+						error={this.state.hasError}
 						onChange={val => this.handleChange('phone', val)}
 					>手机号码</InputItem>
 					<WhiteSpace/>
@@ -101,5 +110,6 @@ export default connect(
 	mapStateToProps,
 	{
 		receiveUser,
+		updataPhone
 	}
 )(RegisterPhone);

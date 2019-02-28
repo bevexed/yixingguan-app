@@ -2,12 +2,14 @@ import {
 	reqDoctorDetail,
 } from "../../api/patient";
 
+
 import config from '../../../package.json'
 
 import {
 	doLogin,
 	reqCode,
-	reqToken
+	reqToken,
+	checkCode
 } from "../../api";
 
 import {
@@ -19,6 +21,8 @@ import {
 
 import {GetQueryString} from "../../utils";
 
+import {Toast} from "antd-mobile";
+
 // 获取 微信验证
 export const getWxCode = () => {
 	let appId = config.wx.appID;
@@ -27,7 +31,7 @@ export const getWxCode = () => {
 	let code = GetQueryString('code');
 
 	// 如果 本地 token 不存在 则去 获得code
-	if (localStorage.token){
+	if (localStorage.token) {
 		return
 	}
 
@@ -66,6 +70,27 @@ export const getDoctorDetail = doctorId => {
 export const receiveUser = user => ({type: RECEIVE_USER, data: user});
 export const authSuccess = user => ({type: AUTH_SUCCESS, data: user});
 export const errorMsg = msg => ({type: ERROR_MSG, data: msg});
+
+export const updataPhone = (phone, auto_code) => {
+	if (!phone){
+		Toast.fail('请填写手机号', 1);
+		return
+	}
+
+	phone = phone.replace(/\s+/g, "");
+
+	return async dispatch => {
+		checkCode({phone, auto_code}).then(
+			res => {
+				if (res.code === 1) {
+					dispatch(receiveUser({phone}))
+				} else {
+					Toast.fail(res.message, 1);
+				}
+			}
+		);
+	}
+};
 
 export const getUser = userData => {
 	return async dispatch => {
