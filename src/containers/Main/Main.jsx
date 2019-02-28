@@ -24,7 +24,7 @@ class Main extends Component {
 	componentWillMount() {
 		const {identity, phone} = this.props.user;
 		if (!identity||!phone){
-			// getWxCode()
+			getWxCode()
 		}
 	}
 

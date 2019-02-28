@@ -8,7 +8,7 @@ import config from '../../../package.json'
 import {
 	doLogin,
 	reqCode,
-	reqToken,
+	reqOpenId,
 	checkCode
 } from "../../api";
 
@@ -31,7 +31,10 @@ export const getWxCode = () => {
 	let code = GetQueryString('code');
 
 	// 如果 本地 token 不存在 则去 获得code
-	if (localStorage.token) {
+
+	localStorage.removeItem('openId');
+
+	if (localStorage.token){
 		return
 	}
 
@@ -39,10 +42,11 @@ export const getWxCode = () => {
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
-		reqToken(code).then(
+		reqOpenId(code).then(
 			res => {
 				if (res.code === 1) {
-					localStorage.token = res.data;
+					localStorage.openId = res.data;
+					receiveUser({open_id:res.data})
 				}
 			}
 		)
@@ -101,7 +105,13 @@ export const updataUserType = userData => {
 	return dispatch => {
 		doLogin({...userData}).then(
 			res=>{
-				console.log(res);
+				if (res.code === 1) {
+					let identity = res.identity === 1? 'patient':'doctor';
+					let userData = {...res.data,identity};
+					localStorage.token = res.data.token;
+
+					dispatch(authSuccess(userData))
+				}
 			}
 		)
 	}

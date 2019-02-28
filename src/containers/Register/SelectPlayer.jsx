@@ -22,7 +22,8 @@ class SelectPlayer extends Component {
 		const userData = {
 			phone: phone || '',
 			auto_code: auto_code || '',
-			identity: identity || '',
+			identity: identity === "patient" ? 1 : 2 || '',
+			open_id: localStorage.openId|| '',
 		};
 		this.props.updataUserType(userData);
 	};

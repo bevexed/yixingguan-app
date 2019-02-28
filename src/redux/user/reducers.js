@@ -29,7 +29,7 @@ const initUser = {
 export const user = (state = initUser, action) => {
 	switch (action.type) {
 		case AUTH_SUCCESS:
-			return state;
+			return {...action.data};
 		case ERROR_MSG:
 			return action.data;
 		case RESET_USER:

@@ -8,10 +8,6 @@ import {
 	updataPhone
 } from "../../redux/user/actions";
 
-import {
-	doLogin
-} from "../../api";
-
 import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 
 class RegisterPhone extends Component {
