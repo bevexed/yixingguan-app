@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {Provider} from 'react-redux';
 
 import store from './redux/store'
-import {BrowserRouter, Route, Switch,Redirect} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
@@ -16,9 +16,6 @@ import Main from "./containers/Main/Main";
 // mate 标签
 
 // require('./static/font');
-
-import {getWxCode} from "./redux/user/actions";
-import {GetQueryString} from "./utils";
 
 class App extends Component {
 

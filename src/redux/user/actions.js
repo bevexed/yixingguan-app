@@ -2,6 +2,8 @@ import {
 	reqDoctorDetail,
 } from "../../api/patient";
 
+import config from '../../../package.json'
+
 import {
 	doLogin,
 	reqCode
@@ -15,9 +17,10 @@ import {
 
 // 获取 微信验证
 export const getWxCode = () => {
-	let appId = 'wx6ad3262297242b11';
-	let redirect_uri = 'http://192.168.1.8:3000';
-	let scope = 'snsapi_base';
+	console.log(config.wx);
+	let appId = config.wx.appID;
+	let redirect_uri = config.wx.redirect_uri;
+	let scope = config.wx.scope;
 	reqCode(appId, redirect_uri, scope)
 };
 

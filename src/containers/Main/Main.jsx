@@ -31,8 +31,6 @@ class Main extends Component {
 				code
 			});
 		}
-
-		console.log(code)
 	}
 
 	render() {
