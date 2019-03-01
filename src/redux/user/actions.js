@@ -9,7 +9,8 @@ import {
 	doLogin,
 	reqCode,
 	reqOpenId,
-	checkCode
+	checkCode,
+	reqUserData,
 } from "../../api";
 
 import {
@@ -32,8 +33,6 @@ export const getWxCode = () => {
 
 	// 如果 本地 token 不存在 则去 获得code
 
-	localStorage.removeItem('openId');
-
 	if (localStorage.token){
 		return
 	}
@@ -42,14 +41,15 @@ export const getWxCode = () => {
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
-		reqOpenId(code).then(
-			res => {
-				if (res.code === 1) {
-					localStorage.openId = res.data;
-					receiveUser({open_id:res.data})
-				}
-			}
-		)
+		localStorage.code = code
+		// reqOpenId(code).then(
+		// 	res => {
+		// 		if (res.code === 1) {
+		// 			localStorage.openId = res.data;
+		// 			receiveUser({open_id:res.data})
+		// 		}
+		// 	}
+		// )
 	}
 
 
@@ -117,13 +117,15 @@ export const updataUserType = userData => {
 	}
 };
 
-export const getUser = userData => {
+export const getUser = token => {
 	return async dispatch => {
-		doLogin(userData).then(
+		token = localStorage.token;
+		reqUserData(token).then(
 			res => {
 				if (res.code === 1) {
 					dispatch(authSuccess(res.data));
 				} else {
+					localStorage.removeItem(token);
 					dispatch(errorMsg(res.message));
 				}
 			}

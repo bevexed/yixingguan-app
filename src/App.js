@@ -43,7 +43,6 @@ class App extends Component {
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
 							<Route path='/select-player' component={SelectPlayer}/>
-
 							<Route path='/login' component={Login}/>
 							<Route component={Main}/>
 						</Switch>

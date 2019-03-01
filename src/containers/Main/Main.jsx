@@ -10,7 +10,7 @@ import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 import {patientNav, patientRoute} from '../../router/patient'
 
 import {doctorNav, doctorRoute} from "../../router/doctor";
-import {getWxCode} from "../../redux/user/actions";
+import {getWxCode, getUser} from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 
@@ -23,9 +23,12 @@ class Main extends Component {
 
 	componentWillMount() {
 		const {identity, phone} = this.props.user;
-		if (!identity||!phone){
+		if (!localStorage.token) {
 			getWxCode()
 		}
+		// if (!identity || !phone) {
+		// 	getUser()
+		// }
 	}
 
 	render() {
@@ -35,8 +38,8 @@ class Main extends Component {
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
-		// 没有电话 拦截 到组测页面
-		if (!phone) {
+		// 没有电话或者没有身份 拦截 到相应 注册 页面
+		if (!phone || !identity) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
@@ -73,5 +76,6 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	getUser
 )(Main);
 

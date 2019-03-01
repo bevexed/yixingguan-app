@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import './Register.less'
 
-import {Redirect} from "react-router";
-
-import {getRedirectTo} from "../../utils";
-
 class RegisterIndex extends Component {
 	render() {
 		return (

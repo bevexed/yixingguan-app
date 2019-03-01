@@ -1,9 +1,17 @@
 export const getRedirectTo = (type, phone) => {
 	let path = '';
-
-	if (!phone) {
+	if (!phone && !type){
 		return 'register-index'
 	}
+
+	if (!phone) {
+		return 'register-phone'
+	}
+
+	if (!type){
+		return 'select-player'
+	}
+
 	if (type === 'doctor') {
 		path = 'doctor'
 	} else {

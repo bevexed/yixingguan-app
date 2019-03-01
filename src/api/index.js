@@ -8,3 +8,5 @@ export const reqOpenId = code => ajax('/api/wx/get_open_id',{code},'GET');
 export const doLogin = ({phone,auto_code,identity,open_id,name}) => ajax('/api/login/do_login',{phone,auto_code,identity,open_id,name});
 
 export const checkCode = ({phone,auto_code}) => ajax('/api/login/verify_landing',{phone,auto_code});
+
+export const reqUserData = token => ajax('/api/login/get_user',{token});
