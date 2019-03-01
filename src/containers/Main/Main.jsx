@@ -14,6 +14,8 @@ import {getWxCode, getUser} from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 
+import Cookies from 'js-cookie';
+
 class Main extends Component {
 	state = {
 		type: 'doctor',
@@ -22,13 +24,13 @@ class Main extends Component {
 
 
 	componentWillMount() {
-		const {identity, phone} = this.props.user;
-		if (!localStorage.token) {
+		const token = Cookies.get('token');
+
+		if (!token) {
 			getWxCode()
+		} else {
+			this.props.getUser(token)
 		}
-		// if (!identity || !phone) {
-		// 	getUser()
-		// }
 	}
 
 	render() {
@@ -37,6 +39,7 @@ class Main extends Component {
 		const route = identity === 'patient' ? patientRoute : doctorRoute;
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
+
 
 		// 没有电话或者没有身份 拦截 到相应 注册 页面
 		if (!phone || !identity) {
@@ -76,6 +79,6 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	getUser
+	{getUser}
 )(Main);
 

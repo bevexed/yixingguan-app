@@ -2,13 +2,12 @@ import {
 	reqDoctorDetail,
 } from "../../api/patient";
 
-
 import config from '../../../package.json'
 
 import {
 	doLogin,
 	reqCode,
-	reqOpenId,
+	reqToken,
 	checkCode,
 	reqUserData,
 } from "../../api";
@@ -24,6 +23,8 @@ import {GetQueryString} from "../../utils";
 
 import {Toast} from "antd-mobile";
 
+import Cookies from 'js-cookie';
+
 // 获取 微信验证
 export const getWxCode = () => {
 	let appId = config.wx.appID;
@@ -31,25 +32,19 @@ export const getWxCode = () => {
 	let redirect_uri = window.location.href;
 	let code = GetQueryString('code');
 
-	// 如果 本地 token 不存在 则去 获得code
-
-	if (localStorage.token){
-		return
-	}
-
-	// code 换取 token
 	if (!code) {
 		reqCode(appId, redirect_uri, scope)
 	} else {
-		localStorage.code = code
-		// reqOpenId(code).then(
-		// 	res => {
-		// 		if (res.code === 1) {
-		// 			localStorage.openId = res.data;
-		// 			receiveUser({open_id:res.data})
-		// 		}
-		// 	}
-		// )
+		localStorage.code = code;
+		reqToken(code).then(
+			res => {
+				if (res.code === 1) {
+					setTimeout(getUser(Cookies.get('token')))
+				}else {
+					Cookies.remove('token');
+				}
+			}
+		)
 	}
 
 
@@ -92,7 +87,7 @@ export const updataPhone = (phone, auto_code) => {
 		checkCode({phone, auto_code}).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveUser({phone,auto_code}))
+					dispatch(receiveUser({phone, auto_code}))
 				} else {
 					Toast.fail(res.message, 1);
 				}
@@ -104,10 +99,10 @@ export const updataPhone = (phone, auto_code) => {
 export const updataUserType = userData => {
 	return dispatch => {
 		doLogin({...userData}).then(
-			res=>{
+			res => {
 				if (res.code === 1) {
-					let identity = res.identity === 1? 'patient':'doctor';
-					let userData = {...res.data,identity};
+					let identity = res.identity === 1 ? 'patient' : 'doctor';
+					let userData = {...res.data, identity};
 					localStorage.token = res.data.token;
 
 					dispatch(authSuccess(userData))
@@ -119,7 +114,6 @@ export const updataUserType = userData => {
 
 export const getUser = token => {
 	return async dispatch => {
-		token = localStorage.token;
 		reqUserData(token).then(
 			res => {
 				if (res.code === 1) {

@@ -14,7 +14,6 @@ import RegisterPhone from './containers/Register/RegisterPhone';
 import SelectPlayer from './containers/Register/SelectPlayer';
 import Main from "./containers/Main/Main";
 // mate 标签
-
 // require('./static/font');
 
 class App extends Component {
