@@ -45,14 +45,12 @@ class RegisterPhone extends Component {
 		this.props.updataPhone(phone, auto_code)
 	};
 
-
 	render() {
 		const {phone} = this.props.user;
-
+		console.log(phone);
 		if (phone) {
 			return <Redirect to={'/select-player'}/>
 		}
-
 		return (
 			<div className={'register-phone'}>
 				<WhiteSpace size={'lg'}/>

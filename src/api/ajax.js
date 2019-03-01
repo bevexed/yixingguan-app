@@ -32,6 +32,7 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 				}, true);
 			}
 
+
 			return config;
 		}, function (error) {
 			// 对请求错误做些什么

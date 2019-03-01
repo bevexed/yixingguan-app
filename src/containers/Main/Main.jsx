@@ -27,7 +27,7 @@ class Main extends Component {
 		const token = Cookies.get('token');
 
 		if (!token) {
-			getWxCode()
+			getWxCode(this.props.getUser)
 		} else {
 			this.props.getUser(token)
 		}

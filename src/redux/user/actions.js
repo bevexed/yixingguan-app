@@ -26,7 +26,7 @@ import {Toast} from "antd-mobile";
 import Cookies from 'js-cookie';
 
 // 获取 微信验证
-export const getWxCode = () => {
+export const getWxCode = getUser => {
 	let appId = config.wx.appID;
 	let scope = config.wx.scope;
 	let redirect_uri = window.location.href;
@@ -39,8 +39,10 @@ export const getWxCode = () => {
 		reqToken(code).then(
 			res => {
 				if (res.code === 1) {
-					setTimeout(getUser(Cookies.get('token')))
-				}else {
+					localStorage.code = code;
+					const token = Cookies.get('token');
+					getUser(token)
+				} else {
 					Cookies.remove('token');
 				}
 			}
@@ -106,6 +108,8 @@ export const updataUserType = userData => {
 					localStorage.token = res.data.token;
 
 					dispatch(authSuccess(userData))
+				}else {
+					Toast.fail(res.message)
 				}
 			}
 		)
@@ -119,7 +123,8 @@ export const getUser = token => {
 				if (res.code === 1) {
 					dispatch(authSuccess(res.data));
 				} else {
-					localStorage.removeItem(token);
+					Cookies.remove('token');
+					getWxCode();
 					dispatch(errorMsg(res.message));
 				}
 			}

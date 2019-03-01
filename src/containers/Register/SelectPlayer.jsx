@@ -8,31 +8,31 @@ import {
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
+import {InputItem} from "antd-mobile";
 
 class SelectPlayer extends Component {
 
 
 	state = {
-		identity: ''
+		identity: '',
+		name: ''
 	};
-
-	goMain = () => {
-		const {phone, auto_code} = this.props.user;
-		const {identity} = this.state;
-		const userData = {
-			phone: phone || '',
-			auto_code: auto_code || '',
-			identity: identity === "patient" ? 1 : 2 || '',
-			open_id: localStorage.openId|| '',
-		};
-		this.props.updataUserType(userData);
-	};
-
 
 	select = (player) => {
+		if (player==='patient'){
+			this.setState({
+				name:''
+			})
+		}
 		this.setState({
-			identity: player
+			identity: player === 'paitent' ? 1 : 2
 		});
+	};
+
+
+	goMain = () => {
+		const {identity, name} = this.state;
+		this.props.updataUserType({identity, name});
 	};
 
 	render() {
@@ -42,7 +42,7 @@ class SelectPlayer extends Component {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
-		const selected = this.state.identity;
+		const selected = this.state.identity === 1 ? 'patient' : 'doctor';
 
 		return (
 			<div className={'selector-player'}>
@@ -51,7 +51,13 @@ class SelectPlayer extends Component {
 					onClick={() => this.select('doctor')}
 				>
 					<img src={require(`./img/doctor-${selected === 'doctor' ? 's' : ''}@3x.png`)} alt=""/>
-					<span>我是医生</span>
+					<span>我是</span>
+					<InputItem
+						className={'name'}
+						type="text"
+						placeholder={'请输入姓名'}
+						onChange={val => this.setState({name: val})}
+					/><span>医生</span>
 				</div>
 				<div
 					className={selected === 'patient' ? 'player selected' : 'player'}

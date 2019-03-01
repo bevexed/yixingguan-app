@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {Provider} from 'react-redux';
 
 import store from './redux/store'
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
@@ -13,12 +13,16 @@ import RegisterIndex from './containers/Register/RegisterIndex';
 import RegisterPhone from './containers/Register/RegisterPhone';
 import SelectPlayer from './containers/Register/SelectPlayer';
 import Main from "./containers/Main/Main";
+
 // mate 标签
 // require('./static/font');
+
+import Cookies from 'js-cookie';
 
 class App extends Component {
 
 	render() {
+		const token = Cookies.get('token');
 
 		return (
 
@@ -39,11 +43,12 @@ class App extends Component {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Switch>
+							{/*路由拦截*/}
 							<Route path='/register-index' component={RegisterIndex}/>
 							<Route path='/register-phone' component={RegisterPhone}/>
 							<Route path='/select-player' component={SelectPlayer}/>
 							<Route path='/login' component={Login}/>
-							<Route component={Main}/>
+							<Route path='/' component={Main}/>
 						</Switch>
 					</BrowserRouter>
 				</Provider>
