@@ -8,7 +8,6 @@ import {
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
-import {InputItem} from "antd-mobile";
 
 class SelectPlayer extends Component {
 
@@ -38,7 +37,7 @@ class SelectPlayer extends Component {
 	render() {
 		const {identity, phone} = this.props.user;
 
-		if (!phone || identity) {
+		if (identity) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 
@@ -52,11 +51,11 @@ class SelectPlayer extends Component {
 				>
 					<img src={require(`./img/doctor-${selected === 'doctor' ? 's' : ''}@3x.png`)} alt=""/>
 					<span>我是</span>
-					<InputItem
+					<input
 						className={'name'}
 						type="text"
 						placeholder={'请输入姓名'}
-						onChange={val => this.setState({name: val})}
+						onChange={e => this.setState({name: e.target.value})}
 					/><span>医生</span>
 				</div>
 				<div

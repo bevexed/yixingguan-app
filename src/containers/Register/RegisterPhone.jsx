@@ -47,7 +47,7 @@ class RegisterPhone extends Component {
 
 	render() {
 		const {phone} = this.props.user;
-		console.log(phone);
+
 		if (phone) {
 			return <Redirect to={'/select-player'}/>
 		}
