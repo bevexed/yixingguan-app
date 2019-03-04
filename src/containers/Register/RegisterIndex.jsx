@@ -22,6 +22,11 @@ class RegisterIndex extends Component {
 
 	render() {
 
+		const {identity, phone} = this.props.user;
+		if (identity && phone) {
+			return <Redirect to={'/'}/>
+		}
+
 		return (
 			<div className={'register'}>
 				<span className={'title'}>
@@ -40,7 +45,7 @@ class RegisterIndex extends Component {
 
 function mapStateToProps(state) {
 	return {
-		user:state.user
+		user: state.user
 	};
 }
 
