@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './DoctorIndex.less'
 
+import config from '../../../package.json'
+
 import {
 	Result,
 	WhiteSpace,
@@ -72,12 +74,12 @@ class DoctorIndex extends Component {
 
 
 	render() {
-		const {name}=this.props.user;
+		const {name, avatar} = this.props.user;
 
 		return (
 			<div className="doctor-index">
 				<Result
-					img={<img className='avator' src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
+					img={<img className='avator' src={avatar ? config.img + avatar : null} alt=""/>}
 					title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 				/>
 				<WhiteSpace/>
@@ -110,7 +112,7 @@ class DoctorIndex extends Component {
 
 					{/*病人列表*/}
 					<Item
-						onClick={()=>this.props.history.push('/message/1')}
+						onClick={() => this.props.history.push('/message/1')}
 						thumb={<img className={'patient-avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
 						multipleLine
 					>
@@ -166,7 +168,7 @@ class DoctorIndex extends Component {
 
 function mapStateToProps(state) {
 	return {
-		user:state.user
+		user: state.user
 	};
 }
 

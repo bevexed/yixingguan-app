@@ -18,7 +18,7 @@ class SelectPlayer extends Component {
 		const token = Cookie.get('token');
 		if (token) {
 			this.props.getUser(token);
-		}else{
+		} else {
 			getWxCode(this.props.getUser)
 		}
 	}
@@ -29,13 +29,15 @@ class SelectPlayer extends Component {
 	};
 
 	select = (player) => {
+		let name;
 		if (player === 'patient') {
-			this.setState({
-				name: ''
-			})
+			name = ''
 		}
+		const identity = player === 'patient' ? 1 : 2;
+
 		this.setState({
-			identity: player === 'paitent' ? 1 : 2
+			identity,
+			name
 		});
 	};
 
@@ -69,6 +71,7 @@ class SelectPlayer extends Component {
 						onChange={e => this.setState({name: e.target.value})}
 					/><span>医生</span>
 				</div>
+
 				<div
 					className={selected === 'patient' ? 'player selected' : 'player'}
 					onClick={() => this.select('patient')}

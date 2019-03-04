@@ -126,6 +126,7 @@ export const getUser = token => {
 					if (identity) {
 						identity = identity === 1 ? 'patient' : 'doctor';
 					}
+
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
 				} else {

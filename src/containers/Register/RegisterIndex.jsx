@@ -7,6 +7,10 @@ import Cookie from 'js-cookie';
 
 import {getUser} from "../../redux/user/actions";
 
+import {Redirect} from "react-router-dom";
+
+import {getRedirectTo} from "../../utils";
+
 class RegisterIndex extends Component {
 
 	componentWillMount() {
@@ -17,6 +21,7 @@ class RegisterIndex extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className={'register'}>
 				<span className={'title'}>
@@ -34,7 +39,9 @@ class RegisterIndex extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user:state.user
+	};
 }
 
 export default connect(

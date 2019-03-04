@@ -19,7 +19,7 @@ const initUser = {
 	vocational_certificate: '',
 	is_reference: 0,
 	seeing: 0,
-	is_audit: true,
+	is_audit: 0, // 0=> 未审核 1=>审核中 2=> 审核通过
 	institutions: '',
 	phone: '',
 	identity: '',
