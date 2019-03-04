@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
 import './Register.less'
 
+import {connect} from "react-redux";
+
+import Cookie from 'js-cookie';
+
+import {getUser} from "../../redux/user/actions";
+
 class RegisterIndex extends Component {
+
+	componentWillMount() {
+		const token = Cookie.get('token');
+		if (token) {
+			this.props.getUser(token)
+		}
+	}
+
 	render() {
 		return (
 			<div className={'register'}>
@@ -19,4 +33,11 @@ class RegisterIndex extends Component {
 	}
 }
 
-export default RegisterIndex
+function mapStateToProps(state) {
+	return {};
+}
+
+export default connect(
+	mapStateToProps,
+	{getUser}
+)(RegisterIndex);

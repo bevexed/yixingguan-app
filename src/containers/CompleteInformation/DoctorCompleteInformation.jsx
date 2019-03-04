@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import {updataDoctorInformation} from "../../redux/doctor/actions";
+
 import './DoctorCompleteInformation.less'
+
+import Cookie from 'js-cookie';
 
 import {
 	Icon,
@@ -31,15 +35,24 @@ class DoctorCompleteInformation extends Component {
 
 	state = {
 		name: 123,
+		avatar: '',
 		sex: [1],
-		data:'1965-01-01',
-		files:[]
+		birth: null,
+		files: []
 	};
 
 	handelChange = (name, val) => {
 		this.setState({
 			[name]: val
 		})
+	};
+
+	updata = () => {
+		const token = Cookie.get('token');
+		const {avatar, birth, sex, affiliated_hospital, department, with_title} = this.state;
+		const DoctorInformation = {
+			token, avatar, birth, sex, affiliated_hospital, department, with_title
+		}
 	};
 
 	render() {
@@ -91,9 +104,12 @@ class DoctorCompleteInformation extends Component {
 				<DatePicker
 					mode="date"
 					title="生日"
-					extra={this.state.date}
-					value={this.state.date}
-					onChange={date => this.setState({date})}
+					value={this.state.birth}
+					format={'YYYY-MM-DD'}
+					onChange={date => {
+						console.log(date);
+						this.setState({birth: date})
+					}}
 				>
 					<List.Item arrow="horizontal">生日</List.Item>
 				</DatePicker>
@@ -152,4 +168,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		updataDoctorInformation
+	}
 )(DoctorCompleteInformation);

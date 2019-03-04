@@ -4,13 +4,23 @@ import './Register.less'
 
 import {Redirect} from "react-router-dom";
 
+import Cookie from 'js-cookie';
+
 import {
-	updataPhone
+	updataPhone,
+	getUser
 } from "../../redux/user/actions";
 
 import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 
 class RegisterPhone extends Component {
+	componentWillMount() {
+		const token = Cookie.get('token')
+		if (token) {
+			this.props.getUser(token);
+		}
+	}
+
 	state = {
 		phone: '',
 		hasError: false,
@@ -95,6 +105,7 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		updataPhone
+		updataPhone,
+		getUser
 	}
 )(RegisterPhone);

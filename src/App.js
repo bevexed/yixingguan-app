@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {Provider} from 'react-redux';
 
 import store from './redux/store'
-import {BrowserRouter, Route, Switch, Redirect,withRouter} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
@@ -17,13 +17,9 @@ import Main from "./containers/Main/Main";
 // mate 标签
 // require('./static/font');
 
-import Cookies from 'js-cookie';
-
 class App extends Component {
 
 	render() {
-		const token = Cookies.get('token');
-
 		return (
 
 			<div className="App">

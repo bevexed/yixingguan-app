@@ -3,14 +3,22 @@ import {connect} from 'react-redux';
 import './Register.less'
 import {Redirect} from "react-router-dom";
 
+import Cookie from 'js-cookie';
+
 import {
-	updataUserType
+	updataUserType,
+	getUser
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 
 class SelectPlayer extends Component {
-
+	componentWillMount() {
+		const token = Cookie.get('token');
+		if (token) {
+			this.props.getUser(token);
+		}
+	}
 
 	state = {
 		identity: '',
@@ -18,9 +26,9 @@ class SelectPlayer extends Component {
 	};
 
 	select = (player) => {
-		if (player==='patient'){
+		if (player === 'patient') {
 			this.setState({
-				name:''
+				name: ''
 			})
 		}
 		this.setState({
@@ -86,5 +94,6 @@ export default connect(
 	mapStateToProps,
 	{
 		updataUserType,
+		getUser
 	}
 )(SelectPlayer);
