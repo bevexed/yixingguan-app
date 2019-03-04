@@ -16,7 +16,7 @@ class Avatar extends Component {
 
 		if (avatar.length) {
 			console.log(avatar[0].file);
-			this.props.receiveUser({avatar: avatar[0].url,selectAvatar:avatar[0].url})
+			this.props.receiveUser({avatar: avatar[0].url, selectAvatar: avatar[0].url})
 		}
 	};
 
@@ -44,6 +44,21 @@ class Avatar extends Component {
 					selectable={avatar.length < 1}
 				/>
 
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<div
+					className={'button'}
+					onClick={()=>this.props.history.replace('/doctor-complete-information')}
+				>确认</div>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 			</div>
 		);
 	}
