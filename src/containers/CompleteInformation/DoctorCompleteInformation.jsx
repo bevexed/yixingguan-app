@@ -16,7 +16,8 @@ import {
 	Picker,
 	DatePicker,
 	ImagePicker,
-	TextareaItem
+	TextareaItem,
+	Toast
 } from "antd-mobile";
 
 const Item = List.Item;
@@ -29,16 +30,20 @@ class DoctorCompleteInformation extends Component {
 		},
 		{
 			label: '女',
-			value: 0
+			value: 2
 		}
 	];
 
 	state = {
+		data: null,
 		name: 123,
-		avatar: '',
 		sex: [1],
 		birth: null,
-		files: []
+		affiliated_hospital: '',
+		department: '',
+		with_title: '',
+		files: [],
+		introduction: ''
 	};
 
 	handelChange = (name, val) => {
@@ -49,13 +54,52 @@ class DoctorCompleteInformation extends Component {
 
 	updata = () => {
 		const token = Cookie.get('token');
-		const {avatar, birth, sex, affiliated_hospital, department, with_title} = this.state;
+		const {avatar} = this.props.user;
+		const vocational_certificate = this.state.files.length ? this.state.files[0].url : '';
+		const {birth, sex, affiliated_hospital, department, with_title, introduction} = this.state;
 		const DoctorInformation = {
-			token, avatar, birth, sex, affiliated_hospital, department, with_title
+			token, avatar, birth, sex: sex[0], affiliated_hospital, department, with_title, vocational_certificate, introduction
+		};
+
+		if (!avatar) {
+			Toast.fail('请选择头像',1);
+			return
 		}
+		if (!birth) {
+			Toast.fail('请选择出生年月日',1);
+			return
+		}
+		if (!affiliated_hospital) {
+			Toast.fail('请填写所属医院',1);
+			return
+		}
+		if (!department) {
+			Toast.fail('请填写所属科室',1);
+			return
+		}
+		if (!with_title) {
+			Toast.fail('请填写职称',1);
+			return
+		}
+		if (!vocational_certificate) {
+			Toast.fail('请上传职业证书',1);
+			return
+		}
+		if (!introduction) {
+			Toast.fail('请填写自我描述',1);
+			return
+		}
+
+		console.log(DoctorInformation);
+
+		this.props.updataDoctorInformation(DoctorInformation)
+
 	};
 
 	render() {
+		const {avatar, phone, name} = this.props.user;
+		const {files} = this.state;
+
 		return (
 			<div className={'doctor-complete-information'}>
 				<NavBar
@@ -73,8 +117,9 @@ class DoctorCompleteInformation extends Component {
 				<List>
 					<Item
 						arrow='horizontal'
+						onClick={() => this.props.history.push('/avatar')}
 					>
-						<img className={'avator'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>
+						<img className={'avator'} src={avatar ? avatar : 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg'} alt=""/>
 					</Item>
 				</List>
 
@@ -83,12 +128,14 @@ class DoctorCompleteInformation extends Component {
 
 				<InputItem
 					placeholder="请输入姓名"
-					clear
+					value={name}
+					disabled
 					onChange={val => this.handelChange('name', val)}
 				>姓名</InputItem>
 				<InputItem
 					placeholder="请输入手机号"
-					clear
+					value={phone}
+					disabled
 					onChange={val => this.handelChange('phone', val)}
 				>手机号</InputItem>
 
@@ -104,11 +151,14 @@ class DoctorCompleteInformation extends Component {
 				<DatePicker
 					mode="date"
 					title="生日"
-					value={this.state.birth}
+					value={this.state.date}
 					format={'YYYY-MM-DD'}
 					onChange={date => {
-						console.log(date);
-						this.setState({birth: date})
+						const year = date.getFullYear();
+						const month = date.getMonth() + 1;
+						const day = date.getDate();
+						const birth = year + '-' + month + '-' + day;
+						this.setState({birth, date})
 					}}
 				>
 					<List.Item arrow="horizontal">生日</List.Item>
@@ -118,17 +168,17 @@ class DoctorCompleteInformation extends Component {
 				<InputItem
 					placeholder="请输入医院"
 					clear
-					onChange={val => this.handelChange('name', val)}
+					onChange={val => this.handelChange('affiliated_hospital', val)}
 				>医院</InputItem>
 				<InputItem
 					placeholder="请输入科室"
 					clear
-					onChange={val => this.handelChange('phone', val)}
+					onChange={val => this.handelChange('department', val)}
 				>科室</InputItem>
 				<InputItem
-					placeholder="请输入科室"
+					placeholder="请输入职称"
 					clear
-					onChange={val => this.handelChange('phone', val)}
+					onChange={val => this.handelChange('with_title', val)}
 				>职称</InputItem>
 				<WhiteSpace/>
 
@@ -136,10 +186,9 @@ class DoctorCompleteInformation extends Component {
 					<Item>
 						<div className={'doctor-certificate'}>医生职业证书</div>
 						<ImagePicker
-							files={this.state.files}
-							onChange={this.onChange}
-							onImageClick={(index, fs) => console.log(index, fs)}
-							selectable={1}
+							files={files}
+							onChange={files => this.setState({files})}
+							selectable={files.length < 1}
 						/>
 					</Item>
 				</List>
@@ -149,6 +198,7 @@ class DoctorCompleteInformation extends Component {
 				<TextareaItem
 					placeholder={'添加医生的自我描述'}
 					autoHeight
+					onChange={val => this.handelChange('introduction', val)}
 					rows={4}
 				/>
 
@@ -156,14 +206,20 @@ class DoctorCompleteInformation extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				<div className={'button'}>保存</div>
+				<div
+					className={'button'}
+					onClick={this.updata}
+				>保存
+				</div>
 			</div>
 		);
 	}
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
