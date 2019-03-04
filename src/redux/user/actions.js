@@ -103,12 +103,13 @@ export const updataUserType = userData => {
 		doLogin({...userData}).then(
 			res => {
 				if (res.code === 1) {
+					console.log(res);
 					let identity = res.identity === 1 ? 'patient' : 'doctor';
 					let userData = {...res.data, identity};
 					localStorage.token = res.data.token;
 
 					dispatch(authSuccess(userData))
-				}else {
+				} else {
 					Toast.fail(res.message)
 				}
 			}
@@ -121,7 +122,10 @@ export const getUser = token => {
 		reqUserData(token).then(
 			res => {
 				if (res.code === 1) {
-					let identity = res.data.identity === 1 ? 'patient' : 'doctor';
+					let identity = res.data.identity;
+					if (identity) {
+						identity = identity === 1 ? 'patient' : 'doctor';
+					}
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
 				} else {

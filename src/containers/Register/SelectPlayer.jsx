@@ -7,7 +7,8 @@ import Cookie from 'js-cookie';
 
 import {
 	updataUserType,
-	getUser
+	getUser,
+	getWxCode
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
@@ -17,6 +18,8 @@ class SelectPlayer extends Component {
 		const token = Cookie.get('token');
 		if (token) {
 			this.props.getUser(token);
+		}else{
+			getWxCode(this.props.getUser)
 		}
 	}
 

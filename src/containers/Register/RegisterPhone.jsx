@@ -8,16 +8,19 @@ import Cookie from 'js-cookie';
 
 import {
 	updataPhone,
-	getUser
+	getUser,
+	getWxCode
 } from "../../redux/user/actions";
 
 import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 
 class RegisterPhone extends Component {
 	componentWillMount() {
-		const token = Cookie.get('token')
+		const token = Cookie.get('token');
 		if (token) {
 			this.props.getUser(token);
+		}else{
+			getWxCode(this.props.getUser)
 		}
 	}
 
@@ -61,6 +64,7 @@ class RegisterPhone extends Component {
 		if (phone) {
 			return <Redirect to={'/select-player'}/>
 		}
+
 		return (
 			<div className={'register-phone'}>
 				<WhiteSpace size={'lg'}/>

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {updataDoctorInformation} from "../../redux/doctor/actions";
-
 import './DoctorCompleteInformation.less'
 
 import Cookie from 'js-cookie';
+
+import config from '../../../package.json'
+
+import {reqDoctorInformation} from "../../api/doctor";
 
 import {
 	Icon,
@@ -54,50 +56,59 @@ class DoctorCompleteInformation extends Component {
 
 	updata = () => {
 		const token = Cookie.get('token');
-		const {avatar} = this.props.user;
-		const vocational_certificate = this.state.files.length ? this.state.files[0].url : '';
+		const avatar = [this.props.user.avatar];
+		const vocational_certificate = this.state.files.length ? [this.state.files[0].url] : [];
 		const {birth, sex, affiliated_hospital, department, with_title, introduction} = this.state;
 		const DoctorInformation = {
 			token, avatar, birth, sex: sex[0], affiliated_hospital, department, with_title, vocational_certificate, introduction
 		};
 
-		if (!avatar) {
-			Toast.fail('请选择头像',1);
+		if (!avatar.length) {
+			Toast.fail('请选择头像', 1);
 			return
 		}
 		if (!birth) {
-			Toast.fail('请选择出生年月日',1);
+			Toast.fail('请选择出生年月日', 1);
 			return
 		}
 		if (!affiliated_hospital) {
-			Toast.fail('请填写所属医院',1);
+			Toast.fail('请填写所属医院', 1);
 			return
 		}
 		if (!department) {
-			Toast.fail('请填写所属科室',1);
+			Toast.fail('请填写所属科室', 1);
 			return
 		}
 		if (!with_title) {
-			Toast.fail('请填写职称',1);
+			Toast.fail('请填写职称', 1);
 			return
 		}
-		if (!vocational_certificate) {
-			Toast.fail('请上传职业证书',1);
+		if (!vocational_certificate.length) {
+			Toast.fail('请上传职业证书', 1);
 			return
 		}
 		if (!introduction) {
-			Toast.fail('请填写自我描述',1);
+			Toast.fail('请填写自我描述', 1);
 			return
 		}
 
-		console.log(DoctorInformation);
 
-		this.props.updataDoctorInformation(DoctorInformation)
+		reqDoctorInformation({...DoctorInformation}).then(
+			res => {
+				if (res.code === 1) {
+					Toast.success(res.message, 1);
+					this.props.history.push('/')
+				} else {
+					Toast.fail(res.message, 1)
+				}
+			}
+		)
+
 
 	};
 
 	render() {
-		const {avatar, phone, name} = this.props.user;
+		const {avatar, selectAvatar, phone, name} = this.props.user;
 		const {files} = this.state;
 
 		return (
@@ -119,7 +130,7 @@ class DoctorCompleteInformation extends Component {
 						arrow='horizontal'
 						onClick={() => this.props.history.push('/avatar')}
 					>
-						<img className={'avator'} src={avatar ? avatar : 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg'} alt=""/>
+						<img className={'avator'} src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
 					</Item>
 				</List>
 
@@ -211,6 +222,10 @@ class DoctorCompleteInformation extends Component {
 					onClick={this.updata}
 				>保存
 				</div>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 			</div>
 		);
 	}
@@ -224,7 +239,4 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	{
-		updataDoctorInformation
-	}
 )(DoctorCompleteInformation);

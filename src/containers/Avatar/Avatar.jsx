@@ -16,7 +16,7 @@ class Avatar extends Component {
 
 		if (avatar.length) {
 			console.log(avatar[0].file);
-			this.props.receiveUser({avatar: avatar[0].url})
+			this.props.receiveUser({avatar: avatar[0].url,selectAvatar:avatar[0].url})
 		}
 	};
 

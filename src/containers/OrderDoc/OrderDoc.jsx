@@ -4,6 +4,10 @@ import {getDoctorDetail} from "../../redux/user/actions";
 
 import './OrderDoc.less'
 
+import Cookie from 'js-cookie';
+
+import {subscribes} from "../../api/patient";
+
 import {
 	Badge,
 	Card,
@@ -14,7 +18,7 @@ import {
 	InputItem,
 	TextareaItem,
 	ImagePicker,
-	NavBar
+	NavBar, Toast
 } from "antd-mobile";
 
 const Header = Card.Header;
@@ -26,6 +30,9 @@ const Brief = Item.Brief;
 class OrderDoc extends Component {
 	state = {
 		files: [],
+		phone: '',
+		auth_code: '',
+		symptoms_described: '',
 	};
 
 	componentWillMount() {
@@ -35,6 +42,55 @@ class OrderDoc extends Component {
 	onChange = (key) => {
 		console.log(key);
 	};
+
+	onHandleChange = (name, val) => {
+		this.setState({
+			[name]: val
+		})
+
+	};
+
+
+	orderDoctor = () => {
+		const {phone, auth_code, symptoms_described, files} = this.state;
+		const inspection_report = files.map(img => img.file);
+		const patientData = {
+			token: Cookie.get('token'),
+			d_id: this.props.match.params.docId,
+			phone,
+			auth_code,
+			symptoms_described,
+			inspection_report
+		};
+
+		if (!phone) {
+			Toast.fail('请输入电话号码', 1);
+			return
+		}
+		if (!auth_code) {
+			Toast.fail('请输入验证码', 1);
+			return
+		}
+		if (!symptoms_described) {
+			Toast.fail('请填写病情描述', 1);
+			return
+		}
+		if (!inspection_report.length) {
+			Toast.fail('请选择上传图片', 1);
+			return
+		}
+
+		subscribes({...patientData}).then(
+			res => {
+				if (res.code === 1) {
+					console.log(res);
+				} else {
+					Toast.fail(res.message, 1);
+				}
+			}
+		)
+	};
+
 
 	render() {
 		const {files} = this.state;
@@ -126,17 +182,21 @@ class OrderDoc extends Component {
 				<List renderHeader={() => '患者信息'}>
 					<InputItem
 						clear
+						disabled
+						value={this.props.user.name || ''}
 						placeholder="请输入患者名称"
 					>患者名称</InputItem>
 					<InputItem
 						clear
 						type="phone"
+						onChange={val => this.onHandleChange('phone', val)}
 						placeholder="请输入手机号"
 					>手机号</InputItem>
 					<InputItem
 						clear
 						type="number"
 						placeholder="请输入验证码"
+						onChange={val => this.onHandleChange('auth_code', val)}
 						extra={<span className={'code'}>获取</span>}
 						onExtraClick={() => alert('发送')}
 					>验证码</InputItem>
@@ -145,6 +205,7 @@ class OrderDoc extends Component {
 						clear
 						title="症状描述"
 						rows={4}
+						onChange={val => this.onHandleChange('symptoms_described', val)}
 						placeholder="请输入详细症状"
 					/>
 
@@ -154,7 +215,6 @@ class OrderDoc extends Component {
 							files={files}
 							length={3}
 							onChange={(files, type, index) => {
-								console.log(files, type, index);
 								this.setState({
 									files,
 								})
@@ -166,7 +226,9 @@ class OrderDoc extends Component {
 				<div className={'phone'}>客服热线：400-XXX-XXXX</div>
 				<div style={{height: 50}}>{null}</div>
 				<div className={'footer'}>
-					<span>立即预约</span>
+					<span
+						onClick={this.orderDoctor}
+					>立即预约</span>
 				</div>
 			</div>
 
@@ -176,7 +238,8 @@ class OrderDoc extends Component {
 
 function mapStateToProps(state) {
 	return {
-		doctorDetail:state.doctorDetail
+		doctorDetail: state.doctorDetail,
+		user: state.user
 	};
 }
 
