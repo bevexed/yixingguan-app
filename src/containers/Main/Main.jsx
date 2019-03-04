@@ -34,6 +34,7 @@ class Main extends Component {
 	}
 
 	render() {
+		const token = Cookies.get('token');
 		const {identity, phone} = this.props.user;
 		const {pathname} = this.props.location;
 		const route = identity === 'patient' ? patientRoute : doctorRoute;
@@ -41,8 +42,8 @@ class Main extends Component {
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
 
-		// 没有电话或者没有身份 拦截 到相应 注册 页面
-		if (!phone || !identity) {
+		// 没有token 拦截 到相应 注册 页面
+		if (!token) {
 			return <Redirect to={getRedirectTo(identity, phone)}/>
 		}
 

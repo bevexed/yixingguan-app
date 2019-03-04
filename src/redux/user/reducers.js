@@ -21,8 +21,8 @@ const initUser = {
 	seeing: 0,
 	is_audit: true,
 	institutions: '',
-	phone: '123',
-	identity: 'doctor',
+	phone: '',
+	identity: '',
 	redirectTo: '' // 需要自动重定向的路由路径
 };
 

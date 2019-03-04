@@ -1,5 +1,6 @@
 export const getRedirectTo = (type, phone) => {
 	let path = '';
+	console.log(type, phone);
 	if (!phone && !type){
 		return 'register-index'
 	}

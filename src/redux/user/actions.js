@@ -121,7 +121,9 @@ export const getUser = token => {
 		reqUserData(token).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(authSuccess(res.data));
+					let identity = res.data.identity === 1 ? 'patient' : 'doctor';
+					let userData = {...res.data, identity};
+					dispatch(authSuccess(userData));
 				} else {
 					Cookies.remove('token');
 					getWxCode();
