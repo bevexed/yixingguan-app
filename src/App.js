@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {Provider} from 'react-redux';
 
 import store from './redux/store'
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect,withRouter} from "react-router-dom";
 
 import Login from './containers/Login/Login'
 
@@ -48,7 +48,7 @@ class App extends Component {
 							<Route path='/register-phone' component={RegisterPhone}/>
 							<Route path='/select-player' component={SelectPlayer}/>
 							<Route path='/login' component={Login}/>
-							<Route path='/' component={Main}/>
+							<Route component={Main}/>
 						</Switch>
 					</BrowserRouter>
 				</Provider>
