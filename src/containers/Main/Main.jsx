@@ -8,9 +8,10 @@ import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
 import {patientNav, patientRoute} from '../../router/patient'
-
 import {doctorNav, doctorRoute} from "../../router/doctor";
+
 import {getWxCode, getUser} from "../../redux/user/actions";
+import {getPatientList} from "../../redux/doctor/actions";
 
 import {getRedirectTo} from "../../utils";
 
@@ -29,7 +30,7 @@ class Main extends Component {
 		if (!token) {
 			getWxCode(this.props.getUser)
 		} else {
-			this.props.getUser(token)
+			this.props.getUser(token, this.props.getPatientList);
 		}
 	}
 
@@ -80,6 +81,9 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-	{getUser}
+	{
+		getUser,
+		getPatientList
+	}
 )(Main);
 

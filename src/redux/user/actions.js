@@ -117,7 +117,7 @@ export const updataUserType = userData => {
 	}
 };
 
-export const getUser = token => {
+export const getUser = (token,callback) => {
 	return async dispatch => {
 		reqUserData(token).then(
 			res => {
@@ -125,6 +125,10 @@ export const getUser = token => {
 					let identity = res.data.identity;
 					if (identity) {
 						identity = identity === 1 ? 'patient' : 'doctor';
+					}
+					if (identity==='doctor'){
+						// 回调 病人列表
+						callback(token)
 					}
 
 					let userData = {...res.data, identity};

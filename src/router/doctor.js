@@ -10,6 +10,7 @@ import PatientDetail from "../containers/Detail/PatientDetail";
 import Statistics from "../containers/Statistics/Statistics";
 import MyHelper from "../containers/MyHelper/MyHelper";
 import Publish from "../containers/Publish/Publish";
+import PublishSelectSort from "../containers/PublishSelectSort/PublishSelectSort";
 
 export const doctorNav = [
 	{
@@ -60,11 +61,15 @@ export const doctorRoute = [
 		component: Statistics
 	},
 	{
-		pathname:'/my-help',
+		pathname: '/my-help',
 		component: MyHelper
 	},
 	{
-		pathname:'/publish',
+		pathname: '/publish',
 		component: Publish
+	},
+	{
+		pathname: '/publish-select-sort',
+		component: PublishSelectSort
 	}
 ];

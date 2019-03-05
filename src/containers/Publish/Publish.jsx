@@ -61,8 +61,10 @@ class Publish extends Component {
 					<WhiteSpace/>
 
 					<Item
+						thumb={<img src={require('./img/我的 (1).svg')} alt=""/>}
 						extra={'123'}
 						arrow={'horizontal'}
+						onClick={()=>this.props.history.push('/publish-select-sort')}
 					>
 						谁可以看
 					</Item>
