@@ -16,8 +16,11 @@ export const getPatientList = token => {
 		reqPatientList(token)
 			.then(
 				res => {
-					console.log(res);
-					dispatch(receivePatientList(res.data))
+					if (res.code === 1) {
+						dispatch(receivePatientList(res.data))
+					} else {
+						Toast.fail(res.message)
+					}
 				}
 			)
 	}

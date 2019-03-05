@@ -130,7 +130,7 @@ class DoctorCompleteInformation extends Component {
 						arrow='horizontal'
 						onClick={() => this.props.history.push('/avatar')}
 					>
-						<img className={'avator'} src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
+						 <img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
 					</Item>
 				</List>
 
@@ -162,6 +162,7 @@ class DoctorCompleteInformation extends Component {
 				<DatePicker
 					mode="date"
 					title="生日"
+					minDate={new Date(1900, 1, 1, 0, 0, 0)}
 					value={this.state.date}
 					format={'YYYY-MM-DD'}
 					onChange={date => {

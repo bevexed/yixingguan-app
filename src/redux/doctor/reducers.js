@@ -15,7 +15,7 @@ const InitPatientList = [
 export const patientList = (state = InitPatientList, action) => {
 	switch (action.type) {
 		case RECEIVE_PATIENT_LIST:
-			return {...action.data};
+			return [...action.data];
 		default:
 			return state;
 	}

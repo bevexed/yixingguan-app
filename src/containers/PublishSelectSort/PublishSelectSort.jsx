@@ -8,7 +8,9 @@ const Item = List.Item;
 class PublishSelectSort extends Component {
 	render() {
 		const {patientList} = this.props;
-		
+
+
+
 		return (
 			<div className='publish-select-sort'>
 				<NavBar
