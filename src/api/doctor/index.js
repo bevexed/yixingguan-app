@@ -14,3 +14,6 @@ export const reqPatientList = token => ajax('/api/doctor/list/patient_lists',{to
 
 // 患者详情
 export const reqPatientDetail = ({id,token})=>ajax('/api/doctor/list/patient_details',{id,token});
+
+// 接收患者
+export const reqAcceptPatients = ({id,token})=>ajax('/api/doctor/list/accept_patients',{id,token});

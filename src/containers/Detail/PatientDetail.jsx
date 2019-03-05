@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
-import {getPatientDetail} from "../../redux/doctor/actions";
+import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/actions";
 
 import config from '../../../package.json'
 
@@ -36,11 +36,18 @@ class PatientDetail extends Component {
 		}
 	}
 
+	acceptPtient = () => {
+		const token = Cookie.get('token');
+		const id = this.props.match.params.patientId;
+		const patient = {id, token};
+		this.props.getAcceptPatient(patient)
+	};
+
 	render() {
 		const {patientDetail, labelList} = this.props;
 		const imgs = patientDetail.inspection_report.split(',');
 		const labels = labelList.map(label => {
-			if (label.label_name !== '') {
+			if (label.label_name) {
 				return label.label_name
 			}
 		});
@@ -118,15 +125,23 @@ class PatientDetail extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<div className={'button'}>
-					添加患者
-				</div>
+				{
+					patientDetail.is_accept ?
+						<div className={'button'}>
+							删除患者
+						</div>
+						:
+						< div
+							className={'button'}
+							onClick={this.acceptPtient}
+						>
+							添加患者
+						</div>
+				}
 
 				<WhiteSpace/>
+				<WhiteSpace/>
 
-				<div className={'button'}>
-					删除患者
-				</div>
 			</div>
 		);
 	}
@@ -142,6 +157,7 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		getPatientDetail
+		getPatientDetail,
+		getAcceptPatient
 	}
 )(PatientDetail);

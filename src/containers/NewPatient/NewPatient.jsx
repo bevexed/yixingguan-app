@@ -2,14 +2,26 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './NewPatient.less'
 
+import Cookie from 'js-cookie';
+
 import {
 	NavBar,
 	Icon,
 	WhiteSpace
 } from "antd-mobile";
 
+import {getAcceptPatient} from "../../redux/doctor/actions";
+
 
 class NewPatient extends Component {
+
+	acceptPtient = (e,id) => {
+		e.stopPropagation();
+		const token = Cookie.get('token');
+		const patient = {id, token};
+		this.props.getAcceptPatient(patient)
+	};
+
 	render() {
 		const {patientList} = this.props;
 
@@ -29,7 +41,7 @@ class NewPatient extends Component {
 				{
 					patientList.map(patient =>
 						<div key={patient.id}
-								 onClick={() => this.props.history.push('/patient-detail/'+patient.id)}
+								 onClick={() => this.props.history.push('/patient-detail/' + patient.id)}
 						>
 							<div className='item'>
 								<img style={{height: '40px', marginRight: '15px', borderRadius: '50%'}} src={patient.avatar} alt=""/>
@@ -39,8 +51,11 @@ class NewPatient extends Component {
 								</div>
 								{
 									patient.is_accept ?
-										<div>已接受</div> :
-										<div className='button'>接受</div>
+										<div className='accpt'>已接受</div> :
+										<div
+											className='button'
+											onClick={e=>this.acceptPtient(e,patient.id)}
+										>接受</div>
 								}
 							</div>
 						</div>
@@ -59,4 +74,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		getAcceptPatient
+	}
 )(NewPatient);

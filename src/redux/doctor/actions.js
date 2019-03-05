@@ -1,13 +1,15 @@
 import {
 	reqPatientList,
 	reqPatientDetail,
-	reqLabelList
+	reqLabelList,
+	reqAcceptPatients
 } from "../../api/doctor";
 
 import {
 	RECEIVE_PATIENT_LIST,
 	RECEIVE_PATIENT_DETAILS,
-	RECEIVE_LABEL_LSIT
+	RECEIVE_LABEL_LSIT,
+	ACCEPT_PATIENT
 } from "../action-types";
 
 import {Toast} from "antd-mobile";
@@ -56,5 +58,22 @@ export const getPatientDetail = patient => {
 				}
 			}
 		)
+	}
+};
+
+const acceptPatient = patientState => ({type: ACCEPT_PATIENT, data: patientState});
+
+export const getAcceptPatient = Patient => {
+	return async dispatch => {
+		reqAcceptPatients(Patient)
+			.then(
+				res => {
+					if (res.code === 1) {
+						dispatch(acceptPatient({is_accept: 1,id:Patient.id}))
+					}else {
+						Toast.fail(res.message,1)
+					}
+				}
+			)
 	}
 };
