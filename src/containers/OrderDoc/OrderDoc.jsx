@@ -137,9 +137,9 @@ class OrderDoc extends Component {
 									<span>{doctorDetail.affiliated_hospital}</span>
 								</section>
 
-								<footer>
-									<p>医生资质由平安保险承担</p>
-								</footer>
+								{/*<footer>*/}
+									{/*<p>医生资质由平安保险承担</p>*/}
+								{/*</footer>*/}
 							</div>
 						}
 					/>
