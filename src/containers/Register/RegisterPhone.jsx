@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Register.less'
 
+import Author from './Author'
+
 import {Redirect} from "react-router-dom";
 
 import Cookie from 'js-cookie';
@@ -19,7 +21,7 @@ class RegisterPhone extends Component {
 		const token = Cookie.get('token');
 		if (token) {
 			this.props.getUser(token);
-		}else{
+		} else {
 			getWxCode(this.props.getUser)
 		}
 	}
@@ -28,6 +30,7 @@ class RegisterPhone extends Component {
 		phone: '',
 		hasError: false,
 		auto_code: '',
+		isAuthor: true
 	};
 
 	onErrorClick = () => {
@@ -60,9 +63,14 @@ class RegisterPhone extends Component {
 
 	render() {
 		const {phone} = this.props.user;
+		const {isAuthor} = this.state;
 
 		if (phone) {
 			return <Redirect to={'/select-player'}/>
+		}
+
+		if (isAuthor) {
+			return <Author isAuthor={isAuthor} Author={()=>this.setState({isAuthor:false})}/>
 		}
 
 		return (

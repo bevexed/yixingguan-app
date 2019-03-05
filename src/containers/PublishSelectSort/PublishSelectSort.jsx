@@ -7,6 +7,8 @@ const Item = List.Item;
 
 class PublishSelectSort extends Component {
 	render() {
+		const {patientList} = this.props;
+		
 		return (
 			<div className='publish-select-sort'>
 				<NavBar
@@ -26,7 +28,7 @@ class PublishSelectSort extends Component {
 					<Item
 						thumb={<img src={require('./img/gongkai未选择@3x.png')} alt=""/>}
 						extra={<span>所有患者可看</span>}
-						activeStyle={{border:'1Px solid #aaa'}}
+						activeStyle={{border: '1Px solid #aaa'}}
 						multipleLine
 					>
 						公开
@@ -39,7 +41,7 @@ class PublishSelectSort extends Component {
 					<Item
 						thumb={<img src={require('./img/gongkai未选择@3x.png')} alt=""/>}
 						extra={<span>所有患者可看</span>}
-						activeStyle={{border:'1Px solid #aaa'}}
+						activeStyle={{border: '1Px solid #aaa'}}
 						multipleLine
 					>
 						公开
@@ -52,7 +54,9 @@ class PublishSelectSort extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		patientList: state.patientList
+	};
 }
 
 export default connect(

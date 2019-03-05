@@ -1,9 +1,5 @@
 import ajax from "../ajax";
 
-import Cookie from 'js-cookie';
-
-const token = Cookie.get('token');
-
 // 新郑 标签
 export const reqAddLabel = ({id, token, label}) => ajax('/api/doctor/list/add_labels', {id, token, label});
 
