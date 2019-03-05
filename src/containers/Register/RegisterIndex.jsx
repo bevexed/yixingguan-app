@@ -9,8 +9,6 @@ import {getUser} from "../../redux/user/actions";
 
 import {Redirect} from "react-router-dom";
 
-import {getRedirectTo} from "../../utils";
-
 class RegisterIndex extends Component {
 
 	componentWillMount() {

@@ -4,10 +4,14 @@ import {Icon, NavBar, Result, WhiteSpace, List} from "antd-mobile";
 
 import './DoctorDetail.less'
 
+import config from '../../../package.json'
+
 const Item = List.Item;
 
 class DoctorDetail extends Component {
 	render() {
+		const {avatar, name, phone, sex, birth, affiliated_hospital, department, with_title, vocational_certificate,introduction} = this.props.user;
+
 		return (
 			<div className={'doctor-detail'}>
 				<NavBar
@@ -24,8 +28,8 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 				<div onClick={() => this.props.history.push('/doctor-detail')}>
 					<Result
-						img={<img className={'avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
-						title={<p className={'name'}>李医生 <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
+						img={<img className={'avator'} src={avatar ? config.img + avatar : null} alt=""/>}
+						title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 					/>
 				</div>
 
@@ -37,7 +41,7 @@ class DoctorDetail extends Component {
 						姓名
 					</Item>
 					<Item
-						extra={'12321312312312312'}
+						extra={phone}
 					>
 						手机号
 					</Item>
@@ -46,12 +50,12 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 				<List>
 					<Item
-						extra={'李医生'}
+						extra={sex === 1 ? '男' : '女'}
 					>
 						性别
 					</Item>
 					<Item
-						extra={'55岁'}
+						extra={birth}
 					>
 						生日
 					</Item>
@@ -60,17 +64,17 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 				<List>
 					<Item
-						extra={'xxx医院'}
+						extra={affiliated_hospital}
 					>
 						医院
 					</Item>
 					<Item
-						extra={'外科'}
+						extra={department}
 					>
 						科室
 					</Item>
 					<Item
-						extra={'副主任医师'}
+						extra={with_title}
 					>
 						职称
 					</Item>
@@ -81,14 +85,14 @@ class DoctorDetail extends Component {
 				<Item>
 					医生职业证书
 					<Item.Brief>
-						<img className={'certificate'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>
+						<img className={'certificate'} src={vocational_certificate ? config.img + vocational_certificate : null} alt=""/>
 					</Item.Brief>
 				</Item>
 
 				<WhiteSpace/>
 				<Item multipleLine={true} wrap={true}>
 					<div className={'brief'}>
-						我是隶属于浙江省立同德医院首席大医师爱的撒旦金黄色的来看哈斯是，fjtc.com.cn
+						{introduction}
 					</div>
 				</Item>
 			</div>
@@ -97,7 +101,9 @@ class DoctorDetail extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
