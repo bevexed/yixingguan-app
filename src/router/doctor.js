@@ -9,6 +9,7 @@ import DoctorWallet from "../containers/Wallet/DoctorWallet";
 import PatientDetail from "../containers/Detail/PatientDetail";
 import Statistics from "../containers/Statistics/Statistics";
 import MyHelper from "../containers/MyHelper/MyHelper";
+import Publish from "../containers/Publish/Publish";
 
 export const doctorNav = [
 	{
@@ -62,4 +63,8 @@ export const doctorRoute = [
 		pathname:'/my-help',
 		component: MyHelper
 	},
+	{
+		pathname:'/publish',
+		component: Publish
+	}
 ];
