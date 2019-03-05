@@ -102,7 +102,7 @@ class PatientDetail extends Component {
 						<div className={'tag'}>
 							{
 								labels.map((pain, index) =>
-									<span key={index} className={'pain'}>{pain}</span>
+									<span key={index} className={patientDetail.label === pain ? 'pain active' : 'pain'}>{pain}</span>
 								)
 							}
 							<span

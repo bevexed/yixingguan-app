@@ -44,7 +44,7 @@ export const patientList = (state = InitPatientList, action) => {
 		case RECEIVE_PATIENT_LIST:
 			return [...action.data];
 		case ACCEPT_PATIENT:
-			state.forEach(patient=>{
+			state.forEach(patient => {
 				if (patient.id === action.data.id) {
 					patient.is_accept = 1
 				}
@@ -71,7 +71,7 @@ export const patientDetail = (state = InitPatientDetail, action) => {
 		case RECEIVE_PATIENT_DETAILS:
 			return {...action.data};
 		case ACCEPT_PATIENT:
-			return {...state,...action.data.is_accept};
+			return {...state, ...action.data.is_accept};
 		default:
 			return state;
 	}
