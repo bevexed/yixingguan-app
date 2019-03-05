@@ -3,28 +3,47 @@ import {connect} from 'react-redux';
 
 import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
+import {getPatientDetail} from "../../redux/doctor/actions";
+
+import config from '../../../package.json'
+
+import Cookie from 'js-cookie';
+
 import './PatientDetail.less'
 
 const Item = List.Item;
 const prompt = Modal.prompt;
 
-const groups = ['心脏病', '糖尿病', '高血压', '心脏病', '糖尿病', '高血压', '心脏病', '糖尿病', '高血压'];
-
 
 class PatientDetail extends Component {
-	state={
-		painTags:groups
+	state = {
+		painTags: []
 	};
 
-	addPainTag = painTag =>{
-		const newPainTags = [...this.state.painTags,painTag];
+	addPainTag = painTag => {
+		const newPainTags = [...this.state.painTags, painTag];
 		this.setState({
 			painTags: newPainTags
 		})
 	};
 
+	componentWillMount() {
+		const token = Cookie.get('token');
+		const id = this.props.match.params.patientId;
+		const patient = {id, token};
+		if (token) {
+			this.props.getPatientDetail(patient)
+		}
+	}
+
 	render() {
-		const {painTags} = this.state;
+		const {patientDetail, labelList} = this.props;
+		const imgs = patientDetail.inspection_report.split(',');
+		const labels = labelList.map(label => {
+			if (label.label_name !== '') {
+				return label.label_name
+			}
+		});
 
 		return (
 			<div className={'patient-detail'}>
@@ -45,12 +64,12 @@ class PatientDetail extends Component {
 				{/*患者详情列表*/}
 				<List>
 					<Item
-						extra={'赵胜德'}
+						extra={patientDetail.name}
 					>
 						患者姓名
 					</Item>
 					<Item
-						extra={'14114111411'}
+						extra={patientDetail.phone}
 					>
 						手机号码
 					</Item>
@@ -58,17 +77,14 @@ class PatientDetail extends Component {
 						病症描述:
 						<WhiteSpace/>
 						<p className={'pain-detail'}>
-							我怎么怎么，哈哈哈哈啊啊啊，可能这里不是很好呀？
+							{patientDetail.symptoms_described}
 						</p>
 					</Item>
 
 					<Item>
 						检查报告图片：
 						<div className={'pic'}>
-							<img src="" alt=""/>
-							<img src="" alt=""/>
-							<img src="" alt=""/>
-							<img src="" alt=""/>
+							{imgs.map(img => <img key={img} src={img ? config.img + img : null} alt=""/>)}
 						</div>
 					</Item>
 
@@ -78,7 +94,7 @@ class PatientDetail extends Component {
 						<WhiteSpace/>
 						<div className={'tag'}>
 							{
-								painTags.map((pain,index) =>
+								labels.map((pain, index) =>
 									<span key={index} className={'pain'}>{pain}</span>
 								)
 							}
@@ -117,9 +133,15 @@ class PatientDetail extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		patientDetail: state.patientDetail,
+		labelList: state.labelList
+	};
 }
 
 export default connect(
 	mapStateToProps,
+	{
+		getPatientDetail
+	}
 )(PatientDetail);

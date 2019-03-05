@@ -11,7 +11,7 @@ import {patientNav, patientRoute} from '../../router/patient'
 import {doctorNav, doctorRoute} from "../../router/doctor";
 
 import {getWxCode, getUser} from "../../redux/user/actions";
-import {getPatientList} from "../../redux/doctor/actions";
+import {getPatientList,getLabelList} from "../../redux/doctor/actions";
 
 import {getRedirectTo} from "../../utils";
 
@@ -30,7 +30,11 @@ class Main extends Component {
 		if (!token) {
 			getWxCode(this.props.getUser)
 		} else {
-			this.props.getUser(token, this.props.getPatientList);
+			const callbacks = [
+				this.props.getPatientList,
+				this.props.getLabelList
+			];
+			this.props.getUser(token, callbacks);
 		}
 	}
 
@@ -83,7 +87,8 @@ export default connect(
 	mapStateToProps,
 	{
 		getUser,
-		getPatientList
+		getPatientList,
+		getLabelList
 	}
 )(Main);
 
