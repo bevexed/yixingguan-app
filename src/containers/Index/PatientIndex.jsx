@@ -47,6 +47,8 @@ class PatientIndex extends Component {
 
 		initData: '',
 		show: false,
+
+		code_show: false,
 	};
 
 
@@ -122,9 +124,8 @@ class PatientIndex extends Component {
 	};
 
 	render() {
-		const {initData, show} = this.state;
+		const {initData, show, code_show} = this.state;
 		const DoctorListData = this.props.doctorList.list;
-
 
 
 		const menuEl = (
@@ -179,7 +180,7 @@ class PatientIndex extends Component {
 						maxLength={30}
 						onChange={val => this.handleChange('searchWord', val)}
 						cancelText={'搜索'}
-						onCancel={val=>this.seek(val)}
+						onCancel={val => this.seek(val)}
 					/>
 				</Item>
 
@@ -202,9 +203,22 @@ class PatientIndex extends Component {
 				<DocList doctorList={DoctorListData}/>
 
 
-				<div className='side-bar'>
+				<div
+					className='side-bar'
+					onClick={() => this.setState({code_show: true})}
+				>
 					联系客服
 				</div>
+
+				{code_show ?
+					<div
+						className='code'
+						onClick={() => this.setState({code_show: false})}
+					>
+						<img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=977147320,1756285936&fm=26&gp=0.jpg" alt=""/>
+					</div> : null
+				}
+
 			</div>
 		);
 	}
