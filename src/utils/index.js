@@ -9,8 +9,8 @@ export const getRedirectTo = (type) => {
 
 	path += '-index';
 
-	if (localStorage.path) {
-		return localStorage.path
+	if (sessionStorage.path) {
+		return sessionStorage.path
 	}
 
 	return path

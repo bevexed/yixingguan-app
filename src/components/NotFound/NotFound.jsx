@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 
 class NotFound extends PureComponent {
 	render() {
-		localStorage.removeItem('path');
+		sessionStorage.removeItem('path');
 		return (
 			<div>
 				<div

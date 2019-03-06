@@ -30,7 +30,7 @@ class Main extends Component {
 
 	render() {
 		// 讲当前 地址 写入 本地缓存 供后期使用
-		localStorage.path = this.props.location.pathname;
+		sessionStorage.path = this.props.location.pathname;
 
 		const {identity, phone} = this.props.user;
 		const {pathname} = this.props.location;
