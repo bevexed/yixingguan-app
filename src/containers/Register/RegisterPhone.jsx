@@ -6,25 +6,13 @@ import Author from './Author'
 
 import {Redirect} from "react-router-dom";
 
-import Cookie from 'js-cookie';
-
 import {
 	updataPhone,
-	getUser,
-	getWxCode
 } from "../../redux/user/actions";
 
 import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 
 class RegisterPhone extends Component {
-	componentWillMount() {
-		const token = Cookie.get('token');
-		if (token) {
-			this.props.getUser(token);
-		} else {
-			getWxCode(this.props.getUser)
-		}
-	}
 
 	state = {
 		phone: '',
@@ -70,7 +58,7 @@ class RegisterPhone extends Component {
 		}
 
 		if (isAuthor) {
-			return <Author isAuthor={isAuthor} Author={()=>this.setState({isAuthor:false})}/>
+			return <Author Author={()=>this.setState({isAuthor:false})}/>
 		}
 
 		return (
@@ -118,6 +106,5 @@ export default connect(
 	mapStateToProps,
 	{
 		updataPhone,
-		getUser
 	}
 )(RegisterPhone);

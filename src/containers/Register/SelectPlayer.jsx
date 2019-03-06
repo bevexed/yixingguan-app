@@ -3,25 +3,13 @@ import {connect} from 'react-redux';
 import './Register.less'
 import {Redirect} from "react-router-dom";
 
-import Cookie from 'js-cookie';
-
 import {
 	updataUserType,
-	getUser,
-	getWxCode
 } from "../../redux/user/actions";
 
 import {getRedirectTo} from "../../utils";
 
 class SelectPlayer extends Component {
-	componentWillMount() {
-		const token = Cookie.get('token');
-		if (token) {
-			this.props.getUser(token);
-		} else {
-			getWxCode(this.props.getUser)
-		}
-	}
 
 	state = {
 		identity: '',
@@ -48,11 +36,6 @@ class SelectPlayer extends Component {
 	};
 
 	render() {
-		const {identity, phone} = this.props.user;
-
-		if (identity) {
-			return <Redirect to={getRedirectTo(identity, phone)}/>
-		}
 
 		const selected = this.state.identity === 1 ? 'patient' : 'doctor';
 
@@ -100,6 +83,5 @@ export default connect(
 	mapStateToProps,
 	{
 		updataUserType,
-		getUser
 	}
 )(SelectPlayer);

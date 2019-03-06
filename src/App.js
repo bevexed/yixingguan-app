@@ -6,13 +6,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Login from './containers/Login/Login'
-
-import RegisterIndex from './containers/Register/RegisterIndex';
-
-import RegisterPhone from './containers/Register/RegisterPhone';
-import SelectPlayer from './containers/Register/SelectPlayer';
-import Main from "./containers/Main/Main";
+import Intercept from './containers/RouterIntercept/Intercept'
 
 // mate 标签
 // require('./static/font');
@@ -37,14 +31,9 @@ class App extends Component {
 				</Helmet>
 
 				<Provider store={store}>
-					<BrowserRouter>
+					<BrowserRouter forceRefresh={false} basename={'/'}>
 						<Switch>
-							{/*路由拦截*/}
-							<Route path='/register-index' component={RegisterIndex}/>
-							<Route path='/register-phone' component={RegisterPhone}/>
-							<Route path='/select-player' component={SelectPlayer}/>
-							<Route path='/login' component={Login}/>
-							<Route component={Main}/>
+							<Route component={Intercept}/>
 						</Switch>
 					</BrowserRouter>
 				</Provider>

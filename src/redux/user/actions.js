@@ -2,12 +2,8 @@ import {
 	reqDoctorDetail,
 } from "../../api/patient";
 
-import config from '../../../package.json'
-
 import {
 	doLogin,
-	reqCode,
-	reqToken,
 	checkCode,
 	reqUserData,
 } from "../../api";
@@ -19,38 +15,10 @@ import {
 	RECEIVE_USER,
 } from "../action-types";
 
-import {GetQueryString} from "../../utils";
 
 import {Toast} from "antd-mobile";
 
 import Cookies from 'js-cookie';
-
-// 获取 微信验证
-export const getWxCode = getUser => {
-	let appId = config.wx.appID;
-	let scope = config.wx.scope;
-	let redirect_uri = window.location.href;
-	let code = GetQueryString('code');
-
-	if (!code) {
-		reqCode(appId, redirect_uri, scope)
-	} else {
-		localStorage.code = code;
-		reqToken(code).then(
-			res => {
-				if (res.code === 1) {
-					localStorage.code = code;
-					const token = Cookies.get('token');
-					getUser(token)
-				} else {
-					Cookies.remove('token');
-				}
-			}
-		)
-	}
-
-
-};
 
 // order-doc 医生详情
 
@@ -130,12 +98,10 @@ export const getUser = (token, callbacks) => {
 						// 回调 病人列表
 						callbacks.map(callback => callback(token))
 					}
-
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
 				} else {
 					Cookies.remove('token');
-					getWxCode();
 					dispatch(errorMsg(res.message));
 				}
 			}
