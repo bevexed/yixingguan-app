@@ -30,8 +30,8 @@ class Main extends Component {
 	}
 
 	render() {
+		// 讲当前 地址 写入 本地缓存 供后期使用
 		localStorage.path = this.props.location.pathname;
-		console.log(this.props.location.pathname);
 
 		const {identity, phone} = this.props.user;
 		const {pathname} = this.props.location;
@@ -39,20 +39,9 @@ class Main extends Component {
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
-
-		// 没有token 拦截 到相应 注册 页面
-		// if (!token) {
-		// 	return <Redirect to={getRedirectTo(identity, phone)}/>
-		// }
-
 		if (!phone || !identity) {
 			return <Redirect to={'/login'}/>
 		}
-
-		// 重定向 '/' 到 指定的 home 页面
-		// if (pathname === '/') {
-		// 	return <Redirect to={getRedirectTo(identity, phone)}/>
-		// }
 
 		return (
 			<div>
