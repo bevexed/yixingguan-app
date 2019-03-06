@@ -24,7 +24,6 @@ class Doctors extends Component {
 		this.props.history.push(`/message/${id}`)
 	};
 
-
 	render() {
 		return (
 			<div className={'doctors'}>

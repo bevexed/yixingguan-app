@@ -20,7 +20,6 @@ class Main extends Component {
 		type: 'doctor',
 	};
 
-
 	componentDidMount() {
 		const token = Cookies.get('token');
 		if (token) {
