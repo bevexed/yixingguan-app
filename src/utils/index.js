@@ -9,6 +9,10 @@ export const getRedirectTo = (type) => {
 
 	path += '-index';
 
+	if (localStorage.path) {
+		return localStorage.path
+	}
+
 	return path
 };
 

@@ -20,7 +20,7 @@ class Login extends Component {
 
 		return (
 			<div>
-				<Redirect to={getRedirectTo(identity,phone)}/>
+				<Redirect to={getRedirectTo(identity)}/>
 			</div>
 		);
 	}

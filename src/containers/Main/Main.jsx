@@ -30,6 +30,9 @@ class Main extends Component {
 	}
 
 	render() {
+		localStorage.path = this.props.location.pathname;
+		console.log(this.props.location.pathname);
+
 		const {identity, phone} = this.props.user;
 		const {pathname} = this.props.location;
 		const route = identity === 'patient' ? patientRoute : doctorRoute;

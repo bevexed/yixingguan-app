@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Switch, Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import Main from "../Main/Main";
 import Login from '../Login/Login'
 
@@ -9,7 +9,7 @@ import {getUser} from "../../redux/user/actions";
 import RegisterIndex from "../Register/RegisterIndex";
 
 import {GetQueryString} from "../../utils";
-import {reqCode,reqToken} from "../../api";
+import {reqCode, reqToken} from "../../api";
 
 import config from '../../../package.json'
 
@@ -41,7 +41,6 @@ class Intercept extends Component {
 	}
 
 	render() {
-
 		return (
 			<div>
 				<Switch>
