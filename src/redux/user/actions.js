@@ -126,7 +126,7 @@ export const getUser = (token, callbacks) => {
 					if (identity) {
 						identity = identity === 1 ? 'patient' : 'doctor';
 					}
-					if (identity === 'doctor' && callbacks.length) {
+					if (identity === 'doctor' && callbacks) {
 						// 回调 病人列表
 						callbacks.map(callback => callback(token))
 					}

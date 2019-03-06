@@ -2,22 +2,27 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './NewPatient.less'
 
-import Cookie from 'js-cookie';
-
 import {
 	NavBar,
 	Icon,
 	WhiteSpace
 } from "antd-mobile";
 
-import {getAcceptPatient} from "../../redux/doctor/actions";
+import {getAcceptPatient, getPatientList} from "../../redux/doctor/actions";
 
+import Cookie from 'js-cookie';
+
+const token = Cookie.get('token');
 
 class NewPatient extends Component {
 
-	acceptPtient = (e,id) => {
+	componentWillMount() {
+		this.props.getPatientList(token);
+	}
+
+	acceptPtient = (e, id) => {
 		e.stopPropagation();
-		const token = Cookie.get('token');
+
 		const patient = {id, token};
 		this.props.getAcceptPatient(patient)
 	};
@@ -54,7 +59,7 @@ class NewPatient extends Component {
 										<div className='accpt'>已接受</div> :
 										<div
 											className='button'
-											onClick={e=>this.acceptPtient(e,patient.id)}
+											onClick={e => this.acceptPtient(e, patient.id)}
 										>接受</div>
 								}
 							</div>
@@ -75,6 +80,7 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		getAcceptPatient
+		getAcceptPatient,
+		getPatientList
 	}
 )(NewPatient);

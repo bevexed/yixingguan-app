@@ -8,7 +8,6 @@ import './Author.less'
 
 class Author extends Component {
 	render() {
-		const {isAthor} = this.props;
 
 		return (
 			<div className='author'>
@@ -35,7 +34,6 @@ class Author extends Component {
 }
 
 Author.propTypes = {
-	isAuthor: PropTypes.bool.isRequired,
 	Author:PropTypes.func.isRequired
 }
 ;
