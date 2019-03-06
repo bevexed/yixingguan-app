@@ -201,6 +201,10 @@ class PatientIndex extends Component {
 
 				<DocList doctorList={DoctorListData}/>
 
+
+				<div className='side-bar'>
+					联系客服
+				</div>
 			</div>
 		);
 	}
