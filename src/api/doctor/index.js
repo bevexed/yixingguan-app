@@ -17,3 +17,6 @@ export const reqPatientDetail = ({id, token}) => ajax('/api/doctor/list/patient_
 
 // 接收患者
 export const reqAcceptPatients = ({id, token}) => ajax('/api/doctor/list/accept_patients', {id, token});
+
+// 医生资金
+export const reqExceptionalAccount = token =>ajax('/api/doctor/account/exceptional_accounts',{token});

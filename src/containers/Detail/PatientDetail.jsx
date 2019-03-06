@@ -17,7 +17,7 @@ const prompt = Modal.prompt;
 
 class PatientDetail extends Component {
 	state = {
-		painTags: []
+		painTags: [],
 	};
 
 	addPainTag = painTag => {
@@ -36,6 +36,10 @@ class PatientDetail extends Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps, nextContext) {
+		console.log(nextProps);
+	}
+
 	acceptPtient = () => {
 		const token = Cookie.get('token');
 		const id = this.props.match.params.patientId;
@@ -49,6 +53,7 @@ class PatientDetail extends Component {
 		const labels = labelList.map(label => {
 			if (label.label_name) return label.label_name
 		});
+
 
 		return (
 			<div className={'patient-detail'}>
@@ -100,7 +105,11 @@ class PatientDetail extends Component {
 						<div className={'tag'}>
 							{
 								labels.map((pain, index) =>
-									<span key={index} className={patientDetail.label === pain ? 'pain active' : 'pain'}>{pain}</span>
+									<span
+										key={index}
+										className={patientDetail.label === pain ? 'pain active' : 'pain'}
+										// onClick={}
+									>{pain}</span>
 								)
 							}
 							<span

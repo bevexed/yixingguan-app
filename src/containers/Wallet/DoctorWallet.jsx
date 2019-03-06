@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import './DoctorWallet.less'
 
+import Cookie from 'js-cookie';
+
 import {
 	NavBar,
 	Icon,
@@ -11,10 +13,31 @@ import {
 	List
 } from "antd-mobile";
 
+import {reqExceptionalAccount} from "../../api/doctor";
 const Item = List.Item;
 
+const token = Cookie.get('token');
+
 class DoctorWallet extends Component {
+
+	state={
+		available:0
+	};
+
+	componentDidMount() {
+		reqExceptionalAccount(token)
+			.then(
+				res=>{
+					if (res.code === 1) {
+						this.setState({available:res.data.available})
+					}
+				}
+			)
+	}
+
 	render() {
+		const {available} = this.state;
+
 		return (
 			<div className={'doctor-wallet'}>
 				<div className={'background'}>
@@ -31,7 +54,7 @@ class DoctorWallet extends Component {
 					<WhiteSpace/>
 					<WhiteSpace/>
 					<Result
-						title={<span className={'big'}>83224.00</span>}
+						title={<span className={'big'}>{available}</span>}
 						message={<div className={'small'}>账户余额</div>}
 						buttonText={<span>提现到微信支付</span>}
 						onButtonClick={() => alert(1)}

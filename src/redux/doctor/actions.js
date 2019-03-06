@@ -2,7 +2,7 @@ import {
 	reqPatientList,
 	reqPatientDetail,
 	reqLabelList,
-	reqAcceptPatients
+	reqAcceptPatients,
 } from "../../api/doctor";
 
 import {
