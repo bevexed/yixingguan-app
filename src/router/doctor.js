@@ -74,7 +74,7 @@ export const doctorRoute = [
 		component: PublishSelectSort
 	},
 	{
-		pathname:'/publish-person-select',
+		pathname:'/publish-person-select/:label_id',
 		component:PublishPersonSelect
 	}
 ];

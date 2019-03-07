@@ -14,9 +14,10 @@ class PublishSelectSort extends Component {
 		const {is_open} = this.state;
 		const {labelList} = this.props;
 		const labels = labelList.map(label => {
-			if (label.label_name) {return label.label_name;} else {return null}
+			if (label.label_name) {return {label_name: label.label_name, id: label.id}} else {return {label_name: null, id: null}}
 		});
 
+		console.log(labels);
 
 		return (
 			<div className='publish-select-sort'>
@@ -37,7 +38,7 @@ class PublishSelectSort extends Component {
 					<Item
 						thumb={<img src={require(is_open ? './img/gongkai@3x.png' : './img/gongkai未选择@3x.png')} alt=""/>}
 						extra={<span className={is_open ? 'is_open' : null}>所有患者可看</span>}
-						onClick={()=>this.setState({is_open:!is_open})}
+						onClick={() => this.setState({is_open: !is_open})}
 						multipleLine
 					>
 						<span className={is_open ? 'is_open' : null}>公开</span>
@@ -57,8 +58,9 @@ class PublishSelectSort extends Component {
 								multipleLine
 								disabled={is_open}
 								arrow={'horizontal'}
+								onClick={() => this.props.history.push('/publish-person-select/' + label.id)}
 							>
-								{label}
+								{label.label_name}
 							</Item>
 						</List>)
 				}
