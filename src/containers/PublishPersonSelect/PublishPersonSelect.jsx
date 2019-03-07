@@ -31,7 +31,7 @@ class PublishPersonSelect extends Component {
 
 				<List renderHeader={() => 'CheckboxItem demo'}>
 					{
-						// patients=> [[id,name],[id,name]]
+						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
 							patients.map(patient =>
 								<CheckboxItem key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
