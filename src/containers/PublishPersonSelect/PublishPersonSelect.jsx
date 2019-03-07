@@ -7,11 +7,17 @@ import './PublishPersonSelect.less'
 const CheckboxItem = Checkbox.CheckboxItem;
 
 class PublishPersonSelect extends Component {
+
+	onSeleted = id => {
+		console.log(id);
+	};
+
 	render() {
 		const {labelList} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
-		const patientList = patients[0] ? patients[0].user_names : [];
+		const patientList = patients[0] ? patients[0].user_names : {};
+		const initial = Object.keys(patientList);
 
 		return (
 			<div className='publish-person-select'>
@@ -24,14 +30,16 @@ class PublishPersonSelect extends Component {
 				>谁可以看</NavBar>
 
 				<List renderHeader={() => 'CheckboxItem demo'}>
-					{patientList.map(name => (
-						<CheckboxItem key={name.value} onChange={() => this.onChange(name.value)}>
-							{name.label}
-						</CheckboxItem>
-					))}
-					<CheckboxItem key="disabled" data-seed="logId" disabled defaultChecked multipleLine>
-						Undergraduate<List.Item.Brief>Auxiliary text</List.Item.Brief>
-					</CheckboxItem>
+					{
+						// patients=> [[id,name],[id,name]]
+						Object.values(patientList).map(patients =>
+							patients.map(patient =>
+								<CheckboxItem key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
+									{patient[1]}
+								</CheckboxItem>
+							))
+					}
+
 				</List>
 
 			</div>
