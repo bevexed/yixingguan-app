@@ -93,6 +93,8 @@ export const getUser = (token, callbacks) => {
 					let identity = res.data.identity;
 					if (identity) {
 						identity = identity === 1 ? 'patient' : 'doctor';
+						// identity 有值 ，不在进行登录验证
+						sessionStorage.already_get_user = true
 					}
 					if (identity === 'doctor' && callbacks) {
 						// 回调 病人列表
@@ -100,7 +102,6 @@ export const getUser = (token, callbacks) => {
 					}
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
-					sessionStorage.already_get_user = true
 				} else {
 					Cookies.remove('token');
 					window.location.reload(true);

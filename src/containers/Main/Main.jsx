@@ -38,6 +38,14 @@ class Main extends Component {
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
+
+		/* 身份验证 思路
+		* 1. 第一次登录
+		* 	1）sessionStorage 为空
+		* 	2）进行验证
+		* 2.数据加载成功后
+		* 	1）sessionStorage 根据 用户身份 决定是否进行拦截
+		 */
 		if (!sessionStorage.already_get_user) {
 			if (!phone || !identity) {
 				return <Redirect to={'/login'}/>
