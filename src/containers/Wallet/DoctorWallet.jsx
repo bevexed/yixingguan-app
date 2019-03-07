@@ -10,12 +10,14 @@ import {
 	Icon,
 	Result,
 	WhiteSpace,
-	List
+	List,
+	Accordion
 } from "antd-mobile";
 
 import {reqExceptionalAccount, reqExceptionalLogs} from "../../api/doctor";
 
 const Item = List.Item;
+const Panel = Accordion.Panel;
 
 const token = Cookie.get('token');
 
@@ -23,7 +25,24 @@ class DoctorWallet extends Component {
 
 	state = {
 		available: 0,
-		page: 1
+		page: 1,
+		logs:  {
+			"current_page": '',
+			"total": '',
+			"per_page": '',
+			"data": [
+				{
+					"time": "",
+					"total": "",
+					"info": [
+						{
+							"name": "",
+							"amount": ""
+						},
+					]
+				}
+			]
+		}
 	};
 
 	componentDidMount() {
@@ -44,14 +63,14 @@ class DoctorWallet extends Component {
 		reqExceptionalLogs({token, page}).then(
 			res => {
 				if (res.code === 1) {
-					console.log(res);
+					this.setState({logs: res.data})
 				}
 			}
 		)
 	};
 
 	render() {
-		const {available} = this.state;
+		const {available, logs} = this.state;
 
 		return (
 			<div className={'doctor-wallet'}>
@@ -76,36 +95,34 @@ class DoctorWallet extends Component {
 					/>
 				</div>
 
-				<List
-					renderHeader={() => '收益明细'}
-				>
-					<Item
-						extra={<span className={'total'}>总计：¥875.00</span>}
-					>
-						2019/01/04
-					</Item>
-					<Item
-						extra={<span className={'income'}>¥875.00</span>}
-					>
-						王晓晓
-					</Item>
-					<Item
-						extra={<span className={'income'}>¥875.00</span>}
-					>
-						王晓晓
-					</Item>
-					<Item
-						extra={<span className={'income'}>¥875.00</span>}
-					>
-						王晓晓
-					</Item>
-					<Item
-						extra={<span className={'income'}>¥875.00</span>}
-					>
-						王晓晓
-					</Item>
-				</List>
+				<List renderHeader={() => '收益明细'}/>
 
+				<Accordion accordion>
+					{
+						logs.data.map((log,index) =>
+							<Panel
+								key={index}
+								header={
+									<Item
+										extra={<span className={'total'}>总计：¥{log.total}</span>}
+									>
+										{log.time}
+									</Item>}>
+
+								<List>
+									{log.info.map((item,itemKey)=>
+										<Item
+											key={itemKey}
+											extra={<span className={'income'}>¥{item.amount}</span>}
+										>
+											{item.name}
+										</Item>)
+									}
+								</List>
+							</Panel>
+						)
+					}
+				</Accordion>
 			</div>
 		);
 	}
