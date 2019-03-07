@@ -52,7 +52,7 @@ class PatientIndex extends Component {
 	};
 
 
-	componentWillMount() {
+	componentDidMount() {
 		const params = {
 			locating_city: '成都',
 			page: '' || 1,

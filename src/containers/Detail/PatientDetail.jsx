@@ -5,8 +5,6 @@ import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
 import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/actions";
 
-import config from '../../../package.json'
-
 import Cookie from 'js-cookie';
 
 import './PatientDetail.less'
@@ -27,17 +25,13 @@ class PatientDetail extends Component {
 		})
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		const token = Cookie.get('token');
 		const id = this.props.match.params.patientId;
 		const patient = {id, token};
 		if (token) {
 			this.props.getPatientDetail(patient)
 		}
-	}
-
-	componentWillReceiveProps(nextProps, nextContext) {
-		console.log(nextProps);
 	}
 
 	acceptPtient = () => {
@@ -93,8 +87,8 @@ class PatientDetail extends Component {
 
 					<Item>
 						检查报告图片：
-						<div className={'pic'}>
-							{imgs.map(img => <img key={img} src={img ? config.img + img : null} alt=""/>)}
+						<div className='pic'>
+							{imgs.map(img => <img key={img} src={img ? img : null} alt=""/>)}
 						</div>
 					</Item>
 

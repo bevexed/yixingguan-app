@@ -7,8 +7,10 @@ const Item = List.Item;
 
 class PublishSelectSort extends Component {
 	render() {
-		const {patientList} = this.props;
-
+		const {labelList} = this.props;
+		const labels = labelList.map(label => {
+			if (label.label_name) {return label.label_name;} else {return null}
+		});
 
 
 		return (
@@ -38,18 +40,23 @@ class PublishSelectSort extends Component {
 				</List>
 
 				<WhiteSpace/>
+				{
+					labels.map((label,index) =>
 
-				<List>
-					<Item
-						thumb={<img src={require('./img/gongkai未选择@3x.png')} alt=""/>}
-						extra={<span>所有患者可看</span>}
-						activeStyle={{border: '1Px solid #aaa'}}
-						multipleLine
-					>
-						公开
-					</Item>
-				</List>
-
+						<List
+							key={index}
+						>
+							<Item
+								thumb={<img src={require('./img/fenzu@3x.png')} alt=""/>}
+								extra={<span>{null}</span>}
+								activeStyle={{border: '1Px solid #aaa'}}
+								multipleLine
+								arrow={'horizontal'}
+							>
+								{label}
+							</Item>
+						</List>)
+				}
 			</div>
 		);
 	}
@@ -57,7 +64,7 @@ class PublishSelectSort extends Component {
 
 function mapStateToProps(state) {
 	return {
-		patientList: state.patientList
+		labelList: state.labelList
 	};
 }
 

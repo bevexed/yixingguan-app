@@ -35,7 +35,7 @@ class OrderDoc extends Component {
 		symptoms_described: '',
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getDoctorDetail(this.props.match.params.docId);
 	}
 

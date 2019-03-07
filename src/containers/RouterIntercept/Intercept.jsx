@@ -15,7 +15,7 @@ import config from '../../../package.json'
 
 class Intercept extends Component {
 
-	componentWillMount() {
+	componentDidMount() {
 		const token = Cookie.get('token');
 		if (!token) {
 			let appId = config.wx.appID;

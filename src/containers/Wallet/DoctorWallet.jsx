@@ -26,7 +26,7 @@ class DoctorWallet extends Component {
 	state = {
 		available: 0,
 		page: 1,
-		logs:  {
+		logs: {
 			"current_page": '',
 			"total": '',
 			"per_page": '',
@@ -99,7 +99,7 @@ class DoctorWallet extends Component {
 
 				<Accordion accordion>
 					{
-						logs.data.map((log,index) =>
+						logs.data.map((log, index) =>
 							<Panel
 								key={index}
 								header={
@@ -110,7 +110,7 @@ class DoctorWallet extends Component {
 									</Item>}>
 
 								<List>
-									{log.info.map((item,itemKey)=>
+									{log.info.map((item, itemKey) =>
 										<Item
 											key={itemKey}
 											extra={<span className={'income'}>¥{item.amount}</span>}
@@ -119,8 +119,7 @@ class DoctorWallet extends Component {
 										</Item>)
 									}
 								</List>
-							</Panel>
-						)
+							</Panel>)
 					}
 				</Accordion>
 			</div>

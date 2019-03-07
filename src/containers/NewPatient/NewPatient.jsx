@@ -15,7 +15,7 @@ import Cookie from 'js-cookie';
 const token = Cookie.get('token');
 
 class NewPatient extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getPatientList(token);
 	}
 
