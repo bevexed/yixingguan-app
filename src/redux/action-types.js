@@ -16,3 +16,5 @@ export const ACCEPT_PATIENT = 'accept_patient';
 // 发布文章
 export const UPDATA_PUBLICE_ARTICLE = 'updata_publice_article';
 export const UPDATA_PUBLICE_ARTICLE_IMG = 'updata_publice_article_img';
+export const SELECT_SOME_CAN_SEE = 'select_some_can_see';
+export const ALL_CAN_SEE = 'all_can_see';

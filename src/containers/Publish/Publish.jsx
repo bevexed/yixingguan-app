@@ -11,7 +11,6 @@ const Item = List.Item;
 class Publish extends Component {
 
 	onChange = (files, type, index) => {
-		console.log(files, type, index);
 		this.props.updataPubliceArticleImg({img: files})
 	};
 
@@ -51,7 +50,7 @@ class Publish extends Component {
 							files={article_img.img}
 							onChange={this.onChange}
 							length={3}
-							onImageClick={(index, fs) => console.log(index, fs)}
+							// onImageClick={(index, fs) => console.log(index, fs)}
 							selectable={article_img.img.length < 9}
 							// multiple={true}
 						/>

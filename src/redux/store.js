@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import {user} from './user/reducer'
 import {doctorList, doctorDetail} from './patient/reducer'
 import {patientList,patientDetail,labelList} from "./doctor/reducer";
-import {article_content,article_img} from "./publish/reducer";
+import {article_content,article_img,whoCanSee} from "./publish/reducer";
 
 const reducers = combineReducers({
 	user,
@@ -14,7 +14,8 @@ const reducers = combineReducers({
 	patientDetail,
 	labelList,
 	article_content,
-	article_img
+	article_img,
+	whoCanSee
 });
 
 export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
