@@ -102,6 +102,7 @@ export const getUser = (token, callbacks) => {
 					dispatch(authSuccess(userData));
 				} else {
 					Cookies.remove('token');
+					window.location.reload(true);
 					dispatch(errorMsg(res.message));
 				}
 			}

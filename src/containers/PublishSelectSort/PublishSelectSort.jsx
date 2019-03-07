@@ -6,7 +6,12 @@ import './PublicSelectSort.less'
 const Item = List.Item;
 
 class PublishSelectSort extends Component {
+	state = {
+		is_open: false,
+	};
+
 	render() {
+		const {is_open} = this.state;
 		const {labelList} = this.props;
 		const labels = labelList.map(label => {
 			if (label.label_name) {return label.label_name;} else {return null}
@@ -30,18 +35,18 @@ class PublishSelectSort extends Component {
 
 				<List>
 					<Item
-						thumb={<img src={require('./img/gongkai未选择@3x.png')} alt=""/>}
-						extra={<span>所有患者可看</span>}
-						activeStyle={{border: '1Px solid #aaa'}}
+						thumb={<img src={require(is_open ? './img/gongkai@3x.png' : './img/gongkai未选择@3x.png')} alt=""/>}
+						extra={<span className={is_open ? 'is_open' : null}>所有患者可看</span>}
+						onClick={()=>this.setState({is_open:!is_open})}
 						multipleLine
 					>
-						公开
+						<span className={is_open ? 'is_open' : null}>公开</span>
 					</Item>
 				</List>
 
 				<WhiteSpace/>
 				{
-					labels.map((label,index) =>
+					labels.map((label, index) =>
 
 						<List
 							key={index}
@@ -49,8 +54,8 @@ class PublishSelectSort extends Component {
 							<Item
 								thumb={<img src={require('./img/fenzu@3x.png')} alt=""/>}
 								extra={<span>{null}</span>}
-								activeStyle={{border: '1Px solid #aaa'}}
 								multipleLine
+								disabled={is_open}
 								arrow={'horizontal'}
 							>
 								{label}

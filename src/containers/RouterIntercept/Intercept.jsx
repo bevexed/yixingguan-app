@@ -31,6 +31,7 @@ class Intercept extends Component {
 							this.props.getUser(token)
 						} else {
 							Cookie.remove('token');
+							window.location.reload(true)
 						}
 					}
 				)
