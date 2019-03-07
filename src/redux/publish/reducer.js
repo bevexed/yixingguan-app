@@ -1,6 +1,8 @@
 import {
 	UPDATA_PUBLICE_ARTICLE_IMG,
-	UPDATA_PUBLICE_ARTICLE, ALL_CAN_SEE, SELECT_SOME_CAN_SEE
+	UPDATA_PUBLICE_ARTICLE,
+	ALL_CAN_SEE,
+	SELECT_SOME_CAN_SEE
 } from "../action-types";
 
 const initArticle = {
@@ -39,7 +41,8 @@ export const whoCanSee = (state = initWhoCanSee, action) => {
 		case ALL_CAN_SEE:
 			return {is_open: 1};
 		case SELECT_SOME_CAN_SEE:
-			return {is_open: 0, ...action.data}
-
+			return {is_open: 0, ...action.data};
+		default:
+			return state;
 	}
 };

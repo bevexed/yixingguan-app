@@ -1,22 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, NavBar, List, Checkbox} from "antd-mobile";
+import {Icon, NavBar, List, Checkbox, WhiteSpace} from "antd-mobile";
+import {selectSomeCanSee} from "../../redux/publish/action";
 
 import './PublishPersonSelect.less'
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
 class PublishPersonSelect extends Component {
+	user = [];
 
 	onSeleted = id => {
-		console.log(id);
+		const {user} = this;
+		if (user.includes(id)) {
+			user.splice(user.findIndex(item => item === id), 1)
+		} else {
+			user.push(id)
+		}
 	};
 
 	render() {
 		const {labelList} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
+		const label_name = patients[0] ? patients[0].label_name : {};
 		const patientList = patients[0] ? patients[0].user_names : {};
+
+		// todo: 左侧标签栏
 		const initial = Object.keys(patientList);
 
 		return (
@@ -28,8 +38,20 @@ class PublishPersonSelect extends Component {
 					onLeftClick={() => this.props.history.goBack()}
 					rightContent={<div className={'button'}>完成</div>}
 				>谁可以看</NavBar>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 
-				<List renderHeader={() => 'CheckboxItem demo'}>
+				<List>
+					<CheckboxItem onChange={() => this.onSeleted()}>
+						全部
+					</CheckboxItem>
+				</List>
+				<WhiteSpace/>
+
+				<List>
 					{
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
@@ -55,4 +77,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		selectSomeCanSee
+	}
 )(PublishPersonSelect);
