@@ -1,3 +1,7 @@
+/*
+* 同一请求 用户数据
+* */
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route, Switch} from "react-router-dom";

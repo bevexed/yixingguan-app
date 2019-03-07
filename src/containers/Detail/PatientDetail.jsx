@@ -45,7 +45,7 @@ class PatientDetail extends Component {
 		const {patientDetail, labelList} = this.props;
 		const imgs = patientDetail.inspection_report.split(',');
 		const labels = labelList.map(label => {
-			if (label.label_name) {return label.label_name;}else {return null}
+			if (label.label_name) {return label.label_name;} else {return null}
 		});
 
 
@@ -91,6 +91,11 @@ class PatientDetail extends Component {
 							{imgs.map(img => <img key={img} src={img ? img : null} alt=""/>)}
 						</div>
 					</Item>
+
+					{/*
+						* TODO:添加标签
+					*/
+					}
 
 					<Item>
 						给患者添加标签

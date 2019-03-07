@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Switch, Route, Redirect} from "react-router-dom";
 
-import NotFound from '../../components/NotFound/NotFound'
+import NotFound from '../NotFound/NotFound'
 import NavFootPatient from '../../components/NavFoot/NavFootPatient'
 import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 
@@ -46,6 +46,7 @@ class Main extends Component {
 		* 2.数据加载成功后
 		* 	1）sessionStorage 根据 用户身份 决定是否进行拦截
 		 */
+
 		if (!sessionStorage.already_get_user) {
 			if (!phone || !identity) {
 				return <Redirect to={'/login'}/>

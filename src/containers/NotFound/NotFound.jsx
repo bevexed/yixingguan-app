@@ -1,16 +1,13 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 
 import {Toast} from "antd-mobile";
 
-class NotFound extends PureComponent {
+class NotFound extends Component {
 	state = {
-		button_show: false
+		button_show: true
 	};
 
-	componentDidMount() {
-		Toast.loading('数据加载中...', 3000, () => {
-			this.setState({button_show: true})
-		}, true);
+	componentWillMount() {
 
 		sessionStorage.removeItem('path');
 	}
@@ -19,12 +16,16 @@ class NotFound extends PureComponent {
 		const {button_show} = this.state;
 		// this.props.history.replace('/');
 		return (
-			<div>
+			<div
+				style={{width: '100VW', height: '100VH'}}>
 				{button_show ?
 					<div
 						className={'button'}
 						onClick={() => this.props.history.replace('/')}>回到首页
-					</div> : null
+					</div> :
+					<div>
+						loading
+					</div>
 				}
 			</div>
 		);

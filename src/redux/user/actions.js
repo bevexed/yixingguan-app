@@ -95,6 +95,8 @@ export const getUser = (token, callbacks) => {
 						identity = identity === 1 ? 'patient' : 'doctor';
 						// identity 有值 ，不在进行登录验证
 						sessionStorage.already_get_user = true
+					}else {
+						sessionStorage.removeItem('already_get_user');
 					}
 					if (identity === 'doctor' && callbacks) {
 						// 回调 病人列表

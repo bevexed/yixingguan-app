@@ -28,7 +28,7 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 
 			// 加载 loading 动画
 			if (loading) {
-				Toast.loading('数据加载中...', 1500, () => {
+				Toast.loading('数据加载中...', 5, () => {
 				}, true);
 			}
 
