@@ -17,7 +17,7 @@ import DocList from '../../components/DocList/DocList'
 import {
 	getDoctorList,
 	getSeekDoctorList
-} from "../../redux/patient/actions";
+} from "../../redux/patient/action";
 import {reqBanner} from "../../api/patient";
 
 const Item = List.Item;

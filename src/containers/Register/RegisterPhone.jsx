@@ -8,7 +8,7 @@ import {Redirect} from "react-router-dom";
 
 import {
 	updataPhone,
-} from "../../redux/user/actions";
+} from "../../redux/user/action";
 
 import {List, InputItem, WhiteSpace, Toast} from "antd-mobile";
 

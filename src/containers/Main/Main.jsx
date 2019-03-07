@@ -10,8 +10,8 @@ import NavFootDoc from '../../components/NavFoot/NavFootDoc'
 import {patientNav, patientRoute} from '../../router/patient'
 import {doctorNav, doctorRoute} from "../../router/doctor";
 
-import {getUser} from "../../redux/user/actions";
-import {getPatientList, getLabelList} from "../../redux/doctor/actions";
+import {getUser} from "../../redux/user/action";
+import {getPatientList, getLabelList} from "../../redux/doctor/action";
 
 import Cookies from 'js-cookie';
 

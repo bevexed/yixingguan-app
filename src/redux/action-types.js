@@ -12,3 +12,7 @@ export const RECEIVE_LABEL_LSIT = 'receive_label_lsit';
 export const RECEIVE_PATIENT_LIST = 'receive_patient_list';
 export const RECEIVE_PATIENT_DETAILS = 'receive_patient_details';
 export const ACCEPT_PATIENT = 'accept_patient';
+
+// 发布文章
+export const UPDATA_PUBLICE_ARTICLE = 'updata_publice_article';
+export const UPDATA_PUBLICE_ARTICLE_IMG = 'updata_publice_article_img';

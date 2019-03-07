@@ -1,9 +1,10 @@
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from 'redux-thunk';
-import {user} from './user/reducers'
-import {doctorList, doctorDetail} from './patient/reducers'
-import {patientList,patientDetail,labelList} from "./doctor/reducers";
+import {user} from './user/reducer'
+import {doctorList, doctorDetail} from './patient/reducer'
+import {patientList,patientDetail,labelList} from "./doctor/reducer";
+import {article_content,article_img} from "./publish/reducer";
 
 const reducers = combineReducers({
 	user,
@@ -11,7 +12,9 @@ const reducers = combineReducers({
 	doctorDetail,
 	patientList,
 	patientDetail,
-	labelList
+	labelList,
+	article_content,
+	article_img
 });
 
 export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))

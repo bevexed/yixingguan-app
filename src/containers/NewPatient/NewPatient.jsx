@@ -8,7 +8,7 @@ import {
 	WhiteSpace
 } from "antd-mobile";
 
-import {getAcceptPatient, getPatientList} from "../../redux/doctor/actions";
+import {getAcceptPatient, getPatientList} from "../../redux/doctor/action";
 
 import Cookie from 'js-cookie';
 

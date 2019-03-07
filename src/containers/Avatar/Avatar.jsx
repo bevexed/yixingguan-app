@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Icon, ImagePicker, NavBar, WhiteSpace} from "antd-mobile";
 
-import {receiveUser} from "../../redux/user/actions";
+import {receiveUser} from "../../redux/user/action";
 
 class Avatar extends Component {
 	state = {

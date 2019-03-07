@@ -9,7 +9,7 @@ import Main from "../Main/Main";
 import Login from '../Login/Login'
 
 import Cookie from "js-cookie";
-import {getUser} from "../../redux/user/actions";
+import {getUser} from "../../redux/user/action";
 import RegisterIndex from "../Register/RegisterIndex";
 
 import {GetQueryString} from "../../utils";

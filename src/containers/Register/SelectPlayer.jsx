@@ -4,7 +4,7 @@ import './Register.less'
 
 import {
 	updataUserType,
-} from "../../redux/user/actions";
+} from "../../redux/user/action";
 
 
 class SelectPlayer extends Component {

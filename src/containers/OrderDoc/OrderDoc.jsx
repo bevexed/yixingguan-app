@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getDoctorDetail} from "../../redux/user/actions";
+import {getDoctorDetail} from "../../redux/user/action";
 
 import './OrderDoc.less'
 

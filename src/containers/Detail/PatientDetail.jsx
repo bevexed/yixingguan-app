@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
-import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/actions";
+import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/action";
 
 import Cookie from 'js-cookie';
 
