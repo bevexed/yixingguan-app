@@ -4,14 +4,32 @@ import {connect} from 'react-redux';
 import './MyHelper.less'
 import {Icon, NavBar, WhiteSpace} from "antd-mobile";
 
+import {reqAssistantList} from "../../api/doctor";
+import Cookie from 'js-cookie';
+
+const token = Cookie.get('token');
+
 class myHelper extends Component {
-	state={
-		code_show:false
+	state = {
+		code_show: false,
+		assistantList: []
 	};
 
+	componentDidMount() {
+		if (token) {
+			reqAssistantList(token)
+				.then(
+					res => {
+						if (res.code === 1) {
+							this.setState({assistantList: res.data})
+						}
+					}
+				)
+		}
+	}
+
 	render() {
-		const {code_show}=this.state;
-		const arr = [0, 1, 2];
+		const {code_show, assistantList} = this.state;
 
 		return (
 			<div className={'my-help'}>
@@ -38,17 +56,17 @@ class myHelper extends Component {
 				<WhiteSpace/>
 
 				<div className='helpBox'>
-					{arr.map((index) => {
-						return (
-							<div key={index}>
+					{
+						assistantList.map(assistant =>
+							<div key={assistant.name}>
 								<div>
-									<img alt='' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg'/>
+									<img alt='' src={assistant.avatar}/>
 									<span>x</span>
 								</div>
-								<p>朱小鱼</p>
+								<p>{assistant.name}</p>
 							</div>
 						)
-					})}
+					}
 				</div>
 
 				<div className='helpWarn'>

@@ -13,27 +13,42 @@ import {
 	List
 } from "antd-mobile";
 
-import {reqExceptionalAccount} from "../../api/doctor";
+import {reqExceptionalAccount, reqExceptionalLogs} from "../../api/doctor";
+
 const Item = List.Item;
 
 const token = Cookie.get('token');
 
 class DoctorWallet extends Component {
 
-	state={
-		available:0
+	state = {
+		available: 0,
+		page: 1
 	};
 
 	componentDidMount() {
 		reqExceptionalAccount(token)
 			.then(
-				res=>{
+				res => {
 					if (res.code === 1) {
-						this.setState({available:res.data.available})
+						this.setState({available: res.data.available})
 					}
 				}
-			)
+			);
+
+		this.getExceptionalLogs()
 	}
+
+	getExceptionalLogs = () => {
+		const {page} = this.state;
+		reqExceptionalLogs({token, page}).then(
+			res => {
+				if (res.code === 1) {
+					console.log(res);
+				}
+			}
+		)
+	};
 
 	render() {
 		const {available} = this.state;

@@ -19,4 +19,10 @@ export const reqPatientDetail = ({id, token}) => ajax('/api/doctor/list/patient_
 export const reqAcceptPatients = ({id, token}) => ajax('/api/doctor/list/accept_patients', {id, token});
 
 // 医生资金
-export const reqExceptionalAccount = token =>ajax('/api/doctor/account/exceptional_accounts',{token});
+export const reqExceptionalAccount = token => ajax('/api/doctor/account/exceptional_accounts', {token});
+
+// 医生资金日志
+export const reqExceptionalLogs = ({token, page}) => ajax('/api/doctor/account/exceptional_logs', {token, page});
+
+// 医生获取助手
+export const reqAssistantList = token =>ajax('/api/doctor/list/assistant_list',{token});
