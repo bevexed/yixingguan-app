@@ -17,7 +17,6 @@ class PublishSelectSort extends Component {
 			if (label.label_name) {return {label_name: label.label_name, id: label.id}} else {return {label_name: null, id: null}}
 		});
 
-		console.log(labels);
 
 		return (
 			<div className='publish-select-sort'>

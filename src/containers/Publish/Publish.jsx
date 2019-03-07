@@ -4,23 +4,23 @@ import {connect} from 'react-redux';
 import './publish.less'
 import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List} from "antd-mobile";
 
+import {updataPubliceArticle, updataPubliceArticleImg} from "../../redux/publish/action";
+
 const Item = List.Item;
 
 class Publish extends Component {
-	state = {
-		files: [],
-		idea: ''
-	};
 
 	onChange = (files, type, index) => {
 		console.log(files, type, index);
-		this.setState({
-			files,
-		});
+		this.props.updataPubliceArticleImg({img: files})
+	};
+
+	onTextChange = idea => {
+		this.props.updataPubliceArticle({content: idea})
 	};
 
 	render() {
-		const {files} = this.state;
+		const {article_content, article_img} = this.props;
 
 		return (
 			<div className='publish'>
@@ -40,18 +40,19 @@ class Publish extends Component {
 					<WingBlank>
 						<TextareaItem
 							placeholder={'想说些什么'}
-							rows={4}
-							onChange={idea => this.setState({idea})}
+							rows={6}
+							onChange={idea => this.onTextChange(idea)}
+							defaultValue={article_content.content}
 						/>
 					</WingBlank>
 
 					<WingBlank>
 						<ImagePicker
-							files={files}
+							files={article_img.img}
 							onChange={this.onChange}
 							length={3}
 							onImageClick={(index, fs) => console.log(index, fs)}
-							selectable={files.length < 9}
+							selectable={article_img.img.length < 9}
 							// multiple={true}
 						/>
 					</WingBlank>
@@ -64,7 +65,7 @@ class Publish extends Component {
 						thumb={<img src={require('./img/我的 (1).svg')} alt=""/>}
 						extra={'123'}
 						arrow={'horizontal'}
-						onClick={()=>this.props.history.push('/publish-select-sort')}
+						onClick={() => this.props.history.push('/publish-select-sort')}
 					>
 						谁可以看
 					</Item>
@@ -80,9 +81,16 @@ class Publish extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		article_content: state.article_content,
+		article_img: state.article_img
+	};
 }
 
 export default connect(
 	mapStateToProps,
+	{
+		updataPubliceArticle,
+		updataPubliceArticleImg
+	}
 )(Publish);
