@@ -100,6 +100,7 @@ export const getUser = (token, callbacks) => {
 					}
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
+					sessionStorage.already_get_user = true
 				} else {
 					Cookies.remove('token');
 					window.location.reload(true);

@@ -38,8 +38,10 @@ class Main extends Component {
 		const nav = identity === 'patient' ? patientNav : doctorNav;
 		const showNav = nav.some(nav => nav.pathname === pathname);
 
-		if (!phone || !identity) {
-			return <Redirect to={'/login'}/>
+		if (!sessionStorage.already_get_user) {
+			if (!phone || !identity) {
+				return <Redirect to={'/login'}/>
+			}
 		}
 
 		return (
