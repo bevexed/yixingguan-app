@@ -44,7 +44,7 @@ const grid = [
 		icon: 5,
 		name: '发布图文',
 		onClick:(el)=>{
-			el.props.history.push('/publish')
+			el.props.history.push('/published')
 		}
 	},
 	{

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import './publish.less'
-import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal, Toast} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal} from "antd-mobile";
 
 import {updataPubliceArticle, updataPubliceArticleImg,pubulish} from "../../redux/publish/action";
 

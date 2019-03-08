@@ -13,6 +13,7 @@ import Publish from "../containers/Publish/Publish";
 import PublishSelectSort from "../containers/PublishSelectSort/PublishSelectSort";
 import PublishPersonSelect from "../containers/PublishPersonSelect/PublishPersonSelect";
 import PublishPreview from "../containers/PublishPreview/PublishPreview";
+import Published from "../containers/Published/Published";
 
 export const doctorNav = [
 	{
@@ -69,6 +70,10 @@ export const doctorRoute = [
 	{
 		pathname: '/publish',
 		component: Publish
+	},
+	{
+		pathname: '/published',
+		component: Published
 	},
 	{
 		pathname: '/publish-select-sort',

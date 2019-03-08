@@ -20,8 +20,7 @@ export const allCanSee = () => ({type: ALL_CAN_SEE, data: {is_open: 1}});
 export const pubulish = pub => {
 	const {contents, picture, is_open, allow_users} = pub;
 	const key = is_open === 1 ? {contents, picture, is_open} : {contents, picture, is_open, allow_users};
-
-
+	
 	reqReleaseShare(key)
 		.then(res => {
 			if (res.code === 1) {
