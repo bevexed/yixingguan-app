@@ -9,35 +9,34 @@ const CheckboxItem = Checkbox.CheckboxItem;
 
 class PublishPersonSelect extends Component {
 
-	state = {
-		user: []
-	};
-
 	user = [];
-	onSeleted = id => {
+	onSeleted = (label,id) => {
 		const {user} = this;
 		if (user.includes(id)) {
 			user.splice(user.findIndex(item => item === id), 1)
 		} else {
 			user.push(id)
 		}
-		this.setState({user})
+		this.props.selectSomeCanSee({label, user});
 	};
 
-	selectAll = all => {
+	selectAll = (label,all) => {
 		let {user} = this;
-		Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
+		const length = Object.values(all).length;
+		if (user.length<length){
+			Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
+		} else {
+			user = [];
+		}
 		user = [...new Set([...user])];
-		this.setState({user})
+		this.props.selectSomeCanSee({label, user});
 	};
 
 	onSureSelect = label => {
-		this.props.selectSomeCanSee({label, user: this.user});
 		this.props.history.goBack();
 	};
 
 	render() {
-		const {user} = this.state;
 		const {labelList, whoCanSee} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
@@ -45,6 +44,7 @@ class PublishPersonSelect extends Component {
 		const patientList = patients[0] ? patients[0].user_names : {};
 		const allow_users = whoCanSee.allow_users.filter(sort => sort.label === label_name);
 		const seletPerson = allow_users[0] ? allow_users[0].user : [];
+		this.user = [...seletPerson];
 		// todo: 左侧标签栏
 		const initial = Object.keys(patientList);
 
@@ -70,7 +70,7 @@ class PublishPersonSelect extends Component {
 				<WhiteSpace/>
 
 				<List>
-					<CheckboxItem onChange={() => this.selectAll(patientList)}>
+					<CheckboxItem onChange={() => this.selectAll(label_name,patientList)}>
 						全部
 					</CheckboxItem>
 				</List>
@@ -81,7 +81,12 @@ class PublishPersonSelect extends Component {
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
 							patients.map(patient =>
-								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} checked={user.includes(patient[0])} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
+								<CheckboxItem
+									// defaultChecked={seletPerson.includes(patient[0])}
+									checked={seletPerson.includes(patient[0])}
+									key={patient[0]}
+									onChange={() => this.onSeleted(label_name,patient[0])}
+								>
 									{patient[1]}
 								</CheckboxItem>
 							))
