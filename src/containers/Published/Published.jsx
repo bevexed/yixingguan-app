@@ -1,10 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Published.less'
-import {NavBar, Icon, WhiteSpace} from "antd-mobile";
+import {NavBar, Icon, WhiteSpace, WingBlank} from "antd-mobile";
+
+import {reqShareLists} from "../../api/doctor";
 
 class Published extends Component {
+
+	state = {
+		articles: []
+	};
+
+	componentDidMount() {
+		reqShareLists()
+			.then(
+				res => {
+					if (res.code === 1) {
+						this.setState({articles: res.data.data})
+					}
+				}
+			)
+	}
+
 	render() {
+		const {articles} = this.state;
+
 		return (
 			<div className='published'>
 				<NavBar
@@ -28,6 +48,20 @@ class Published extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+
+				<WingBlank>
+					{articles.map(article =>
+						<div key={article.id} className='day'>
+							<div className='time'><span>{article.create_at}</span></div>
+							<div className='article'>
+								<div className='img'><img src={article.picture} alt=""/></div>
+								<div className='content'>{article.content}</div>
+							</div>
+						</div>)
+					}
+				</WingBlank>
 			</div>
 		);
 	}

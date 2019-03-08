@@ -34,7 +34,7 @@ class Publish extends Component {
 						{text: '退出', onPress: () => this.props.history.goBack()},
 						{text: '不退出', onPress: () => console.log(1)},
 					])}
-				>发布图文</NavBar>
+				>编辑图文</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
