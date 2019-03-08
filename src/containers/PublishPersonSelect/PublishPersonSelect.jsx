@@ -20,20 +20,18 @@ class PublishPersonSelect extends Component {
 	};
 
 	onSureSelect = label => {
-		// console.log(label_name);
-		// console.log(this.user);
 		this.props.selectSomeCanSee({label, user: this.user});
-
 	};
 
 
 	render() {
-		const {labelList} = this.props;
+		const {labelList, whoCanSee} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
-		const label_name = patients[0] ? patients[0].label_name : {};
+		const label_name = patients[0] ? patients[0].label_name : '';
 		const patientList = patients[0] ? patients[0].user_names : {};
-
+		const allow_users = whoCanSee.allow_users.filter(sort => sort.label === label_name);
+		const seletPerson = allow_users[0] ? allow_users[0].user : [];
 		// todo: 左侧标签栏
 		const initial = Object.keys(patientList);
 
@@ -67,7 +65,7 @@ class PublishPersonSelect extends Component {
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
 							patients.map(patient =>
-								<CheckboxItem key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
+								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
 									{patient[1]}
 								</CheckboxItem>
 							))
@@ -82,7 +80,8 @@ class PublishPersonSelect extends Component {
 
 function mapStateToProps(state) {
 	return {
-		labelList: state.labelList
+		labelList: state.labelList,
+		whoCanSee: state.whoCanSee
 	};
 }
 
