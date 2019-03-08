@@ -92,10 +92,11 @@ export const getUser = (token, callbacks) => {
 				if (res.code === 1) {
 					let identity = res.data.identity;
 					if (identity) {
-						identity = identity === 1 ? 'patient' : 'doctor';
+						identity = identity === 1 ? 'patient' : '';
+						identity = identity === 2 ? 'doctor' : '';
 						// identity 有值 ，不在进行登录验证
 						sessionStorage.already_get_user = true
-					}else {
+					} else {
 						sessionStorage.removeItem('already_get_user');
 					}
 					if (identity === 'doctor' && callbacks) {
