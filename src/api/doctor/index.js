@@ -17,19 +17,22 @@ export const reqDoctorInformation = ({avatar, birth, sex, affiliated_hospital, d
 export const reqPatientList = () => ajax('/api/doctor/list/patient_lists', {token});
 
 // 患者详情
-export const reqPatientDetail = ({id}) => ajax('/api/doctor/list/patient_details', {id, token});
+export const reqPatientDetail = id => ajax('/api/doctor/list/patient_details', {id, token});
 
 // 接收患者
-export const reqAcceptPatients = ({id}) => ajax('/api/doctor/list/accept_patients', {id, token});
+export const reqAcceptPatients = id => ajax('/api/doctor/list/accept_patients', {id, token});
 
 // 医生资金
 export const reqExceptionalAccount = () => ajax('/api/doctor/account/exceptional_accounts', {token});
 
 // 医生资金日志
-export const reqExceptionalLogs = ({page}) => ajax('/api/doctor/account/exceptional_logs', {token, page});
+export const reqExceptionalLogs = page => ajax('/api/doctor/account/exceptional_logs', {token, page});
 
 // 医生获取助手
-export const reqAssistantList = () =>ajax('/api/doctor/list/assistant_list',{token});
+export const reqAssistantList = () => ajax('/api/doctor/list/assistant_list', {token});
 
 // 获取医生统计 数据 API
-export const reqDataAnalysis = ({start_time,end_time})=>ajax('/api/doctor/account/data_analysis',{token,start_time,end_time});
+export const reqDataAnalysis = ({start_time, end_time}) => ajax('/api/doctor/account/data_analysis', {token, start_time, end_time});
+
+// 发布文章
+export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => ajax('/api/doctor/share/release_share', {contents, picture, is_open, allow_users});
