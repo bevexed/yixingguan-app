@@ -1,25 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, ImagePicker, List, Modal, NavBar, TextareaItem, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+import {Icon, ImagePicker, List, NavBar, TextareaItem, WhiteSpace, WingBlank} from "antd-mobile";
 import './PublishPreview.less'
-import {reqReleaseShare} from "../../api/doctor";
+import {pubulish, updataPubliceArticleImg, updataPubliceArticle} from "../../redux/publish/action";
 
 const Item = List.Item;
 
 class PublishPreview extends Component {
-	pubulish = pub => {
-		const {contents, picture, is_open, allow_users} = pub;
-		const key = is_open === 1 ? {contents, picture, is_open} : {contents, picture, is_open, allow_users};
 
+	onChange = (files, type, index) => {
+		this.props.updataPubliceArticleImg({img: files})
+	};
 
-		reqReleaseShare(key)
-			.then(res => {
-				if (res.code === 1) {
-					Toast.success('文章发布成功', 1,)
-				} else {
-					Toast.fail(res.message, 1)
-				}
-			})
+	onTextChange = idea => {
+		this.props.updataPubliceArticle({content: idea})
 	};
 
 	render() {
@@ -37,7 +31,7 @@ class PublishPreview extends Component {
 					onLeftClick={() => this.props.history.goBack()}
 					rightContent={<div
 						className={'button'}
-						onClick={() => this.pubulish({contents: article_content.content, picture, is_open, allow_users})}
+						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users})}
 					>发布</div>}
 				>预览</NavBar>
 				<WhiteSpace/>
@@ -107,4 +101,9 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		pubulish,
+		updataPubliceArticleImg,
+		updataPubliceArticle
+	}
 )(PublishPreview);

@@ -4,8 +4,7 @@ import {connect} from 'react-redux';
 import './publish.less'
 import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal, Toast} from "antd-mobile";
 
-import {updataPubliceArticle, updataPubliceArticleImg} from "../../redux/publish/action";
-import {reqReleaseShare} from "../../api/doctor";
+import {updataPubliceArticle, updataPubliceArticleImg,pubulish} from "../../redux/publish/action";
 
 const Item = List.Item;
 
@@ -18,23 +17,6 @@ class Publish extends Component {
 	onTextChange = idea => {
 		this.props.updataPubliceArticle({content: idea})
 	};
-
-	pubulish = pub => {
-		const {contents, picture, is_open, allow_users} = pub;
-		const key = is_open === 1 ? {contents, picture, is_open} : {contents, picture, is_open, allow_users};
-
-
-		reqReleaseShare(key)
-			.then(res => {
-				if (res.code === 1) {
-					//todo: 去详情页面
-					Toast.success('文章发布成功', 1,)
-				} else {
-					Toast.fail(res.message, 1)
-				}
-			})
-	};
-
 
 	render() {
 		const {article_content, article_img, whoCanSee} = this.props;
@@ -102,7 +84,7 @@ class Publish extends Component {
 					</div>
 					<div
 						className={'button pb'}
-						onClick={() => this.pubulish({contents: article_content.content, picture, is_open, allow_users})}
+						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users})}
 					>直接发表
 					</div>
 				</div>
@@ -123,6 +105,7 @@ export default connect(
 	mapStateToProps,
 	{
 		updataPubliceArticle,
-		updataPubliceArticleImg
+		updataPubliceArticleImg,
+		pubulish
 	}
 )(Publish);
