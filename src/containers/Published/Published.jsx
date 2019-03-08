@@ -51,6 +51,7 @@ class Published extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
+				{/*todo:发布图文接口*/}
 				<WingBlank>
 					{articles.map(article =>
 						<div key={article.id} className='day'>
