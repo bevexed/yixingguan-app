@@ -8,6 +8,7 @@ import './PublishPersonSelect.less'
 const CheckboxItem = Checkbox.CheckboxItem;
 
 class PublishPersonSelect extends Component {
+
 	user = [];
 
 	onSeleted = id => {
@@ -19,7 +20,14 @@ class PublishPersonSelect extends Component {
 		}
 	};
 
+	selectAll = (label, all) => {
+		const {user} = this;
+		Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
+		this.props.selectSomeCanSee({label, user});
+	};
+
 	onSureSelect = label => {
+		console.log(this.user);
 		this.props.selectSomeCanSee({label, user: this.user});
 		this.props.history.goBack();
 	};
@@ -57,7 +65,7 @@ class PublishPersonSelect extends Component {
 				<WhiteSpace/>
 
 				<List>
-					<CheckboxItem onChange={() => this.onSeleted()}>
+					<CheckboxItem onChange={() => this.selectAll(label_name, patientList)}>
 						全部
 					</CheckboxItem>
 				</List>
@@ -68,7 +76,7 @@ class PublishPersonSelect extends Component {
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
 							patients.map(patient =>
-								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
+								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} checked={'a'} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
 									{patient[1]}
 								</CheckboxItem>
 							))

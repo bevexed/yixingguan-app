@@ -33,13 +33,13 @@ export const article_img = (state = initPic, action) => {
 
 const initWhoCanSee = {
 	is_open: 1,
-	allow_users: [{label: null, user: []}]
+	allow_users: []
 };
 
 export const whoCanSee = (state = initWhoCanSee, action) => {
 		switch (action.type) {
 			case ALL_CAN_SEE:
-				return {is_open: 1};
+				return {	is_open: 1, allow_users: []};
 			case SELECT_SOME_CAN_SEE:
 				const {allow_users} = state;
 				const {label, user} = action.data;
