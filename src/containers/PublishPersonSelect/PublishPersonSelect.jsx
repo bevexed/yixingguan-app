@@ -10,26 +10,33 @@ const CheckboxItem = Checkbox.CheckboxItem;
 class PublishPersonSelect extends Component {
 
 	user = [];
-	onSeleted = (label, id) => {
-		const {user} = this;
+	names = [];
+
+	onSeleted = (label, id, name) => {
+		let {user, names} = this;
 		if (user.includes(id)) {
 			user.splice(user.findIndex(item => item === id), 1)
 		} else {
-			user.push(id)
+			user.push(id);
+			names.push(name)
 		}
-		this.props.selectSomeCanSee({label, user});
+		user = [...new Set([...user])];
+		names = [...new Set([...names])];
+		this.props.selectSomeCanSee({label, user, names});
 	};
 
 	selectAll = (label, all) => {
-		let {user} = this;
+		let {user, names} = this;
 		const length = Object.values(all).length;
 		if (user.length < length) {
 			Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
+			Object.values(all).map(patients => patients.forEach(patient => names.push(patient[1])));
 		} else {
 			user = [];
 		}
 		user = [...new Set([...user])];
-		this.props.selectSomeCanSee({label, user});
+		names = [...new Set([...names])];
+		this.props.selectSomeCanSee({label, user, names});
 	};
 
 	onSureSelect = label => {
@@ -88,7 +95,7 @@ class PublishPersonSelect extends Component {
 									// defaultChecked={seletPerson.includes(patient[0])}
 									checked={seletPerson.includes(patient[0])}
 									key={patient[0]}
-									onChange={() => this.onSeleted(label_name, patient[0])}
+									onChange={() => this.onSeleted(label_name, patient[0], patient[1])}
 								>
 									{patient[1]}
 								</CheckboxItem>

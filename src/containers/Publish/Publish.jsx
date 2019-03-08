@@ -21,15 +21,13 @@ class Publish extends Component {
 
 	pubulish = pub => {
 		const {contents, picture, is_open, allow_users} = pub;
-		const key = {contents, picture, is_open, allow_users};
+		const key = is_open === 1 ? {contents, picture, is_open} : {contents, picture, is_open, allow_users};
 
-		// if (!contents) {
-		// 	Toast.fail('暂无可发送的内容',1)
-		// }
 
 		reqReleaseShare(key)
 			.then(res => {
 				if (res.code === 1) {
+					//todo: 去详情页面
 					Toast.success('文章发布成功', 1,)
 				} else {
 					Toast.fail(res.message, 1)
@@ -99,7 +97,7 @@ class Publish extends Component {
 				<div className={'foot'}>
 					<div
 						className={'button preview'}
-						onClick={()=>this.props.history.push('/publish-preview')}
+						onClick={() => this.props.history.push('/publish-preview')}
 					>预览
 					</div>
 					<div
