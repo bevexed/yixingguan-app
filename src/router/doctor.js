@@ -12,6 +12,7 @@ import MyHelper from "../containers/MyHelper/MyHelper";
 import Publish from "../containers/Publish/Publish";
 import PublishSelectSort from "../containers/PublishSelectSort/PublishSelectSort";
 import PublishPersonSelect from "../containers/PublishPersonSelect/PublishPersonSelect";
+import PublishPreview from "../containers/PublishPreview/PublishPreview";
 
 export const doctorNav = [
 	{
@@ -76,5 +77,9 @@ export const doctorRoute = [
 	{
 		pathname:'/publish-person-select/:label_id',
 		component:PublishPersonSelect
+	},
+	{
+		pathname:'/publish-preview',
+		component:PublishPreview
 	}
 ];

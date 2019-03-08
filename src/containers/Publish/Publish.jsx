@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import './publish.less'
-import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal, Toast} from "antd-mobile";
 
 import {updataPubliceArticle, updataPubliceArticleImg} from "../../redux/publish/action";
+import {reqReleaseShare} from "../../api/doctor";
 
 const Item = List.Item;
 
@@ -18,10 +19,30 @@ class Publish extends Component {
 		this.props.updataPubliceArticle({content: idea})
 	};
 
+	pubulish = pub => {
+		const {contents, picture, is_open, allow_users} = pub;
+		const key = {contents, picture, is_open, allow_users};
+
+		// if (!contents) {
+		// 	Toast.fail('暂无可发送的内容',1)
+		// }
+
+		reqReleaseShare(key)
+			.then(res => {
+				if (res.code === 1) {
+					Toast.success('文章发布成功', 1,)
+				} else {
+					Toast.fail(res.message, 1)
+				}
+			})
+	};
+
+
 	render() {
 		const {article_content, article_img, whoCanSee} = this.props;
-		const labels = whoCanSee.allow_users.map(sort => sort.label);
-		const is_open = whoCanSee.is_open;
+		const {is_open, allow_users} = whoCanSee;
+		const labels = allow_users.map(sort => sort.label);
+		const picture = article_img.img.map(img => img.url);
 
 		return (
 			<div className='publish'>
@@ -76,8 +97,16 @@ class Publish extends Component {
 				</List>
 
 				<div className={'foot'}>
-					<div className={'button preview'}>预览</div>
-					<div className={'button pb'}>直接发表</div>
+					<div
+						className={'button preview'}
+						onClick={()=>this.props.history.push('/publish-preview')}
+					>预览
+					</div>
+					<div
+						className={'button pb'}
+						onClick={() => this.pubulish({contents: article_content.content, picture, is_open, allow_users})}
+					>直接发表
+					</div>
 				</div>
 			</div>
 		);
