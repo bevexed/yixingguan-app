@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import './publish.less'
-import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal} from "antd-mobile";
 
 import {updataPubliceArticle, updataPubliceArticleImg} from "../../redux/publish/action";
 
@@ -27,7 +27,10 @@ class Publish extends Component {
 					mode="light"
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
-					onLeftClick={() => this.props.history.goBack()}
+					onLeftClick={() => Modal.alert('', '退出后将删除已编辑的文本???', [
+						{text: '退出', onPress: () => this.props.history.goBack()},
+						{text: '不退出', onPress: () => console.log(1)},
+					])}
 				>发布图文</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>

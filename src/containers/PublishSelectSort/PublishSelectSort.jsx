@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, NavBar, WhiteSpace, List} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, List, Modal} from "antd-mobile";
 import './PublicSelectSort.less'
 
 import {allCanSee} from "../../redux/publish/action";
@@ -39,7 +39,10 @@ class PublishSelectSort extends Component {
 					<Item
 						thumb={<img src={require(is_open === 1 ? './img/gongkai@3x.png' : './img/gongkai未选择@3x.png')} alt=""/>}
 						extra={<span className={is_open === 1 ? 'is_open' : null}>所有患者可看</span>}
-						onClick={() => this.all()}
+						onClick={() => Modal.alert('', '此次编辑将清空一下所有分类，是否保留？？？', [
+							{text: '不保留', onPress: () => this.props.history.goBack()},
+							{text: '保留', onPress: () => this.all()},
+						])}
 						multipleLine
 					>
 						<span className={is_open ? 'is_open' : null}>公开</span>

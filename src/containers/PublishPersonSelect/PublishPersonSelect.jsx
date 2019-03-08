@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, NavBar, List, Checkbox, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, List, Checkbox, WhiteSpace, Modal} from "antd-mobile";
 import {selectSomeCanSee} from "../../redux/publish/action";
 
 import './PublishPersonSelect.less'
@@ -21,8 +21,8 @@ class PublishPersonSelect extends Component {
 
 	onSureSelect = label => {
 		this.props.selectSomeCanSee({label, user: this.user});
+		this.props.history.goBack();
 	};
-
 
 	render() {
 		const {labelList, whoCanSee} = this.props;
@@ -41,7 +41,10 @@ class PublishPersonSelect extends Component {
 					mode="light"
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
-					onLeftClick={() => this.props.history.goBack()}
+					onLeftClick={() => Modal.alert('', '此次编辑是否保留???', [
+						{text: '不保留', onPress: () => this.props.history.goBack()},
+						{text: '保留', onPress: () => this.onSureSelect()},
+					])}
 					rightContent={<div
 						className={'button'}
 						onClick={() => this.onSureSelect(label_name)}
