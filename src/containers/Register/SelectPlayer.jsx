@@ -29,6 +29,7 @@ class SelectPlayer extends Component {
 
 	goMain = () => {
 		const {identity, name} = this.state;
+		console.log(name);
 		this.props.updataUserType({identity, name});
 	};
 
