@@ -57,7 +57,7 @@ class Published extends Component {
 						<div key={article.id} className='day'>
 							<div className='time'><span>{article.create_at}</span></div>
 							<div className='article'>
-								<div className='img'><img src={article.picture} alt=""/></div>
+								<div className='img'><img src={article.picture?require('../../asset/img/panel.png'):''} alt=""/></div>
 								<div className='content'>{article.content}</div>
 							</div>
 						</div>)
