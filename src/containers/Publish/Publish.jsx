@@ -19,7 +19,9 @@ class Publish extends Component {
 	};
 
 	render() {
-		const {article_content, article_img} = this.props;
+		const {article_content, article_img, whoCanSee} = this.props;
+		const labels = whoCanSee.allow_users.map(sort => sort.label);
+		const is_open = whoCanSee.is_open;
 
 		return (
 			<div className='publish'>
@@ -65,7 +67,7 @@ class Publish extends Component {
 
 					<Item
 						thumb={<img src={require('./img/我的 (1).svg')} alt=""/>}
-						extra={'123'}
+						extra={is_open === 1 ? '全部' : [...labels].join('、')}
 						arrow={'horizontal'}
 						onClick={() => this.props.history.push('/publish-select-sort')}
 					>
@@ -85,7 +87,8 @@ class Publish extends Component {
 function mapStateToProps(state) {
 	return {
 		article_content: state.article_content,
-		article_img: state.article_img
+		article_img: state.article_img,
+		whoCanSee: state.whoCanSee
 	};
 }
 

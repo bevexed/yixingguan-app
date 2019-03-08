@@ -27,7 +27,10 @@ class PublishSelectSort extends Component {
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
 					onLeftClick={() => this.props.history.goBack()}
-					rightContent={<div className={'button'}>完成</div>}
+					rightContent={<div
+						className={'button'}
+						onClick={()=>this.props.history.goBack()}
+					>完成</div>}
 				>谁可以看</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
