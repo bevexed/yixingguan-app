@@ -19,6 +19,14 @@ class PublishPersonSelect extends Component {
 		}
 	};
 
+	onSureSelect = label => {
+		// console.log(label_name);
+		// console.log(this.user);
+		this.props.selectSomeCanSee({label, user: this.user});
+
+	};
+
+
 	render() {
 		const {labelList} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
@@ -36,7 +44,10 @@ class PublishPersonSelect extends Component {
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
 					onLeftClick={() => this.props.history.goBack()}
-					rightContent={<div className={'button'}>完成</div>}
+					rightContent={<div
+						className={'button'}
+						onClick={() => this.onSureSelect(label_name)}
+					>完成</div>}
 				>谁可以看</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
