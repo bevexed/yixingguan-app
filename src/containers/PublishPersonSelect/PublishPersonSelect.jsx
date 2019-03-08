@@ -9,8 +9,11 @@ const CheckboxItem = Checkbox.CheckboxItem;
 
 class PublishPersonSelect extends Component {
 
-	user = [];
+	state = {
+		user: []
+	};
 
+	user = [];
 	onSeleted = id => {
 		const {user} = this;
 		if (user.includes(id)) {
@@ -18,21 +21,23 @@ class PublishPersonSelect extends Component {
 		} else {
 			user.push(id)
 		}
+		this.setState({user})
 	};
 
-	selectAll = (label, all) => {
-		const {user} = this;
+	selectAll = all => {
+		let {user} = this;
 		Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
-		this.props.selectSomeCanSee({label, user});
+		user = [...new Set([...user])];
+		this.setState({user})
 	};
 
 	onSureSelect = label => {
-		console.log(this.user);
 		this.props.selectSomeCanSee({label, user: this.user});
 		this.props.history.goBack();
 	};
 
 	render() {
+		const {user} = this.state;
 		const {labelList, whoCanSee} = this.props;
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
@@ -65,7 +70,7 @@ class PublishPersonSelect extends Component {
 				<WhiteSpace/>
 
 				<List>
-					<CheckboxItem onChange={() => this.selectAll(label_name, patientList)}>
+					<CheckboxItem onChange={() => this.selectAll(patientList)}>
 						全部
 					</CheckboxItem>
 				</List>
@@ -76,7 +81,7 @@ class PublishPersonSelect extends Component {
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
 							patients.map(patient =>
-								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} checked={'a'} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
+								<CheckboxItem defaultChecked={seletPerson.includes(patient[0])} checked={user.includes(patient[0])} key={patient[0]} onChange={() => this.onSeleted(patient[0])}>
 									{patient[1]}
 								</CheckboxItem>
 							))
