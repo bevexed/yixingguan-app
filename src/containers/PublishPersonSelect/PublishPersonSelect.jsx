@@ -10,7 +10,7 @@ const CheckboxItem = Checkbox.CheckboxItem;
 class PublishPersonSelect extends Component {
 
 	user = [];
-	onSeleted = (label,id) => {
+	onSeleted = (label, id) => {
 		const {user} = this;
 		if (user.includes(id)) {
 			user.splice(user.findIndex(item => item === id), 1)
@@ -20,10 +20,10 @@ class PublishPersonSelect extends Component {
 		this.props.selectSomeCanSee({label, user});
 	};
 
-	selectAll = (label,all) => {
+	selectAll = (label, all) => {
 		let {user} = this;
 		const length = Object.values(all).length;
-		if (user.length<length){
+		if (user.length < length) {
 			Object.values(all).map(patients => patients.forEach(patient => user.push(patient[0])));
 		} else {
 			user = [];
@@ -70,7 +70,10 @@ class PublishPersonSelect extends Component {
 				<WhiteSpace/>
 
 				<List>
-					<CheckboxItem onChange={() => this.selectAll(label_name,patientList)}>
+					<CheckboxItem
+						onChange={() => this.selectAll(label_name, patientList)}
+						checked={Object.values(patientList).length === this.user.length}
+					>
 						全部
 					</CheckboxItem>
 				</List>
@@ -85,7 +88,7 @@ class PublishPersonSelect extends Component {
 									// defaultChecked={seletPerson.includes(patient[0])}
 									checked={seletPerson.includes(patient[0])}
 									key={patient[0]}
-									onChange={() => this.onSeleted(label_name,patient[0])}
+									onChange={() => this.onSeleted(label_name, patient[0])}
 								>
 									{patient[1]}
 								</CheckboxItem>
