@@ -48,7 +48,7 @@ class PublishPersonSelect extends Component {
 		const label_id = parseInt(this.props.match.params.label_id);
 		const patients = labelList.filter(label => label.id === label_id);
 		const label_name = patients[0] ? patients[0].label_name : '';
-		const patientList = patients[0] ? patients[0].user_names : {};
+		const patientList = patients[0] ? patients[0].user_names ? patients[0].user_names : {} : {};
 		const allow_users = whoCanSee.allow_users.filter(sort => sort.label === label_name);
 		const seletPerson = allow_users[0] ? allow_users[0].user : [];
 		this.user = [...seletPerson];
