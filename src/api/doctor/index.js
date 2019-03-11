@@ -39,3 +39,6 @@ export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => aj
 
 // 医生获取所发文章列表
 export const reqShareLists = page =>ajax('/api/doctor/share/share_lists',{token,page},'GET');
+
+// 文章详情
+export const reqShareDetail = id => ajax('/api/doctor/share/share_detail',{id});

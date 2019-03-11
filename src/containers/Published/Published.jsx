@@ -21,6 +21,7 @@ class Published extends Component {
 				}
 			)
 	}
+
 	// todo：分页
 
 	render() {
@@ -60,7 +61,7 @@ class Published extends Component {
 							</div>
 							<div className='articles'>
 								{articles.map(article =>
-									<div key={article.id} className='article'>
+									<div key={article.id} className='article' onClick={() => this.props.history.push('/publish-detail/' + article.id)}>
 										<div className='img' style={{display: article.picture ? 'block' : 'none'}}><img src={article.picture} alt=""/></div>
 										<div className='content'>{article.content}</div>
 									</div>)

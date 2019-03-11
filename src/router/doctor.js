@@ -14,6 +14,7 @@ import PublishSelectSort from "../containers/PublishSelectSort/PublishSelectSort
 import PublishPersonSelect from "../containers/PublishPersonSelect/PublishPersonSelect";
 import PublishPreview from "../containers/PublishPreview/PublishPreview";
 import Published from "../containers/Published/Published";
+import PublishDetail from "../containers/PublishDetail/PublishDetail";
 
 export const doctorNav = [
 	{
@@ -86,5 +87,9 @@ export const doctorRoute = [
 	{
 		pathname:'/publish-preview',
 		component:PublishPreview
+	},
+	{
+		pathname:'/publish-detail/:article_id',
+		component:PublishDetail
 	}
 ];

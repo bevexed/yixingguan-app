@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {Toast} from "antd-mobile";
-
 class NotFound extends Component {
 	state = {
 		button_show: true

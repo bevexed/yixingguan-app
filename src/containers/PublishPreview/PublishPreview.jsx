@@ -19,7 +19,6 @@ class PublishPreview extends Component {
 	render() {
 		const {article_content, article_img, whoCanSee} = this.props;
 		const {is_open, allow_users} = whoCanSee;
-		const labels = allow_users.map(sort => sort.label);
 		const picture = article_img.img.map(img => img.url);
 
 		return (

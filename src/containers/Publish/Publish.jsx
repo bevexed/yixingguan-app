@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import './publish.less'
 import {Icon, NavBar, WhiteSpace, ImagePicker, WingBlank, TextareaItem, List, Modal} from "antd-mobile";
 
-import {updataPubliceArticle, updataPubliceArticleImg,pubulish} from "../../redux/publish/action";
+import {updataPubliceArticle, updataPubliceArticleImg, pubulish, havePubulished} from "../../redux/publish/action";
 
 const Item = List.Item;
 
@@ -31,7 +31,12 @@ class Publish extends Component {
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
 					onLeftClick={() => Modal.alert('', '退出后将删除已编辑的文本???', [
-						{text: '退出', onPress: () => this.props.history.goBack()},
+						{
+							text: '退出', onPress: () => {
+								this.props.havePubulished();
+								this.props.history.goBack()
+							}
+						},
 						{text: '不退出', onPress: () => console.log(1)},
 					])}
 				>编辑图文</NavBar>
@@ -84,7 +89,7 @@ class Publish extends Component {
 					</div>
 					<div
 						className={'button pb'}
-						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users,},this.props.history)}
+						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users,}, this.props.history)}
 					>直接发表
 					</div>
 				</div>
@@ -106,6 +111,7 @@ export default connect(
 	{
 		updataPubliceArticle,
 		updataPubliceArticleImg,
-		pubulish
+		pubulish,
+		havePubulished
 	}
 )(Publish);
