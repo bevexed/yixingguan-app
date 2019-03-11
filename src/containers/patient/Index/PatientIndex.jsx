@@ -78,9 +78,8 @@ class PatientIndex extends Component {
 		})
 	};
 
-	seek = title => {
-		console.log(title);
-		this.props.getSeekDoctorList(title)
+	seek = (title, history) => {
+		this.props.getSeekDoctorList(title, history)
 	};
 
 
@@ -180,7 +179,7 @@ class PatientIndex extends Component {
 						maxLength={30}
 						onChange={val => this.handleChange('searchWord', val)}
 						cancelText={'搜索'}
-						onCancel={val => this.seek(val)}
+						onCancel={val => this.seek(val, this.props.history)}
 					/>
 				</Item>
 

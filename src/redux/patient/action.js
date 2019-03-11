@@ -26,11 +26,12 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 
 const seekDoctorList = doctorList =>({type:SEEK_DOCTOR_LIST,data:doctorList});
 
-export const getSeekDoctorList = title => {
+export const getSeekDoctorList = (title,history) => {
 	return async dispatch => {
 		reqSeeks(title).then(
 			res => {
 				if (res.code === 1 && res.data) {
+					history.push('./search-result');
 					dispatch(seekDoctorList(res.data))
 				}
 			}
