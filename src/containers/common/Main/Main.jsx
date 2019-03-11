@@ -22,7 +22,7 @@ class Main extends Component {
 
 	componentDidMount() {
 		const token = Cookies.get('token');
-		if (token) {
+		if (sessionStorage.identity === 'doctor') {
 			this.props.getPatientList(token);
 			this.props.getLabelList(token);
 		}

@@ -57,7 +57,7 @@ class DocList extends Component {
 										<Button
 											size="small"
 											style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
-											onClick={() => this.props.history.push(`/order-doc/${doctor.id}`)}
+											onClick={() => this.props.history.push(`/order-doctor/${doctor.id}`)}
 										>预约</Button>
 
 									</div>
