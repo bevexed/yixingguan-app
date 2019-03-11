@@ -16,9 +16,9 @@ import {Toast} from "antd-mobile";
 
 const receiveLabelList = labelList => ({type: RECEIVE_LABEL_LSIT, data: labelList});
 
-export const getLabelList = token => {
+export const getLabelList = () => {
 	return async dispatch => {
-		reqLabelList(token)
+		reqLabelList()
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -32,9 +32,9 @@ export const getLabelList = token => {
 
 const receivePatientList = PatientList => ({type: RECEIVE_PATIENT_LIST, data: PatientList});
 
-export const getPatientList = token => {
+export const getPatientList = () => {
 	return async dispatch => {
-		reqPatientList(token)
+		reqPatientList()
 			.then(
 				res => {
 					if (res.code === 1) {

@@ -10,20 +10,14 @@ import {
 
 import {getAcceptPatient, getPatientList} from "../../redux/doctor/action";
 
-import Cookie from 'js-cookie';
-
-const token = Cookie.get('token');
-
 class NewPatient extends Component {
 	componentDidMount() {
-		this.props.getPatientList(token);
+		this.props.getPatientList();
 	}
 
 	acceptPtient = (e, id) => {
 		e.stopPropagation();
-
-		const patient = {id, token};
-		this.props.getAcceptPatient(patient)
+		this.props.getAcceptPatient(id)
 	};
 
 	render() {

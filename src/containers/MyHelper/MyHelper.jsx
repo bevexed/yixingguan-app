@@ -5,9 +5,7 @@ import './MyHelper.less'
 import {Icon, NavBar, WhiteSpace} from "antd-mobile";
 
 import {reqAssistantList} from "../../api/doctor";
-import Cookie from 'js-cookie';
 
-const token = Cookie.get('token');
 
 class myHelper extends Component {
 	state = {
@@ -16,16 +14,14 @@ class myHelper extends Component {
 	};
 
 	componentDidMount() {
-		if (token) {
-			reqAssistantList(token)
-				.then(
-					res => {
-						if (res.code === 1) {
-							this.setState({assistantList: res.data})
-						}
+		reqAssistantList()
+			.then(
+				res => {
+					if (res.code === 1) {
+						this.setState({assistantList: res.data})
 					}
-				)
-		}
+				}
+			)
 	}
 
 	render() {

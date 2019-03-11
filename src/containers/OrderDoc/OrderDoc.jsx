@@ -4,8 +4,6 @@ import {getDoctorDetail} from "../../redux/user/action";
 
 import './OrderDoc.less'
 
-import Cookie from 'js-cookie';
-
 import {subscribes} from "../../api/patient";
 
 import {
@@ -55,7 +53,6 @@ class OrderDoc extends Component {
 		const {phone, auth_code, symptoms_described, files} = this.state;
 		const inspection_report = files.map(img => img.file);
 		const patientData = {
-			token: Cookie.get('token'),
 			d_id: this.props.match.params.docId,
 			phone,
 			auth_code,

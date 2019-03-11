@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import './DoctorWallet.less'
 
-import Cookie from 'js-cookie';
-
 import {
 	NavBar,
 	Icon,
@@ -18,8 +16,6 @@ import {reqExceptionalAccount, reqExceptionalLogs} from "../../api/doctor";
 
 const Item = List.Item;
 const Panel = Accordion.Panel;
-
-const token = Cookie.get('token');
 
 class DoctorWallet extends Component {
 
@@ -46,7 +42,7 @@ class DoctorWallet extends Component {
 	};
 
 	componentDidMount() {
-		reqExceptionalAccount(token)
+		reqExceptionalAccount()
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -60,7 +56,7 @@ class DoctorWallet extends Component {
 
 	getExceptionalLogs = () => {
 		const {page} = this.state;
-		reqExceptionalLogs({token, page}).then(
+		reqExceptionalLogs( page).then(
 			res => {
 				if (res.code === 1) {
 					this.setState({logs: res.data})

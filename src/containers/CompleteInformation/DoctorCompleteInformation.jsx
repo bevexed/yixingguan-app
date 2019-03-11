@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import './DoctorCompleteInformation.less'
 
-import Cookie from 'js-cookie';
-
 import config from '../../../package.json'
 
 import {reqDoctorInformation} from "../../api/doctor";
@@ -55,13 +53,10 @@ class DoctorCompleteInformation extends Component {
 	};
 
 	updata = () => {
-		const token = Cookie.get('token');
 		const avatar = [this.props.user.avatar];
 		const vocational_certificate = this.state.files.length ? [this.state.files[0].url] : [];
 		const {birth, sex, affiliated_hospital, department, with_title, introduction} = this.state;
-		const DoctorInformation = {
-			token, avatar, birth, sex: sex[0], affiliated_hospital, department, with_title, vocational_certificate, introduction
-		};
+		const DoctorInformation = {avatar, birth, sex: sex[0], affiliated_hospital, department, with_title, vocational_certificate, introduction};
 
 		if (!avatar.length) {
 			Toast.fail('请选择头像', 1);

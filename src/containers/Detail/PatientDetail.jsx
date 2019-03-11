@@ -5,8 +5,6 @@ import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
 
 import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/action";
 
-import Cookie from 'js-cookie';
-
 import './PatientDetail.less'
 
 const Item = List.Item;
@@ -26,19 +24,13 @@ class PatientDetail extends Component {
 	};
 
 	componentDidMount() {
-		const token = Cookie.get('token');
 		const id = this.props.match.params.patientId;
-		const patient = {id, token};
-		if (token) {
-			this.props.getPatientDetail(patient)
-		}
+		this.props.getPatientDetail(id)
 	}
 
 	acceptPtient = () => {
-		const token = Cookie.get('token');
 		const id = this.props.match.params.patientId;
-		const patient = {id, token};
-		this.props.getAcceptPatient(patient)
+		this.props.getAcceptPatient(id)
 	};
 
 	render() {
