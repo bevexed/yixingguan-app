@@ -54,7 +54,11 @@ export const getPatientDetail = patient => {
 		reqPatientDetail(patient).then(
 			res => {
 				if (res) {
-					dispatch(receivePatientDetail(res.data))
+					if (res.code === 1) {
+						dispatch(receivePatientDetail(res.data))
+					} else {
+						Toast.fail(res.message, 3, () => window.history.go(-1));
+					}
 				}
 			}
 		)
@@ -69,9 +73,9 @@ export const getAcceptPatient = Patient => {
 			.then(
 				res => {
 					if (res.code === 1) {
-						dispatch(acceptPatient({is_accept: 1,id:Patient.id}))
-					}else {
-						Toast.fail(res.message,1)
+						dispatch(acceptPatient({is_accept: 1, id: Patient.id}))
+					} else {
+						Toast.fail(res.message, 1)
 					}
 				}
 			)
