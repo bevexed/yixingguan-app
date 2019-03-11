@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import './RecordList.less'
 import {Icon, NavBar, WhiteSpace} from "antd-mobile";
 
@@ -81,10 +80,4 @@ class RecordList extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
-
-export default connect(
-	mapStateToProps,
-)(RecordList);
+export default RecordList

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import './Published.less'
 import {NavBar, Icon, WhiteSpace, WingBlank} from "antd-mobile";
 
@@ -76,10 +75,4 @@ class Published extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
-
-export default connect(
-	mapStateToProps,
-)(Published);
+export default Published

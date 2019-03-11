@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
 import './DoctorWallet.less'
 
@@ -122,12 +121,5 @@ class DoctorWallet extends Component {
 		);
 	}
 }
-
-function mapStateToProps(state) {
-	return {};
-}
-
-export default connect(
-	mapStateToProps,
-)(DoctorWallet);
+export default DoctorWallet
 

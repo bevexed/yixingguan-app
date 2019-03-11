@@ -52,8 +52,9 @@ class Avatar extends Component {
 				<WhiteSpace/>
 				<div
 					className={'button'}
-					onClick={()=>this.props.history.replace('/doctor-complete-information')}
-				>确认</div>
+					onClick={() => this.props.history.replace('/doctor-complete-information')}
+				>确认
+				</div>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -64,12 +65,7 @@ class Avatar extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
-
 export default connect(
-	mapStateToProps,
 	{
 		receiveUser
 	}

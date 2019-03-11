@@ -135,7 +135,7 @@ class OrderDoctor extends Component {
 								</section>
 
 								{/*<footer>*/}
-									{/*<p>医生资质由平安保险承担</p>*/}
+								{/*<p>医生资质由平安保险承担</p>*/}
 								{/*</footer>*/}
 							</div>
 						}
@@ -211,7 +211,7 @@ class OrderDoctor extends Component {
 						<ImagePicker
 							files={files}
 							length={3}
-							onChange={(files, type, index) => {
+							onChange={files => {
 								this.setState({
 									files,
 								})

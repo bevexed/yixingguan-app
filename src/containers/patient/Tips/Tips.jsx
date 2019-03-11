@@ -130,10 +130,4 @@ class Tips extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
-}
-
-export default connect(
-	mapStateToProps,
-)(Tips);
+export default Tips
