@@ -9,7 +9,7 @@ import {
 	RECEIVE_PATIENT_LIST,
 	RECEIVE_PATIENT_DETAILS,
 	RECEIVE_LABEL_LSIT,
-	ACCEPT_PATIENT, UPDATA_PATIENT_LABEL
+	ACCEPT_PATIENT, UPDATA_PATIENT_LABEL, ADD_PATIENT_LABEL
 } from "../action-types";
 
 import {Toast} from "antd-mobile";
@@ -46,6 +46,8 @@ export const getPatientList = () => {
 			)
 	}
 };
+
+export const addPatienLabel = label => ({type: ADD_PATIENT_LABEL, data: label});
 
 const receivePatientDetail = PatientDetail => ({type: RECEIVE_PATIENT_DETAILS, data: PatientDetail});
 

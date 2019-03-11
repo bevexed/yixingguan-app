@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Icon, NavBar, List, WhiteSpace, Modal, Toast} from "antd-mobile";
 
-import {getPatientDetail, getAcceptPatient, updataPatientLabel} from "../../redux/doctor/action";
+import {getPatientDetail, getAcceptPatient, updataPatientLabel, addPatienLabel} from "../../redux/doctor/action";
 
 import {reqAddLabel} from "../../api/doctor";
 
@@ -16,20 +16,36 @@ const prompt = Modal.prompt;
 class PatientDetail extends Component {
 
 	addPainTag = painTag => {
-
-	};
-
-	seletLabel = label => {
-		const id = this.props.match.params.patientId;
-
-		reqAddLabel({id, label: label.id})
-			.then(
-				res => {
+		return new Promise((resolve, reject) => {
+			const id = this.props.match.params.patientId;
+			if (!painTag) {
+				Toast.fail('请填写标签', 1);
+				return reject()
+			}
+			reqAddLabel({id, new_label: painTag})
+				.then(res => {
 					if (res.code === 1) {
-						this.props.updataPatientLabel({label: label.label});
+						this.props.addPatienLabel();
 						Toast.success(res.message, 1)
 					} else {
 						Toast.fail(res.message)
+					}
+					return resolve()
+				})
+		})
+	};
+
+	seletLabel = label => {
+
+		const id = this.props.match.params.patientId;
+
+		reqAddLabel({id, label: label.id})
+			.then(res => {
+					if (res.code === 1) {
+						this.props.updataPatientLabel({label: label.label});
+						Toast.success(res.message, 1);
+					} else {
+						Toast.fail(res.message);
 					}
 				}
 			)
@@ -48,7 +64,7 @@ class PatientDetail extends Component {
 
 	render() {
 		const {patientDetail, labelList} = this.props;
-		const imgs = imgs ? patientDetail.inspection_report.split(',') : [];
+		const imgs = patientDetail ? patientDetail.inspection_report.split(',') : [];
 		const labels = labelList.map(label => ({label: label.label_name, id: label.id}));
 
 
@@ -119,9 +135,18 @@ class PatientDetail extends Component {
 								onClick={() => prompt(
 									'添加患者分类',
 									null,
-									painTag => this.addPainTag(painTag),
-									['请输入分类']
-								)}
+									[
+										{
+											text: '关闭',
+											onPress: () => {
+											}
+										},
+										{
+											text: '添加',
+											onPress: painTag => this.addPainTag(painTag)
+
+										},
+									], 'default', null, [' 请输入标签'])}
 							>+</span>
 						</div>
 						<WhiteSpace/>
@@ -136,12 +161,12 @@ class PatientDetail extends Component {
 
 				{
 					patientDetail.is_accept ?
-						<div className={'button'}>
+						<div className={' button'}>
 							删除患者
 						</div>
 						:
 						< div
-							className={'button'}
+							className={' button'}
 							onClick={this.acceptPtient}
 						>
 							添加患者
@@ -168,6 +193,7 @@ export default connect(
 	{
 		getPatientDetail,
 		getAcceptPatient,
-		updataPatientLabel
+		updataPatientLabel,
+		addPatienLabel
 	}
 )(PatientDetail);

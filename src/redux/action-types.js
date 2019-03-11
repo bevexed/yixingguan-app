@@ -13,6 +13,7 @@ export const RECEIVE_DOCTOR_DETAILS = 'receive_doctor_details';
 // 医生端
 export const RECEIVE_LABEL_LSIT = 'receive_label_lsit';
 export const RECEIVE_PATIENT_LIST = 'receive_patient_list';
+export const ADD_PATIENT_LABEL = 'add_patient_label';
 export const RECEIVE_PATIENT_DETAILS = 'receive_patient_details';
 export const UPDATA_PATIENT_LABEL = 'updata_patient_label';
 export const ACCEPT_PATIENT = 'accept_patient';
