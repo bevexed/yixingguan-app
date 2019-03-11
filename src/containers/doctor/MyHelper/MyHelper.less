@@ -1,0 +1,82 @@
+@import "../../../static/common";
+
+.my-help {
+	position: relative;
+
+	.helpBox {
+		position: relative;
+		min-height: 90vh;
+		max-width: @maxWrapWith;
+		display: flex;
+		font-size: 14px;
+		padding-bottom: 10px;
+		flex-wrap: wrap;
+
+		> div {
+			position: relative;
+			width: 33%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 33px;
+
+			> div {
+				width: 55px;
+				height: 55px;
+				position: relative;
+				margin-bottom: 10px;
+
+				> img {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+
+				span {
+					text-align: right;
+					position: absolute;
+					right: 0;
+					left: 0;
+					top: 0;
+					margin: auto;
+					color: #FE5252;
+					font-size: 16px;
+
+					> img {
+						width: 20Px;
+					}
+				}
+			}
+		}
+	}
+
+	.helpWarn {
+		position: absolute;
+		max-width: @maxWrapWith;
+		bottom: 10px;
+		left: 20px;
+		font-size: 14px;
+		color: #666666;
+		margin-right: 33px;
+		line-height: 20px;
+	}
+
+	.code {
+		position: absolute;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 99998;
+		background-color: rgba(0, 0, 0, .3);
+
+		img {
+			position: absolute;
+			margin: auto;
+			top: 20%;
+			left: 10%;
+			width: 80%;
+			z-index: 99999;
+		}
+	}
+}

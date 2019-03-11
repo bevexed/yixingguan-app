@@ -1,20 +1,20 @@
 import {commonRoute} from "./common";
 
-import DoctorIndex from "../containers/Index/DoctorIndex";
-import PersonalDoctor from "../containers/Personal/PersonalDoctor";
-import NewPatient from "../containers/NewPatient/NewPatient";
-import DoctorCompleteInformation from "../containers/CompleteInformation/DoctorCompleteInformation";
-import DoctorDetail from "../containers/Detail/DoctorDetail";
-import DoctorWallet from "../containers/Wallet/DoctorWallet";
-import PatientDetail from "../containers/Detail/PatientDetail";
-import Statistics from "../containers/Statistics/Statistics";
-import MyHelper from "../containers/MyHelper/MyHelper";
-import Publish from "../containers/Publish/Publish";
-import PublishSelectSort from "../containers/PublishSelectSort/PublishSelectSort";
-import PublishPersonSelect from "../containers/PublishPersonSelect/PublishPersonSelect";
-import PublishPreview from "../containers/PublishPreview/PublishPreview";
-import Published from "../containers/Published/Published";
-import PublishDetail from "../containers/PublishDetail/PublishDetail";
+import DoctorIndex from "../containers/doctor/Index/DoctorIndex";
+import PersonalDoctor from "../containers/doctor/Personal/PersonalDoctor";
+import NewPatient from "../containers/doctor/NewPatient/NewPatient";
+import DoctorCompleteInformation from "../containers/doctor/CompleteInformation/DoctorCompleteInformation";
+import DoctorDetail from "../containers/patient/DoctorDetail/DoctorDetail";
+import DoctorWallet from "../containers/doctor/Wallet/DoctorWallet";
+import PatientDetail from "../containers/doctor/PatientDetail/PatientDetail";
+import Statistics from "../containers/doctor/Statistics/Statistics";
+import MyHelper from "../containers/doctor/MyHelper/MyHelper";
+import Publish from "../containers/doctor/Publish/Publish";
+import PublishSelectSort from "../containers/doctor/PublishSelectSort/PublishSelectSort";
+import PublishPersonSelect from "../containers/doctor/PublishPersonSelect/PublishPersonSelect";
+import PublishPreview from "../containers/doctor/PublishPreview/PublishPreview";
+import Published from "../containers/doctor/Published/Published";
+import PublishDetail from "../containers/doctor/PublishDetail/PublishDetail";
 
 export const doctorNav = [
 	{

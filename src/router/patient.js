@@ -1,12 +1,12 @@
 import {commonRoute} from "./common";
 
-import PatientIndex from "../containers/Index/PatientIndex";
-import Doctors from "../containers/Doctors/Doctors";
-import PersonalPatient from "../containers/Personal/PersonalPatient";
-import OrderDoc from "../containers/OrderDoc/OrderDoc";
-import Tips from "../containers/Tips/Tips";
-import PaySuccess from "../containers/PaySuccess/PaySuccess";
-import RecordList from "../containers/RecordList/RecordList";
+import PatientIndex from "../containers/patient/Index/PatientIndex";
+import DoctorChatLIst from "../containers/doctor/DoctorChatLIst/DoctorChatLIst";
+import PersonalPatient from "../containers/patient/Personal/PersonalPatient";
+import OrderDoctor from "../containers/patient/OrderDoctor/OrderDoctor";
+import Tips from "../containers/patient/Tips/Tips";
+import PaySuccess from "../containers/patient/PaySuccess/PaySuccess";
+import RecordList from "../containers/patient/RecordList/RecordList";
 
 export const patientNav = [
 	{
@@ -18,12 +18,12 @@ export const patientNav = [
 		component: PatientIndex,
 	},
 	{
-		pathname: '/doc',
+		pathname: '/doctor-chat-list',
 		path: '',
 		isActive: false,
 		icon: 'doc.svg',
 		selectedIcon: 'doc.svg',
-		component: Doctors,
+		component: DoctorChatLIst,
 	},
 	{
 		pathname: '/patient-personal',
@@ -39,8 +39,8 @@ export const patientRoute = [
 	...patientNav,
 	...commonRoute,
 	{
-		pathname: '/order-doc/:docId',
-		component: OrderDoc,
+		pathname: '/order-doctor/:docId',
+		component: OrderDoctor,
 	},
 	{
 		pathname:'/tips/:docId',

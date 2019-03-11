@@ -1,5 +1,5 @@
-import Message from "../containers/Message/Message";
-import Avatar from "../containers/Avatar/Avatar";
+import Message from "../containers/common/Message/Message";
+import Avatar from "../containers/doctor/Avatar/Avatar";
 
 export const commonRoute = [
 	{

@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Intercept from './containers/RouterIntercept/Intercept'
+import Intercept from './containers/common/RouterIntercept/Intercept'
 
 // mate 标签
 // require('./static/font');
