@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Icon, NavBar, List, WhiteSpace, Modal, Toast} from "antd-mobile";
 
-import {getPatientDetail, getAcceptPatient, updataPatientLabel, addPatienLabel} from "../../redux/doctor/action";
+import {getPatientDetail, getAcceptPatient, updataPatientLabel, addPatienLabel, getLabelList} from "../../redux/doctor/action";
 
 import {reqAddLabel} from "../../api/doctor";
 
@@ -26,6 +26,8 @@ class PatientDetail extends Component {
 				.then(res => {
 					if (res.code === 1) {
 						this.props.addPatienLabel();
+						this.props.getLabelList();
+						this.props.getPatientDetail(id);
 						Toast.success(res.message, 1)
 					} else {
 						Toast.fail(res.message)
@@ -194,6 +196,7 @@ export default connect(
 		getPatientDetail,
 		getAcceptPatient,
 		updataPatientLabel,
-		addPatienLabel
+		addPatienLabel,
+		getLabelList
 	}
 )(PatientDetail);

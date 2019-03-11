@@ -1,7 +1,9 @@
 import {
 	RECEIVE_PATIENT_DETAILS,
 	RECEIVE_PATIENT_LIST,
-	RECEIVE_LABEL_LSIT, ACCEPT_PATIENT, UPDATA_PATIENT_LABEL
+	RECEIVE_LABEL_LSIT,
+	ACCEPT_PATIENT,
+	UPDATA_PATIENT_LABEL
 } from "../action-types";
 
 const InitLabalList = [
@@ -43,13 +45,6 @@ export const patientList = (state = InitPatientList, action) => {
 	switch (action.type) {
 		case RECEIVE_PATIENT_LIST:
 			return [...action.data];
-		case ACCEPT_PATIENT:
-			state.forEach(patient => {
-				if (patient.id === action.data.id) {
-					patient.is_accept = 1
-				}
-			});
-			return [...state];
 		default:
 			return state;
 	}
@@ -71,7 +66,7 @@ export const patientDetail = (state = InitPatientDetail, action) => {
 		case RECEIVE_PATIENT_DETAILS:
 			return {...action.data};
 		case ACCEPT_PATIENT:
-			return {...state, ...action.data.is_accept};
+			return {...state, is_accept: 1};
 		case UPDATA_PATIENT_LABEL:
 			return {...state, ...action.data};
 		default:
