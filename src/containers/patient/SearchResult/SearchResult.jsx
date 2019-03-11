@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import DocList from '../../../components/DocList/DocList'
 
-import {NavBar,Icon,WhiteSpace} from "antd-mobile";
+import {Redirect} from "react-router-dom";
+
+import {NavBar, Icon, WhiteSpace} from "antd-mobile";
 
 class SearchResult extends Component {
 	render() {
 		const DoctorListData = this.props.doctorList.list;
-		if	(DoctorListData[0].id===0){
-			this.props.history.replace('/patient-index')
+		if (DoctorListData[0].id === 0) {
+			return <Redirect to='/patient-index'/>
 		}
 
 		return (
