@@ -28,7 +28,7 @@ export const pubulish = (pub, history) => {
 				if (res.code === 1) {
 					//todo: 去详情页面
 					Toast.success('文章发布成功', 1, () => {
-							history.push('/published')
+							history.replace('/published');
 							dispatch(havePubulished())
 						}
 					);
