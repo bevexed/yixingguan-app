@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import config from '../../../package.json'
-
 import {
 	Result,
 	WhiteSpace,
@@ -95,7 +93,7 @@ class MyComponent extends Component {
 			<div className={'personal-doctor'}>
 				<div onClick={() => this.props.history.push('/doctor-detail')}>
 					<Result
-						img={<img className='avator' src={avatar ? config.img + avatar : null} alt=""/>}
+						img={<img className='avator' src={avatar} alt=""/>}
 						title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 					/>
 				</div>

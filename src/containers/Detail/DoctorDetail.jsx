@@ -4,8 +4,6 @@ import {Icon, NavBar, Result, WhiteSpace, List} from "antd-mobile";
 
 import './DoctorDetail.less'
 
-import config from '../../../package.json'
-
 const Item = List.Item;
 
 class DoctorDetail extends Component {
@@ -28,7 +26,7 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 				<div onClick={() => this.props.history.push('/doctor-detail')}>
 					<Result
-						img={<img className={'avator'} src={avatar ? config.img + avatar : null} alt=""/>}
+						img={<img className={'avator'} src={avatar} alt=""/>}
 						title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 					/>
 				</div>
@@ -85,7 +83,7 @@ class DoctorDetail extends Component {
 				<Item>
 					医生职业证书
 					<Item.Brief>
-						<img className={'certificate'} src={vocational_certificate ? config.img + vocational_certificate : null} alt=""/>
+						<img className={'certificate'} src={vocational_certificate} alt=""/>
 					</Item.Brief>
 				</Item>
 

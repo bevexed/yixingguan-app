@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './DoctorIndex.less'
 
-import config from '../../../package.json'
-
 import {
 	Result,
 	WhiteSpace,
@@ -79,7 +77,7 @@ class DoctorIndex extends Component {
 		return (
 			<div className="doctor-index">
 				<Result
-					img={<img className='avator' src={avatar ? config.img + avatar : null} alt=""/>}
+					img={<img className='avator' src={avatar} alt=""/>}
 					title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
 				/>
 				<WhiteSpace/>
