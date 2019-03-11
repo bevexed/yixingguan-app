@@ -2,7 +2,7 @@ import {
 	UPDATA_PUBLICE_ARTICLE_IMG,
 	UPDATA_PUBLICE_ARTICLE,
 	SELECT_SOME_CAN_SEE,
-	ALL_CAN_SEE
+	ALL_CAN_SEE, HAVE_PUBULISHED
 } from "../action-types";
 
 import {reqReleaseShare} from "../../api/doctor";
@@ -17,17 +17,22 @@ export const selectSomeCanSee = personIds => ({type: SELECT_SOME_CAN_SEE, data: 
 
 export const allCanSee = () => ({type: ALL_CAN_SEE, data: {is_open: 1}});
 
-export const pubulish = pub => {
+export const havePubulished = () => ({type: HAVE_PUBULISHED});
+
+export const pubulish = (pub,history) => {
 	const {contents, picture, is_open, allow_users} = pub;
 	const key = is_open === 1 ? {contents, picture, is_open} : {contents, picture, is_open, allow_users};
-	
-	reqReleaseShare(key)
-		.then(res => {
-			if (res.code === 1) {
-				//todo: 去详情页面
-				Toast.success('文章发布成功', 1,)
-			} else {
-				Toast.fail(res.message, 1)
-			}
-		})
+	return async dispatch => {
+		reqReleaseShare(key)
+			.then(res => {
+				if (res.code === 1) {
+					//todo: 去详情页面
+					Toast.success('文章发布成功', 1, () => {history.push('/published')}
+					);
+					dispatch(havePubulished())
+				} else {
+					Toast.fail(res.message, 1)
+				}
+			})
+	}
 };

@@ -84,7 +84,7 @@ class Publish extends Component {
 					</div>
 					<div
 						className={'button pb'}
-						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users})}
+						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users,},this.props.history)}
 					>直接发表
 					</div>
 				</div>

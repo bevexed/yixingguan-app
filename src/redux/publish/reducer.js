@@ -2,7 +2,7 @@ import {
 	UPDATA_PUBLICE_ARTICLE_IMG,
 	UPDATA_PUBLICE_ARTICLE,
 	ALL_CAN_SEE,
-	SELECT_SOME_CAN_SEE
+	SELECT_SOME_CAN_SEE, HAVE_PUBULISHED
 } from "../action-types";
 
 const initArticle = {
@@ -13,6 +13,8 @@ export const article_content = (state = initArticle, action) => {
 	switch (action.type) {
 		case UPDATA_PUBLICE_ARTICLE:
 			return {...action.data};
+		case HAVE_PUBULISHED:
+			return initArticle;
 		default:
 			return state
 	}
@@ -26,6 +28,8 @@ export const article_img = (state = initPic, action) => {
 	switch (action.type) {
 		case UPDATA_PUBLICE_ARTICLE_IMG:
 			return {...action.data};
+		case HAVE_PUBULISHED:
+			return initPic;
 		default:
 			return state
 	}
@@ -39,7 +43,7 @@ const initWhoCanSee = {
 export const whoCanSee = (state = initWhoCanSee, action) => {
 		switch (action.type) {
 			case ALL_CAN_SEE:
-				return {	is_open: 1, allow_users: []};
+				return {is_open: 1, allow_users: []};
 			case SELECT_SOME_CAN_SEE:
 				const {allow_users} = state;
 				const {label, user} = action.data;
@@ -56,9 +60,10 @@ export const whoCanSee = (state = initWhoCanSee, action) => {
 						allow_users.splice(index, 1)
 					}
 				});
-
-
 				return {is_open: 0, allow_users};
+
+			case HAVE_PUBULISHED:
+				return initWhoCanSee;
 
 			default:
 				return state;
