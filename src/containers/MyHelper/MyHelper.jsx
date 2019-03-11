@@ -61,7 +61,7 @@ class myHelper extends Component {
 							<div key={assistant.name}>
 								<div>
 									<img alt='' src={assistant.avatar}/>
-									<span>x</span>
+									<span><img src={require('./img/cw@3x.png.png')} alt=""/></span>
 								</div>
 								<p>{assistant.name}</p>
 							</div>
