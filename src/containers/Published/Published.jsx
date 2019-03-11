@@ -52,6 +52,7 @@ class Published extends Component {
 				<WhiteSpace/>
 
 				{/*todo:发布图文接口*/}
+				<div className='hr'/>
 				<WingBlank>
 					{Object.entries(articles).map(([time, articles]) =>
 						<div key={time} className='day'>
