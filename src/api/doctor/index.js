@@ -38,4 +38,4 @@ export const reqDataAnalysis = ({start_time, end_time}) => ajax('/api/doctor/acc
 export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => ajax('/api/doctor/share/release_share', {contents, picture, is_open, allow_users});
 
 // 医生获取所发文章列表
-export const reqShareLists = () =>ajax('/api/doctor/share/share_lists',{token},'GET');
+export const reqShareLists = page =>ajax('/api/doctor/share/share_lists',{token,page},'GET');

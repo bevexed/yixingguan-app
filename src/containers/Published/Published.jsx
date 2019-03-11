@@ -12,7 +12,7 @@ class Published extends Component {
 	};
 
 	componentDidMount() {
-		reqShareLists()
+		reqShareLists(1)
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -48,17 +48,22 @@ class Published extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				<WhiteSpace/>
-				<WhiteSpace/>
 
 				{/*todo:发布图文接口*/}
 				<WingBlank>
-					{articles.map(article =>
-						<div key={article.id} className='day'>
-							<div className='time'><span>{article.create_at}</span></div>
-							<div className='article'>
-								<div className='img'><img src={article.picture?require('../../asset/img/panel.png'):''} alt=""/></div>
-								<div className='content'>{article.content}</div>
+					{Object.entries(articles).map(([time, articles]) =>
+						<div key={time} className='day'>
+							<div className='time'>
+								<span className='date'>{isNaN(parseInt(time.split('-')[1])) ? time.split('-')[0] : parseInt(time.split('-')[1])}</span>
+								<span className='month'>{isNaN(parseInt(time.split('-')[0])) ? null : parseInt(time.split('-')[0]) + '月'}</span>
+							</div>
+							<div className='articles'>
+								{articles.map(article =>
+									<div key={article.id} className='article'>
+										<div className='img' style={{display: article.picture ? 'block' : 'none'}}><img src={article.picture} alt=""/></div>
+										<div className='content'>{article.content}</div>
+									</div>)
+								}
 							</div>
 						</div>)
 					}
