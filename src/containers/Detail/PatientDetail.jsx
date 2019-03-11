@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {Icon, NavBar, List, WhiteSpace, Modal} from "antd-mobile";
+import {Icon, NavBar, List, WhiteSpace, Modal, Toast} from "antd-mobile";
 
-import {getPatientDetail, getAcceptPatient} from "../../redux/doctor/action";
+import {getPatientDetail, getAcceptPatient, updataPatientLabel} from "../../redux/doctor/action";
+
+import {reqAddLabel} from "../../api/doctor";
 
 import './PatientDetail.less'
 
@@ -12,16 +14,27 @@ const prompt = Modal.prompt;
 
 
 class PatientDetail extends Component {
-	state = {
-		painTags: [],
-	};
 
 	addPainTag = painTag => {
-		const newPainTags = [...this.state.painTags, painTag];
-		this.setState({
-			painTags: newPainTags
-		})
+
 	};
+
+	seletLabel = label => {
+		const id = this.props.match.params.patientId;
+
+		reqAddLabel({id, label: label.id})
+			.then(
+				res => {
+					if (res.code === 1) {
+						this.props.updataPatientLabel({label: label.label});
+						Toast.success(res.message, 1)
+					} else {
+						Toast.fail(res.message)
+					}
+				}
+			)
+	};
+
 
 	componentDidMount() {
 		const id = this.props.match.params.patientId;
@@ -36,9 +49,7 @@ class PatientDetail extends Component {
 	render() {
 		const {patientDetail, labelList} = this.props;
 		const imgs = imgs ? patientDetail.inspection_report.split(',') : [];
-		const labels = labelList.map(label => {
-			if (label.label_name) {return label.label_name;} else {return null}
-		});
+		const labels = labelList.map(label => ({label: label.label_name, id: label.id}));
 
 
 		return (
@@ -95,12 +106,12 @@ class PatientDetail extends Component {
 						<WhiteSpace/>
 						<div className={'tag'}>
 							{
-								labels.map((pain, index) =>
+								labels.map(({label, id}) =>
 									<span
-										key={index}
-										className={patientDetail.label === pain ? 'pain active' : 'pain'}
-										// onClick={}
-									>{pain}</span>
+										key={id}
+										className={patientDetail.label === label ? 'pain active' : 'pain'}
+										onClick={() => this.seletLabel({label, id})}
+									>{label}</span>
 								)
 							}
 							<span
@@ -156,6 +167,7 @@ export default connect(
 	mapStateToProps,
 	{
 		getPatientDetail,
-		getAcceptPatient
+		getAcceptPatient,
+		updataPatientLabel
 	}
 )(PatientDetail);

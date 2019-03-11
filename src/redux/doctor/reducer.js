@@ -1,7 +1,7 @@
 import {
 	RECEIVE_PATIENT_DETAILS,
 	RECEIVE_PATIENT_LIST,
-	RECEIVE_LABEL_LSIT, ACCEPT_PATIENT
+	RECEIVE_LABEL_LSIT, ACCEPT_PATIENT, UPDATA_PATIENT_LABEL
 } from "../action-types";
 
 const InitLabalList = [
@@ -72,6 +72,8 @@ export const patientDetail = (state = InitPatientDetail, action) => {
 			return {...action.data};
 		case ACCEPT_PATIENT:
 			return {...state, ...action.data.is_accept};
+		case UPDATA_PATIENT_LABEL:
+			return {...state, ...action.data};
 		default:
 			return state;
 	}

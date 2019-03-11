@@ -8,7 +8,7 @@ const token = Cookie.get('token');
 export const reqLabelList = () => ajax('/api/doctor/list/label_lists', {token});
 
 // 添加 标签
-export const reqAddLabel = ({id, label}) => ajax('/api/doctor/list/add_labels', {id, token, label});
+export const reqAddLabel = ({id, label, new_label}) => ajax('/api/doctor/list/add_labels', {id, token, label, new_label});
 
 // 医生提交资料API
 export const reqDoctorInformation = ({avatar, birth, sex, affiliated_hospital, department, with_title, vocational_certificate, introduction}) => ajax('/api/doctor/personal/perfect_information', {token, avatar, birth, sex, affiliated_hospital, department, with_title, vocational_certificate, introduction});
@@ -38,7 +38,7 @@ export const reqDataAnalysis = ({start_time, end_time}) => ajax('/api/doctor/acc
 export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => ajax('/api/doctor/share/release_share', {contents, picture, is_open, allow_users});
 
 // 医生获取所发文章列表
-export const reqShareLists = page =>ajax('/api/doctor/share/share_lists',{token,page},'GET');
+export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {token, page}, 'GET');
 
 // 文章详情
-export const reqShareDetail = id => ajax('/api/doctor/share/share_detail',{id});
+export const reqShareDetail = id => ajax('/api/doctor/share/share_detail', {id});
