@@ -42,3 +42,6 @@ export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {toke
 
 // 文章详情
 export const reqShareDetail = id => ajax('/api/doctor/share/share_detail', {id});
+
+// 医生删除助手
+export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete',{id});

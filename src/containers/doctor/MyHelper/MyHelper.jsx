@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 import './MyHelper.less'
-import {Icon, NavBar, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, Toast, WhiteSpace} from "antd-mobile";
 
-import {reqAssistantList} from "../../../api/doctor";
+import {reqAssistantList, reqAssistantDelete} from "../../../api/doctor";
 
 
 class MyHelper extends Component {
@@ -13,6 +13,10 @@ class MyHelper extends Component {
 	};
 
 	componentDidMount() {
+		this.getAssistantList()
+	}
+
+	getAssistantList = () => {
 		reqAssistantList()
 			.then(
 				res => {
@@ -21,7 +25,21 @@ class MyHelper extends Component {
 					}
 				}
 			)
-	}
+	};
+
+	deleteAssistant = id => {
+		reqAssistantDelete(id)
+			.then(
+				res => {
+					if (res.code === 1) {
+						Toast.success(res.message);
+						this.getAssistantList();
+					} else {
+						Toast.success(res.message);
+					}
+				}
+			)
+	};
 
 	render() {
 		const {code_show, assistantList} = this.state;
@@ -56,7 +74,7 @@ class MyHelper extends Component {
 							<div key={assistant.name}>
 								<div>
 									<img alt='' src={assistant.avatar}/>
-									<span><img src={require('./img/cw@3x.png.png')} alt=""/></span>
+									<span><img src={require('./img/cw@3x.png.png')} alt="" onClick={() => this.deleteAssistant(assistant.id)}/></span>
 								</div>
 								<p>{assistant.name}</p>
 							</div>
