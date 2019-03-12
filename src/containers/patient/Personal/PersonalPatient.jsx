@@ -46,16 +46,6 @@ class PersonalPatient extends Component {
 
 				<WhiteSpace size={'lg'}/>
 
-				<List>
-					<Item
-						arrow={'horizontal'}
-					>邀请好友</Item>
-					<Item
-						arrow={'horizontal'}
-					>设置</Item>
-				</List>
-
-
 			</div>
 
 		);

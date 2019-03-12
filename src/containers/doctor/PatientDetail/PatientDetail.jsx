@@ -5,7 +5,7 @@ import {Icon, NavBar, List, WhiteSpace, Modal, Toast} from "antd-mobile";
 
 import {getPatientDetail, getAcceptPatient, updataPatientLabel, addPatienLabel, getLabelList} from "../../../redux/doctor/action";
 
-import {reqAddLabel} from "../../../api/doctor";
+import {reqAddLabel, reqSubscribeDelete} from "../../../api/doctor";
 
 import './PatientDetail.less'
 
@@ -53,6 +53,19 @@ class PatientDetail extends Component {
 			)
 	};
 
+	deletePatient = () => {
+		const id = this.props.match.params.patientId;
+		reqSubscribeDelete(id)
+			.then(
+				res=>{
+					if (res.code === 1) {
+						Toast.success(res.messsage,1,()=>this.props.history.replace('/new-patient'))
+					}else {
+						Toast.fail(res.messsage)
+					}
+				}
+			)
+	};
 
 	componentDidMount() {
 		const id = this.props.match.params.patientId;
@@ -163,7 +176,10 @@ class PatientDetail extends Component {
 
 				{
 					patientDetail.is_accept ?
-						<div className={' button'}>
+						<div
+							className={' button'}
+							onClick={this.deletePatient}
+						>
 							删除患者
 						</div>
 						:

@@ -6,6 +6,8 @@ export const RESET_USER = 'reset_user';
 
 // 患者端
 export const RECEIVE_DOCTOR_LIST = 'receive_doctor_list';
+// todo: 医生列表翻页
+export const RECEIVE_MORE_DOCTOR_LIST = 'receive_more_doctor_list';
 export const SEEK_DOCTOR_LIST = 'seek_doctor_list';
 export const RECEIVE_DOCTOR_DETAILS = 'receive_doctor_details';
 

@@ -45,3 +45,6 @@ export const reqShareDetail = id => ajax('/api/doctor/share/share_detail', {id})
 
 // 医生删除助手
 export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete',{id});
+
+// 医生删除预约
+export const reqSubscribeDelete = id => ajax('/api/doctor/list/subscribe_delete',{id});
