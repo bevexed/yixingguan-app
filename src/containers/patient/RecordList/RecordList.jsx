@@ -2,9 +2,27 @@ import React, {Component} from 'react';
 import './RecordList.less'
 import {Icon, NavBar, WhiteSpace} from "antd-mobile";
 
+import {reqSubscribeLists} from "../../../api/patient";
 
 class RecordList extends Component {
+	state = {
+		data: {}
+	};
+
+	componentDidMount() {
+		reqSubscribeLists()
+			.then(
+				res => {
+					if (res.code) {
+						this.setState({data: res.data})
+					}
+				}
+			)
+	}
+
 	render() {
+		const {finished,unfinished} = this.state.data;
+
 		return (
 			<div className={'record-list'}>
 				<NavBar
@@ -36,7 +54,6 @@ class RecordList extends Component {
 										<span>浙江省立同德医院</span>
 									</div>
 								</div>
-
 							</div>
 							<span>2019-02-13 13:13</span>
 						</div>
@@ -48,7 +65,7 @@ class RecordList extends Component {
 					</div>
 				</div>
 				<div className='recordList'>
-					<p className='recordP' style={{background:"#FF9900"}}>历史记录</p>
+					<p className='recordP' style={{background: "#FF9900"}}>历史记录</p>
 					<div className='recordDiv'>
 						<div>
 							<div>

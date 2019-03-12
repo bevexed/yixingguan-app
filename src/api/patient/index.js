@@ -1,6 +1,7 @@
 import ajax from '../ajax'
 
 import Cookie from 'js-cookie';
+
 const token = Cookie.get('token');
 
 // 首页 banner
@@ -16,5 +17,7 @@ export const reqDoctorDetail = id => ajax('/api/patient/home/doctor_details', {i
 export const reqSeeks = title => ajax('/api/patient/home/seeks', {title}, 'POST');
 
 // 用户预约
-export const subscribes = ({d_id, phone, auth_code, symptoms_described, inspection_report}) => ajax('/api/patient/appoint/subscribes', {token, d_id, phone, auth_code, symptoms_described, inspection_report});
+export const subscribes = ({name, d_id, phone, auth_code, symptoms_described, inspection_report}) => ajax('/api/patient/appoint/subscribes', {token, name, d_id, phone, auth_code, symptoms_described, inspection_report});
 
+// 用户预约列表
+export const reqSubscribeLists = () => ajax('/api/patient/appoint/subscribe_lists', {token});

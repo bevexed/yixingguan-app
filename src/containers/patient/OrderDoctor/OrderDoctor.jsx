@@ -32,6 +32,7 @@ class OrderDoctor extends Component {
 		phone: '',
 		auth_code: '',
 		symptoms_described: '',
+		name: '',
 
 		sendable: true
 	};
@@ -40,14 +41,18 @@ class OrderDoctor extends Component {
 		this.props.getDoctorDetail(this.props.match.params.docId);
 	}
 
+	componentWillUnmount() {
+		this.setState = () => {
+			return false
+		};
+	}
+
 	time = 60;
 
 	getCode = () => {
 
 		const {phone: mobile, sendable} = this.state;
 		const template_id_code = 2;
-
-		console.log(mobile);
 
 		if (!mobile || mobile.length < 11) {
 			Toast.fail('手机号格式有误', 1);
@@ -96,15 +101,21 @@ class OrderDoctor extends Component {
 
 
 	orderDoctor = () => {
-		const {phone, auth_code, symptoms_described, files} = this.state;
-		const inspection_report = files.map(img => img.file);
+		const {name, phone, auth_code, symptoms_described, files} = this.state;
+		const inspection_report = files.map(img => img.url);
 		const patientData = {
+			name,
 			d_id: this.props.match.params.docId,
-			phone:phone.replace(/\s+/g, ""),
+			phone: phone.replace(/\s+/g, ""),
 			auth_code,
 			symptoms_described,
 			inspection_report
 		};
+
+		if (!name) {
+			Toast.fail('请输入姓名', 1);
+			return
+		}
 
 		if (!phone) {
 			Toast.fail('请输入电话号码', 1);
@@ -126,8 +137,7 @@ class OrderDoctor extends Component {
 		subscribes({...patientData}).then(
 			res => {
 				if (res.code === 1) {
-					Toast.success(res.message,1);
-					this.props.history.replace('/patient-index');
+					Toast.success(res.message, 1, () => this.props.history.replace('/patient-index'));
 				} else {
 					Toast.fail(res.message, 1);
 				}
@@ -180,10 +190,6 @@ class OrderDoctor extends Component {
 												 }}/>
 									<span>{doctorDetail.affiliated_hospital}</span>
 								</section>
-
-								{/*<footer>*/}
-								{/*<p>医生资质由平安保险承担</p>*/}
-								{/*</footer>*/}
 							</div>
 						}
 					/>
@@ -226,8 +232,7 @@ class OrderDoctor extends Component {
 				<List renderHeader={() => '患者信息'}>
 					<InputItem
 						clear
-						disabled
-						value={this.props.user.name || ''}
+						onChange={val => this.onHandleChange('name', val)}
 						placeholder="请输入患者名称"
 					>患者名称</InputItem>
 					<InputItem
