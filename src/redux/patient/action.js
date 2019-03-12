@@ -17,7 +17,7 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 		reqDoctorList({locating_city, page, city, department}).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveDoctorList(res.data))
+					dispatch(receiveDoctorList(res.data.list))
 				}
 			}
 		)
@@ -32,7 +32,7 @@ export const getSeekDoctorList = (title,history) => {
 			res => {
 				if (res.code === 1 && res.data) {
 					history.push('./search-result');
-					dispatch(seekDoctorList(res.data))
+					dispatch(seekDoctorList(res.data.list))
 				}
 			}
 		)

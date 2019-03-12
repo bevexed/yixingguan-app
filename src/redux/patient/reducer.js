@@ -4,28 +4,24 @@ import {
 	SEEK_DOCTOR_LIST
 } from "../action-types";
 
-const initDoctorList = {
-	current_page: 1,
-	list: [{
-		"id": 0,
-		"avatar": "",
-		"name": "",
-		"department": "",
-		"with_title": "",
-		"hospital_level": "",
-		"affiliated_hospital": "",
-		"introduction": "",
-		"is_reference": 0
-	}],
-	total: 1
-};
+const initDoctorList = [{
+	"id": 0,
+	"avatar": "",
+	"name": "",
+	"department": "",
+	"with_title": "",
+	"hospital_level": "",
+	"affiliated_hospital": "",
+	"introduction": "",
+	"is_reference": 0
+}];
 
 export const doctorList = (state = initDoctorList, action) => {
 	switch (action.type) {
 		case RECEIVE_DOCTOR_LIST:
-			return {...action.data};
+			return [...action.data];
 		case SEEK_DOCTOR_LIST:
-			return {current_page: 1,list:[...action.data],total: 1};
+			return [...action.data];
 		default:
 			return state;
 	}
