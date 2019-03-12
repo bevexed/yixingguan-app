@@ -12,4 +12,4 @@ export const checkCode = ({phone,auto_code}) => ajax('/api/login/do_login',{phon
 export const reqUserData = token => ajax('/api/login/get_user',{token});
 
 // 发送短信
-export const reqSendMessage = ({mobile,template_id_code})=>ajax('/api/send_message',{mobile,template_id_code:2});
+export const reqSendMessage = ({mobile,template_id_code=2})=>ajax('/api/send_message',{mobile,template_id_code});

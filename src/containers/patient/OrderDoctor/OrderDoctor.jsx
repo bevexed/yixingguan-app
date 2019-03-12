@@ -40,10 +40,14 @@ class OrderDoctor extends Component {
 		this.props.getDoctorDetail(this.props.match.params.docId);
 	}
 
+	time = 60;
+
 	getCode = () => {
 
 		const {phone: mobile, sendable} = this.state;
 		const template_id_code = 2;
+
+		console.log(mobile);
 
 		if (!mobile || mobile.length < 11) {
 			Toast.fail('手机号格式有误', 1);
@@ -96,7 +100,7 @@ class OrderDoctor extends Component {
 		const inspection_report = files.map(img => img.file);
 		const patientData = {
 			d_id: this.props.match.params.docId,
-			phone,
+			phone:phone.replace(/\s+/g, ""),
 			auth_code,
 			symptoms_described,
 			inspection_report
@@ -122,7 +126,8 @@ class OrderDoctor extends Component {
 		subscribes({...patientData}).then(
 			res => {
 				if (res.code === 1) {
-					console.log(res);
+					Toast.success(res.message,1);
+					this.props.history.replace('/patient-index');
 				} else {
 					Toast.fail(res.message, 1);
 				}
