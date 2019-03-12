@@ -6,6 +6,8 @@ import Author from './Author'
 
 import {Redirect} from "react-router-dom";
 
+import {reqSendMessage} from "../../../api";
+
 import {
 	updataPhone,
 } from "../../../redux/user/action";
@@ -44,6 +46,29 @@ class RegisterPhone extends Component {
 		});
 	};
 
+	getCode = () => {
+		// todo:短信发送拦截
+		const {phone: mobile} = this.state;
+		const template_id_code = 2;
+
+		if (!mobile || mobile.length < 11) {
+			Toast.fail('手机号格式有误', 1);
+			return
+		}
+
+		reqSendMessage({mobile:mobile.replace(/\s+/g, ""),template_id_code})
+			.then(
+				res => {
+					if (res.code === 1) {
+						Toast.success(res.message)
+					} else {
+						Toast.fail(res.message)
+					}
+				}
+			)
+
+	};
+
 	checkCode = () => {
 		const {phone, auto_code} = this.state;
 		this.props.updataPhone(phone, auto_code)
@@ -58,7 +83,7 @@ class RegisterPhone extends Component {
 		}
 
 		if (isAuthor) {
-			return <Author Author={()=>this.setState({isAuthor:false})}/>
+			return <Author Author={() => this.setState({isAuthor: false})}/>
 		}
 
 		return (
@@ -82,7 +107,7 @@ class RegisterPhone extends Component {
 						type="number"
 						onChange={val => this.handleChange('auto_code', val)}
 						extra={<span className={'code'}>获取</span>}
-						onExtraClick={() => alert('获取验证码')}
+						onExtraClick={() => this.getCode()}
 					>验证码</InputItem>
 
 				</List>

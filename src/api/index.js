@@ -10,3 +10,6 @@ export const doLogin = ({identity,name}) => ajax('/api/login/modify_the',{identi
 export const checkCode = ({phone,auto_code}) => ajax('/api/login/do_login',{phone,auto_code});
 
 export const reqUserData = token => ajax('/api/login/get_user',{token});
+
+// 发送短信
+export const reqSendMessage = ({mobile,template_id_code})=>ajax('/api/send_message',{mobile,template_id_code:2});
