@@ -18,6 +18,7 @@ import {
 	ImagePicker,
 	NavBar, Toast
 } from "antd-mobile";
+import {reqSendMessage} from "../../../api";
 
 const Header = Card.Header;
 const Footer = Card.Footer;
@@ -31,11 +32,52 @@ class OrderDoctor extends Component {
 		phone: '',
 		auth_code: '',
 		symptoms_described: '',
+
+		sendable: true
 	};
 
 	componentDidMount() {
 		this.props.getDoctorDetail(this.props.match.params.docId);
 	}
+
+	getCode = () => {
+
+		const {phone: mobile, sendable} = this.state;
+		const template_id_code = 2;
+
+		if (!mobile || mobile.length < 11) {
+			Toast.fail('手机号格式有误', 1);
+			return
+		}
+
+		if (!sendable) {
+			Toast.fail(this.time + 's后再试', 1);
+			return
+		}
+
+		const t = setInterval(() => {
+			this.setState({sendable: false});
+			this.time--;
+			if (this.time < 0) {
+				this.time = 60;
+				this.setState({sendable: true});
+				clearInterval(t)
+			}
+		}, 1000);
+
+
+		reqSendMessage({mobile: mobile.replace(/\s+/g, ""), template_id_code})
+			.then(
+				res => {
+					if (res.code === 1) {
+						Toast.success(res.message)
+					} else {
+						Toast.fail(res.message)
+					}
+				}
+			)
+
+	};
 
 	onChange = (key) => {
 		console.log(key);
@@ -90,7 +132,7 @@ class OrderDoctor extends Component {
 
 
 	render() {
-		const {files} = this.state;
+		const {files, sendable} = this.state;
 		const {doctorDetail} = this.props;
 		return (
 			<div className={'order-doc'}>
@@ -194,8 +236,8 @@ class OrderDoctor extends Component {
 						type="number"
 						placeholder="请输入验证码"
 						onChange={val => this.onHandleChange('auth_code', val)}
-						extra={<span className={'code'}>获取</span>}
-						onExtraClick={() => alert('发送')}
+						extra={<span className={'code'}>{sendable ? '获取' : this.time + 's'} </span>}
+						onExtraClick={() => this.getCode()}
 					>验证码</InputItem>
 
 					<TextareaItem

@@ -20,7 +20,9 @@ class RegisterPhone extends Component {
 		phone: '',
 		hasError: false,
 		auto_code: '',
-		isAuthor: true
+		isAuthor: true,
+
+		sendable: true
 	};
 
 	onErrorClick = () => {
@@ -46,9 +48,11 @@ class RegisterPhone extends Component {
 		});
 	};
 
+	time=60;
+
 	getCode = () => {
-		// todo:短信发送拦截
-		const {phone: mobile} = this.state;
+
+		const {phone: mobile, sendable} = this.state;
 		const template_id_code = 2;
 
 		if (!mobile || mobile.length < 11) {
@@ -56,7 +60,23 @@ class RegisterPhone extends Component {
 			return
 		}
 
-		reqSendMessage({mobile:mobile.replace(/\s+/g, ""),template_id_code})
+		if (!sendable) {
+			Toast.fail(this.time + 's后再试', 1);
+			return
+		}
+
+		const t = setInterval(() => {
+			this.setState({sendable: false});
+			this.time--;
+			if (this.time < 0) {
+				this.time = 60;
+				this.setState({sendable: true});
+				clearInterval(t)
+			}
+		}, 1000);
+
+
+		reqSendMessage({mobile: mobile.replace(/\s+/g, ""), template_id_code})
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -76,7 +96,7 @@ class RegisterPhone extends Component {
 
 	render() {
 		const {phone} = this.props.user;
-		const {isAuthor} = this.state;
+		const {isAuthor,sendable} = this.state;
 
 		if (phone) {
 			return <Redirect to={'/select-player'}/>
@@ -106,7 +126,7 @@ class RegisterPhone extends Component {
 						placeholder=""
 						type="number"
 						onChange={val => this.handleChange('auto_code', val)}
-						extra={<span className={'code'}>获取</span>}
+						extra={<span className={'code'}>{sendable ? '获取' : this.time + 's'}</span>}
 						onExtraClick={() => this.getCode()}
 					>验证码</InputItem>
 
