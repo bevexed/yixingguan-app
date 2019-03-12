@@ -17,6 +17,9 @@ const initDoctorList = [{
 }];
 
 export const doctorList = (state = initDoctorList, action) => {
+	state.forEach((doctor, index) => {
+		if (doctor.id === 0) { state.splice(index, 1)}
+	});
 	switch (action.type) {
 		case RECEIVE_DOCTOR_LIST:
 			return [...action.data];
