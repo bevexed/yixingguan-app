@@ -49,3 +49,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
     * blueimp-md5
     * js-cookie
     * rc-queue-anim
+* 聊天
+	* easemob-websdk
+	* strophe.js

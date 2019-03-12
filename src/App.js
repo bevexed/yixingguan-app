@@ -8,6 +8,10 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Intercept from './containers/common/RouterIntercept/Intercept'
 
+
+import './webim.config'
+
+
 // mate 标签
 // require('./static/font');
 
