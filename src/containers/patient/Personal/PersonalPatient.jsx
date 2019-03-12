@@ -10,33 +10,34 @@ const Item = List.Item;
 
 class PersonalPatient extends Component {
 	render() {
+		const {user} = this.props;
+
 		return (
 			<div className={'personal-patient'}>
 				<Card full>
 					<WhiteSpace size={'lg'}/>
 					<Header
-						thumb={<img className={'avator'} src="" alt=""/>}
-						title={'注册/登录'}/>
+						thumb={<img className='avator' src={user.avatar} alt=""/>}
+						title={user.name}/>
 				</Card>
 				<WhiteSpace size={'lg'}/>
 
 				<List>
 					<Item
-						extra={'王小丫'}
+						extra={user.name}
 					>姓名</Item>
 					<Item
 						extra={'暂无'}
 						arrow={'horizontal'}
 					>单位</Item>
 					<Item
-						extra={'12312321321'}
-						arrow={'horizontal'}
+						extra={user.phone}
 					>手机号</Item>
 				</List>
 				<WhiteSpace size={'lg'}/>
 
 				<List
-					onClick={()=>this.props.history.push('/record-list')}
+					onClick={() => this.props.history.push('/record-list')}
 				>
 					<Item
 						extra={<Badge dot/>}
@@ -53,7 +54,9 @@ class PersonalPatient extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		user: state.user
+	};
 }
 
 export default connect(
