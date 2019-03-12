@@ -90,14 +90,13 @@ class PublishPersonSelect extends Component {
 					{
 						// patients => [[id,name],[id,name]]
 						Object.values(patientList).map(patients =>
-							patients.map(patient =>
+							patients.map(([id, name]) =>
 								<CheckboxItem
-									// defaultChecked={seletPerson.includes(patient[0])}
-									checked={seletPerson.includes(patient[0])}
-									key={patient[0]}
-									onChange={() => this.onSeleted(label_name, patient[0], patient[1])}
+									checked={seletPerson.includes(id)}
+									key={id}
+									onChange={() => this.onSeleted(label_name, id, name)}
 								>
-									{patient[1]}
+									{name}
 								</CheckboxItem>
 							))
 					}
