@@ -24,12 +24,14 @@ import Cookies from 'js-cookie';
 
 const receiveDoctorDetails = doctor => ({type: RECEIVE_DOCTOR_DETAILS, data: doctor});
 
-export const getDoctorDetail = doctorId => {
+export const getDoctorDetail = (doctorId,history) => {
 	return async dispatch => {
 		reqDoctorDetail(doctorId).then(
 			res => {
 				if (res.code === 1) {
 					dispatch(receiveDoctorDetails(res.data))
+				}else {
+					Toast.fail(res.message,1,()=>{history.replace('/patient-index')})
 				}
 			}
 		)

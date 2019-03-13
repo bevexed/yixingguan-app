@@ -38,7 +38,7 @@ class OrderDoctor extends Component {
 	};
 
 	componentDidMount() {
-		this.props.getDoctorDetail(this.props.match.params.docId);
+		this.props.getDoctorDetail(this.props.match.params.docId,this.props.history);
 	}
 
 	componentWillUnmount() {

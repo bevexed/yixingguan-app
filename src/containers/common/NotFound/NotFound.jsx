@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 
 class NotFound extends Component {
 	state = {
-		button_show: true
+		button_show: false
 	};
 
-	componentWillMount() {
-
+	componentDidMount() {
 		sessionStorage.removeItem('path');
 	}
 
@@ -20,10 +19,7 @@ class NotFound extends Component {
 					<div
 						className={'button'}
 						onClick={() => this.props.history.replace('/')}>回到首页
-					</div> :
-					<div>
-						loading
-					</div>
+					</div> : null
 				}
 			</div>
 		);
