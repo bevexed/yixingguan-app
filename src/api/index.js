@@ -13,3 +13,7 @@ export const reqUserData = token => ajax('/api/login/get_user',{token});
 
 // 发送短信
 export const reqSendMessage = ({mobile,template_id_code=2})=>ajax('/api/send_message',{mobile,template_id_code});
+
+// 协议
+export const reqArticleBrief = ()  => ajax('/api/article_brief');
+

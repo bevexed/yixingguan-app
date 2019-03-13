@@ -26,7 +26,6 @@ export const pubulish = (pub, history) => {
 		reqReleaseShare(key)
 			.then(res => {
 				if (res.code === 1) {
-					//todo: 去详情页面
 					Toast.success('文章发布成功', 1, () => {
 							history.replace('/published');
 							dispatch(havePubulished())

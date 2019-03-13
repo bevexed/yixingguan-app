@@ -126,11 +126,6 @@ class PatientDetail extends Component {
 						</div>
 					</Item>
 
-					{/*
-						* TODO:添加标签
-					*/
-					}
-
 					<Item>
 						给患者添加标签
 						<span className={'pain-detail'}>(添加病症给患者分类)</span>

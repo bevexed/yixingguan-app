@@ -53,7 +53,7 @@ class PublishPersonSelect extends Component {
 		const seletPerson = allow_users[0] ? allow_users[0].user : [];
 		this.user = [...seletPerson];
 		// todo: 左侧标签栏
-		const initial = Object.keys(patientList);
+		const initials = Object.keys(patientList);
 
 		return (
 			<div className='publish-person-select'>
@@ -102,6 +102,16 @@ class PublishPersonSelect extends Component {
 					}
 
 				</List>
+
+
+				{/*<div className='initial'>*/}
+					{/*{*/}
+						{/*initials.map((initial,index) =>*/}
+							{/*<div key={index}>*/}
+								{/*{initial}*/}
+							{/*</div>*/}
+						{/*)}*/}
+				{/*</div>*/}
 
 			</div>
 		);
