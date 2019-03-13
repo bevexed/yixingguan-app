@@ -99,8 +99,8 @@ export const getUser = (token, callbacks) => {
 					} else {
 						sessionStorage.removeItem('already_get_user');
 					}
-					if (identity === 'doctor' && callbacks) {
-						// 回调 病人列表
+					if (callbacks) {
+						// 聊天
 						callbacks.map(callback => callback(token))
 					}
 					let userData = {...res.data, identity};

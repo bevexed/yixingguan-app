@@ -26,3 +26,8 @@ export const UPDATA_PUBLICE_ARTICLE_IMG = 'updata_publice_article_img';
 export const SELECT_SOME_CAN_SEE = 'select_some_can_see';
 export const ALL_CAN_SEE = 'all_can_see';
 export const HAVE_PUBULISHED = 'have_pubulished';
+
+// 聊天
+export const AUTH_SUCCESS_CHAT = 'auth_success_chat';
+export const LOGIN_SUCCESS_CHAT = 'login_success_chat';
+export const RESET_CHAT = 'reset_chat';
