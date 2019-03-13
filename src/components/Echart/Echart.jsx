@@ -57,7 +57,7 @@ class Echart extends Component {
 				<ReactEcharts
 					option={option}
 					// notMerge={true}
-					lazyUpdate={true}
+					// lazyUpdate={true}
 					// theme={"theme_name"}
 					// onChartReady={this.onChartReadyCallback}
 					// onEvents={EventsDict}

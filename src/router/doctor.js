@@ -4,7 +4,7 @@ import DoctorIndex from "../containers/doctor/Index/DoctorIndex";
 import PersonalDoctor from "../containers/doctor/Personal/PersonalDoctor";
 import NewPatient from "../containers/doctor/NewPatient/NewPatient";
 import DoctorCompleteInformation from "../containers/doctor/CompleteInformation/DoctorCompleteInformation";
-import DoctorDetail from "../containers/patient/DoctorDetail/DoctorDetail";
+import DoctorDetail from "../containers/doctor/DoctorDetail/DoctorDetail";
 import DoctorWallet from "../containers/doctor/Wallet/DoctorWallet";
 import PatientDetail from "../containers/doctor/PatientDetail/PatientDetail";
 import Statistics from "../containers/doctor/Statistics/Statistics";
