@@ -8,15 +8,15 @@ import {reqArticleBrief} from "../../../api";
 import './Author.less'
 
 class Author extends Component {
-	state={
-		content:''
+	state = {
+		content: ''
 	};
 
 	componentDidMount() {
 		reqArticleBrief()
 			.then(res => {
 				if (res.code === 1) {
-					this.setState({content:res.data.content})
+					this.setState({content: res.data.content})
 				}
 			})
 	}

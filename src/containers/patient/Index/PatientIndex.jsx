@@ -12,31 +12,17 @@ import {
 	Icon,
 	List
 } from "antd-mobile";
-import DocList from '../../../components/DocList/DocList'
 
+import DocList from '../../../components/DocList/DocList'
 import {
 	getDoctorList,
-	getSeekDoctorList
+	getSeekDoctorList,
 } from "../../../redux/patient/action";
+
+import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqBanner} from "../../../api/patient";
 
 const Item = List.Item;
-
-const data = [
-	{
-		value: '1',
-		label: 'Food',
-	}, {
-		value: '2',
-		label: 'Supermarket',
-	},
-	{
-		value: '3',
-		label: 'Extra',
-		isLeaf: true,
-	},
-];
-
 
 class PatientIndex extends Component {
 	state = {
@@ -49,6 +35,10 @@ class PatientIndex extends Component {
 		show: false,
 
 		code_show: false,
+
+		cityList: '',
+		departmentList: '',
+		which: '',
 	};
 
 
@@ -72,7 +62,6 @@ class PatientIndex extends Component {
 
 	// SearchInput 输入
 	handleChange = (name, val) => {
-		console.log(val);
 		this.setState({
 			[name]: val
 		})
@@ -85,8 +74,9 @@ class PatientIndex extends Component {
 
 	// 单选框修改
 	onChange = (value) => {
+		const {which} = this.state;
 		let label = '';
-		data.forEach((dataItem) => {
+		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
 				label = dataItem.label;
 				if (dataItem.children && value[1]) {
@@ -101,18 +91,47 @@ class PatientIndex extends Component {
 		console.log(label);
 	};
 
-	handleClick = (e) => {
+	getCity = (e) => {
+		const {cityList} = this.state;
 		e.preventDefault(); // Fix event propagation on Android
 		this.setState({
 			show: !this.state.show,
+			which: cityList
 		});
 		// mock for async data loading
-		if (!this.state.initData) {
-			setTimeout(() => {
-				this.setState({
-					initData: data,
-				});
-			}, 500);
+		if (!cityList) {
+			reqGetCity()
+				.then(
+					res => {
+						if (res.code === 1) {
+							let cityList = res.data.map(item => ({value: item, label: item}));
+							console.log(cityList);
+							this.setState({cityList,which:cityList})
+						}
+					}
+				);
+		}
+	};
+
+	getDepartment = (e) => {
+		const {departmentList} = this.state;
+		e.preventDefault(); // Fix event propagation on Android
+		this.setState({
+			show: !this.state.show,
+			which: departmentList
+		});
+		// mock for async data loading
+		if (!departmentList) {
+			reqGetDepartments()
+				.then(
+					res => {
+						if (res.code === 1) {
+							let departmentList = res.data.map(item => ({value: item, label: item}));
+							console.log(departmentList);
+							this.setState({departmentList,which:departmentList})
+						}
+					}
+				);
 		}
 	};
 
@@ -123,14 +142,14 @@ class PatientIndex extends Component {
 	};
 
 	render() {
-		const {initData, show, code_show} = this.state;
+		const {show, code_show, cityList, departmentList, which} = this.state;
 		const DoctorListData = this.props.doctorList;
 
 
 		const menuEl = (
 			<Menu
 				className="single-foo-menu"
-				data={initData}
+				data={which}
 				value={['1']}
 				level={1}
 				onChange={this.onChange}
@@ -187,19 +206,20 @@ class PatientIndex extends Component {
 					<List>
 						<div className={'button'}>
 							<Button
-								onClick={this.handleClick}
+								onClick={this.getCity}
 							>所有城市 <Icon type={'down'}/></Button>
+
 							<Button
-								onClick={this.handleClick}
+								onClick={this.getDepartment}
 							>全部科室 <Icon type={'down'}/> </Button>
 						</div>
 					</List>
-					{show ? initData ? menuEl : loadingEl : null}
-					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : null}
+					{show ? which ? menuEl : loadingEl : null}
+					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={DoctorListData}/>}
 				</div>
 
 
-				<DocList doctorList={DoctorListData}/>
+				{/*<DocList doctorList={DoctorListData}/>*/}
 
 
 				<div

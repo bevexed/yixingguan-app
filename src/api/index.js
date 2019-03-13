@@ -17,3 +17,9 @@ export const reqSendMessage = ({mobile,template_id_code=2})=>ajax('/api/send_mes
 // 协议
 export const reqArticleBrief = ()  => ajax('/api/article_brief');
 
+// 获取城市
+export const reqGetCity = () => ajax('/api/get_city');
+
+// 获取科室
+export const reqGetDepartments = ()=>ajax('/api/get_departments');
+
