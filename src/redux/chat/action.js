@@ -73,14 +73,14 @@ export const listen = () => {
 		onFileMessage(message) {
 		},    //收到文件消息
 		onVideoMessage(message) {
-			var node = document.getElementById('privateVideo');
-			var option = {
+			let node = document.getElementById('privateVideo');
+			let option = {
 				url: message.url,
 				headers: {
 					'Accept': 'audio/mp4'
 				},
 				onFileDownloadComplete(response) {
-					var objectURL = WebIM.utils.parseDownloadResponse.call(conn, response);
+					let objectURL = WebIM.utils.parseDownloadResponse.call(conn, response);
 					node.src = objectURL;
 				},
 				onFileDownloadError() {

@@ -17,7 +17,7 @@ import Cookies from 'js-cookie';
 
 class Main extends Component {
 	state = {
-		type: 'doctor',
+		type: '',
 	};
 
 	componentDidMount() {

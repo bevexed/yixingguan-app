@@ -63,8 +63,8 @@ class PublishDetail extends Component {
 
 					<WingBlank>
 						<div className='img'>
-							{picture.map(item =>
-								<img src={item} alt=""/>)
+							{picture.map((item,key) =>
+								<img key={key} src={item} alt=""/>)
 							}
 						</div>
 					</WingBlank>

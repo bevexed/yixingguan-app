@@ -11,8 +11,6 @@ import Login from '../Login/Login'
 import Cookie from "js-cookie";
 import {getUser} from "../../../redux/user/action";
 
-import {listen,register_chat,open_chat} from "../../../redux/chat/action";
-
 import RegisterIndex from "../Register/RegisterIndex";
 
 import {GetQueryString} from "../../../utils";
@@ -44,10 +42,9 @@ class Intercept extends Component {
 				)
 			}
 		} else {
-			this.props.getUser(token);
-			listen();
-			// register_chat();
-			open_chat()
+			if (token){
+				this.props.getUser(token);
+			}
 		}
 	}
 

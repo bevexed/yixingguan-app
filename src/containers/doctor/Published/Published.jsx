@@ -1,27 +1,45 @@
 import React, {Component} from 'react';
 import './Published.less'
 import {NavBar, Icon, WhiteSpace, WingBlank} from "antd-mobile";
-
+import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
 import {reqShareLists} from "../../../api/doctor";
 
 class Published extends Component {
 
 	state = {
-		articles: []
+		total: 100,
+		articles: [],
+		page: 1,
 	};
 
 	componentDidMount() {
-		reqShareLists(1)
-			.then(
-				res => {
-					if (res.code === 1) {
-						this.setState({articles: res.data.data})
-					}
-				}
-			)
+		this.loadingMore()
 	}
 
 	// todo：分页
+	loading = false;
+	loadingMore = () => {
+		const {page, total, articles} = this.state;
+		if ((page - 1) * 10 >= total) {
+			return
+		}
+		this.loading = true;
+		reqShareLists(page)
+			.then(
+				res => {
+					if (res.code === 1) {
+						this.loading = false;
+						this.setState(
+							{
+								articles: {...articles, ...res.data.data},
+								page: res.data.current_page + 1,
+								total: res.data.total
+							}
+						)
+					}
+				}
+			)
+	};
 
 	render() {
 		const {articles} = this.state;
@@ -50,7 +68,6 @@ class Published extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				{/*todo:发布图文接口*/}
 				<div className='hr'/>
 				<WingBlank>
 					{Object.entries(articles).map(([time, articles]) =>
@@ -70,6 +87,8 @@ class Published extends Component {
 						</div>)
 					}
 				</WingBlank>
+
+				<LoadingMore callback={this.loadingMore} loading={this.loading}/>
 			</div>
 		);
 	}
