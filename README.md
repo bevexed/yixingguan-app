@@ -52,3 +52,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * 聊天
 	* easemob-websdk
 	* strophe.js
+* 二维码
+	* qrcode.react

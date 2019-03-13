@@ -5,6 +5,8 @@ import {Icon, NavBar, Toast, WhiteSpace} from "antd-mobile";
 
 import {reqAssistantList, reqAssistantDelete} from "../../../api/doctor";
 
+import Qrcode from "qrcode.react";
+
 
 class MyHelper extends Component {
 	state = {
@@ -93,7 +95,14 @@ class MyHelper extends Component {
 						className='code'
 						onClick={() => this.setState({code_show: false})}
 					>
-						<img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=977147320,1756285936&fm=26&gp=0.jpg" alt=""/>
+						<Qrcode
+							value={'sadasdasdasdsadassa'}
+							renderAs='svg'
+							size={200}
+							bgColor='#FFFFFF'
+							fgColor='#68e3c3'
+							level='H'
+						/>
 					</div> : null
 				}
 			</div>

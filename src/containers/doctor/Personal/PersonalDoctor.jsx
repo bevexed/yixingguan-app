@@ -7,47 +7,42 @@ import {
 	Grid, Toast
 } from "antd-mobile";
 
+import Qrcode from 'qrcode.react';
+
 import './PersonalDoctor.less'
 
 const grid = [
 	{
 		icon: 1,
 		name: '统计',
-		onClick: (el) => {
-			el.props.history.push(`/statistics`)
-		}
+		onClick: (el) => el.props.history.push(`/statistics`)
+
 	},
 	{
 		icon: 2,
 		name: '我的助手',
-		onClick: (el) => {
-			el.props.history.push(`/my-help`)
-		}
+		onClick: (el) => el.props.history.push(`/my-help`)
+
 	},
 	{
 		icon: 3,
 		name: '钱包',
-		onClick: (el) => {
-			el.props.history.push(`/doctor-wallet`)
-		}
+		onClick: (el) => el.props.history.push(`/doctor-wallet`)
 	},
 	{
 		icon: 4,
 		name: '工作室',
-		onClick: (el) => {
-			el.props.history.push('./doctor-detail')
-		}
+		onClick: (el) => el.props.history.push('./doctor-detail')
 	},
 	{
 		icon: 5,
 		name: '发布图文',
-		onClick:(el)=>{
-			el.props.history.push('/published')
-		}
+		onClick: (el) => el.props.history.push('/published')
 	},
 	{
 		icon: 6,
-		name: '邀请同行'
+		name: '邀请同行',
+		onClick: (el) => el.setState({code_show: true})
 	}
 ];
 
@@ -69,7 +64,7 @@ const grid2 = [
 		name: '申请工作室',
 		onClick: (el, is) => {
 			if (is === 1) {
-				Toast.fail('正在审核中',1);
+				Toast.fail('正在审核中', 1);
 				return
 			}
 			el.props.history.push(`/doctor-complete-information`)
@@ -86,7 +81,12 @@ const grid2 = [
 ];
 
 class MyComponent extends Component {
+	state = {
+		code_show: false,
+	};
+
 	render() {
+		const {code_show} = this.state;
 		const {is_audit, name, avatar} = this.props.user;
 
 		return (
@@ -112,6 +112,22 @@ class MyComponent extends Component {
 								</div>
 							)}
 				/>
+
+				{code_show ?
+					<div
+						className='code'
+						onClick={() => this.setState({code_show: false})}
+					>
+						<Qrcode
+							value={'sadasdasdasdsadassa'}
+							renderAs='svg'
+							size={200}
+							bgColor='#FFFFFF'
+							fgColor='#68e3c3'
+							level='H'
+						/>
+					</div> : null
+				}
 			</div>
 		);
 	}
