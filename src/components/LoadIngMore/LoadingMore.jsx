@@ -6,13 +6,19 @@ import PropTypes from 'prop-types';
 class LoadingMore extends PureComponent {
 
 	static propTypes = {
+		page: PropTypes.number.isRequired,
+		total: PropTypes.number.isRequired,
 		callback: PropTypes.func.isRequired,
 		loading: PropTypes.bool.isRequired
 	};
 
 	componentDidMount() {
-		const {callback, loading} = this.props;
+		const that = this;
 		window.onscroll = function () {
+			const {callback, loading, page, total} = that.props;
+			if ((page - 1) * 10 >= total) {
+				return
+			}
 			if (loading) {
 				return
 			}

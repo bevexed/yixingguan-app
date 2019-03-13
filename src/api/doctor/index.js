@@ -38,7 +38,7 @@ export const reqDataAnalysis = ({start_time, end_time}) => ajax('/api/doctor/acc
 export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => ajax('/api/doctor/share/release_share', {contents, picture, is_open, allow_users});
 
 // 医生获取所发文章列表
-export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {token, page}, 'GET');
+export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {token, page}, 'GET',false);
 
 // 文章详情
 export const reqShareDetail = id => ajax('/api/doctor/share/share_detail', {id});

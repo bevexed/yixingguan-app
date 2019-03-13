@@ -6,31 +6,28 @@ import {reqShareLists} from "../../../api/doctor";
 
 class Published extends Component {
 
-	state = {
-		total: 100,
-		articles: [],
-		page: 1,
-	};
-
 	componentDidMount() {
 		this.loadingMore()
 	}
 
+	state = {
+		total: 100,
+		articles: [],
+		page: 1,
+		loading: true
+	};
+
 	// todo：分页
-	loading = false;
 	loadingMore = () => {
-		const {page, total, articles} = this.state;
-		if ((page - 1) * 10 >= total) {
-			return
-		}
-		this.loading = true;
+		const {page, articles} = this.state;
+		this.setState({loading:true});
 		reqShareLists(page)
 			.then(
 				res => {
 					if (res.code === 1) {
-						this.loading = false;
 						this.setState(
 							{
+								loading: false,
 								articles: {...articles, ...res.data.data},
 								page: res.data.current_page + 1,
 								total: res.data.total
@@ -42,7 +39,7 @@ class Published extends Component {
 	};
 
 	render() {
-		const {articles} = this.state;
+		const {articles, total, page, loading} = this.state;
 
 		return (
 			<div className='published'>
@@ -88,7 +85,7 @@ class Published extends Component {
 					}
 				</WingBlank>
 
-				<LoadingMore callback={this.loadingMore} loading={this.loading}/>
+				<LoadingMore callback={this.loadingMore} loading={loading} total={total} page={page}/>
 			</div>
 		);
 	}
