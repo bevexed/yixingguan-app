@@ -28,28 +28,30 @@ class PatientIndex extends Component {
 	state = {
 		bannerData: [],
 		imgHeight: 170,
-
+		// 搜索
 		searchWord: '',
 
-		initData: '',
+		// 所有城市 全部科室下拉列表显示隐藏
 		show: false,
 
+		// 联系客服二维码显示隐藏
 		code_show: false,
 
+		// 下拉列表数据
 		cityList: '',
 		departmentList: '',
 		which: '',
+
+		// 医生列表分页数据
+		page: 1,
+		total: 100,
+		department: '',
+		locating_city: ''
 	};
 
 
 	componentDidMount() {
-		const params = {
-			locating_city: '成都',
-			page: '' || 1,
-			city: '' || null,
-			department: '' || null
-		};
-		this.props.getDoctorList(params);
+		this.getDoctor();
 
 		reqBanner().then(
 			res => {
@@ -59,6 +61,17 @@ class PatientIndex extends Component {
 			}
 		)
 	}
+
+	getDoctor = () => {
+		const {city, page, locating_city, department} = this.state;
+		const params = {
+			locating_city: locating_city || '成都',
+			page: page || 1,
+			city: city || null,
+			department: department || null
+		};
+		this.props.getDoctorList(params);
+	};
 
 	// SearchInput 输入
 	handleChange = (name, val) => {
@@ -74,7 +87,7 @@ class PatientIndex extends Component {
 
 	// 单选框修改
 	onChange = (value) => {
-		const {which} = this.state;
+		const {which, show, departmentList,department,cityList,locating_city} = this.state;
 		let label = '';
 		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
@@ -88,14 +101,20 @@ class PatientIndex extends Component {
 				}
 			}
 		});
-		console.log(label);
+		this.setState({
+			show: !show,
+			page: 1,
+			total: 100,
+			department: which === departmentList ? label : department,
+			locating_city: which === cityList ? label : locating_city
+		},this.getDoctor);
 	};
 
 	getCity = (e) => {
-		const {cityList} = this.state;
+		const {cityList, show} = this.state;
 		e.preventDefault(); // Fix event propagation on Android
 		this.setState({
-			show: !this.state.show,
+			show: !show,
 			which: cityList
 		});
 		// mock for async data loading
@@ -106,7 +125,7 @@ class PatientIndex extends Component {
 						if (res.code === 1) {
 							let cityList = res.data.map(item => ({value: item, label: item}));
 							console.log(cityList);
-							this.setState({cityList,which:cityList})
+							this.setState({cityList, which: cityList})
 						}
 					}
 				);
@@ -114,10 +133,10 @@ class PatientIndex extends Component {
 	};
 
 	getDepartment = (e) => {
-		const {departmentList} = this.state;
+		const {departmentList, show} = this.state;
 		e.preventDefault(); // Fix event propagation on Android
 		this.setState({
-			show: !this.state.show,
+			show: !show,
 			which: departmentList
 		});
 		// mock for async data loading
@@ -128,7 +147,7 @@ class PatientIndex extends Component {
 						if (res.code === 1) {
 							let departmentList = res.data.map(item => ({value: item, label: item}));
 							console.log(departmentList);
-							this.setState({departmentList,which:departmentList})
+							this.setState({departmentList, which: departmentList})
 						}
 					}
 				);
@@ -142,7 +161,7 @@ class PatientIndex extends Component {
 	};
 
 	render() {
-		const {show, code_show, cityList, departmentList, which} = this.state;
+		const {show, code_show, which} = this.state;
 		const DoctorListData = this.props.doctorList;
 
 
