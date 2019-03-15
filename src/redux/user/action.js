@@ -69,12 +69,12 @@ export const updataPhone = (phone, auto_code) => {
 };
 
 export const updataUserType = userData => {
+	let {identity} = userData;
 	return dispatch => {
 		doLogin({...userData}).then(
 			res => {
 				if (res.code === 1) {
-					console.log(res);
-					let identity = res.identity === 1 ? 'patient' : 'doctor';
+					identity = identity === 1 ? 'patient' : 'doctor';
 					let userData = {...res.data, identity};
 					localStorage.token = res.data.token;
 
