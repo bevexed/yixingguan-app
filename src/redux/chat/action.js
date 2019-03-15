@@ -14,28 +14,28 @@ const conn = new WebIM.connection({
 	isAutoLogin: true
 });
 
-export const register_chat = () => {
-	let options = {
-		username: '123ewqweqweqwewqewqeqwewewqeqwewq',
-		password: '123jshdashd',
-		nickname: '1123',
-		appKey: WebIM.config.appkey,
-		success: function (res) {
-			console.log(res);
-		},
-		error: function (err) {
-			console.log(err);
-		},
-		apiUrl: WebIM.config.apiURL
-	};
-	conn.registerUser(options);
-};
+// export const register_chat = () => {
+// 	let options = {
+// 		username: '123ewqweqweqwewqewqeqwewewqeqwewq',
+// 		password: '123jshdashd',
+// 		nickname: '1123',
+// 		appKey: WebIM.config.appkey,
+// 		success: function (res) {
+// 			console.log(res);
+// 		},
+// 		error: function (err) {
+// 			console.log(err);
+// 		},
+// 		apiUrl: WebIM.config.apiURL
+// 	};
+// 	conn.registerUser(options);
+// };
 
-export const open_chat = () => {
+export const open_chat = (user,pwd) => {
 	let options = {
 		apiUrl: WebIM.config.apiURL,
-		user:  '123ewqweqweqwewqewqeqwewewqeqwewq',
-		pwd: '123jshdashd',
+		user ,
+		pwd,
 		appKey: WebIM.config.appkey,
 		success: function (res) {
 			console.log(res);

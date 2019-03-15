@@ -51,7 +51,7 @@ class SelectPlayer extends Component {
 					<img src={require(`./img/doctor-${selected === 'doctor' ? 's' : ''}@3x.png`)} alt=""/>
 					<span>我是</span>
 					<input
-						className={'name'}
+						className='name'
 						type="text"
 						placeholder={'请输入姓名'}
 						onChange={e => this.setState({name: e.target.value})}

@@ -13,6 +13,8 @@ import {doctorNav, doctorRoute} from "../../../router/doctor";
 import {getUser} from "../../../redux/user/action";
 import {getPatientList, getLabelList} from "../../../redux/doctor/action";
 
+import {open_chat} from "../../../redux/chat/action";
+
 import Cookies from 'js-cookie';
 
 class Main extends Component {
@@ -22,9 +24,17 @@ class Main extends Component {
 
 	componentDidMount() {
 		const token = Cookies.get('token');
+
 		if (sessionStorage.identity === 'doctor') {
 			this.props.getPatientList(token);
 			this.props.getLabelList(token);
+		}
+	}
+
+	componentWillReceiveProps(nextProps, nextContext) {
+		const {username, password} = nextProps.user;
+		if (sessionStorage.already_get_user) {
+			open_chat(username, password)
 		}
 	}
 

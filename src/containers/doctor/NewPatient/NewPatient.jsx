@@ -17,7 +17,8 @@ class NewPatient extends Component {
 
 	acceptPtient = (e, id) => {
 		e.stopPropagation();
-		this.props.getAcceptPatient(id)
+		this.props.getAcceptPatient(id);
+		this.props.getPatientList();
 	};
 
 	render() {
@@ -42,7 +43,7 @@ class NewPatient extends Component {
 								 onClick={() => this.props.history.push('/patient-detail/' + patient.id)}
 						>
 							<div className='item'>
-								<img style={{height: '40px', marginRight: '15px', borderRadius: '50%'}} src={patient.avatar} alt=""/>
+								<img style={{height: '40px', width:'40px', marginRight: '15px', borderRadius: '50%'}} src={patient.avatar} alt=""/>
 								<div style={{width: '80%'}}>
 									<div className={'title'}>{patient.name}</div>
 									<div className={'time'}>{patient.apply_time}</div>
