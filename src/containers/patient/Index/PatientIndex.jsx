@@ -162,7 +162,7 @@ class PatientIndex extends Component {
 
 	render() {
 		const {show, code_show, which} = this.state;
-		const DoctorListData = this.props.doctorList;
+		const {doctorList} = this.props;
 
 
 		const menuEl = (
@@ -234,7 +234,7 @@ class PatientIndex extends Component {
 						</div>
 					</List>
 					{show ? which ? menuEl : loadingEl : null}
-					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={DoctorListData}/>}
+					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList}/>}
 				</div>
 
 

@@ -8,8 +8,8 @@ import {NavBar, Icon, WhiteSpace} from "antd-mobile";
 
 class SearchResult extends Component {
 	render() {
-		const DoctorListData = this.props.doctorList;
-		if (DoctorListData[0].id === 0) {
+		const {doctorList} = this.props;
+		if (!doctorList.length) {
 			return <Redirect to='/patient-index'/>
 		}
 
@@ -29,7 +29,7 @@ class SearchResult extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<DocList doctorList={DoctorListData}/>
+				<DocList doctorList={doctorList}/>
 			</div>
 		);
 	}

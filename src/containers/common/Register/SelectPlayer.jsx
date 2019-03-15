@@ -14,6 +14,12 @@ class SelectPlayer extends Component {
 		name: ''
 	};
 
+	componentWillUnmount() {
+		this.setState = () => {
+			return false
+		};
+	}
+
 	select = (player) => {
 		let name;
 		if (player === 'patient') {

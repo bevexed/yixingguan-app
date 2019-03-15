@@ -20,7 +20,7 @@ class DocList extends Component {
 	};
 
 	render() {
-		const doctorList = this.props.doctorList;
+		const {doctorList} = this.props;
 		// noinspection JSUnresolvedVariable
 		return (
 			<div>

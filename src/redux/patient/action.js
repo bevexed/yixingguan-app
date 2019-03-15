@@ -32,7 +32,7 @@ export const getSeekDoctorList = (title,history) => {
 			res => {
 				if (res.code === 1 && res.data) {
 					history.push('./search-result');
-					dispatch(seekDoctorList(res.data.list))
+					dispatch(seekDoctorList(res.data))
 				}
 			}
 		)
