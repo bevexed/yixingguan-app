@@ -129,7 +129,7 @@ class DoctorIndex extends Component {
 						chatList.map(item =>
 							<Item
 								key={item.id}
-								onClick={() => this.props.history.push('/message/' + item.name)}
+								onClick={() => this.props.history.push('/message/' + item.chat_room)}
 								thumb={<img className={'patient-avator'} src={item.avatar} alt=""/>}
 								multipleLine
 							>

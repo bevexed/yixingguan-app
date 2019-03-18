@@ -28,6 +28,7 @@ export const ALL_CAN_SEE = 'all_can_see';
 export const HAVE_PUBULISHED = 'have_pubulished';
 
 // 聊天
-export const AUTH_SUCCESS_CHAT = 'auth_success_chat';
+// export const AUTH_SUCCESS_CHAT = 'auth_success_chat';
 export const LOGIN_SUCCESS_CHAT = 'login_success_chat';
+export const SEND_MESSAGE = 'send_message';
 export const RESET_CHAT = 'reset_chat';

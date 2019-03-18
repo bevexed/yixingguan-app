@@ -5,6 +5,7 @@ import {user} from './user/reducer'
 import {doctorList, doctorDetail} from './patient/reducer'
 import {patientList,patientDetail,labelList} from "./doctor/reducer";
 import {article_content,article_img,whoCanSee} from "./publish/reducer";
+import {chatUser,chatMsg} from "./chat/reducer";
 
 const reducers = combineReducers({
 	user,
@@ -15,7 +16,9 @@ const reducers = combineReducers({
 	labelList,
 	article_content,
 	article_img,
-	whoCanSee
+	whoCanSee,
+	chatUser,
+	chatMsg
 });
 
 export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))

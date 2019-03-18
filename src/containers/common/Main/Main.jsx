@@ -34,7 +34,7 @@ class Main extends Component {
 	componentWillReceiveProps(nextProps, nextContext) {
 		const {username, password} = nextProps.user;
 		if (sessionStorage.already_get_user) {
-			open_chat(username, password)
+			this.props.open_chat(username, password)
 		}
 	}
 
@@ -94,7 +94,8 @@ export default connect(
 	{
 		getUser,
 		getPatientList,
-		getLabelList
+		getLabelList,
+		open_chat
 	}
 )(Main);
 

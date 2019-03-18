@@ -23,3 +23,6 @@ export const reqGetCity = () => ajax('/api/get_city');
 // 获取科室
 export const reqGetDepartments = ()=>ajax('/api/get_departments');
 
+// 通过聊天室获取聊天室成员信息
+export const reqChatUserInfo = chat_room => ajax('/api/chat/chat_user_info');
+

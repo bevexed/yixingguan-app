@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
 
+import {sendRoomText} from "../../../redux/chat/action";
+import {reqChatUserInfo} from "../../../api";
+
 import './Message.less';
 
 class Message extends Component {
@@ -10,6 +13,26 @@ class Message extends Component {
 		input: '',
 		menuShow: false
 	};
+
+	componentDidMount() {
+		const id = this.props.match.params.to;
+		reqChatUserInfo(id)
+			.then(
+				res=>{
+					console.log(res);
+				}
+			)
+	}
+
+	sendMessage(e, username) {
+		const {input} = this.state;
+		if (e.key !== 'Enter' || e.keyCode !== 13 || !input) {
+			return
+		}
+		const id = this.props.match.params.to;
+		this.setState({input: ''});
+		this.props.sendRoomText(input, id, username);
+	}
 
 	changeInputType = (inputType) => {
 		console.log(inputType);
@@ -35,8 +58,11 @@ class Message extends Component {
 	};
 
 	render() {
-		const {inputType, menuShow} = this.state;
+		const {input, inputType, menuShow} = this.state;
 		const {identity} = this.props.user;
+		const {username} = this.props.user;
+		const {chatMsg} = this.props;
+		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 
 		return (
 			<div className={'message'}>
@@ -53,13 +79,14 @@ class Message extends Component {
 
 				{/*聊天内容*/}
 				<div className={'chat'}>
-					<div className={'from'}>
-						<img src={require('./img/biaoqing@3x.png')} alt=""/><span>有个问题想有个问题想咨想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一有个问题想咨询您一</span>
-					</div>
-					<WhiteSpace/>
-					<div className={'to'}>
-						<img src={require('./img/biaoqing@3x.png')} alt=""/><span>您好，问题，有个问题想咨询您一 。</span>
-					</div>
+					{msg.map(chat =>
+						<div key={chat.time}>
+							<div className={username === chat.username ? 'to' : 'from'}>
+								<img src={require('./img/biaoqing@3x.png')} alt=""/><span>{chat.message}</span>
+							</div>
+							<WhiteSpace/>
+						</div>
+					)}
 				</div>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -93,6 +120,8 @@ class Message extends Component {
 											onChange={val => this.handleChange('input', val)}
 											onFocus={this.showKeyboard}
 											onBlur={this.showKeyboard}
+											onKeyDown={e => this.sendMessage(e, username)}
+											value={input}
 										/>
 									</div> :
 									< div className={'speak'}>
@@ -122,10 +151,14 @@ class Message extends Component {
 
 function mapStateToProps(state) {
 	return {
-		user: state.user
+		user: state.user,
+		chatMsg: state.chatMsg
 	};
 }
 
 export default connect(
 	mapStateToProps,
+	{
+		sendRoomText
+	}
 )(Message);
