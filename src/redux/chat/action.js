@@ -53,24 +53,31 @@ export const listen = () => {
 			// 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
 			// 手动上线指的是调用conn.setPresence(); 如果conn初始化时已将isAutoLogin设置为true
 			// 则无需调用conn.setPresence();
-			console.log(message);
+			console.log('open',message);
 		},
 		onClosed(message) {
-			console.log(message);
+			console.log('onclosed',message);
 		},         //连接关闭回调
 		onTextMessage(message) {
+			console.log('text', message);
 		},    //收到文本消息
 		onEmojiMessage(message) {
+			console.log('emoji', message);
 		},   //收到表情消息
 		onPictureMessage(message) {
+			console.log('pic', message);
 		}, //收到图片消息
 		onCmdMessage(message) {
+			console.log('cmd', message);
 		},     //收到命令消息
 		onAudioMessage(message) {
+			console.log('audio', message);
 		},   //收到音频消息
 		onLocationMessage(message) {
+			console.log('location', message);
 		},//收到位置消息
 		onFileMessage(message) {
+			console.log('file', message);
 		},    //收到文件消息
 		onVideoMessage(message) {
 			let node = document.getElementById('privateVideo');
@@ -80,8 +87,7 @@ export const listen = () => {
 					'Accept': 'audio/mp4'
 				},
 				onFileDownloadComplete(response) {
-					let objectURL = WebIM.utils.parseDownloadResponse.call(conn, response);
-					node.src = objectURL;
+					node.src = WebIM.utils.parseDownloadResponse.call(conn, response);
 				},
 				onFileDownloadError() {
 					console.log('File down load error.')
@@ -90,6 +96,7 @@ export const listen = () => {
 			WebIM.utils.download.call(conn, option);
 		},   //收到视频消息
 		onPresence(message) {
+			console.log('presence', message);
 		},       //处理“广播”或“发布-订阅”消息，如联系人订阅请求、处理群组、聊天室被踢解散等消息
 		onRoster(message) {
 		},         //处理好友申请
@@ -109,10 +116,10 @@ export const listen = () => {
 			console.log(list);
 		},
 		onReceivedMessage(message) {
-			console.log(message);
+			console.log('receive',message);
 		},    //收到消息送达服务器回执
 		onDeliveredMessage(message) {
-			console.log(message);
+			console.log('deliver',message);
 		},   //收到消息送达客户端回执
 		onReadMessage(message) {
 		},        //收到消息已读回执
@@ -122,3 +129,5 @@ export const listen = () => {
 		}        //如果用户在A群组被禁言，在A群发消息会走这个回调并且消息不会传递给群其它成员
 	});
 };
+
+listen();

@@ -48,3 +48,6 @@ export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete'
 
 // 医生删除预约
 export const reqSubscribeDelete = id => ajax('/api/doctor/list/subscribe_delete',{id});
+
+// 首页患者列表
+export const reqChatList = () => ajax('/api/chat/chat_lists',{},"GET");

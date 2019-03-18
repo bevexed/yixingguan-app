@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './DoctorIndex.less'
 
+import {reqChatList} from "../../../api/doctor";
+
 import {
 	Result,
 	WhiteSpace,
@@ -31,8 +33,20 @@ function closest(el, selector) {
 class DoctorIndex extends Component {
 	state = {
 		modal: false,
-		pain: []
+		pain: [],
+		chatList: []
 	};
+
+	componentDidMount() {
+		reqChatList()
+			.then(
+				res => {
+					if (res.code === 1) {
+						this.setState({chatList: res.data})
+					}
+				}
+			)
+	}
 
 	showModal = key => (e) => {
 		console.log(e);
@@ -73,6 +87,7 @@ class DoctorIndex extends Component {
 
 	render() {
 		const {name, avatar} = this.props.user;
+		const {chatList} = this.state;
 
 		return (
 			<div className="doctor-index">
@@ -109,21 +124,26 @@ class DoctorIndex extends Component {
 
 
 					{/*病人列表*/}
-					<Item
-						onClick={() => this.props.history.push('/message/1')}
-						thumb={<img className={'patient-avator'} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551407674&di=ec267c3e88e04ffe96d351b62c7a38a7&imgtype=jpg&er=1&src=http%3A%2F%2Ftx.haiqq.com%2Fuploads%2Fallimg%2F170914%2F0220055L1-9.jpg" alt=""/>}
-						multipleLine
-					>
-						照应听
-						<Brief>
-							<p className='patient-message'>
-								向您发送了一张照片 <span className={'time'}>2019-02-13 13:13</span>
-							</p>
-						</Brief>
-					</Item>
+
+					{
+						chatList.map(item =>
+							<Item
+								key={item.id}
+								onClick={() => this.props.history.push('/message/' + item.name)}
+								thumb={<img className={'patient-avator'} src={item.avatar} alt=""/>}
+								multipleLine
+							>
+								{item.name}
+								<Brief>
+									<p className='patient-message'>
+										向您发送了一张照片 <span className={'time'}>2019-02-13 13:13</span>
+									</p>
+								</Brief>
+							</Item>
+						)
+					}
+
 				</List>
-
-
 				{/*弹出层*/}
 				<Modal
 					className={'pain'}
