@@ -15,7 +15,6 @@ import {getPatientList, getLabelList} from "../../../redux/doctor/action";
 
 import {open_chat} from "../../../redux/chat/action";
 
-import Cookies from 'js-cookie';
 
 class Main extends Component {
 	state = {
@@ -23,7 +22,7 @@ class Main extends Component {
 	};
 
 	componentDidMount() {
-		const token = Cookies.get('token');
+		const token = sessionStorage.token;
 
 		if (sessionStorage.identity === 'doctor') {
 			this.props.getPatientList(token);

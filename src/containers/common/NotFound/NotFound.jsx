@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import './NotFound.less'
-import Cookie from 'js-cookie';
 
 class NotFound extends Component {
 	state = {
@@ -10,13 +9,12 @@ class NotFound extends Component {
 
 	componentDidMount() {
 		sessionStorage.clear();
-		Cookie.remove();
 		localStorage.clear();
 	}
 
 	render() {
 		const {button_show} = this.state;
-		// this.props.history.replace('/');
+
 		return (
 			<div className='not-found'>
 				<p>

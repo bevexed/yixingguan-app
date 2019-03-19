@@ -8,7 +8,6 @@ import {Route, Switch} from "react-router-dom";
 import Main from "../Main/Main";
 import Login from '../Login/Login'
 
-import Cookie from "js-cookie";
 import {getUser} from "../../../redux/user/action";
 
 import RegisterIndex from "../Register/RegisterIndex";
@@ -27,10 +26,11 @@ class Intercept extends Component {
 	};
 
 	componentDidMount() {
-		const token = Cookie.get('token');
-		if (!token && !sessionStorage.token) {
+		if (!sessionStorage.token) {
 			let appId = config.wx.appID;
 			let scope = config.wx.scope;
+			// let appId = config.wx_test.appID;
+			// let scope = config.wx_test.scope;
 			let redirect_uri = window.location.href;
 			let code = GetQueryString('code');
 			if (!code) {
@@ -39,23 +39,22 @@ class Intercept extends Component {
 				reqToken(code).then(
 					res => {
 						if (res.code === 1) {
-							Cookie.set('token', res.data);
-							const token = Cookie.get('token');
-							sessionStorage.token = token;
+							sessionStorage.token = res.data;
+							const token = sessionStorage.token;
 							this.setState({token});
-							this.props.getUser(token)
+							this.props.getUser(token);
 						} else {
 							Toast.fail(res.message, 3, () => {
-								Cookie.remove('token');
 								sessionStorage.clear();
-								window.location.assign(window.location.origin)
+								// window.location.assign(window.location.origin)
 							});
 						}
 					}
 				)
 			}
 		} else {
-			if (token) {
+			if (sessionStorage.token) {
+				const token = sessionStorage.token;
 				this.setState({token});
 				this.props.getUser(token);
 			}
@@ -64,6 +63,7 @@ class Intercept extends Component {
 
 	render() {
 		const {token} = this.state;
+		console.log(token);
 		if (!token) {
 			return <Loading/>
 		}

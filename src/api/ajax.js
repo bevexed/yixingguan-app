@@ -4,10 +4,11 @@ import {Toast} from "antd-mobile";
 
 // 默认请求地址
 axios.defaults.baseURL = 'http://47.75.74.89:81';
+// axios.defaults.baseURL = 'http://47.75.74.89:82';
 
 export default function ajax(url, data = {}, type = "POST", loading = true) {
 
-	data.token = sessionStorage.token;
+	data = {...data, token: sessionStorage.token};
 
 	return new Promise((resolve, reject) => {
 		let promise;
