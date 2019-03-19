@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
 
+import './NotFound.less'
+import Cookie from 'js-cookie';
+
 class NotFound extends Component {
 	state = {
-		button_show: false
+		button_show: true
 	};
 
 	componentDidMount() {
-		sessionStorage.removeItem('path');
+		sessionStorage.clear();
+		Cookie.remove();
+		localStorage.clear();
 	}
 
 	render() {
 		const {button_show} = this.state;
 		// this.props.history.replace('/');
 		return (
-			<div
-				style={{width: '100VW', height: '100VH'}}>
+			<div className='not-found'>
+				<p>
+					404 <br/>
+					网页走丢了
+				</p>
 				{button_show ?
 					<div
-						className={'button'}
+						className='button'
 						onClick={() => this.props.history.replace('/')}>回到首页
 					</div> : null
 				}

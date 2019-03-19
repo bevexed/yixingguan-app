@@ -4,7 +4,6 @@ import './Register.less'
 class RegisterIndex extends Component {
 
 	render() {
-
 		return (
 			<div className={'register'}>
 				<span className={'title'}>
