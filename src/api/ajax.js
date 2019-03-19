@@ -3,7 +3,7 @@ import axios from 'axios'
 import {Toast} from "antd-mobile";
 
 // 默认请求地址
-axios.defaults.baseURL = 'http://47.75.74.89:82';
+axios.defaults.baseURL = 'http://47.75.74.89:81';
 
 export default function ajax(url, data = {}, type = "POST", loading = true) {
 
