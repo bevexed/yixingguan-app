@@ -17,8 +17,12 @@ import {GetQueryString} from "../../../utils";
 import {reqCode, reqToken} from "../../../api";
 
 import config from '../../../../package.json'
+import {Toast} from "antd-mobile";
 
 class Intercept extends Component {
+	state={
+		token:'',
+	};
 
 	componentDidMount() {
 		const token = Cookie.get('token');
@@ -33,23 +37,30 @@ class Intercept extends Component {
 				reqToken(code).then(
 					res => {
 						if (res.code === 1) {
+							this.setState({token});
 							this.props.getUser(token)
 						} else {
-							Cookie.remove('token');
-							sessionStorage.clear();
-							window.location.reload(true)
+							Toast.fail(res.message,3,()=>{
+								Cookie.remove('token');
+								sessionStorage.clear();
+								// window.location.assign(window.location.origin)
+							});
 						}
 					}
 				)
 			}
 		} else {
-			if (token){
+			if (token) {
 				this.props.getUser(token);
 			}
 		}
 	}
 
 	render() {
+		const {token} = this.state;
+		if (!token) {
+			return null
+		}
 		return (
 			<div>
 				<Switch>

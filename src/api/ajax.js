@@ -22,6 +22,9 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 		);
 
 
+		// 默认请求地址
+		// axios.defaults.baseURL = 'http://47.75.74.89:81';
+
 		// 添加请求拦截器
 		axios.interceptors.request.use(function (config) {
 			// 在发送请求之前做些什么
