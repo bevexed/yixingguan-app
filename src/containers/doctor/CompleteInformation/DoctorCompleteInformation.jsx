@@ -91,8 +91,9 @@ class DoctorCompleteInformation extends Component {
 		reqDoctorInformation({...DoctorInformation}).then(
 			res => {
 				if (res.code === 1) {
-					Toast.success(res.message, 1);
-					this.props.history.push('/')
+					Toast.success(res.message, 1,()=>{
+						this.props.history.push('/doctor-personal')
+					});
 				} else {
 					Toast.fail(res.message, 1)
 				}
