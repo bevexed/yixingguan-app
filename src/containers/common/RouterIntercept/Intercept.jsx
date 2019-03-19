@@ -22,13 +22,13 @@ import {Toast} from "antd-mobile";
 import Loading from "../../../components/Loading/Loading";
 
 class Intercept extends Component {
-	state={
-		token:'',
+	state = {
+		token: '',
 	};
 
 	componentDidMount() {
 		const token = Cookie.get('token');
-		if (!token) {
+		if (!token && !sessionStorage.token) {
 			let appId = config.wx_test.appID;
 			let scope = config.wx_test.scope;
 			let redirect_uri = window.location.href;
@@ -39,11 +39,13 @@ class Intercept extends Component {
 				reqToken(code).then(
 					res => {
 						if (res.code === 1) {
+							Cookie.set('token', res.data);
 							const token = Cookie.get('token');
+							sessionStorage.token = token;
 							this.setState({token});
 							this.props.getUser(token)
 						} else {
-							Toast.fail(res.message,3,()=>{
+							Toast.fail(res.message, 3, () => {
 								Cookie.remove('token');
 								sessionStorage.clear();
 								window.location.assign(window.location.origin)

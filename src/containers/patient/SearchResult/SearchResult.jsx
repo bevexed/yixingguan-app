@@ -32,7 +32,7 @@ class SearchResult extends Component {
 
 function mapStateToProps(state) {
 	return {
-		doctorList: state.doctorList
+		doctorList: state.seekDoctorList
 	};
 }
 
