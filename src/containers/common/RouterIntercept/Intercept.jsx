@@ -57,10 +57,10 @@ class Intercept extends Component {
 	}
 
 	render() {
-		const {token} = this.state;
-		if (!token) {
-			return null
-		}
+		// const {token} = this.state;
+		// if (!token) {
+		// 	return null
+		// }
 		return (
 			<div>
 				<Switch>
