@@ -29,8 +29,8 @@ class Intercept extends Component {
 	componentDidMount() {
 		const token = Cookie.get('token');
 		if (!token && !sessionStorage.token) {
-			let appId = config.wx_test.appID;
-			let scope = config.wx_test.scope;
+			let appId = config.wx.appID;
+			let scope = config.wx.scope;
 			let redirect_uri = window.location.href;
 			let code = GetQueryString('code');
 			if (!code) {
