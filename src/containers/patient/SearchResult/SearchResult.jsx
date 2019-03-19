@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import DocList from '../../../components/DocList/DocList'
 
-import {Redirect} from "react-router-dom";
-
 import {NavBar, Icon, WhiteSpace} from "antd-mobile";
 
 class SearchResult extends Component {
 	render() {
-		const {doctorList} = this.props;
-		if (!doctorList.length) {
-			return <Redirect to='/patient-index'/>
-		}
+		const {doctorList=[]} = this.props;
 
 		return (
 			<div>

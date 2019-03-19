@@ -25,6 +25,12 @@ class RegisterPhone extends Component {
 		sendable: true
 	};
 
+	componentWillUnmount() {
+		this.setState = () => {
+			return false
+		};
+	}
+
 	onErrorClick = () => {
 		if (this.state.hasError) {
 			Toast.info('手机号码格式不对');
