@@ -27,8 +27,8 @@ class Intercept extends Component {
 	componentDidMount() {
 		const token = Cookie.get('token');
 		if (!token) {
-			let appId = config.wx.appID;
-			let scope = config.wx.scope;
+			let appId = config.wx_test.appID;
+			let scope = config.wx_test.scope;
 			let redirect_uri = window.location.href;
 			let code = GetQueryString('code');
 			if (!code) {
@@ -57,10 +57,10 @@ class Intercept extends Component {
 	}
 
 	render() {
-		// const {token} = this.state;
-		// if (!token) {
-		// 	return null
-		// }
+		const {token} = this.state;
+		if (!token) {
+			return null
+		}
 		return (
 			<div>
 				<Switch>
