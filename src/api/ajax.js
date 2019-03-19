@@ -2,10 +2,8 @@ import axios from 'axios'
 
 import {Toast} from "antd-mobile";
 
-import config from "../../package.json"
-
 // 默认请求地址
-axios.defaults.baseURL = config.proxy;
+// axios.defaults.baseURL = config.proxy;
 
 export default function ajax(url, data = {}, type = "POST", loading = true) {
 	return new Promise((resolve, reject) => {

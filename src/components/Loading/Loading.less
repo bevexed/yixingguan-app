@@ -1,0 +1,58 @@
+.loading {
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+
+	.img {
+		height: 100%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+
+	@keyframes lds-rolling {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+	@-webkit-keyframes lds-rolling {
+		0% {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+		100% {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	.lds-rolling div,
+	.lds-rolling div:after {
+		position: absolute;
+		width: 160px/2;
+		height: 160px/2;
+		border: 20px/4 solid #68E3CE;
+		border-top-color: transparent;
+		border-radius: 50%;
+	}
+
+	.lds-rolling div {
+		animation: lds-rolling 1s linear infinite;
+		top: 100px;
+		left: 100px;
+	}
+
+	.lds-rolling div:after {
+		transform: rotate(90deg);
+	}
+
+	.lds-rolling {
+		width: 200px !important;
+		height: 200px !important;
+		transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+	}
+}

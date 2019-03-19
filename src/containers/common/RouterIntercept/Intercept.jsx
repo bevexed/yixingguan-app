@@ -19,6 +19,8 @@ import {reqCode, reqToken} from "../../../api";
 import config from '../../../../package.json'
 import {Toast} from "antd-mobile";
 
+import Loading from "../../../components/Loading/Loading";
+
 class Intercept extends Component {
 	state={
 		token:'',
@@ -37,13 +39,14 @@ class Intercept extends Component {
 				reqToken(code).then(
 					res => {
 						if (res.code === 1) {
+							const token = Cookie.get('token');
 							this.setState({token});
 							this.props.getUser(token)
 						} else {
 							Toast.fail(res.message,3,()=>{
 								Cookie.remove('token');
 								sessionStorage.clear();
-								// window.location.assign(window.location.origin)
+								window.location.assign(window.location.origin)
 							});
 						}
 					}
@@ -51,6 +54,7 @@ class Intercept extends Component {
 			}
 		} else {
 			if (token) {
+				this.setState({token});
 				this.props.getUser(token);
 			}
 		}
@@ -59,8 +63,9 @@ class Intercept extends Component {
 	render() {
 		const {token} = this.state;
 		if (!token) {
-			return null
+			return <Loading/>
 		}
+
 		return (
 			<div>
 				<Switch>
