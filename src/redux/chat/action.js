@@ -1,5 +1,6 @@
 import {
-	LOGIN_SUCCESS_CHAT, RECEIVE_TEXT_MESSAGE,
+	LOGIN_SUCCESS_CHAT,
+	RECEIVE_TEXT_MESSAGE,
 	SEND_MESSAGE
 } from "../action-types";
 import {Toast} from "antd-mobile";
@@ -61,10 +62,11 @@ export const open_chat = (user, pwd) => {
 	}
 };
 
-const receiveTextMessage = msg => ({type: RECEIVE_TEXT_MESSAGE, data: msg});
+export const receiveTextMessage = msg => ({type: RECEIVE_TEXT_MESSAGE, data: msg});
+
 
 // 监听
-export const listen = () => {
+export const listen = (receiveTextMessage) => {
 	conn.listen({
 		onOpened(message) {          //连接成功回调
 			// 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
@@ -76,9 +78,11 @@ export const listen = () => {
 			console.log('onclosed', message);
 		},         //连接关闭回调
 		onTextMessage(message) {
-			const msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
+			if (message.error) {
+				Toast.fail(message.errorText, 1)
+			}
+			let msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
 			receiveTextMessage(msg);
-			console.log('text', message);
 		},    //收到文本消息
 		onEmojiMessage(message) {
 			console.log('emoji', message);
@@ -131,10 +135,7 @@ export const listen = () => {
 			console.log('掉线');
 		},                 //本机网络掉线
 		onError(message) {
-			Toast.fail('链接错误', 1, () => {
-				window.location.reload(true)
-			});
-
+			Toast.fail('链接错误', 1);
 			console.log('onError:' + message);
 		},          //失败回调
 		onBlacklistUpdate(list) {       //黑名单变动
@@ -156,7 +157,6 @@ export const listen = () => {
 	});
 };
 
-listen();
 
 const sendMessage = msg => ({type: SEND_MESSAGE, data: msg});
 // 发送群消息
@@ -167,7 +167,7 @@ export const sendRoomText = (message, chat_room, username) => {
 		let option = {
 			msg: message,          // 消息内容
 			to: chat_room,               // 接收消息对象(聊天室id)
-			roomType: true,
+			roomType: false,
 			chatType: 'chatRoom',
 			success: function () {
 				const msg = {chat_room, message, time: new Date().valueOf(), username};

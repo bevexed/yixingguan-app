@@ -1,5 +1,6 @@
 import {
-	LOGIN_SUCCESS_CHAT, RECEIVE_TEXT_MESSAGE,
+	LOGIN_SUCCESS_CHAT,
+	RECEIVE_TEXT_MESSAGE,
 	SEND_MESSAGE
 } from "../action-types";
 
@@ -22,11 +23,19 @@ const initMessage = [{
 }];
 
 export const chatMsg = (state = initMessage, action) => {
+	if (localStorage.message) {
+		state = JSON.parse(localStorage.message)
+	}
+
 	switch (action.type) {
 		case SEND_MESSAGE:
-			return [...state, action.data];
+			state = [...state, action.data];
+			localStorage.message = JSON.stringify(state);
+			return state;
 		case RECEIVE_TEXT_MESSAGE:
-			return [...state, action.data];
+			state = [...state, action.data];
+			localStorage.message = JSON.stringify(state);
+			return state;
 		default:
 			return state;
 	}

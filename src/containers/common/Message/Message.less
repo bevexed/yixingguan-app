@@ -25,7 +25,6 @@
 
 		.avatar {
 			height: 40px;
-			order: 1;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -45,6 +44,10 @@
 		.to {
 			display: flex;
 			justify-content: flex-end;
+
+			.avatar {
+				order: 1;
+			}
 
 			> span:after {
 				position: absolute;

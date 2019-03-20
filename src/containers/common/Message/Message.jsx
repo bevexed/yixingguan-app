@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
 
-import {sendRoomText} from "../../../redux/chat/action";
+import {sendRoomText,listen,receiveTextMessage} from "../../../redux/chat/action";
 import {reqChatUserInfo} from "../../../api";
 
 import './Message.less';
@@ -16,6 +16,7 @@ class Message extends Component {
 	};
 
 	componentDidMount() {
+		listen(this.props.receiveTextMessage);
 		const id = this.props.match.params.to;
 		reqChatUserInfo(id)
 			.then(
@@ -56,7 +57,10 @@ class Message extends Component {
 	};
 
 	showKeyboard = () => {
-		window.scrollTo(0, document.body.scrollHeight);
+		setTimeout(function () {
+			let scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+			window.scrollTo(0, Math.max(scrollHeight - 1, 0));
+		}, 300);
 		this.setState({
 			menuShow: false
 		})
@@ -121,7 +125,6 @@ class Message extends Component {
 					{/*输入框*/}
 					<div className={'speak-input-wrap'}>
 						<div className={'voice'}>
-
 							<img
 								src={require('./img/jianpan-@3x.png')}
 								onClick={() => this.changeInputType(inputType)}
@@ -172,6 +175,8 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		sendRoomText
+		listen,
+		sendRoomText,
+		receiveTextMessage
 	}
 )(Message);
