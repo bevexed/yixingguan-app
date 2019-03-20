@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
 
-import {sendRoomText,listen,receiveTextMessage} from "../../../redux/chat/action";
+import {sendRoomText, listen, receiveTextMessage} from "../../../redux/chat/action";
 import {reqChatUserInfo} from "../../../api";
 
 import './Message.less';
@@ -71,10 +71,9 @@ class Message extends Component {
 		const {identity} = this.props.user;
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
-
-		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
-
 		if (!users.length) { return null }
+		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name ;
+		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 
 		return (
 			<div className={'message'}>
@@ -82,7 +81,7 @@ class Message extends Component {
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => this.props.history.goBack()}
-				>{this.props.match.params.to}</NavBar>
+				>{person}</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
