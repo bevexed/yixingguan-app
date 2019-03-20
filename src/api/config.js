@@ -4,7 +4,7 @@ export const dev = {
 	//线上
 	wx: {
 		"appID": "wx44c79818819144cb",
-		"redirect_uri": "http://www.zhujiaxin521.com",
+		"redirect_uri": "http://47.75.74.89",
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
 	},
