@@ -11,17 +11,22 @@ class Message extends Component {
 	state = {
 		inputType: 'input',
 		input: '',
-		menuShow: false
+		menuShow: false,
+		users: ''
 	};
 
 	componentDidMount() {
 		const id = this.props.match.params.to;
 		reqChatUserInfo(id)
 			.then(
-				res=>{
-					console.log(res);
+				res => {
+					this.setState({users: res.data})
 				}
 			)
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		window.scrollTo(0, document.documentElement.scrollHeight);
 	}
 
 	sendMessage(e, username) {
@@ -58,10 +63,11 @@ class Message extends Component {
 	};
 
 	render() {
-		const {input, inputType, menuShow} = this.state;
+		const {input, inputType, menuShow, users} = this.state;
 		const {identity} = this.props.user;
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
+
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 
 		return (
@@ -82,8 +88,13 @@ class Message extends Component {
 					{msg.map(chat =>
 						<div key={chat.time}>
 							<div className={username === chat.username ? 'to' : 'from'}>
-								<img src={require('./img/biaoqing@3x.png')} alt=""/><span>{chat.message}</span>
+								<div className='avatar'>
+									<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
+									<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>
+								</div>
+								<span className='message-data'>{chat.message}</span>
 							</div>
+							<WhiteSpace/>
 							<WhiteSpace/>
 						</div>
 					)}
@@ -135,7 +146,7 @@ class Message extends Component {
 						</div>
 
 						{/*弹出框*/}
-						<div className={'alert'} style={{height: menuShow ? 110 : 0}}>
+						<div className='alert' style={{height: menuShow ? 110 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt=""/>
 							<img src={require('./img/相册@3x.png')} alt=""/>
 						</div>

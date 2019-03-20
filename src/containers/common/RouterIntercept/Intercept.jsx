@@ -57,7 +57,6 @@ class Intercept extends Component {
 
 	render() {
 		const {token} = this.state;
-		console.log(token);
 		if (!token) {
 			return <Loading/>
 		}

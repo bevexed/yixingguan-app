@@ -1,6 +1,8 @@
 @import "../../../static/common";
 
 .message {
+	transition: all 1s ease;
+
 	.chat {
 		padding: 10px 0;
 		overflow: hidden;
@@ -11,32 +13,43 @@
 			color: white;
 		}
 
-		span {
+		.message-data {
 			position: relative;
 			background-color: #68e3ce;
 			color: white;
 			padding: 8Px;
 			max-width: 70%;
 			border-radius: 6Px;
+			word-break: break-all;
 		}
 
-		img {
+		.avatar {
 			height: 40px;
-			margin: 10px;
+			order: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			img {
+				height: 28px;
+				margin: 1px 10px;
+			}
+
+			.name {
+				color: #152b23;
+				font-size: 10px;
+			}
 		}
 
 		.to {
 			display: flex;
 			justify-content: flex-end;
 
-			> img {
-				order: 1;
-			}
-
 			> span:after {
 				position: absolute;
-				width: 30px;
-				height: 30px;
+				width: 30px/2;
+				height: 30px/2;
 				right: -2px;
 				top: 14px;
 				content: '';
@@ -50,10 +63,11 @@
 		.from {
 			display: flex;
 			justify-content: flex-start;
+
 			> span:after {
 				position: absolute;
-				width: 26px;
-				height: 26px;
+				width: 30px/2;
+				height: 30px/2;
 				left: -2px;
 				top: 14px;
 				content: '';
@@ -103,6 +117,7 @@
 		.alert {
 			transition: height .3s ease;
 			border-top: 1Px solid #f2f2f2;
+			overflow: hidden;
 
 			> img {
 				height: 60Px;
