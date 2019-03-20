@@ -31,4 +31,4 @@ export const HAVE_PUBULISHED = 'have_pubulished';
 // export const AUTH_SUCCESS_CHAT = 'auth_success_chat';
 export const LOGIN_SUCCESS_CHAT = 'login_success_chat';
 export const SEND_MESSAGE = 'send_message';
-export const RESET_CHAT = 'reset_chat';
+export const RECEIVE_TEXT_MESSAGE = 'receive_text_message';

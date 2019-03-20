@@ -1,5 +1,5 @@
 import {
-	LOGIN_SUCCESS_CHAT,
+	LOGIN_SUCCESS_CHAT, RECEIVE_TEXT_MESSAGE,
 	SEND_MESSAGE
 } from "../action-types";
 import {Toast} from "antd-mobile";
@@ -61,6 +61,8 @@ export const open_chat = (user, pwd) => {
 	}
 };
 
+const receiveTextMessage = msg => ({type: RECEIVE_TEXT_MESSAGE, data: msg});
+
 // 监听
 export const listen = () => {
 	conn.listen({
@@ -74,6 +76,8 @@ export const listen = () => {
 			console.log('onclosed', message);
 		},         //连接关闭回调
 		onTextMessage(message) {
+			const msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
+			receiveTextMessage(msg);
 			console.log('text', message);
 		},    //收到文本消息
 		onEmojiMessage(message) {
@@ -121,9 +125,16 @@ export const listen = () => {
 			console.log('链接成功');
 		},                  //本机网络连接成功
 		onOffline() {
+			Toast.fail('您已经掉线', 1, () => {
+				window.location.reload(true)
+			});
 			console.log('掉线');
 		},                 //本机网络掉线
 		onError(message) {
+			Toast.fail('链接错误', 1, () => {
+				window.location.reload(true)
+			});
+
 			console.log('onError:' + message);
 		},          //失败回调
 		onBlacklistUpdate(list) {       //黑名单变动
@@ -149,7 +160,7 @@ listen();
 
 const sendMessage = msg => ({type: SEND_MESSAGE, data: msg});
 // 发送群消息
-export const sendRoomText = (message, chat_room,username) => {
+export const sendRoomText = (message, chat_room, username) => {
 	return async dispatch => {
 		let id = conn.getUniqueId();         // 生成本地消息id
 		let msg = new WebIM.message('txt', id); // 创建文本消息
@@ -159,12 +170,12 @@ export const sendRoomText = (message, chat_room,username) => {
 			roomType: true,
 			chatType: 'chatRoom',
 			success: function () {
-				const msg = {chat_room, message, time: new Date().valueOf(),username};
+				const msg = {chat_room, message, time: new Date().valueOf(), username};
 				dispatch(sendMessage(msg));
 				console.log('send room text success');
 			},
 			fail: function () {
-				Toast.fail('发送失败',1);
+				Toast.fail('发送失败', 1);
 				console.log('failed');
 			}
 		};

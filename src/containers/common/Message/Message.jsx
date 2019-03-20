@@ -12,7 +12,7 @@ class Message extends Component {
 		inputType: 'input',
 		input: '',
 		menuShow: false,
-		users: ''
+		users: []
 	};
 
 	componentDidMount() {
@@ -69,6 +69,8 @@ class Message extends Component {
 		const {chatMsg} = this.props;
 
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
+
+		if (!users.length) { return null }
 
 		return (
 			<div className={'message'}>

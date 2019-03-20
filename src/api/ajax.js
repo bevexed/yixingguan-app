@@ -50,13 +50,15 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 			if (response.data.code === 2) {
 				sessionStorage.clear();
 				localStorage.clear();
+				window.location.reload(true);
 			}
 			// 关闭 Loading 状态
 			Toast.hide();
 			return response;
 		}, function (error) {
 			// 对响应错误做点什么
-
+			sessionStorage.clear();
+			localStorage.clear();
 			// 提示 数据加载失败
 			Toast.fail('数据加载失败', 1);
 
