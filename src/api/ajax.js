@@ -47,7 +47,10 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 		// 添加响应拦截器
 		axios.interceptors.response.use(function (response) {
 			// 对响应数据做点什么
-
+			if (response.data.code === 2) {
+				sessionStorage.clear();
+				localStorage.clear();
+			}
 			// 关闭 Loading 状态
 			Toast.hide();
 			return response;

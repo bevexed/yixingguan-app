@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {reqPatientList} from "../../../api/patient";
 
 import './DoctorChatLIst.less'
 import {
@@ -11,9 +12,19 @@ import {
 
 const Panel = Accordion.Panel;
 
-const docs = [true, false];
-
 class DoctorChatLIst extends Component {
+	state = {
+		chatList: [],
+	};
+
+	componentDidMount() {
+		reqPatientList()
+			.then(res => {
+				if (res.code === 1) {
+					this.setState({chatList: res.data})
+				}
+			})
+	}
 
 	panelChange = (key) => {
 		console.log(key);
@@ -25,6 +36,8 @@ class DoctorChatLIst extends Component {
 	};
 
 	render() {
+		const {chatList} = this.state;
+
 		return (
 			<div className={'doctors'}>
 				<NavBar
@@ -51,22 +64,22 @@ class DoctorChatLIst extends Component {
 					className="my-accordion"
 					onChange={this.panelChange}
 				>
-					{docs.map(doc =>
+					{chatList.map(doc =>
 
 
 						<Panel
 							className={doc ? 'panel' : null}
-							key={doc}
+							key={doc.id}
 							header={
 								<div className={'content'}
-										 onClick={el => this.toMessage(el, doc)}
+										 onClick={el => this.toMessage(el, doc.chat_room)}
 								>
 									<img className={'header-img'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>
 									<div className={'doc-brief ellipsis'}>
-										<span className={'name'}>李峰</span>
-										<span className={'subject'}>呼吸内科</span>
-										<span className={'level'}>主治医师</span>
-										<span className={'hospital'}>浙江省立同德医院</span>
+										<span className={'name'}>{doc.name}</span>
+										<span className={'subject'}>{doc.department}</span>
+										<span className={'level'}>{doc.with_title}</span>
+										<span className={'hospital'}>{doc.affiliated_hospital}</span>
 
 										<p className={'ellipsis'}>
 											李医生，我最近嗓子疼，有什么办法解决吗？sadsadsadasdsadsadsadas
