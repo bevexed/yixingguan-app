@@ -156,7 +156,7 @@
   "homepage": ".",
   "wx": {
     "appID": "wx44c79818819144cb",
-    "redirect_uri": "47.75.74.89",
+    "redirect_uri": "www.zhujiaxin521.com",
     "un-scope": "snsapi_base",
     "scope": "snsapi_userinfo"
   },

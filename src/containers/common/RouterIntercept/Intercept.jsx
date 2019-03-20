@@ -25,6 +25,8 @@ class Intercept extends Component {
 		token: '',
 	};
 
+	// FixMe: 无限循环
+
 	componentDidMount() {
 		if (!sessionStorage.token) {
 			let appId = config.wx.appID;

@@ -10,7 +10,6 @@ import NavFootDoc from '../../../components/NavFoot/NavFootDoc'
 import {patientNav, patientRoute} from '../../../router/patient'
 import {doctorNav, doctorRoute} from "../../../router/doctor";
 
-import {getUser} from "../../../redux/user/action";
 import {getPatientList, getLabelList} from "../../../redux/doctor/action";
 
 import {open_chat} from "../../../redux/chat/action";
@@ -91,7 +90,6 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		getUser,
 		getPatientList,
 		getLabelList,
 		open_chat
