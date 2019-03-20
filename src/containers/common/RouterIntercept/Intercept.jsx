@@ -15,7 +15,7 @@ import RegisterIndex from "../Register/RegisterIndex";
 import {GetQueryString} from "../../../utils";
 import {reqCode, reqToken} from "../../../api";
 
-import config from '../../../../package.json'
+import {dev} from '../../../../dev.config'
 import {Toast} from "antd-mobile";
 
 import Loading from "../../../components/Loading/Loading";
@@ -29,10 +29,8 @@ class Intercept extends Component {
 
 	componentDidMount() {
 		if (!sessionStorage.token) {
-			let appId = config.wx.appID;
-			let scope = config.wx.scope;
-			// let appId = config.wx_test.appID;
-			// let scope = config.wx_test.scope;
+			let appId = dev.wx.appID;
+			let scope = dev.wx.scope;
 			let redirect_uri = window.location.href;
 			let code = GetQueryString('code');
 			if (!code) {
