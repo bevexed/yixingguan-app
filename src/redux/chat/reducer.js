@@ -26,7 +26,7 @@ export const chatMsg = (state = initMessage, action) => {
 		case SEND_MESSAGE:
 			return [...state, action.data];
 		case RECEIVE_TEXT_MESSAGE:
-			return [...state,...action.data];
+			return [...state, action.data];
 		default:
 			return state;
 	}

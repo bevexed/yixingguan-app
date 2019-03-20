@@ -10456,7 +10456,7 @@ vary@~1.1.2:
 
 vconsole@^3.3.0:
   version "3.3.0"
-  resolved "http://registry.npm.taobao.org/vconsole/download/vconsole-3.3.0.tgz#42629c07fb3b6a72733d2bbc417ee3e84b2bc76e"
+  resolved "http://registry.npm.taobao.org/vconsole/download/vconsole-3.3.0.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Fvconsole%2Fdownload%2Fvconsole-3.3.0.tgz#42629c07fb3b6a72733d2bbc417ee3e84b2bc76e"
   integrity sha1-QmKcB/s7anJzPSu8QX7j6Esrx24=
 
 vendors@^1.0.0:
