@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import {Toast} from "antd-mobile";
 
-import {dev} from '../../dev.config'
+import {dev} from './config.js'
 
 axios.defaults.baseURL = dev.host;
 

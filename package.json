@@ -153,17 +153,5 @@
     "brand-primary": "#68e3ce",
     "color-text-base": "#000"
   },
-  "homepage": ".",
-  "wx": {
-    "appID": "wx44c79818819144cb",
-    "redirect_uri": "47.75.74.89",
-    "un-scope": "snsapi_base",
-    "scope": "snsapi_userinfo"
-  },
-	"wx_test": {
-		"appID": "wx6ad3262297242b11",
-		"redirect_uri": "192.168.1.8:3000",
-		"un-scope": "snsapi_base",
-		"scope": "snsapi_userinfo"
-	}
+  "homepage": "."
 }

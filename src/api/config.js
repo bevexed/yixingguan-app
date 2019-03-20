@@ -1,0 +1,20 @@
+// 开发环境
+
+export const dev = {
+	//线上
+	wx: {
+		"appID": "wx44c79818819144cb",
+		"redirect_uri": "http://www.zhujiaxin521.com",
+		"un-scope": "snsapi_base",
+		"scope": "snsapi_userinfo"
+	},
+	host: 'http://47.75.74.89:81'
+	// 线下
+	// wx: {
+	// 	"appID": "wx6ad3262297242b11",
+	// 	"redirect_uri": "http://192.168.1.8:3000",
+	// 	"un-scope": "snsapi_base",
+	// 	"scope": "snsapi_userinfo"
+	// },
+	// host: 'http://47.75.74.89:82'
+};

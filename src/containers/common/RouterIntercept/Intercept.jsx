@@ -15,7 +15,6 @@ import RegisterIndex from "../Register/RegisterIndex";
 import {GetQueryString} from "../../../utils";
 import {reqCode, reqToken} from "../../../api";
 
-import {dev} from '../../../../dev.config'
 import {Toast} from "antd-mobile";
 
 import Loading from "../../../components/Loading/Loading";
@@ -25,16 +24,11 @@ class Intercept extends Component {
 		token: '',
 	};
 
-	// FixMe: 无限循环
-
 	componentDidMount() {
 		if (!sessionStorage.token) {
-			let appId = dev.wx.appID;
-			let scope = dev.wx.scope;
-			let redirect_uri = window.location.href;
 			let code = GetQueryString('code');
 			if (!code) {
-				reqCode(appId, redirect_uri, scope)
+				reqCode()
 			} else {
 				reqToken(code).then(
 					res => {
