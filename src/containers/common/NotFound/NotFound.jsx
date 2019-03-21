@@ -9,7 +9,6 @@ class NotFound extends Component {
 
 	componentDidMount() {
 		sessionStorage.clear();
-		localStorage.clear();
 	}
 
 	render() {

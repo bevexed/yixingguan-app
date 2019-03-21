@@ -82,7 +82,7 @@ export const listen = (receiveTextMessage) => {
 				Toast.fail(message.errorText, 1)
 			}
 			let msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
-			receiveTextMessage(msg);
+			receiveTextMessage && receiveTextMessage(msg);
 		},    //收到文本消息
 		onEmojiMessage(message) {
 			console.log('emoji', message);
@@ -184,3 +184,5 @@ export const sendRoomText = (message, chat_room, username) => {
 		conn.send(msg.body);
 	}
 };
+
+listen();

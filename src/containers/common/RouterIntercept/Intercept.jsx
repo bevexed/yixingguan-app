@@ -39,7 +39,7 @@ class Intercept extends Component {
 							this.props.getUser(token);
 						} else {
 							Toast.fail(res.message, 3, () => {
-								sessionStorage.clear();
+								// sessionStorage.clear();
 								// window.location.assign(window.location.origin)
 							});
 						}

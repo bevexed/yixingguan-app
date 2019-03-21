@@ -57,8 +57,9 @@ class Message extends Component {
 	};
 
 	showKeyboard = () => {
+		// 调起输入法后上拉输入框
 		setTimeout(function () {
-			let scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+			let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight || 0;
 			window.scrollTo(0, Math.max(scrollHeight - 1, 0));
 		}, 300);
 		this.setState({

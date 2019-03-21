@@ -49,16 +49,15 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 			// 对响应数据做点什么
 			if (response.data.code === 2) {
 				sessionStorage.clear();
-				localStorage.clear();
-				window.location.reload(true);
+				window.location.replace('/');
 			}
 			// 关闭 Loading 状态
 			Toast.hide();
 			return response;
 		}, function (error) {
 			// 对响应错误做点什么
-			sessionStorage.clear();
-			localStorage.clear();
+			// sessionStorage.clear();
+			// window.location.replace('/');
 			// 提示 数据加载失败
 			Toast.fail('数据加载失败', 1);
 

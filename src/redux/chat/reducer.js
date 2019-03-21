@@ -27,6 +27,7 @@ export const chatMsg = (state = initMessage, action) => {
 		state = JSON.parse(localStorage.message)
 	}
 
+
 	switch (action.type) {
 		case SEND_MESSAGE:
 			state = [...state, action.data];
