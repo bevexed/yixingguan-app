@@ -1,5 +1,5 @@
 /*
-* 同一请求 用户数据
+*  请求用户数据
 * */
 
 import React, {Component} from 'react';

@@ -47,7 +47,7 @@ class Published extends Component {
 					mode="light"
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
-					onLeftClick={() => this.props.history.goBack()}
+					onLeftClick={() => this.props.history.push('/doctor-personal')}
 					rightContent={
 						<Icon
 							type={'cross'}
