@@ -1,6 +1,10 @@
 import {
+	// SEND_AUDIO,
+	// RECEIVE_AUDIO,
 	LOGIN_SUCCESS_CHAT,
+	RECEIVE_IMG,
 	RECEIVE_TEXT_MESSAGE,
+	SEND_IMG,
 	SEND_MESSAGE
 } from "../action-types";
 import {Toast} from "antd-mobile";
@@ -21,24 +25,26 @@ const conn = new WebIM.connection({
 	isAutoLogin: true
 });
 
+/*
 // 注册
 
-// export const register_chat = () => {
-// 	let options = {
-// 		username: '123ewqweqweqwewqewqeqwewewqeqwewq',
-// 		password: '123jshdashd',
-// 		nickname: '1123',
-// 		appKey: WebIM.config.appkey,
-// 		success: function (res) {
-// 			console.log(res);
-// 		},
-// 		error: function (err) {
-// 			console.log(err);
-// 		},
-// 		apiUrl: WebIM.config.apiURL
-// 	};
-// 	conn.registerUser(options);
-// };
+export const register_chat = () => {
+	let options = {
+		username: '123ewqweqweqwewqewqeqwewewqeqwewq',
+		password: '123jshdashd',
+		nickname: '1123',
+		appKey: WebIM.config.appkey,
+		success: function (res) {
+			console.log(res);
+		},
+		error: function (err) {
+			console.log(err);
+		},
+		apiUrl: WebIM.config.apiURL
+	};
+	conn.registerUser(options);
+};
+*/
 
 
 const loginSuccessChat = user => ({type: LOGIN_SUCCESS_CHAT, data: user});
@@ -64,9 +70,10 @@ export const open_chat = (user, pwd) => {
 
 export const receiveTextMessage = msg => ({type: RECEIVE_TEXT_MESSAGE, data: msg});
 
+export const receiveImg = img => ({type: RECEIVE_IMG, data: img});
 
 // 监听
-export const listen = (receiveTextMessage) => {
+export const listen = ({receiveTextMessage,receiveImg}) => {
 	conn.listen({
 		onOpened(message) {          //连接成功回调
 			// 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
@@ -78,6 +85,7 @@ export const listen = (receiveTextMessage) => {
 			console.log('onclosed', message);
 		},         //连接关闭回调
 		onTextMessage(message) {
+			console.log(message);
 			if (message.error) {
 				Toast.fail(message.errorText, 1)
 			}
@@ -88,10 +96,17 @@ export const listen = (receiveTextMessage) => {
 			console.log('emoji', message);
 		},   //收到表情消息
 		onPictureMessage(message) {
+			// if (message.error) {
+			// 	Toast.fail(message.errorText, 1)
+			// }
+			// let img = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
+			receiveImg && receiveImg('img');
 			console.log('pic', message);
+			console.log("Location of Picture is ", message.url);
 		}, //收到图片消息
 		onCmdMessage(message) {
 			console.log('cmd', message);
+
 		},     //收到命令消息
 		onAudioMessage(message) {
 			console.log('audio', message);
@@ -185,4 +200,86 @@ export const sendRoomText = (message, chat_room, username) => {
 	}
 };
 
-listen();
+const sendImg = img => ({type: SEND_IMG, data: img});
+export const doSendImg = (chat_room, username) => {
+	return async dispatch => {
+		let id = conn.getUniqueId();                   // 生成本地消息id
+		let msg = new WebIM.message('img', id);        // 创建图片消息
+		let input = document.getElementById('image');  // 选择图片的input
+		let file = WebIM.utils.getFileUrl(input);      // 将图片转化为二进制文件
+		let allowType = {
+			'jpg': true,
+			'gif': true,
+			'png': true,
+			'bmp': true
+		};
+		if (file.filetype.toLowerCase() in allowType) {
+			let option = {
+				apiUrl: WebIM.config.apiURL,
+				file,
+				to: chat_room,                          // 接收消息对象
+				roomType: false,
+				chatType: 'chatRoom',
+				onFileUploadError: function () {      // 消息上传失败
+					console.log('onFileUploadError');
+				},
+				onFileUploadComplete: function () {   // 消息上传成功
+					console.log('onFileUploadComplete');
+				},
+				success: function (res) {                // 消息发送成功
+					const img = {chat_room, file, time: new Date().valueOf(), username};
+					dispatch(sendImg(img));
+					console.log(img);
+					console.log('图片发送Success',res);
+				},
+				flashUpload: WebIM.flashUpload
+			};
+			msg.set(option);
+			conn.send(msg.body);
+		}
+	}
+};
+
+
+/* 语音消息功能暂时封存
+export const receiveAudio = audio => ({type: RECEIVE_AUDIO, data: audio});
+export const sendAudio = audio => ({type: SEND_AUDIO, data: audio});
+
+export const dosendAudio = (img, chat_room, username) => {
+	return async dispatch => {
+		let id = conn.getUniqueId();                   // 生成本地消息id
+		let msg = new WebIM.message('audio', id);      // 创建音频消息
+		let input = document.getElementById('audio');  // 选择音频的input
+		let file = WebIM.utils.getFileUrl(input);      // 将音频转化为二进制文件
+		let allowType = {
+			'mp3': true,
+			'amr': true,
+			'wmv': true
+		};
+		if (file.filetype.toLowerCase() in allowType) {
+			let option = {
+				apiUrl: WebIM.config.apiURL,
+				file: file,
+				to: 'username',                       // 接收消息对象
+				roomType: false,
+				chatType: 'singleChat',
+				onFileUploadError: function () {      // 消息上传失败
+					console.log('onFileUploadError');
+				},
+				onFileUploadComplete: function () {   // 消息上传成功
+					console.log('onFileUploadComplete');
+				},
+				success: function () {                // 消息发送成功
+					console.log('Success');
+				},
+				flashUpload: WebIM.flashUpload
+			};
+			msg.set(option);
+			conn.send(msg.body);
+		}
+	}
+};
+*/
+
+listen({});
+

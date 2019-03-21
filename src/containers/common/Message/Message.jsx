@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
 
-import {sendRoomText, listen, receiveTextMessage} from "../../../redux/chat/action";
+import {sendRoomText, doSendImg} from "../../../redux/chat/action";
 import {reqChatUserInfo} from "../../../api";
 
 import './Message.less';
@@ -16,7 +16,6 @@ class Message extends Component {
 	};
 
 	componentDidMount() {
-		listen(this.props.receiveTextMessage);
 		const id = this.props.match.params.to;
 		reqChatUserInfo(id)
 			.then(
@@ -39,6 +38,18 @@ class Message extends Component {
 		this.setState({input: ''});
 		this.props.sendRoomText(input, id, username);
 	}
+
+	selectImg = () => {
+		document.querySelector('#image').click()
+	};
+
+	sendImg = username => {
+		const id = this.props.match.params.to;
+		this.props.doSendImg(id, username);
+		this.setState({
+			menuShow: false
+		})
+	};
 
 	changeInputType = (inputType) => {
 		console.log(inputType);
@@ -93,13 +104,15 @@ class Message extends Component {
 				<div className={'chat'}>
 					{msg.map(chat =>
 						<div key={chat.time}>
-							<div className={username === chat.username ? 'to' : 'from'}>
-								<div className='avatar'>
-									<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
-									<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>
-								</div>
-								<span className='message-data'>{chat.message}</span>
-							</div>
+							{users.filter(user => user.username === chat.username).length ?
+								<div className={username === chat.username ? 'to' : 'from'}>
+									<div className='avatar'>
+										<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
+										<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>
+									</div>
+									<span className='message-data'>{chat.message}</span>
+								</div> : null
+							}
 							<WhiteSpace/>
 							<WhiteSpace/>
 						</div>
@@ -125,13 +138,14 @@ class Message extends Component {
 					{/*输入框*/}
 					<div className={'speak-input-wrap'}>
 						<div className={'voice'}>
-							<img
-								src={require('./img/jianpan-@3x.png')}
-								onClick={() => this.changeInputType(inputType)}
-								alt=""/>
+							{/*<img*/}
+							{/*src={require('./img/jianpan-@3x.png')}*/}
+							{/*onClick={() => this.changeInputType(inputType)}*/}
+							{/*alt=""/>*/}
 							{
 								inputType === 'input' ? <div style={{width: '70%'}}>
 										<InputItem
+											type='text'
 											placeholder={'请输入...'}
 											onChange={val => this.handleChange('input', val)}
 											onFocus={this.showKeyboard}
@@ -140,7 +154,7 @@ class Message extends Component {
 											value={input}
 										/>
 									</div> :
-									< div className={'speak'}>
+									<div className={'speak'}>
 										按住说话
 									</div>
 							}
@@ -153,7 +167,8 @@ class Message extends Component {
 						{/*弹出框*/}
 						<div className='alert' style={{height: menuShow ? 110 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt=""/>
-							<img src={require('./img/相册@3x.png')} alt=""/>
+							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
+							<input id='image' type="file" hidden onChange={() => this.sendImg(username)}/>
 						</div>
 
 
@@ -175,8 +190,7 @@ function mapStateToProps(state) {
 export default connect(
 	mapStateToProps,
 	{
-		listen,
 		sendRoomText,
-		receiveTextMessage
+		doSendImg
 	}
 )(Message);

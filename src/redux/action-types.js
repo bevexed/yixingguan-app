@@ -32,3 +32,7 @@ export const HAVE_PUBULISHED = 'have_pubulished';
 export const LOGIN_SUCCESS_CHAT = 'login_success_chat';
 export const SEND_MESSAGE = 'send_message';
 export const RECEIVE_TEXT_MESSAGE = 'receive_text_message';
+export const SEND_IMG = 'send_img';
+export const RECEIVE_IMG = 'receive_img';
+export const SEND_AUDIO = 'send_audio';
+export const RECEIVE_AUDIO = 'receive_audio';

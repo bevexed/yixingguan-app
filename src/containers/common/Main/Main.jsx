@@ -11,7 +11,7 @@ import {patientNav, patientRoute} from '../../../router/patient'
 import {doctorNav, doctorRoute} from "../../../router/doctor";
 
 import {getPatientList, getLabelList} from "../../../redux/doctor/action";
-import {listen, receiveTextMessage} from "../../../redux/chat/action";
+import {listen, receiveTextMessage, receiveImg} from "../../../redux/chat/action";
 
 
 import {open_chat} from "../../../redux/chat/action";
@@ -24,7 +24,8 @@ class Main extends Component {
 
 	componentDidMount() {
 		const token = sessionStorage.token;
-		listen(this.props.receiveTextMessage);
+		const {receiveTextMessage, receiveImg} = this.props;
+		listen({receiveTextMessage, receiveImg});
 		if (sessionStorage.identity === 'doctor') {
 			this.props.getPatientList(token);
 			this.props.getLabelList(token);
@@ -96,7 +97,8 @@ export default connect(
 		getLabelList,
 		open_chat,
 		listen,
-		receiveTextMessage
+		receiveTextMessage,
+		receiveImg
 	}
 )(Main);
 
