@@ -37,6 +37,7 @@ class DoctorChatLIst extends Component {
 
 	render() {
 		const {chatList} = this.state;
+		const {chatMsg} = this.props;
 
 		return (
 			<div className={'doctors'}>
@@ -104,7 +105,9 @@ class DoctorChatLIst extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		chatMsg: state.chatMsg
+	};
 }
 
 export default connect(

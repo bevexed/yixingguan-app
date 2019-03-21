@@ -12,7 +12,7 @@ export const dev = {
 	// 线下
 	wx: {
 		"appID": "wx6ad3262297242b11",
-		"redirect_uri": "http://192.168.1.8:3000",
+		"redirect_uri": window.location.href,
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
 	},

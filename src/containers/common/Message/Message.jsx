@@ -73,7 +73,7 @@ class Message extends Component {
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
 		if (!users.length) { return null }
-		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name ;
+		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 
 		return (
@@ -81,7 +81,7 @@ class Message extends Component {
 				<NavBar
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
-					onLeftClick={() => this.props.history.goBack()}
+					onLeftClick={() => this.props.history.push('/' + identity + '-index')}
 				>{person}</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
