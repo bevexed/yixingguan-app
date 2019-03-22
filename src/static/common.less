@@ -1,6 +1,29 @@
 // 最大宽度
-@maxWrapWith:450Px;
+@maxWrapWith: 450Px;
 
 // 主题色
 @themeColor: #68e3ce;
 
+@gold: 61.8%;
+
+
+.qrcode-react {
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99998;
+	background-color: rgba(255, 255, 255, 1);
+	text-align: center;
+
+	@margin-top: 10%;
+
+	p {
+		font-size: 20px;
+		padding-top: @gold - @margin-top;
+	}
+
+	svg {
+		margin-top: @margin-top;
+	}
+}

@@ -2,7 +2,7 @@ import {commonRoute} from "./common";
 
 import PatientIndex from "../containers/patient/Index/PatientIndex";
 import DoctorChatLIst from "../containers/patient/DoctorChatLIst/DoctorChatLIst";
-import PersonalPatient from "../containers/patient/Personal/PersonalPatient";
+import PersonalPatient from "../containers/patient/PatientPersonal/PersonalPatient";
 import OrderDoctor from "../containers/patient/OrderDoctor/OrderDoctor";
 import Tips from "../containers/patient/Tips/Tips";
 import PaySuccess from "../containers/patient/PaySuccess/PaySuccess";

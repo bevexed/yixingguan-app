@@ -92,7 +92,7 @@ class MyHelper extends Component {
 
 				{code_show ?
 					<div
-						className='code'
+						className='qrcode-react'
 						onClick={() => this.setState({code_show: false})}
 					>
 						<Qrcode
