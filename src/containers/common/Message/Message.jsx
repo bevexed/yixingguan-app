@@ -110,7 +110,8 @@ class Message extends Component {
 										<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
 										<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>
 									</div>
-									<span className='message-data'>{chat.message}</span>
+									{chat.message?<span className='message-data'>{chat.message}</span>:null}
+									{chat.imgUrl? <img className='message-img' src={chat.imgUrl} alt=""/>:null}
 								</div> : null
 							}
 							<WhiteSpace/>

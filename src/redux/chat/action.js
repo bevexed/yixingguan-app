@@ -96,13 +96,12 @@ export const listen = ({receiveTextMessage,receiveImg}) => {
 			console.log('emoji', message);
 		},   //收到表情消息
 		onPictureMessage(message) {
-			// if (message.error) {
-			// 	Toast.fail(message.errorText, 1)
-			// }
-			// let img = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
-			receiveImg && receiveImg('img');
+			if (message.error) {
+				Toast.fail(message.errorText, 1)
+			}
+			let img = {chat_room: message.to, imgUrl: message.url, time: new Date().valueOf(), username: message.from};
+			receiveImg && receiveImg(img);
 			console.log('pic', message);
-			console.log("Location of Picture is ", message.url);
 		}, //收到图片消息
 		onCmdMessage(message) {
 			console.log('cmd', message);
@@ -223,11 +222,11 @@ export const doSendImg = (chat_room, username) => {
 				onFileUploadError: function () {      // 消息上传失败
 					console.log('onFileUploadError');
 				},
-				onFileUploadComplete: function () {   // 消息上传成功
-					console.log('onFileUploadComplete');
+				onFileUploadComplete: function (res) {   // 消息上传成功
+					console.log('onFileUploadComplete',res);
 				},
 				success: function (res) {                // 消息发送成功
-					const img = {chat_room, file, time: new Date().valueOf(), username};
+					const img = {chat_room, imgUrl: file.url, time: new Date().valueOf(), username};
 					dispatch(sendImg(img));
 					console.log(img);
 					console.log('图片发送Success',res);
@@ -235,6 +234,7 @@ export const doSendImg = (chat_room, username) => {
 				flashUpload: WebIM.flashUpload
 			};
 			msg.set(option);
+			msg.setGroup('groupchat');
 			conn.send(msg.body);
 		}
 	}
