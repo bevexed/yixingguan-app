@@ -12,7 +12,7 @@ import SearchResult from "../containers/patient/SearchResult/SearchResult";
 export const patientNav = [
 	{
 		pathname: '/patient-index',
-		path: '首页',
+		path: '医生',
 		isActive: false,
 		icon: 'home.svg',
 		selectedIcon: 'home-s.svg',
