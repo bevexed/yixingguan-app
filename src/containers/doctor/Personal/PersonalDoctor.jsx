@@ -42,12 +42,20 @@ const grid = [
 	{
 		icon: 6,
 		name: '邀请同行',
-		onClick: (el) => el.setState({code_show: true, title: '邀请同行', uri: window.location.host})
+		onClick: (el, is_audit, only_no) =>
+			el.setState({
+				code_show: true, title: '邀请同行',
+				uri: window.location.host + '?only_no=' + only_no + '&assistant=' + 0
+			})
 	},
 	{
 		icon: 12,
 		name: '邀请助手',
-		onClick: (el) => el.setState({code_show: true, title: '邀请助手', uri: window.location.host})
+		onClick: (el, is_audit, only_no) =>
+			el.setState({
+				code_show: true, title: '邀请助手',
+				uri: window.location.host + '?only_no=' + only_no + '&assistant=' + 1
+			})
 	}
 ];
 
@@ -99,7 +107,7 @@ class MyComponent extends Component {
 
 	render() {
 		const {code_show, uri, title} = this.state;
-		const {is_audit, name, avatar} = this.props.user;
+		const {is_audit, name, avatar, only_no} = this.props.user;
 
 		return (
 			<div className={'personal-doctor'}>
@@ -113,7 +121,7 @@ class MyComponent extends Component {
 				<WhiteSpace/>
 				<Grid data={is_audit === 2 ? grid : grid2}
 							columnNum={3}
-							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit) : () => {
+							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit, only_no) : () => {
 							}}
 							renderItem={dataItem => (
 								<div className={'item'}>
