@@ -99,16 +99,16 @@ class DoctorIndex extends Component {
 				<WhiteSpace/>
 
 				{/*移除查看新增患者功能*/}
-				<List>
-					<Item
-						thumb={<img src={require('./img/Medical@3x.png')} alt=""/>}
-						arrow={'horizontal'}
-						extra={<Badge text={77} overflowCount={99}/>}
-						onClick={() => this.props.history.push('/new-patient')}
-					>新增患者</Item>
-				</List>
+				{/*<List>*/}
+					{/*<Item*/}
+						{/*thumb={<img src={require('./img/Medical@3x.png')} alt=""/>}*/}
+						{/*arrow={'horizontal'}*/}
+						{/*extra={<Badge text={77} overflowCount={99}/>}*/}
+						{/*onClick={() => this.props.history.push('/new-patient')}*/}
+					{/*>新增患者</Item>*/}
+				{/*</List>*/}
 
-				<WhiteSpace/>
+				{/*<WhiteSpace/>*/}
 
 
 				<List>

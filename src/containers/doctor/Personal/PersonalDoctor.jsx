@@ -42,7 +42,12 @@ const grid = [
 	{
 		icon: 6,
 		name: '邀请同行',
-		onClick: (el) => el.setState({code_show: true})
+		onClick: (el) => el.setState({code_show: true, title: '邀请同行', uri: window.location.host})
+	},
+	{
+		icon: 12,
+		name: '邀请助手',
+		onClick: (el) => el.setState({code_show: true, title: '邀请助手', uri: window.location.host})
 	}
 ];
 
@@ -77,16 +82,23 @@ const grid2 = [
 	{
 		icon: 11,
 		name: '邀请同行'
-	}
+	},
+	{
+		icon: 13,
+		name: '邀请助手'
+	},
+
 ];
 
 class MyComponent extends Component {
 	state = {
 		code_show: false,
+		uri: '',
+		title: ''
 	};
 
 	render() {
-		const {code_show} = this.state;
+		const {code_show, uri, title} = this.state;
 		const {is_audit, name, avatar} = this.props.user;
 
 		return (
@@ -115,15 +127,16 @@ class MyComponent extends Component {
 
 				{code_show ?
 					<div
-						className='code'
+						className='qrcode-react'
 						onClick={() => this.setState({code_show: false})}
 					>
+						<p>{title}</p>
 						<Qrcode
-							value={'sadasdasdasdsadassa'}
+							value={uri}
 							renderAs='svg'
 							size={200}
 							bgColor='#FFFFFF'
-							fgColor='#68e3c3'
+							fgColor={'#244b3f'}
 							level='H'
 						/>
 					</div> : null
