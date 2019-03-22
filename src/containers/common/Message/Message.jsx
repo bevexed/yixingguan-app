@@ -29,7 +29,7 @@ class Message extends Component {
 		window.scrollTo(0, document.documentElement.scrollHeight);
 	}
 
-	camera=()=>{
+	camera = () => {
 		document.querySelector('#camera').click()
 	};
 
@@ -47,9 +47,9 @@ class Message extends Component {
 		document.querySelector('#image').click()
 	};
 
-	sendImg = (username,type) => {
+	sendImg = (username, type) => {
 		const id = this.props.match.params.to;
-		this.props.doSendImg(id, username,type);
+		this.props.doSendImg(id, username, type);
 		this.setState({
 			menuShow: false
 		})
@@ -96,7 +96,7 @@ class Message extends Component {
 				<NavBar
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
-					onLeftClick={() => this.props.history.push('/' + identity + '-index')}
+					onLeftClick={() => this.props.history.push(identity === 'patient' ? '/doctor-chat-list' : '/doctor-index')}
 				>{person}</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -114,8 +114,8 @@ class Message extends Component {
 										<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
 										<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>
 									</div>
-									{chat.message?<span className='message-data'>{chat.message}</span>:null}
-									{chat.imgUrl? <img className='message-img' src={chat.imgUrl} alt=""/>:null}
+									{chat.message ? <span className='message-data'>{chat.message}</span> : null}
+									{chat.imgUrl ? <img className='message-img' src={chat.imgUrl} alt=""/> : null}
 								</div> : null
 							}
 							<WhiteSpace/>
@@ -172,9 +172,9 @@ class Message extends Component {
 						{/*弹出框*/}
 						<div className='alert' style={{height: menuShow ? 110 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt="" onClick={this.camera}/>
-							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username,'camera')}/>
+							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username, 'camera')}/>
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
-							<input id='image' type="file" hidden onChange={() => this.sendImg(username,'image')}/>
+							<input id='image' type="file" hidden onChange={() => this.sendImg(username, 'image')}/>
 						</div>
 
 
