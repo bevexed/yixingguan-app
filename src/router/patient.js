@@ -11,20 +11,20 @@ import SearchResult from "../containers/patient/SearchResult/SearchResult";
 
 export const patientNav = [
 	{
-		pathname: '/patient-index',
+		pathname: '/doctor-chat-list',
 		path: '医生',
 		isActive: false,
 		icon: 'home.svg',
 		selectedIcon: 'home-s.svg',
-		component: PatientIndex,
+		component: DoctorChatLIst,
 	},
 	{
-		pathname: '/doctor-chat-list',
+		pathname: '/patient-index',
 		path: '',
 		isActive: false,
 		icon: 'doc.svg',
 		selectedIcon: 'doc.svg',
-		component: DoctorChatLIst,
+		component: PatientIndex,
 	},
 	{
 		pathname: '/patient-personal',
