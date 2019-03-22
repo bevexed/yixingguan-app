@@ -8,7 +8,7 @@ import {
 	Result,
 	WhiteSpace,
 	List,
-	Badge,
+	// Badge,
 	SearchBar,
 	Modal,
 } from 'antd-mobile';
@@ -29,6 +29,10 @@ function closest(el, selector) {
 	}
 	return null;
 }
+
+// todo:根据标签筛选病人
+
+// todo:筛选病人
 
 class DoctorIndex extends Component {
 	state = {
@@ -100,12 +104,12 @@ class DoctorIndex extends Component {
 
 				{/*移除查看新增患者功能*/}
 				{/*<List>*/}
-					{/*<Item*/}
-						{/*thumb={<img src={require('./img/Medical@3x.png')} alt=""/>}*/}
-						{/*arrow={'horizontal'}*/}
-						{/*extra={<Badge text={77} overflowCount={99}/>}*/}
-						{/*onClick={() => this.props.history.push('/new-patient')}*/}
-					{/*>新增患者</Item>*/}
+				{/*<Item*/}
+				{/*thumb={<img src={require('./img/Medical@3x.png')} alt=""/>}*/}
+				{/*arrow={'horizontal'}*/}
+				{/*extra={<Badge text={77} overflowCount={99}/>}*/}
+				{/*onClick={() => this.props.history.push('/new-patient')}*/}
+				{/*>新增患者</Item>*/}
 				{/*</List>*/}
 
 				{/*<WhiteSpace/>*/}
@@ -193,7 +197,7 @@ class DoctorIndex extends Component {
 function mapStateToProps(state) {
 	return {
 		user: state.user,
-		chatMsg:state.chatMsg
+		chatMsg: state.chatMsg
 	};
 }
 

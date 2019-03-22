@@ -7,6 +7,12 @@ import {reqChatUserInfo} from "../../../api";
 
 import './Message.less';
 
+// todo：提示赞赏医生
+
+// todo:添加备注
+
+// todo: 添加标签
+
 class Message extends Component {
 	state = {
 		inputType: 'input',

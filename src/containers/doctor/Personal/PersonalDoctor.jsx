@@ -110,7 +110,7 @@ class MyComponent extends Component {
 		const {is_audit, name, avatar, only_no} = this.props.user;
 
 		return (
-			<div className={'personal-doctor'}>
+			<div className='personal-doctor'>
 				<div onClick={() => this.props.history.push('/doctor-detail')}>
 					<Result
 						img={<img className='avator' src={avatar} alt=""/>}
@@ -121,8 +121,7 @@ class MyComponent extends Component {
 				<WhiteSpace/>
 				<Grid data={is_audit === 2 ? grid : grid2}
 							columnNum={3}
-							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit, only_no) : () => {
-							}}
+							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit, only_no) : () => null}
 							renderItem={dataItem => (
 								<div className={'item'}>
 									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
