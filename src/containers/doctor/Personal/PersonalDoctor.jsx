@@ -45,7 +45,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) =>
 			el.setState({
 				code_show: true, title: '邀请同行',
-				uri: window.location.host + '?only_no=' + only_no + '&assistant=' + 0
+				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 0
 			})
 	},
 	{
@@ -54,7 +54,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) =>
 			el.setState({
 				code_show: true, title: '邀请助手',
-				uri: window.location.host + '?only_no=' + only_no + '&assistant=' + 1
+				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 1
 			})
 	}
 ];

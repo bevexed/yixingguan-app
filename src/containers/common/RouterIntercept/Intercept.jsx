@@ -27,25 +27,25 @@ class Intercept extends Component {
 	componentDidMount() {
 		if (!sessionStorage.token) {
 			let code = GetQueryString('code');
-			if (!code) {
-				reqCode()
-			} else {
-				reqToken(code).then(
-					res => {
-						if (res.code === 1) {
-							sessionStorage.token = res.data;
-							const token = sessionStorage.token;
-							this.setState({token});
-							this.props.getUser(token);
-						} else {
-							Toast.fail(res.message, 3, () => {
-								// sessionStorage.clear();
-								// window.location.assign(window.location.origin)
-							});
-						}
+			let only_no = GetQueryString('only_no');
+			let assistant = GetQueryString('assistant');
+			if (!code) {reqCode(window.location.search)}
+			reqToken(code, only_no, assistant).then(
+				res => {
+					if (res.code === 1) {
+						sessionStorage.token = res.data;
+						const token = sessionStorage.token;
+						this.setState({token});
+						this.props.getUser(token);
+					} else {
+						Toast.fail(res.message, 3, () => {
+							// sessionStorage.clear();
+							// window.location.assign(window.location.origin)
+						});
 					}
-				)
-			}
+				}
+			)
+
 		} else {
 			if (sessionStorage.token) {
 				const token = sessionStorage.token;
