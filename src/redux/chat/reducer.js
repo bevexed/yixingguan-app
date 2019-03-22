@@ -1,4 +1,5 @@
 import {
+	DELETE_CHAT,
 	LOGIN_SUCCESS_CHAT, RECEIVE_IMG,
 	RECEIVE_TEXT_MESSAGE, SEND_IMG,
 	SEND_MESSAGE
@@ -20,7 +21,7 @@ const initMessage = [{
 	message: '',
 	time: '',
 	username: '',
-	imgUrl:''
+	imgUrl: ''
 }];
 
 export const chatMsg = (state = initMessage, action) => {
@@ -43,6 +44,10 @@ export const chatMsg = (state = initMessage, action) => {
 			return state;
 		case RECEIVE_IMG:
 			state = [...state, action.data];
+			localStorage.message = JSON.stringify(state);
+			return state;
+		case DELETE_CHAT:
+			state = state.filter(chat => chat.chat_room !== action.data);
 			localStorage.message = JSON.stringify(state);
 			return state;
 		default:

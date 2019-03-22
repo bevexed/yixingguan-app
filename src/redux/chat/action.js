@@ -1,4 +1,5 @@
 import {
+	DELETE_CHAT,
 	// SEND_AUDIO,
 	// RECEIVE_AUDIO,
 	LOGIN_SUCCESS_CHAT,
@@ -281,6 +282,8 @@ export const dosendAudio = (img, chat_room, username) => {
 	}
 };
 */
+
+export const deleteChat = chat_room => ({type: DELETE_CHAT, data: chat_room});
 
 listen({});
 

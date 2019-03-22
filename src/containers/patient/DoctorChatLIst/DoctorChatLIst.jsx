@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reqPatientList} from "../../../api/patient";
+import {deleteChat} from "../../../redux/chat/action";
 
 import './DoctorChatLIst.less'
 import {
@@ -66,8 +67,6 @@ class DoctorChatLIst extends Component {
 					onChange={this.panelChange}
 				>
 					{chatList.map(doc =>
-
-
 						<Panel
 							className={doc.is_admire ? 'panel' : null}
 							key={doc.id}
@@ -83,7 +82,7 @@ class DoctorChatLIst extends Component {
 										<span className={'hospital'}>{doc.affiliated_hospital}</span>
 
 										<p className={'ellipsis'}>
-											{chatMsg.filter(chat => chat.chat_room === doc.chat_room).pop().message || '图片'}
+											{chatMsg.some(chat => chat.chat_room === doc.chat_room) ? chatMsg.filter(chat => chat.chat_room === doc.chat_room).pop().message || '图片' : null}
 										</p>
 									</div>
 								</div>
@@ -92,7 +91,7 @@ class DoctorChatLIst extends Component {
 							<div className='btn-group'>
 								<Button>拒绝推送</Button>
 								<Button
-									// onCLick={}
+									onClick={() => this.props.deleteChat(doc.chat_room)}
 								>删除聊天记录</Button>
 							</div>
 
@@ -114,4 +113,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		deleteChat
+	}
 )(DoctorChatLIst);
