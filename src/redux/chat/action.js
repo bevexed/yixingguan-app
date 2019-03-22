@@ -73,7 +73,7 @@ export const receiveTextMessage = msg => ({type: RECEIVE_TEXT_MESSAGE, data: msg
 export const receiveImg = img => ({type: RECEIVE_IMG, data: img});
 
 // 监听
-export const listen = ({receiveTextMessage,receiveImg}) => {
+export const listen = ({receiveTextMessage, receiveImg}) => {
 	conn.listen({
 		onOpened(message) {          //连接成功回调
 			// 如果isAutoLogin设置为false，那么必须手动设置上线，否则无法收消息
@@ -200,11 +200,11 @@ export const sendRoomText = (message, chat_room, username) => {
 };
 
 const sendImg = img => ({type: SEND_IMG, data: img});
-export const doSendImg = (chat_room, username) => {
+export const doSendImg = (chat_room, username, type) => {
 	return async dispatch => {
 		let id = conn.getUniqueId();                   // 生成本地消息id
 		let msg = new WebIM.message('img', id);        // 创建图片消息
-		let input = document.getElementById('image');  // 选择图片的input
+		let input = type === 'image' ? document.getElementById('image') : document.getElementById('camera');// 选择图片的input
 		let file = WebIM.utils.getFileUrl(input);      // 将图片转化为二进制文件
 		let allowType = {
 			'jpg': true,
@@ -212,7 +212,7 @@ export const doSendImg = (chat_room, username) => {
 			'png': true,
 			'bmp': true
 		};
-		if (file.filetype.toLowerCase() in allowType) {
+		if (file.filetype.toLowerCase() in allowType || true) {
 			let option = {
 				apiUrl: WebIM.config.apiURL,
 				file,
@@ -220,16 +220,17 @@ export const doSendImg = (chat_room, username) => {
 				roomType: false,
 				chatType: 'chatRoom',
 				onFileUploadError: function () {      // 消息上传失败
+					Toast.fail('图片过大', 1);
 					console.log('onFileUploadError');
 				},
 				onFileUploadComplete: function (res) {   // 消息上传成功
-					console.log('onFileUploadComplete',res);
+					console.log('onFileUploadComplete', res);
 				},
 				success: function (res) {                // 消息发送成功
 					const img = {chat_room, imgUrl: file.url, time: new Date().valueOf(), username};
 					dispatch(sendImg(img));
 					console.log(img);
-					console.log('图片发送Success',res);
+					console.log('图片发送Success', res);
 				},
 				flashUpload: WebIM.flashUpload
 			};

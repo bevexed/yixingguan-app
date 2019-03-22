@@ -29,6 +29,10 @@ class Message extends Component {
 		window.scrollTo(0, document.documentElement.scrollHeight);
 	}
 
+	camera=()=>{
+		document.querySelector('#camera').click()
+	};
+
 	sendMessage(e, username) {
 		const {input} = this.state;
 		if (e.key !== 'Enter' || e.keyCode !== 13 || !input) {
@@ -43,9 +47,9 @@ class Message extends Component {
 		document.querySelector('#image').click()
 	};
 
-	sendImg = username => {
+	sendImg = (username,type) => {
 		const id = this.props.match.params.to;
-		this.props.doSendImg(id, username);
+		this.props.doSendImg(id, username,type);
 		this.setState({
 			menuShow: false
 		})
@@ -167,9 +171,10 @@ class Message extends Component {
 
 						{/*弹出框*/}
 						<div className='alert' style={{height: menuShow ? 110 : 0}}>
-							<img src={require('./img/拍照@3x.png')} alt=""/>
+							<img src={require('./img/拍照@3x.png')} alt="" onClick={this.camera}/>
+							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username,'camera')}/>
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
-							<input id='image' type="file" hidden onChange={() => this.sendImg(username)}/>
+							<input id='image' type="file" hidden onChange={() => this.sendImg(username,'image')}/>
 						</div>
 
 
