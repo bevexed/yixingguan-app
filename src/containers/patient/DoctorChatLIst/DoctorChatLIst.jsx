@@ -82,7 +82,7 @@ class DoctorChatLIst extends Component {
 										<span className={'hospital'}>{doc.affiliated_hospital}</span>
 
 										<p className={'ellipsis'}>
-											{chatMsg.some(chat => chat.chat_room === doc.chat_room) ? chatMsg.filter(chat => chat.chat_room === doc.chat_room).pop().message || '图片' : null}
+											{chatMsg.some(chat => chat.chat_room === doc.chat_room) ? chatMsg.filter(chat => chat.chat_room === doc.chat_room).pop().message || '图片' : '暂无聊天记录'}
 										</p>
 									</div>
 								</div>

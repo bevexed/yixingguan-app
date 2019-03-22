@@ -87,6 +87,7 @@ class DoctorIndex extends Component {
 
 	render() {
 		const {name, avatar} = this.props.user;
+		const {chatMsg} = this.props;
 		const {chatList} = this.state;
 
 		return (
@@ -137,7 +138,11 @@ class DoctorIndex extends Component {
 								{item.name}
 								<Brief>
 									<p className='patient-message'>
-										向您发送了一张照片 <span className={'time'}>2019-02-13 13:13</span>
+										{chatMsg.some(chat => chat.chat_room === item.chat_room) ? chatMsg.filter(chat => chat.chat_room === item.chat_room).pop().message || '图片' : '暂无聊天记录'}
+
+										<span className={'time'}>
+											{chatMsg.some(chat => chat.chat_room === item.chat_room) ? new Date(chatMsg.filter(chat => chat.chat_room === item.chat_room).pop().time).toLocaleString() || '' : ''}
+										</span>
 									</p>
 								</Brief>
 							</Item>
@@ -187,7 +192,8 @@ class DoctorIndex extends Component {
 
 function mapStateToProps(state) {
 	return {
-		user: state.user
+		user: state.user,
+		chatMsg:state.chatMsg
 	};
 }
 
