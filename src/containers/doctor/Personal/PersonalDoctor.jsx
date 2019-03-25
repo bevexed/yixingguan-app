@@ -11,6 +11,8 @@ import Qrcode from 'qrcode.react';
 
 import './PersonalDoctor.less'
 
+// todo：邀请病人 URL
+
 const grid = [
 	{
 		icon: 1,
@@ -56,6 +58,15 @@ const grid = [
 				code_show: true, title: '邀请助手',
 				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 1
 			})
+	},
+	{
+		icon: 14,
+		name: '邀请病人',
+		onClick: (el, is_audit, only_no) =>
+			el.setState({
+				code_show: true, title: '邀请助手',
+				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 1
+			})
 	}
 ];
 
@@ -94,6 +105,10 @@ const grid2 = [
 	{
 		icon: 13,
 		name: '邀请助手'
+	},
+	{
+		icon: 15,
+		name: '邀请病人'
 	},
 
 ];

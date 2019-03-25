@@ -96,6 +96,8 @@ class Message extends Component {
 		if (!users.length) { return null }
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
+		const doctorName = users.filter(user => user.identity === '2')[0].username;
+		const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
 
 		return (
 			<div className={'message'}>
@@ -114,6 +116,10 @@ class Message extends Component {
 				<div className={'chat'}>
 					{msg.map(chat =>
 						<div key={chat.time}>
+							{/*打赏提醒*/}
+							{doctorBackInformationTime === chat.time ? <div className='tips-alert'>医生那么辛苦打赏一点小费吧</div> : null}
+							{/*聊天内容*/}
+							<WhiteSpace/>
 							{users.filter(user => user.username === chat.username).length ?
 								<div className={username === chat.username ? 'to' : 'from'}>
 									<div className='avatar'>
@@ -124,7 +130,6 @@ class Message extends Component {
 									{chat.imgUrl ? <img className='message-img' src={chat.imgUrl} alt=""/> : null}
 								</div> : null
 							}
-							<WhiteSpace/>
 							<WhiteSpace/>
 						</div>
 					)}
