@@ -39,10 +39,6 @@ class PersonalPatient extends Component {
 						extra={user.name}
 					>姓名</Item>
 					<Item
-						extra={'暂无'}
-						arrow={'horizontal'}
-					>单位</Item>
-					<Item
 						extra={user.phone}
 					>手机号</Item>
 				</List>

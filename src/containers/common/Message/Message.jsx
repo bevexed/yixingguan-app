@@ -121,7 +121,7 @@ class Message extends Component {
 					{msg.map(chat =>
 						<div key={chat.time}>
 							{/*打赏提醒*/}
-							{doctorBackInformationTime === chat.time ? <div className='tips-alert'>医生那么辛苦打赏一点小费吧</div> : null}
+							{doctorBackInformationTime === chat.time ? <span className='tips-alert'>医生那么辛苦打赏一点小费吧</span> : null}
 							{/*聊天内容*/}
 							<WhiteSpace/>
 							{users.filter(user => user.username === chat.username).length ?

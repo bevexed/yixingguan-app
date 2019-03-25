@@ -13,6 +13,9 @@ import {
 
 const Panel = Accordion.Panel;
 
+/* todo: 拒绝推送
+ */
+
 class DoctorChatLIst extends Component {
 	state = {
 		chatList: [],
