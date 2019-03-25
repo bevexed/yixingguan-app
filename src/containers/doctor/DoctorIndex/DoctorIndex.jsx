@@ -89,6 +89,12 @@ class DoctorIndex extends Component {
 	};
 
 
+	// todo: 患者 分页
+
+	// todo: 患者 筛选 => 按名字 按标签
+
+	// todo: 医生职业证书图片地址
+
 	render() {
 		const {name, avatar} = this.props.user;
 		const {chatMsg} = this.props;

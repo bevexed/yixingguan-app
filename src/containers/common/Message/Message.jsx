@@ -7,12 +7,6 @@ import {reqChatUserInfo} from "../../../api";
 
 import './Message.less';
 
-// todo：提示赞赏医生
-
-// todo:添加备注
-
-// todo: 添加标签
-
 class Message extends Component {
 	state = {
 		inputType: 'input',
@@ -96,6 +90,8 @@ class Message extends Component {
 		if (!users.length) { return null }
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
+		// TODO： patientId
+		const patientId = users.filter(user => user.identity === '2')[0];
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
 		const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
 
@@ -105,6 +101,14 @@ class Message extends Component {
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => this.props.history.push(identity === 'patient' ? '/doctor-chat-list' : '/doctor-index')}
+					rightContent={
+						identity === 'doctor' ?
+							<Icon
+								type='ellipsis'
+								size='md'
+								color={'#000'}
+								onClick={() => this.props.history.push('/patient-remark/' + patientId)}
+							/> : null}
 				>{person}</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>

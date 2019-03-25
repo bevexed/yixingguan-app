@@ -1,6 +1,6 @@
 import {commonRoute} from "./common";
 
-import DoctorIndex from "../containers/doctor/Index/DoctorIndex";
+import DoctorIndex from "../containers/doctor/DoctorIndex/DoctorIndex";
 import PersonalDoctor from "../containers/doctor/Personal/PersonalDoctor";
 import NewPatient from "../containers/doctor/NewPatient/NewPatient";
 import DoctorCompleteInformation from "../containers/doctor/CompleteInformation/DoctorCompleteInformation";
@@ -15,6 +15,7 @@ import PublishPersonSelect from "../containers/doctor/PublishPersonSelect/Publis
 import PublishPreview from "../containers/doctor/PublishPreview/PublishPreview";
 import Published from "../containers/doctor/Published/Published";
 import PublishDetail from "../containers/doctor/PublishDetail/PublishDetail";
+import PatientRemark from "../containers/doctor/PatientRemark/PatientRemark";
 
 export const doctorNav = [
 	{
@@ -81,15 +82,19 @@ export const doctorRoute = [
 		component: PublishSelectSort
 	},
 	{
-		pathname:'/publish-person-select/:label_id',
-		component:PublishPersonSelect
+		pathname: '/publish-person-select/:label_id',
+		component: PublishPersonSelect
 	},
 	{
-		pathname:'/publish-preview',
-		component:PublishPreview
+		pathname: '/publish-preview',
+		component: PublishPreview
 	},
 	{
-		pathname:'/publish-detail/:article_id',
-		component:PublishDetail
+		pathname: '/publish-detail/:article_id',
+		component: PublishDetail
+	},
+	{
+		pathname: '/patient-remark/:patientId',
+		component: PatientRemark
 	}
 ];

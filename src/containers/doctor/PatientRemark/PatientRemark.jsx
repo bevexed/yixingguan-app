@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-import {Icon, NavBar, List, WhiteSpace, Modal, Toast} from "antd-mobile";
-
-import {getPatientDetail, getAcceptPatient, updataPatientLabel, addPatienLabel, getLabelList} from "../../../redux/doctor/action";
-
+import './PatientRemark.less';
+import {NavBar, Icon, List, InputItem, Toast, Modal} from "antd-mobile";
+import WhiteSpace from "antd-mobile/lib/white-space";
 import {reqAddLabel, reqSubscribeDelete} from "../../../api/doctor";
-
-import './PatientDetail.less'
+import {addPatienLabel, getAcceptPatient, getLabelList, getPatientDetail, updataPatientLabel} from "../../../redux/doctor/action";
 
 const Item = List.Item;
 const prompt = Modal.prompt;
 
+// todo:添加备注
 
-class PatientDetail extends Component {
+// todo: 添加标签
+
+
+class PatientRemark extends Component {
+
+	componentDidMount() {
+		const id = this.props.match.params.patientId;
+	}
 
 	addPainTag = painTag => {
 		return new Promise((resolve, reject) => {
@@ -57,24 +62,14 @@ class PatientDetail extends Component {
 		const id = this.props.match.params.patientId;
 		reqSubscribeDelete(id)
 			.then(
-				res=>{
+				res => {
 					if (res.code === 1) {
-						Toast.success(res.messsage,1,()=>this.props.history.replace('/new-patient'))
-					}else {
+						Toast.success(res.messsage, 1, () => this.props.history.replace('/new-patient'))
+					} else {
 						Toast.fail(res.messsage)
 					}
 				}
 			)
-	};
-
-	componentDidMount() {
-		const id = this.props.match.params.patientId;
-		this.props.getPatientDetail(id)
-	}
-
-	acceptPtient = () => {
-		const id = this.props.match.params.patientId;
-		this.props.getAcceptPatient(id)
 	};
 
 	render() {
@@ -82,53 +77,35 @@ class PatientDetail extends Component {
 		const imgs = patientDetail ? patientDetail.inspection_report.split(',') : [];
 		const labels = labelList.map(label => ({label: label.label_name, id: label.id}));
 
-
 		return (
-			<div className={'patient-detail'}>
+			<div className='patient-remark'>
 				<NavBar
 					mode="light"
-					className={'nav-bar'}
-					icon={<Icon type="left" color={'#000'}/>}
+					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => this.props.history.goBack()}
-				>
-					患者详情
-				</NavBar>
+				>病人信息</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				{/*患者详情列表*/}
+				<WhiteSpace/>
 				<List>
-					<Item
-						extra={patientDetail.name}
+					<InputItem
+						type='text'
+						placeholder='请输入姓名'
 					>
-						患者姓名
-					</Item>
-					<Item
-						extra={patientDetail.phone}
-					>
-						手机号码
-					</Item>
-					<Item wrap>
-						病症描述:
-						<WhiteSpace/>
-						<p className={'pain-detail'}>
-							{patientDetail.symptoms_described}
-						</p>
-					</Item>
+						备注姓名
+					</InputItem>
+				</List>
 
-					<Item>
-						检查报告图片：
-						<div className='pic'>
-							{imgs.map(img => <img key={img} src={img ? img : null} alt=""/>)}
-						</div>
-					</Item>
+				<WhiteSpace/>
 
+				<List>
 					<Item>
 						给患者添加标签
-						<span className='pain-detail'>(添加病症给患者分类)</span>
+						<span className={'pain-detail'}>(添加病症给患者分类)</span>
 						<WhiteSpace/>
 						<div className={'tag'}>
 							{
@@ -162,33 +139,6 @@ class PatientDetail extends Component {
 						<WhiteSpace/>
 					</Item>
 				</List>
-
-				<WhiteSpace/>
-				<WhiteSpace/>
-				<WhiteSpace/>
-				<WhiteSpace/>
-				<WhiteSpace/>
-
-				{
-					patientDetail.is_accept ?
-						<div
-							className={' button'}
-							onClick={this.deletePatient}
-						>
-							删除患者
-						</div>
-						:
-						< div
-							className={' button'}
-							onClick={this.acceptPtient}
-						>
-							添加患者
-						</div>
-				}
-
-				<WhiteSpace/>
-				<WhiteSpace/>
-
 			</div>
 		);
 	}
@@ -210,4 +160,4 @@ export default connect(
 		addPatienLabel,
 		getLabelList
 	}
-)(PatientDetail);
+)(PatientRemark);
