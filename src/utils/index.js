@@ -34,6 +34,7 @@ export const contactObject = function (target, sources) {
 			if (tar_name === sou_name) {
 				sou_value = [...tar_value, ...sou_value];
 			}
+			console.log(sou_name, sou_value);
 			Object.assign(sources, {[sou_name]: sou_value})
 		})
 	});

@@ -65,7 +65,7 @@ class PatientIndex extends Component {
 	getDoctor = () => {
 		const {city, page, locating_city, department} = this.state;
 		const params = {
-			locating_city: locating_city || '成都',
+			locating_city: locating_city || '北京',
 			page: page || 1,
 			city: city || null,
 			department: department || null

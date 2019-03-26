@@ -27,7 +27,8 @@ class Main extends Component {
 		const {receiveTextMessage, receiveImg} = this.props;
 		listen({receiveTextMessage, receiveImg});
 		if (sessionStorage.identity === 'doctor') {
-			this.props.getPatientList(token);
+			// 获取线下预约的病人接口
+			// this.props.getPatientList(token);
 			this.props.getLabelList(token);
 		}
 	}
