@@ -41,12 +41,13 @@ class DoctorIndex extends Component {
 		chatList: []
 	};
 
+	// todo: loadingmore
 	componentDidMount() {
 		reqChatList()
 			.then(
 				res => {
 					if (res.code === 1) {
-						this.setState({chatList: res.data})
+						this.setState({chatList: res.data.list})
 					}
 				}
 			)

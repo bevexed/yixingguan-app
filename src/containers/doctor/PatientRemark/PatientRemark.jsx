@@ -116,7 +116,7 @@ class PatientRemark extends Component {
 				<List>
 					<InputItem
 						type='text'
-						placeholder='请输入姓名'
+						placeholder={patientDetail.note || '请输入姓名'}
 						onChange={note => this.setState({note})}
 					>
 						备注姓名
