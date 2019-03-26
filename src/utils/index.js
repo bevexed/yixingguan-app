@@ -27,3 +27,16 @@ export const GetQueryString = function (name) {
 	return null;
 };
 
+
+export const contactObject = function (target, sources) {
+	Object.entries(sources).map(([sou_name, sou_value]) => {
+		Object.entries(target).map(([tar_name, tar_value]) => {
+			if (tar_name === sou_name) {
+				sou_value = [...tar_value, ...sou_value];
+			}
+			Object.assign(sources, {[sou_name]: sou_value})
+		})
+	});
+	return sources;
+};
+

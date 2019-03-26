@@ -3,6 +3,7 @@ import './Published.less'
 import {NavBar, Icon, WhiteSpace, WingBlank} from "antd-mobile";
 import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
 import {reqShareLists} from "../../../api/doctor";
+import {contactObject} from "../../../utils";
 
 class Published extends Component {
 
@@ -12,7 +13,7 @@ class Published extends Component {
 
 	state = {
 		total: 100,
-		articles: [],
+		articles: {},
 		page: 1,
 		loading: true
 	};
@@ -20,7 +21,7 @@ class Published extends Component {
 	// todo：分页
 	loadingMore = () => {
 		const {page, articles} = this.state;
-		this.setState({loading:true});
+		this.setState({loading: true});
 		reqShareLists(page)
 			.then(
 				res => {
@@ -28,7 +29,7 @@ class Published extends Component {
 						this.setState(
 							{
 								loading: false,
-								articles: {...articles, ...res.data.data},
+								articles: contactObject(articles, res.data.data),
 								page: res.data.current_page + 1,
 								total: res.data.total
 							}
