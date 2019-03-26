@@ -11,7 +11,6 @@ export const RECEIVE_MORE_DOCTOR_LIST = 'receive_more_doctor_list';
 export const SEEK_DOCTOR_LIST = 'seek_doctor_list';
 export const RECEIVE_DOCTOR_DETAILS = 'receive_doctor_details';
 
-
 // 医生端
 export const RECEIVE_LABEL_LSIT = 'receive_label_lsit';
 export const RECEIVE_PATIENT_LIST = 'receive_patient_list';
