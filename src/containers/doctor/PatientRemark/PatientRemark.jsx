@@ -9,11 +9,6 @@ import {addPatienLabel, getAcceptPatient, getLabelList, getPatientDetail, updata
 const Item = List.Item;
 const prompt = Modal.prompt;
 
-// todo:添加备注
-
-// todo: 添加标签
-
-
 class PatientRemark extends Component {
 	state = {
 		note: ''
@@ -21,7 +16,6 @@ class PatientRemark extends Component {
 
 	componentDidMount() {
 		const id = this.props.match.params.patientId;
-		// todo：无法获取用户详情，标签显示问题
 		this.props.getPatientDetail(id);
 	}
 

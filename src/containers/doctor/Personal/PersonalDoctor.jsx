@@ -12,8 +12,6 @@ import Qrcode from 'qrcode.react';
 
 import './PersonalDoctor.less'
 
-// todo：邀请病人 URL
-
 const grid = [
 	{
 		icon: 1,
