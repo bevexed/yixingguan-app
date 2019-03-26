@@ -26,6 +26,7 @@ class Intercept extends Component {
 
 	componentDidMount() {
 		if (!sessionStorage.token) {
+			// 授权邀请 code 入口
 			let code = GetQueryString('code');
 			let only_no = GetQueryString('only_no');
 			let assistant = GetQueryString('assistant');
