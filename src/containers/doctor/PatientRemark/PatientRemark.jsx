@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './PatientRemark.less';
 import {NavBar, Icon, List, InputItem, Toast, Modal} from "antd-mobile";
 import WhiteSpace from "antd-mobile/lib/white-space";
-import {reqAddLabel, reqSubscribeDelete} from "../../../api/doctor";
+import {reqAddLabel, reqSubscribeDelete, reqChatNote} from "../../../api/doctor";
 import {addPatienLabel, getAcceptPatient, getLabelList, getPatientDetail, updataPatientLabel} from "../../../redux/doctor/action";
 
 const Item = List.Item;
@@ -15,9 +15,14 @@ const prompt = Modal.prompt;
 
 
 class PatientRemark extends Component {
+	state = {
+		note: ''
+	};
 
 	componentDidMount() {
 		const id = this.props.match.params.patientId;
+		// todo：无法获取用户详情，标签显示问题
+		this.props.getPatientDetail(id);
 	}
 
 	addPainTag = painTag => {
@@ -72,9 +77,22 @@ class PatientRemark extends Component {
 			)
 	};
 
+	changeName = () => {
+		const id = this.props.match.params.patientId;
+		const note = this.state.note;
+		reqChatNote({id, note})
+			.then(res => {
+				if (res.code) {
+					this.props.history.goBack();
+				} else {
+					Toast.fail(res.message, 1)
+				}
+
+			})
+	};
+
 	render() {
 		const {patientDetail, labelList} = this.props;
-		const imgs = patientDetail ? patientDetail.inspection_report.split(',') : [];
 		const labels = labelList.map(label => ({label: label.label_name, id: label.id}));
 
 		return (
@@ -83,6 +101,10 @@ class PatientRemark extends Component {
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => this.props.history.goBack()}
+					rightContent={<div
+						className={'button'}
+						onClick={this.changeName}
+					>完成</div>}
 				>病人信息</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -95,6 +117,7 @@ class PatientRemark extends Component {
 					<InputItem
 						type='text'
 						placeholder='请输入姓名'
+						onChange={note => this.setState({note})}
 					>
 						备注姓名
 					</InputItem>
@@ -118,7 +141,7 @@ class PatientRemark extends Component {
 								)
 							}
 							<span
-								className={'pain'}
+								className='pain'
 								onClick={() => prompt(
 									'添加患者分类',
 									null,

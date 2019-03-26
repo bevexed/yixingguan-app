@@ -53,14 +53,14 @@ class MyHelper extends Component {
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
 					onLeftClick={() => this.props.history.goBack()}
-					rightContent={
-						<Icon
-							type={'cross'}
-							size={'md'}
-							color={'#000'}
-							style={{transform: 'rotate(45deg)'}}
-							onClick={() => this.setState({code_show: true})}
-						/>}
+					// rightContent={
+					// 	<Icon
+					// 		type={'cross'}
+					// 		size={'md'}
+					// 		color={'#000'}
+					// 		style={{transform: 'rotate(45deg)'}}
+					// 		onClick={() => this.setState({code_show: true})}
+					// 	/>}
 				>
 					我的助手
 				</NavBar>

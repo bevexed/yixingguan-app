@@ -29,7 +29,7 @@ class PublishPreview extends Component {
 					icon={<Icon type="left" color={'#000'}/>}
 					onLeftClick={() => this.props.history.goBack()}
 					rightContent={<div
-						className={'button'}
+						className='button'
 						onClick={() => this.props.pubulish({contents: article_content.content, picture, is_open, allow_users},this.props.history)}
 					>发布</div>}
 				>预览</NavBar>

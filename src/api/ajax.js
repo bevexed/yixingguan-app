@@ -59,7 +59,8 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 			// sessionStorage.clear();
 			// window.location.replace('/');
 			// 提示 数据加载失败
-			Toast.fail('数据加载失败', 1);
+			console.log(error);
+			Toast.fail(error, 1);
 
 			return Promise.reject(error);
 		});

@@ -91,7 +91,7 @@ class Message extends Component {
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 		// TODO： patientId
-		const patientId = users.filter(user => user.identity === '2')[0];
+		const patientId = users.filter(user => user.identity === '2')[0].id;
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
 		const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
 

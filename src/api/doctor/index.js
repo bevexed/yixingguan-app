@@ -38,16 +38,19 @@ export const reqDataAnalysis = ({start_time, end_time}) => ajax('/api/doctor/acc
 export const reqReleaseShare = ({contents, picture, is_open, allow_users}) => ajax('/api/doctor/share/release_share', {contents, picture, is_open, allow_users});
 
 // 医生获取所发文章列表
-export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {token, page}, 'GET',false);
+export const reqShareLists = page => ajax('/api/doctor/share/share_lists', {token, page}, 'GET', false);
 
 // 文章详情
 export const reqShareDetail = id => ajax('/api/doctor/share/share_detail', {id});
 
 // 医生删除助手
-export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete',{id});
+export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete', {id});
 
 // 医生删除预约
-export const reqSubscribeDelete = id => ajax('/api/doctor/list/subscribe_delete',{id});
+export const reqSubscribeDelete = id => ajax('/api/doctor/list/subscribe_delete', {id});
 
 // 首页患者列表
-export const reqChatList = () => ajax('/api/chat/chat_lists',{},"GET");
+export const reqChatList = () => ajax('/api/chat/chat_lists', {}, "GET");
+
+// 修改预约备注
+export const reqChatNote = ({id, note}) => ajax('/api/chat/chat_note',{id,note,token});

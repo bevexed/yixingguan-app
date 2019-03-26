@@ -204,11 +204,11 @@ class OrderDoctor extends Component {
 				</Card>
 
 				<List>
-					<Item
-						multipleLine
-					>擅长:
-						<Brief>{doctorDetail.good_at}</Brief>
-					</Item>
+					{/*<Item*/}
+						{/*multipleLine*/}
+					{/*>擅长:*/}
+						{/*<Brief>{doctorDetail.good_at}</Brief>*/}
+					{/*</Item>*/}
 
 					<Item
 						multipleLine
@@ -216,15 +216,15 @@ class OrderDoctor extends Component {
 						<Brief>{doctorDetail.introduction}</Brief>
 					</Item>
 
-					<Accordion defaultActiveKey="" onChange={this.onChange}>
-						<Accordion.Panel header={<span className={'accordion-header'}>查看详情</span>}>
-							<List className="my-list">
-								<List.Item>content 1</List.Item>
-								<List.Item>content 2</List.Item>
-								<List.Item>content 3</List.Item>
-							</List>
-						</Accordion.Panel>
-					</Accordion>
+					{/*<Accordion defaultActiveKey="" onChange={this.onChange}>*/}
+						{/*<Accordion.Panel header={<span className={'accordion-header'}>查看详情</span>}>*/}
+							{/*<List className="my-list">*/}
+								{/*<List.Item>content 1</List.Item>*/}
+								{/*<List.Item>content 2</List.Item>*/}
+								{/*<List.Item>content 3</List.Item>*/}
+							{/*</List>*/}
+						{/*</Accordion.Panel>*/}
+					{/*</Accordion>*/}
 				</List>
 
 				<WhiteSpace/>

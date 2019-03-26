@@ -65,7 +65,7 @@ const grid = [
 		name: '邀请病人',
 		onClick: (el, is_audit, only_no) =>
 			el.setState({
-				code_show: true, title: '邀请助手',
+				code_show: true, title: '邀请病人',
 				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 3
 			})
 	}
@@ -162,6 +162,7 @@ class MyComponent extends Component {
 							fgColor={'#244b3f'}
 							level='H'
 						/>
+						<div>{uri}</div>
 					</div> : null
 				}
 			</div>

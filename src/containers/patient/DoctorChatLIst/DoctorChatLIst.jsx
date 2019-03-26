@@ -47,14 +47,14 @@ class DoctorChatLIst extends Component {
 			<div className={'doctors'}>
 				<NavBar
 					mode={'light'}
-					rightContent={
-						<Icon
-							type={'cross'}
-							size={'md'}
-							color={'#000'}
-							style={{transform: 'rotate(45deg)'}}
-							onClick={() => alert('add')}
-						/>}
+					// rightContent={
+					// 	<Icon
+					// 		type={'cross'}
+					// 		size={'md'}
+					// 		color={'#000'}
+					// 		style={{transform: 'rotate(45deg)'}}
+					// 		// onClick={() => alert('add')}
+					// 	/>}
 				>
 					我的医生
 				</NavBar>
