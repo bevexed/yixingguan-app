@@ -50,6 +50,10 @@ class DoctorIndex extends Component {
 		this.getChatList()
 	}
 
+	componentWillUnmount() {
+		this.setState = () => null
+	}
+
 	getChatList = () => {
 		const {chatList, page} = this.state;
 		this.setState({loading: true});

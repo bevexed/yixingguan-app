@@ -184,7 +184,7 @@ class Message extends Component {
 						</div>
 
 						{/*弹出框*/}
-						<div className='alert' style={{height: menuShow ? 110 : 0}}>
+						<div className='alert' style={{maxHeight: menuShow ? 300 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt="" onClick={this.camera}/>
 							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username, 'camera')}/>
 
