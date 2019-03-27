@@ -9,7 +9,9 @@ import {
 	ActivityIndicator,
 	Button,
 	Icon,
-	List, NavBar, WhiteSpace
+	List,
+	NavBar,
+	WhiteSpace
 } from "antd-mobile";
 
 import DocList from '../../../components/DocList/DocList'

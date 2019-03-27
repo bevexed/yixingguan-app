@@ -38,7 +38,8 @@ class RecordList extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<div className='recordList'>
-					<p className='recordP'>进行中</p>
+					{unfinished.length ? <p className='recordP'>进行中</p> : null}
+
 					{
 						unfinished.map(item =>
 							<div className='recordDiv' key={item.id}>
@@ -68,7 +69,8 @@ class RecordList extends Component {
 						)}
 				</div>
 				<div className='recordList'>
-					<p className='recordP' style={{background: "#FF9900"}}>历史记录</p>
+					{finished.length ? <p className='recordP' style={{background: "#FF9900"}}>历史记录</p> : null}
+
 					{
 						finished.map(item =>
 							<div className='recordDiv' key={item.id}>

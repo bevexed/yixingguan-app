@@ -162,7 +162,7 @@ class PatientIndex extends Component {
 
 	render() {
 		const {show, code_show, which} = this.state;
-		const {doctorList} = this.props;
+		const {list: doctorList} = this.props.doctorList;
 
 
 		const menuEl = (
