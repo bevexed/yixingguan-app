@@ -191,10 +191,10 @@ class Message extends Component {
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
 							<input id='image' type="file" hidden onChange={() => this.sendImg(username, 'image')}/>
 							{
-								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : null
+								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : <img src="" alt=""/>
 							}
 							{
-								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : null
+								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : <img src="" alt=""/>
 							}
 						</div>
 

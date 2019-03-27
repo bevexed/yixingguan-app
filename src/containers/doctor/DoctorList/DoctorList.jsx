@@ -53,7 +53,6 @@ class DoctorList extends Component {
 	}
 
 	getDoctor = (page) => {
-
 		const {city, locating_city, department} = this.state;
 		const params = {
 			locating_city: locating_city || '北京',
@@ -152,8 +151,7 @@ class DoctorList extends Component {
 
 	render() {
 		const {show, which} = this.state;
-		let {list: doctorList, total, current_page: page} = this.props.doctorList;
-		doctorList = [...new Set(doctorList)];
+		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
 
 		const menuEl = (

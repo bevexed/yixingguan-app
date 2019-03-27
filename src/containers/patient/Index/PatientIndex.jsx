@@ -21,6 +21,7 @@ import {
 
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqBanner} from "../../../api/patient";
+import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
 
 const Item = List.Item;
 
@@ -62,11 +63,11 @@ class PatientIndex extends Component {
 		)
 	}
 
-	getDoctor = () => {
-		const {city, page, locating_city, department} = this.state;
+	getDoctor = (page) => {
+		const {city, locating_city, department} = this.state;
 		const params = {
 			locating_city: locating_city || '北京',
-			page: page || 1,
+			page: page + 1,
 			city: city || null,
 			department: department || null
 		};
@@ -87,7 +88,7 @@ class PatientIndex extends Component {
 
 	// 单选框修改
 	onChange = (value) => {
-		const {which, show, departmentList,department,cityList,locating_city} = this.state;
+		const {which, show, departmentList, department, cityList, locating_city} = this.state;
 		let label = '';
 		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
@@ -107,7 +108,7 @@ class PatientIndex extends Component {
 			total: 100,
 			department: which === departmentList ? label : department,
 			locating_city: which === cityList ? label : locating_city
-		},this.getDoctor);
+		}, this.getDoctor);
 	};
 
 	getCity = (e) => {
@@ -162,7 +163,7 @@ class PatientIndex extends Component {
 
 	render() {
 		const {show, code_show, which} = this.state;
-		const {list: doctorList} = this.props.doctorList;
+		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
 
 		const menuEl = (
@@ -236,6 +237,9 @@ class PatientIndex extends Component {
 					{show ? which ? menuEl : loadingEl : null}
 					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList}/>}
 				</div>
+
+				<LoadingMore page={page} total={total} callback={() => this.getDoctor(page, total)}/>
+
 
 				<div
 					className='side-bar'
