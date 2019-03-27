@@ -35,12 +35,11 @@ class Message extends Component {
 
 	sendMessage(e, username) {
 		const {input} = this.state;
-		if (e.key !== 'Enter' || e.keyCode !== 13 || !input) {
-			return
+		if ((e === 'sendMsg' || e.key === 'Enter' || e.keyCode === 13) && input) {
+			const id = this.props.match.params.to;
+			this.setState({input: ''});
+			this.props.sendRoomText(input, id, username);
 		}
-		const id = this.props.match.params.to;
-		this.setState({input: ''});
-		this.props.sendRoomText(input, id, username);
 	}
 
 	selectImg = () => {
@@ -177,10 +176,11 @@ class Message extends Component {
 										按住说话
 									</div>
 							}
-							<img src={require('./img/biaoqing@3x.png')} alt=""/>
+							{/*<img src={require('./img/biaoqing@3x.png')} alt=""/>*/}
 							<img src={require('./img/tianjia-3@3x.png')}
 									 onClick={() => this.setState({menuShow: !menuShow})}
 									 alt=""/>
+							<button className='send-message' onClick={() => this.sendMessage('sendMsg', username)}>发送</button>
 						</div>
 
 						{/*弹出框*/}
