@@ -34,10 +34,9 @@ export const doctorList = (state = initDoctorList, action) => {
 	}
 };
 
-export const seekDoctorList = (state = initDoctorList, action) => {
-	state.list.forEach((doctor, index) => {
-		if (doctor.id === 0) { state.list.splice(index, 1)}
-	});
+const initSeek = [];
+
+export const seekDoctorList = (state = initSeek, action) => {
 	switch (action.type) {
 		case SEEK_DOCTOR_LIST:
 			return [...action.data];

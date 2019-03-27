@@ -6,7 +6,7 @@ import {NavBar, Icon, WhiteSpace} from "antd-mobile";
 
 class SearchResult extends Component {
 	render() {
-		const {doctorList=[]} = this.props;
+		const {doctorList} = this.props;
 
 		return (
 			<div>

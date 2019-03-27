@@ -7,7 +7,6 @@ import OrderDoctor from "../containers/patient/OrderDoctor/OrderDoctor";
 import Tips from "../containers/patient/Tips/Tips";
 import PaySuccess from "../containers/patient/PaySuccess/PaySuccess";
 import RecordList from "../containers/patient/RecordList/RecordList";
-import SearchResult from "../containers/patient/SearchResult/SearchResult";
 
 export const patientNav = [
 	{
@@ -54,9 +53,5 @@ export const patientRoute = [
 	{
 		pathname: '/record-list',
 		component: RecordList
-	},
-	{
-		pathname: '/search-result',
-		component: SearchResult
 	}
 ];

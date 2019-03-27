@@ -20,7 +20,6 @@ import {
 
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
-import {contactObject} from "../../../utils";
 
 const Item = List.Item;
 
@@ -52,10 +51,11 @@ class DoctorList extends Component {
 	}
 
 	getDoctor = (page) => {
+
 		const {city, locating_city, department} = this.state;
 		const params = {
 			locating_city: locating_city || '北京',
-			page: page + 1 || 1,
+			page: page + 1,
 			city: city || null,
 			department: department || null
 		};
@@ -96,7 +96,7 @@ class DoctorList extends Component {
 			total: 100,
 			department: which === departmentList ? label : department,
 			locating_city: which === cityList ? label : locating_city
-		}, this.getDoctor);
+		}, () => this.getDoctor(1));
 	};
 
 	getCity = (e) => {
@@ -113,7 +113,6 @@ class DoctorList extends Component {
 					res => {
 						if (res.code === 1) {
 							let cityList = res.data.map(item => ({value: item, label: item}));
-							console.log(cityList);
 							this.setState({cityList, which: cityList})
 						}
 					}
@@ -151,7 +150,9 @@ class DoctorList extends Component {
 
 	render() {
 		const {show, which} = this.state;
-		const {list: doctorList, total, current_page: page} = this.props.doctorList;
+		let {list: doctorList, total, current_page: page} = this.props.doctorList;
+		doctorList = [...new Set(doctorList)];
+
 
 		const menuEl = (
 			<Menu

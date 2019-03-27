@@ -33,7 +33,7 @@ export const contactObject = function (target, sources) {
 	Object.entries(sources).forEach(([sou_name, sou_value]) => {
 		Object.entries(target).forEach(([tar_name, tar_value]) => {
 			if (tar_name === sou_name) {
-				Array.isArray(sou_value) && (sou_value = [...tar_value, ...sou_value]);
+				Array.isArray(sou_value) && JSON.stringify(tar_value) !== JSON.stringify(sou_value) && (sou_value = [...tar_value, ...sou_value]);
 			}
 			Object.assign(sources, {[sou_name]: sou_value})
 		})
