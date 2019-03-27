@@ -160,7 +160,6 @@ class MyComponent extends Component {
 							fgColor={'#244b3f'}
 							level='H'
 						/>
-						<div>{uri}</div>
 					</div> : null
 				}
 			</div>

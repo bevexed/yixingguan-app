@@ -29,12 +29,11 @@ export const GetQueryString = function (name) {
 
 
 export const contactObject = function (target, sources) {
-	Object.entries(sources).map(([sou_name, sou_value]) => {
-		Object.entries(target).map(([tar_name, tar_value]) => {
+	Object.entries(sources).forEach(([sou_name, sou_value]) => {
+		Object.entries(target).forEach(([tar_name, tar_value]) => {
 			if (tar_name === sou_name) {
 				sou_value = [...tar_value, ...sou_value];
 			}
-			console.log(sou_name, sou_value);
 			Object.assign(sources, {[sou_name]: sou_value})
 		})
 	});

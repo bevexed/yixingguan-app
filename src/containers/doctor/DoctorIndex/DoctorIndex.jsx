@@ -4,6 +4,8 @@ import './DoctorIndex.less'
 
 import {reqChatList} from "../../../api/doctor";
 
+import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
+
 import {
 	Result,
 	WhiteSpace,
@@ -12,6 +14,7 @@ import {
 	SearchBar,
 	Modal,
 } from 'antd-mobile';
+import {contactObject} from "../../../utils";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -36,6 +39,9 @@ function closest(el, selector) {
 
 class DoctorIndex extends Component {
 	state = {
+		page: 0,
+		total: 0,
+		loading: true,
 		modal: false,
 		pain: [],
 		chatList: []
@@ -43,15 +49,27 @@ class DoctorIndex extends Component {
 
 	// todo: loadingmore
 	componentDidMount() {
+		this.getChatList()
+	}
+
+	getChatList = () => {
+		const {chatList} = this.state;
 		reqChatList()
 			.then(
 				res => {
 					if (res.code === 1) {
-						this.setState({chatList: res.data.list})
+						this.setState(
+							{
+								loading: false,
+								chatList: contactObject(chatList, res.data.list),
+								page: res.data.current_page + 1,
+								total: res.data.total
+							}
+						)
 					}
 				}
 			)
-	}
+	};
 
 	showModal = key => (e) => {
 		console.log(e);
@@ -96,7 +114,7 @@ class DoctorIndex extends Component {
 	render() {
 		const {name, avatar} = this.props.user;
 		const {chatMsg} = this.props;
-		const {chatList} = this.state;
+		const {chatList, page, loading, total} = this.state;
 
 		return (
 			<div className="doctor-index">
@@ -182,6 +200,8 @@ class DoctorIndex extends Component {
 							}
 						</div>
 					</div>
+
+					<LoadingMore page={page} total={total} callback={this.getChatList} loading={loading}/>
 
 					<div className={'footer'}>
 						<div className={'button'}
