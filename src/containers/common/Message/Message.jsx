@@ -187,8 +187,12 @@ class Message extends Component {
 						<div className='alert' style={{height: menuShow ? 110 : 0}}>
 							<img src={require('./img/拍照@3x.png')} alt="" onClick={this.camera}/>
 							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username, 'camera')}/>
+
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
 							<input id='image' type="file" hidden onChange={() => this.sendImg(username, 'image')}/>
+							{
+								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : null
+							}
 						</div>
 
 

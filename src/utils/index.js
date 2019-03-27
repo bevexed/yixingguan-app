@@ -1,3 +1,4 @@
+// 生成重定向路径
 export const getRedirectTo = (type) => {
 	let path = '';
 
@@ -27,12 +28,12 @@ export const GetQueryString = function (name) {
 	return null;
 };
 
-
+// 合并带有数组的对象
 export const contactObject = function (target, sources) {
 	Object.entries(sources).forEach(([sou_name, sou_value]) => {
 		Object.entries(target).forEach(([tar_name, tar_value]) => {
 			if (tar_name === sou_name) {
-				sou_value = [...tar_value, ...sou_value];
+				Array.isArray(sou_value) && (sou_value = [...tar_value, ...sou_value]);
 			}
 			Object.assign(sources, {[sou_name]: sou_value})
 		})
@@ -40,3 +41,13 @@ export const contactObject = function (target, sources) {
 	return sources;
 };
 
+// 函数防抖
+export const debounce = function (method, delay) {
+	let timer = null;
+	return () => {
+		timer && clearTimeout(timer);
+		timer = setTimeout(() => {
+			method()
+		}, delay);
+	}
+};

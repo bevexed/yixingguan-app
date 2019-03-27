@@ -16,6 +16,7 @@ import PublishPreview from "../containers/doctor/PublishPreview/PublishPreview";
 import Published from "../containers/doctor/Published/Published";
 import PublishDetail from "../containers/doctor/PublishDetail/PublishDetail";
 import PatientRemark from "../containers/doctor/PatientRemark/PatientRemark";
+import DoctorList from "../containers/doctor/DoctorList/DoctorList";
 
 export const doctorNav = [
 	{
@@ -96,5 +97,9 @@ export const doctorRoute = [
 	{
 		pathname: '/patient-remark/:patientId',
 		component: PatientRemark
+	},
+	{
+		pathname: '/doctor-list/',
+		component: DoctorList
 	}
 ];

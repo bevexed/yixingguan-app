@@ -4,13 +4,12 @@ import {connect} from 'react-redux';
 import './PatientIndex.less'
 
 import {
-	Carousel,
 	SearchBar,
 	Menu,
 	ActivityIndicator,
 	Button,
 	Icon,
-	List
+	List, NavBar, WhiteSpace
 } from "antd-mobile";
 
 import DocList from '../../../components/DocList/DocList'
@@ -20,11 +19,12 @@ import {
 } from "../../../redux/patient/action";
 
 import {reqGetCity, reqGetDepartments} from "../../../api";
-import {reqBanner} from "../../../api/patient";
+import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
+import {contactObject} from "../../../utils";
 
 const Item = List.Item;
 
-class PatientIndex extends Component {
+class DoctorList extends Component {
 	state = {
 		bannerData: [],
 		imgHeight: 170,
@@ -33,9 +33,6 @@ class PatientIndex extends Component {
 
 		// 所有城市 全部科室下拉列表显示隐藏
 		show: false,
-
-		// 联系客服二维码显示隐藏
-		code_show: false,
 
 		// 下拉列表数据
 		cityList: '',
@@ -52,21 +49,13 @@ class PatientIndex extends Component {
 
 	componentDidMount() {
 		this.getDoctor();
-
-		reqBanner().then(
-			res => {
-				if (res.code === 1) {
-					this.setState({bannerData: res.data})
-				}
-			}
-		)
 	}
 
-	getDoctor = () => {
-		const {city, page, locating_city, department} = this.state;
+	getDoctor = (page) => {
+		const {city, locating_city, department} = this.state;
 		const params = {
 			locating_city: locating_city || '北京',
-			page: page || 1,
+			page: page + 1 || 1,
 			city: city || null,
 			department: department || null
 		};
@@ -87,7 +76,7 @@ class PatientIndex extends Component {
 
 	// 单选框修改
 	onChange = (value) => {
-		const {which, show, departmentList,department,cityList,locating_city} = this.state;
+		const {which, show, departmentList, department, cityList, locating_city} = this.state;
 		let label = '';
 		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
@@ -107,7 +96,7 @@ class PatientIndex extends Component {
 			total: 100,
 			department: which === departmentList ? label : department,
 			locating_city: which === cityList ? label : locating_city
-		},this.getDoctor);
+		}, this.getDoctor);
 	};
 
 	getCity = (e) => {
@@ -161,9 +150,8 @@ class PatientIndex extends Component {
 	};
 
 	render() {
-		const {show, code_show, which} = this.state;
-		const {doctorList} = this.props;
-
+		const {show, which} = this.state;
+		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
 		const menuEl = (
 			<Menu
@@ -184,32 +172,16 @@ class PatientIndex extends Component {
 
 		return (
 			<div className={'patient-index'}>
-				<Carousel
-					autoplay={true}
-					infinite
-					beforeChange={(from, to) => to}
-					afterChange={index => index}
-					style={{minHeight: '170Px'}}
-				>
-					{this.state.bannerData.map(val => (
-						<a
-							key={val.id}
-							href={val.url}
-							style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
-						>
-							<img
-								src={val.picture}
-								alt={val.name}
-								style={{width: '100%', verticalAlign: 'top'}}
-								onLoad={() => {
-									// fire window resize event to change height
-									window.dispatchEvent(new Event('resize'));
-									this.setState({imgHeight: 'auto'});
-								}}
-							/>
-						</a>
-					))}
-				</Carousel>
+				<NavBar
+					mode="light"
+					icon={<Icon type="left" color={'#000'} size={'md'}/>}
+					onLeftClick={() => this.props.history.goBack()}
+				>医生列表</NavBar>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 
 				<Item>
 					<SearchBar
@@ -237,21 +209,7 @@ class PatientIndex extends Component {
 					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList}/>}
 				</div>
 
-				<div
-					className='side-bar'
-					onClick={() => this.setState({code_show: true})}
-				>
-					联系客服
-				</div>
-
-				{code_show ?
-					<div
-						className='code'
-						onClick={() => this.setState({code_show: false})}
-					>
-						<img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=977147320,1756285936&fm=26&gp=0.jpg" alt=""/>
-					</div> : null
-				}
+				<LoadingMore page={page} total={total} callback={() => this.getDoctor(page, total)}/>
 
 			</div>
 		);
@@ -270,5 +228,5 @@ export default connect(
 		getDoctorList,
 		getSeekDoctorList
 	}
-)(PatientIndex);
+)(DoctorList);
 

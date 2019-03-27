@@ -2,36 +2,41 @@ import React, {PureComponent} from 'react';
 import {ActivityIndicator} from "antd-mobile";
 import './LoadingMore.less';
 import PropTypes from 'prop-types';
+import {debounce} from "../../utils";
 
 class LoadingMore extends PureComponent {
+	state = {
+		loading: true
+	};
 
 	static propTypes = {
 		page: PropTypes.number.isRequired,
 		total: PropTypes.number.isRequired,
 		callback: PropTypes.func.isRequired,
-		loading: PropTypes.bool.isRequired
 	};
 
 	componentDidMount() {
 		const that = this;
-		window.onscroll = () => {
-			console.log(1);
-			const {callback, loading, page, total} = that.props;
+		window.onscroll = debounce(() => {
+			const {callback, page, total} = that.props;
+			console.log(page, total);
 			if ((page - 1) * 10 >= total) {
+				this.setState({loading: false});
 				return
 			}
-			if (loading) {
-				return
-			}
-			const {scrollTop, scrollHeight, clientHeight} = document.body;
+			const {scrollTop, scrollHeight, clientHeight} = document.body || document.documentElement;
 			if (scrollTop + clientHeight + 60 > scrollHeight) {
 				callback()
 			}
-		}
+		}, 200)
+	}
+
+	componentWillUnmount() {
+		this.setState = () => null;
 	}
 
 	render() {
-		const {loading} = this.props;
+		const {loading} = this.state;
 		return (
 			<div className='loading-more'>
 				<ActivityIndicator

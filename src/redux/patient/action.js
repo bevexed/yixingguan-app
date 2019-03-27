@@ -6,10 +6,11 @@ import {
 
 import {
 	RECEIVE_DOCTOR_LIST,
-	RECEIVE_DOCTOR_DETAILS, SEEK_DOCTOR_LIST,
+	RECEIVE_DOCTOR_DETAILS,
+	SEEK_DOCTOR_LIST,
 } from "../action-types";
 
-// 首页 医生 列表
+// 获取 医生 列表
 const receiveDoctorList = doctorList => ({type: RECEIVE_DOCTOR_LIST, data: doctorList});
 
 export const getDoctorList = ({locating_city, page, city, department}) => {
@@ -17,16 +18,16 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 		reqDoctorList({locating_city, page, city, department}).then(
 			res => {
 				if (res.code === 1) {
-					dispatch(receiveDoctorList(res.data.list))
+					dispatch(receiveDoctorList(res.data))
 				}
 			}
 		)
 	}
 };
 
-const seekDoctorList = doctorList =>({type:SEEK_DOCTOR_LIST,data:doctorList});
+const seekDoctorList = doctorList => ({type: SEEK_DOCTOR_LIST, data: doctorList});
 
-export const getSeekDoctorList = (title,history) => {
+export const getSeekDoctorList = (title, history) => {
 	return async dispatch => {
 		reqSeeks(title).then(
 			res => {
