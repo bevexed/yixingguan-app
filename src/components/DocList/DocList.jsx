@@ -54,15 +54,23 @@ class DocList extends Component {
 												<p className={'master ellipsis'}>擅长：{doctor.introduction}</p>
 											</footer>
 										</div>
-
-										<Button
-											size="small"
-											style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
-											onClick={() => this.props.history.push(`/order-doctor/${doctor.id}`)}
-										>
-											{identity !== 'doctor' ? '预约' : '转诊'}
-										</Button>
-
+										{identity === 'doctor' ?
+											<Button
+												size="small"
+												style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
+												onClick={() => alert('转诊')}
+											>
+												转诊
+											</Button>
+											:
+											<Button
+												size="small"
+												style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
+												onClick={() => this.props.history.push(`/order-doctor/${doctor.id}`)}
+											>
+												预约
+											</Button>
+										}
 									</div>
 								</Item>
 							</Badge>
