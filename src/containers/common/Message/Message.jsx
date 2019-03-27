@@ -193,6 +193,9 @@ class Message extends Component {
 							{
 								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : null
 							}
+							{
+								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : null
+							}
 						</div>
 
 
