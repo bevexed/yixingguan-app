@@ -15,6 +15,7 @@ class LoadingMore extends PureComponent {
 	componentDidMount() {
 		const that = this;
 		window.onscroll = () => {
+			console.log(1);
 			const {callback, loading, page, total} = that.props;
 			if ((page - 1) * 10 >= total) {
 				return

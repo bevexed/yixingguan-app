@@ -14,7 +14,6 @@ import {
 	SearchBar,
 	Modal,
 } from 'antd-mobile';
-import {contactObject} from "../../../utils";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -39,29 +38,29 @@ function closest(el, selector) {
 
 class DoctorIndex extends Component {
 	state = {
-		page: 0,
-		total: 0,
+		page: 1,
+		total: 100,
 		loading: true,
 		modal: false,
 		pain: [],
 		chatList: []
 	};
 
-	// todo: loadingmore
 	componentDidMount() {
 		this.getChatList()
 	}
 
 	getChatList = () => {
-		const {chatList} = this.state;
-		reqChatList()
+		const {chatList, page} = this.state;
+		this.setState({loading: true});
+		reqChatList({page})
 			.then(
 				res => {
 					if (res.code === 1) {
 						this.setState(
 							{
 								loading: false,
-								chatList: contactObject(chatList, res.data.list),
+								chatList: [...chatList, ...res.data.list],
 								page: res.data.current_page + 1,
 								total: res.data.total
 							}
@@ -174,8 +173,10 @@ class DoctorIndex extends Component {
 							</Item>
 						)
 					}
-
 				</List>
+
+				<LoadingMore page={page} total={total} callback={this.getChatList} loading={loading}/>
+
 				{/*弹出层*/}
 				<Modal
 					className={'pain'}
@@ -201,7 +202,6 @@ class DoctorIndex extends Component {
 						</div>
 					</div>
 
-					<LoadingMore page={page} total={total} callback={this.getChatList} loading={loading}/>
 
 					<div className={'footer'}>
 						<div className={'button'}
@@ -213,6 +213,13 @@ class DoctorIndex extends Component {
 						</div>
 					</div>
 				</Modal>
+
+
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 			</div>
 		);
 	}

@@ -6,9 +6,10 @@ import {deleteChat} from "../../../redux/chat/action";
 import './DoctorChatLIst.less'
 import {
 	Accordion,
-	Icon,
+	// Icon,
 	NavBar,
-	Button, WhiteSpace
+	Button,
+	WhiteSpace
 } from "antd-mobile";
 
 const Panel = Accordion.Panel;

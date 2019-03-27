@@ -15,10 +15,9 @@ class Published extends Component {
 		total: 100,
 		articles: {},
 		page: 1,
-		loading: true
+		loading: false
 	};
 
-	// todo：分页
 	loadingMore = () => {
 		const {page, articles} = this.state;
 		this.setState({loading: true});

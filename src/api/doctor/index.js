@@ -50,7 +50,7 @@ export const reqAssistantDelete = id => ajax('/api/doctor/list/assistant_delete'
 export const reqSubscribeDelete = id => ajax('/api/doctor/list/subscribe_delete', {id});
 
 // 首页患者列表
-export const reqChatList = () => ajax('/api/chat/chat_lists', {}, "GET");
+export const reqChatList = ({page, name, lavel}) => ajax('/api/chat/chat_lists', {page, name, lavel}, "GET");
 
 // 修改预约备注
-export const reqChatNote = ({id, note}) => ajax('/api/chat/chat_note',{id,note,token});
+export const reqChatNote = ({id, note}) => ajax('/api/chat/chat_note', {id, note, token});
