@@ -206,7 +206,7 @@ class DoctorList extends Component {
 						</div>
 					</List>
 					{show ? which ? menuEl : loadingEl : null}
-					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList}/>}
+					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList} identity={'doctor'}/>}
 				</div>
 
 				<LoadingMore page={page} total={total} callback={() => this.getDoctor(page, total)}/>

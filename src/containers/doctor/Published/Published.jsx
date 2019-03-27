@@ -15,19 +15,16 @@ class Published extends Component {
 		total: 100,
 		articles: {},
 		page: 1,
-		loading: false
 	};
 
 	loadingMore = () => {
 		const {page, articles} = this.state;
-		this.setState({loading: true});
 		reqShareLists(page)
 			.then(
 				res => {
 					if (res.code === 1) {
 						this.setState(
 							{
-								loading: false,
 								articles: contactObject(articles, res.data.data),
 								page: res.data.current_page + 1,
 								total: res.data.total
@@ -39,7 +36,7 @@ class Published extends Component {
 	};
 
 	render() {
-		const {articles, total, page, loading} = this.state;
+		const {articles, total, page} = this.state;
 
 		return (
 			<div className='published'>
@@ -85,7 +82,7 @@ class Published extends Component {
 					}
 				</WingBlank>
 
-				<LoadingMore callback={this.loadingMore} loading={loading} total={total} page={page}/>
+				<LoadingMore callback={this.loadingMore} total={total} page={page}/>
 			</div>
 		);
 	}

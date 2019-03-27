@@ -17,10 +17,11 @@ class DocList extends Component {
 
 	static propTypes = {
 		doctorList: PropTypes.array.isRequired,
+		identity: PropTypes.string
 	};
 
 	render() {
-		const {doctorList} = this.props;
+		const {doctorList, identity} = this.props;
 		// noinspection JSUnresolvedVariable
 		return (
 			<div>
@@ -59,7 +60,7 @@ class DocList extends Component {
 											style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
 											onClick={() => this.props.history.push(`/order-doctor/${doctor.id}`)}
 										>
-											{/*{this === 'doctor-list' ? '预约' : '转诊'}*/}
+											{identity !== 'doctor' ? '预约' : '转诊'}
 										</Button>
 
 									</div>
