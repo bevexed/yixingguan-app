@@ -6,7 +6,7 @@ import {debounce} from "../../utils";
 
 class LoadingMore extends PureComponent {
 	state = {
-		loading: true
+		loading: false
 	};
 
 	static propTypes = {
@@ -18,6 +18,7 @@ class LoadingMore extends PureComponent {
 	componentDidMount() {
 		const that = this;
 		window.onscroll = debounce(() => {
+			this.setState({loading: true});
 			const {callback, page, total} = that.props;
 			if ((page - 1) * 10 >= total) {
 				this.setState({loading: false});
