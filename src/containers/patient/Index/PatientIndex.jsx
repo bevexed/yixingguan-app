@@ -52,7 +52,8 @@ class PatientIndex extends Component {
 
 
 	componentDidMount() {
-		this.getDoctor();
+		const {lcurrent_page: page} = this.props.doctorList;
+		this.getDoctor(page);
 
 		reqBanner().then(
 			res => {

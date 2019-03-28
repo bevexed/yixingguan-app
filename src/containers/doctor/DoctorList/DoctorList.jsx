@@ -49,7 +49,8 @@ class DoctorList extends Component {
 
 
 	componentDidMount() {
-		this.getDoctor();
+		const {lcurrent_page: page} = this.props.doctorList;
+		this.getDoctor(page);
 	}
 
 	getDoctor = (page) => {

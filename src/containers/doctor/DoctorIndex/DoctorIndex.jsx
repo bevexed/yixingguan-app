@@ -6,6 +6,8 @@ import {reqChatList} from "../../../api/doctor";
 
 import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
 
+import _ from 'lodash/function'
+
 import {
 	Result,
 	WhiteSpace,
@@ -40,10 +42,11 @@ class DoctorIndex extends Component {
 	state = {
 		page: 1,
 		total: 100,
-		loading: true,
 		modal: false,
 		pain: [],
-		chatList: []
+		chatList: [],
+		lavel: '',
+		name: ''
 	};
 
 	componentDidMount() {
@@ -55,9 +58,9 @@ class DoctorIndex extends Component {
 	}
 
 	getChatList = () => {
-		const {chatList, page} = this.state;
-		this.setState({loading: true});
-		reqChatList({page})
+		const {chatList, page, lavel, name} = this.state;
+		if (!name || !lavel) {this.setState({chatList: []})}
+		reqChatList({page, name, lavel})
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -74,13 +77,23 @@ class DoctorIndex extends Component {
 			)
 	};
 
+	getChatListbyName = (name) => {
+		_.debounce(
+			this.setState({
+				name,
+				page: 1
+			}, this.getChatList)
+			, 1000);
+	};
+
 	showModal = key => (e) => {
 		console.log(e);
-		// e.preventDefault(); // 修复 Android 上点击穿透
+		e.preventDefault(); // 修复 Android 上点击穿透
 		this.setState({
 			[key]: true,
 		});
 	};
+
 	onClose = key => () => {
 		this.setState({
 			[key]: false,
@@ -149,6 +162,7 @@ class DoctorIndex extends Component {
 							showCancelButton
 							cancelText={<img src={require('./img/shaixuan@3x.png')} alt=""/>}
 							onCancel={this.showModal('modal')}
+							onChange={name => this.getChatListbyName(name)}
 						/>
 						<WhiteSpace/>
 					</Item>
@@ -229,7 +243,9 @@ class DoctorIndex extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
 	return {
 		user: state.user,
 		chatMsg: state.chatMsg
@@ -238,4 +254,9 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-)(DoctorIndex);
+)
+
+(
+	DoctorIndex
+)
+;

@@ -19,7 +19,6 @@ class LoadingMore extends PureComponent {
 		const that = this;
 		window.onscroll = debounce(() => {
 			const {callback, page, total} = that.props;
-			console.log(page, total);
 			if ((page - 1) * 10 >= total) {
 				this.setState({loading: false});
 				return

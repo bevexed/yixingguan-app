@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {NavBar, Icon, WhiteSpace, InputItem} from "antd-mobile";
+import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 
 import {sendRoomText, doSendImg} from "../../../redux/chat/action";
-import {reqChatUserInfo} from "../../../api";
+import {reqChatUserInfo, reqDelete} from "../../../api";
+
 
 import './Message.less';
 
@@ -60,6 +61,20 @@ class Message extends Component {
 			{
 				inputType: inputType === 'input' ? 'speak' : 'input'
 			})
+	};
+
+	deleteRelation = () => {
+		const chat_room = this.props.match.params.to;
+		reqDelete(chat_room)
+			.then(
+				res => {
+					if (res.code === 1) {
+						Toast.success(res.message, 1, () => this.props.history.replace('/doctor-index'))
+					} else {
+						Toast.fail(res.message, 1)
+					}
+				}
+			)
 	};
 
 	handleChange = (name, val) => {
@@ -194,7 +209,7 @@ class Message extends Component {
 								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : <img src="" alt=""/>
 							}
 							{
-								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : <img src="" alt=""/>
+								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={this.deleteRelation}/> : <img src="" alt=""/>
 							}
 						</div>
 

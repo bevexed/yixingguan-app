@@ -30,3 +30,6 @@ export const reqGetDepartments = () => ajax('/api/get_departments');
 // 通过聊天室获取聊天室成员信息
 export const reqChatUserInfo = chat_room => ajax('/api/chat/chat_user_info', {chat_room});
 
+// 医患 删除关系
+export const reqDelete = chat_room => ajax('/api/relation/delete', {chat_room});
+
