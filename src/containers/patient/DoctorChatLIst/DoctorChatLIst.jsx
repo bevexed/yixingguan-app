@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reqPatientList} from "../../../api/patient";
 import {deleteChat} from "../../../redux/chat/action";
+import {reqDelete} from "../../../api";
 
 import './DoctorChatLIst.less'
 import {
@@ -9,7 +10,7 @@ import {
 	// Icon,
 	NavBar,
 	Button,
-	WhiteSpace
+	WhiteSpace, Toast
 } from "antd-mobile";
 
 const Panel = Accordion.Panel;
@@ -38,6 +39,19 @@ class DoctorChatLIst extends Component {
 	toMessage = (el, id) => {
 		el.stopPropagation();
 		this.props.history.push(`/message/${id}`)
+	};
+
+	deleteRelation = chat_room => {
+		reqDelete(chat_room)
+			.then(
+				res => {
+					if (res.code === 1) {
+						Toast.success(res.message, 1, () => this.props.history.replace('/doctor-index'))
+					} else {
+						Toast.fail(res.message, 1)
+					}
+				}
+			)
 	};
 
 	render() {
@@ -93,7 +107,7 @@ class DoctorChatLIst extends Component {
 							}
 						>
 							<div className='btn-group'>
-								<Button>拒绝推送</Button>
+								<Button onClick={() => this.deleteRelation(doc.chat_room)}>拒绝推送</Button>
 								<Button
 									onClick={() => this.props.deleteChat(doc.chat_room)}
 								>删除聊天记录</Button>
