@@ -6,8 +6,6 @@ import {reqChatList} from "../../../api/doctor";
 
 import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
 
-import _ from 'lodash/function'
-
 import {
 	Result,
 	WhiteSpace,
@@ -36,7 +34,6 @@ function closest(el, selector) {
 
 // todo:根据标签筛选病人
 
-// todo:筛选病人
 
 class DoctorIndex extends Component {
 	state = {
@@ -59,7 +56,6 @@ class DoctorIndex extends Component {
 
 	getChatList = () => {
 		const {chatList, page, lavel, name} = this.state;
-		if (!name || !lavel) {this.setState({chatList: []})}
 		reqChatList({page, name, lavel})
 			.then(
 				res => {
@@ -78,12 +74,13 @@ class DoctorIndex extends Component {
 	};
 
 	getChatListbyName = (name) => {
-		_.debounce(
-			this.setState({
-				name,
-				page: 1
-			}, this.getChatList)
-			, 1000);
+		// _.debounce(
+		this.setState({
+			name,
+			page: 1,
+			chatList: []
+		}, this.getChatList);
+		// , 1000);};
 	};
 
 	showModal = key => (e) => {
@@ -123,8 +120,6 @@ class DoctorIndex extends Component {
 		this.setState({pain})
 	};
 
-
-	// todo: 患者 筛选 => 按名字 按标签
 	render() {
 		const {name, avatar} = this.props.user;
 		const {chatMsg} = this.props;
