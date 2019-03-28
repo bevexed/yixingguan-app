@@ -60,7 +60,7 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 			// window.location.replace('/');
 			// 提示 数据加载失败
 			console.log(error);
-			Toast.fail(error, 1);
+			// Toast.fail(error, 1);
 
 			return Promise.reject(error);
 		});

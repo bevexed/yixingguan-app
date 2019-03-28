@@ -46,7 +46,7 @@ class DoctorChatLIst extends Component {
 			.then(
 				res => {
 					if (res.code === 1) {
-						Toast.success(res.message, 1, () => this.props.history.replace('/doctor-index'))
+						Toast.success(res.message, 1, () => this.props.history.reload(true,))
 					} else {
 						Toast.fail(res.message, 1)
 					}

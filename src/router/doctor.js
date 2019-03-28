@@ -1,7 +1,7 @@
 import {commonRoute} from "./common";
 
 import DoctorIndex from "../containers/doctor/DoctorIndex/DoctorIndex";
-import PersonalDoctor from "../containers/doctor/Personal/PersonalDoctor";
+import PersonalDoctor from "../containers/doctor/DoctorPersonal/PersonalDoctor";
 import NewPatient from "../containers/doctor/NewPatient/NewPatient";
 import DoctorCompleteInformation from "../containers/doctor/CompleteInformation/DoctorCompleteInformation";
 import DoctorDetail from "../containers/doctor/DoctorDetail/DoctorDetail";
