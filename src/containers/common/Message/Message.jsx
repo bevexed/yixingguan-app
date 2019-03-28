@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 
-import {sendRoomText, doSendImg} from "../../../redux/chat/action";
+import {sendRoomText, doSendImg, deleteChat} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
 
 
@@ -69,6 +69,7 @@ class Message extends Component {
 			.then(
 				res => {
 					if (res.code === 1) {
+						this.props.deleteChat(chat_room);
 						Toast.success(res.message, 1, () => this.props.history.replace('/doctor-index'))
 					} else {
 						Toast.fail(res.message, 1)
@@ -233,6 +234,7 @@ export default connect(
 	mapStateToProps,
 	{
 		sendRoomText,
-		doSendImg
+		doSendImg,
+		deleteChat
 	}
 )(Message);

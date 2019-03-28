@@ -15,9 +15,6 @@ import {
 
 const Panel = Accordion.Panel;
 
-/* todo: 拒绝推送
- */
-
 class DoctorChatLIst extends Component {
 	state = {
 		chatList: [],
@@ -46,6 +43,7 @@ class DoctorChatLIst extends Component {
 			.then(
 				res => {
 					if (res.code === 1) {
+						this.props.deleteChat(chat_room);
 						Toast.success(res.message, 1, () => this.props.history.reload(true,))
 					} else {
 						Toast.fail(res.message, 1)

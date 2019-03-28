@@ -88,7 +88,7 @@ class DoctorIndex extends Component {
 
 	showModal = key => (e) => {
 		console.log(e);
-		e.preventDefault(); // 修复 Android 上点击穿透
+		// e.preventDefault(); // 修复 Android 上点击穿透
 		this.setState({
 			[key]: true,
 		});
@@ -123,8 +123,6 @@ class DoctorIndex extends Component {
 		this.setState({pain})
 	};
 
-
-	// todo: 患者 分页
 
 	// todo: 患者 筛选 => 按名字 按标签
 	render() {
