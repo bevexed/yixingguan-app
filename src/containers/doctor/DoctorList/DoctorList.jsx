@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-import './PatientIndex.less'
-
 import {
 	SearchBar,
 	Menu,
@@ -11,17 +8,19 @@ import {
 	Icon,
 	List,
 	NavBar,
-	WhiteSpace
+	WhiteSpace,
+	Toast
 } from "antd-mobile";
+import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
+import './PatientIndex.less'
 
 import DocList from '../../../components/DocList/DocList'
 import {
 	getDoctorList,
 	getSeekDoctorList,
 } from "../../../redux/patient/action";
-
 import {reqGetCity, reqGetDepartments} from "../../../api";
-import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
+import {reqReferrals} from "../../../api/doctor";
 
 const Item = List.Item;
 
@@ -52,6 +51,18 @@ class DoctorList extends Component {
 		const {lcurrent_page: page} = this.props.doctorList;
 		this.getDoctor(page);
 	}
+
+	doReferrals = () => {
+		const only_no = this.props.match.params.only_no;
+		reqReferrals(only_no)
+			.then(res => {
+				if (res.code === 1) {
+					Toast.success(res.message, 1)
+				} else {
+					Toast.fail(res.message, 1)
+				}
+			})
+	};
 
 	getDoctor = (page) => {
 		const {city, locating_city, department} = this.state;
@@ -154,7 +165,6 @@ class DoctorList extends Component {
 		const {show, which} = this.state;
 		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
-
 		const menuEl = (
 			<Menu
 				className="single-foo-menu"
@@ -208,7 +218,7 @@ class DoctorList extends Component {
 						</div>
 					</List>
 					{show ? which ? menuEl : loadingEl : null}
-					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList} identity={'doctor'}/>}
+					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList} identity={'doctor'} doReferrals={this.doReferrals}/>}
 				</div>
 
 				<LoadingMore page={page} total={total} callback={() => this.getDoctor(page, total)}/>

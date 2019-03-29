@@ -104,6 +104,7 @@ class Message extends Component {
 		const {chatMsg} = this.props;
 		if (!users.length) { return null }
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
+		const only_no = users.filter(user => user.identity === '1')[0].only_no;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
@@ -207,7 +208,7 @@ class Message extends Component {
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
 							<input id='image' type="file" hidden onChange={() => this.sendImg(username, 'image')}/>
 							{
-								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list')}/> : <img src="" alt=""/>
+								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list/' + only_no)}/> : <img src="" alt=""/>
 							}
 							{
 								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={this.deleteRelation}/> : <img src="" alt=""/>

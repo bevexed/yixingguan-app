@@ -10,18 +10,18 @@ import {
 	Button
 } from "antd-mobile";
 
-
 const Item = List.Item;
 
 class DocList extends Component {
 
 	static propTypes = {
 		doctorList: PropTypes.array.isRequired,
-		identity: PropTypes.string
+		identity: PropTypes.string,
+		doReferrals: PropTypes.func
 	};
 
 	render() {
-		const {doctorList, identity} = this.props;
+		const {doctorList, identity, doReferrals} = this.props;
 		// noinspection JSUnresolvedVariable
 		return (
 			<div>
@@ -58,7 +58,7 @@ class DocList extends Component {
 											<Button
 												size="small"
 												style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
-												onClick={() => alert('转诊')}
+												onClick={doReferrals}
 											>
 												转诊
 											</Button>

@@ -26,10 +26,9 @@ class RegisterPhone extends Component {
 	};
 
 	componentWillUnmount() {
-		this.setState = () => {
-			return false
-		};
+		this.setState = () => null;
 	}
+
 
 	onErrorClick = () => {
 		if (this.state.hasError) {

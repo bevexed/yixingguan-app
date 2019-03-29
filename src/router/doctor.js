@@ -99,7 +99,7 @@ export const doctorRoute = [
 		component: PatientRemark
 	},
 	{
-		pathname: '/doctor-list/',
+		pathname: '/doctor-list/:only_no',
 		component: DoctorList
 	}
 ];
