@@ -56,4 +56,4 @@ export const reqChatList = ({page, name, lavel}) => ajax('/api/chat/chat_lists',
 export const reqChatNote = ({id, note}) => ajax('/api/chat/chat_note', {id, note, token});
 
 // 医生转诊通知
-export const reqReferrals = only_no => ajax('/api/relation/referrals', {only_no});
+export const reqReferrals = ({only_no, url}) => ajax('/api/relation/referrals', {only_no, url});

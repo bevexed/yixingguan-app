@@ -64,7 +64,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) =>
 			el.setState({
 				code_show: true, title: '邀请病人',
-				uri: 'http://' + window.location.host + '/doctor-chat-list' + '?only_no=' + only_no + '&assistant=' + 3
+				uri: 'http://' + window.location.host + '/doctor-chat-list?only_no=' + only_no + '&assistant=' + 3
 			})
 	}
 ];

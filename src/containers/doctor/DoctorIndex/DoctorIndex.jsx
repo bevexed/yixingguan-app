@@ -34,6 +34,8 @@ function closest(el, selector) {
 
 // todo:根据标签筛选病人
 
+// fixMe: 病人列表
+
 
 class DoctorIndex extends Component {
 	state = {
@@ -247,9 +249,4 @@ mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
-)
-
-(
-	DoctorIndex
-)
-;
+)(DoctorIndex);

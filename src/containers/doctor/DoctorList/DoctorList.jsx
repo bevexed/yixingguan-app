@@ -52,9 +52,10 @@ class DoctorList extends Component {
 		this.getDoctor(page);
 	}
 
-	doReferrals = () => {
+	// todo：被转诊 医生 ID
+	doReferrals = url => {
 		const only_no = this.props.match.params.only_no;
-		reqReferrals(only_no)
+		reqReferrals({only_no, url})
 			.then(res => {
 				if (res.code === 1) {
 					Toast.success(res.message, 1)

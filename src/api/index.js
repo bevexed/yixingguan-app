@@ -33,3 +33,6 @@ export const reqChatUserInfo = chat_room => ajax('/api/chat/chat_user_info', {ch
 // 医患 删除关系
 export const reqDelete = chat_room => ajax('/api/relation/delete', {chat_room});
 
+// 消息通知
+export const reqNotification = ({only_no, url}) => ajax('/api/relation/notification', {only_no, url});
+

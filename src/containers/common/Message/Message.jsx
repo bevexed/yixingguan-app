@@ -4,6 +4,7 @@ import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 
 import {sendRoomText, doSendImg, deleteChat} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
+import {reqNotification} from "../../../api";
 
 
 import './Message.less';
@@ -34,11 +35,17 @@ class Message extends Component {
 		document.querySelector('#camera').click()
 	};
 
-	sendMessage(e, username) {
+	sendMessage(e, username, only_no) {
 		const {input} = this.state;
 		if ((e === 'sendMsg' || e.key === 'Enter' || e.keyCode === 13) && input) {
 			const id = this.props.match.params.to;
 			this.setState({input: ''});
+			reqNotification({only_no, url: window.location.href})
+				.then(res => {
+					if (res.code === 1) {
+
+					}
+				});
 			this.props.sendRoomText(input, id, username);
 		}
 	}
@@ -97,6 +104,8 @@ class Message extends Component {
 		})
 	};
 
+	// todo: 消息提示
+
 	render() {
 		const {input, inputType, menuShow, users} = this.state;
 		const {identity} = this.props.user;
@@ -105,6 +114,7 @@ class Message extends Component {
 		if (!users.length) { return null }
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
 		const only_no = users.filter(user => user.identity === '1')[0].only_no;
+		const only_no_chat = identity !== 'patient' ? users.filter(user => user.identity === '1')[0].only_no : users.filter(user => user.identity === '2')[0].only_no;
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
@@ -197,7 +207,7 @@ class Message extends Component {
 							<img src={require('./img/tianjia-3@3x.png')}
 									 onClick={() => this.setState({menuShow: !menuShow})}
 									 alt=""/>
-							<button className='send-message' onClick={() => this.sendMessage('sendMsg', username)}>发送</button>
+							<button className='send-message' onClick={() => this.sendMessage('sendMsg', username, only_no)}>发送</button>
 						</div>
 
 						{/*弹出框*/}
@@ -208,7 +218,7 @@ class Message extends Component {
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
 							<input id='image' type="file" hidden onChange={() => this.sendImg(username, 'image')}/>
 							{
-								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list/' + only_no)}/> : <img src="" alt=""/>
+								identity === 'doctor' ? <img src={require('./img/转诊@3x.png')} alt="" onClick={() => this.props.history.push('/doctor-list/' + only_no_chat)}/> : <img src="" alt=""/>
 							}
 							{
 								identity === 'doctor' ? <img src={require('./img/结束@3x.png')} alt="" onClick={this.deleteRelation}/> : <img src="" alt=""/>
