@@ -53,8 +53,8 @@ class DoctorIndex extends Component {
 	}
 
 	getChatList = () => {
-		const {chatList, page, lavel, name} = this.state;
-		reqChatList({page, name, lavel})
+		const {chatList, page, pain: lavel, name} = this.state;
+		reqChatList({page, name, lavel: lavel[0]})
 			.then(
 				res => {
 					if (res.code === 1) {
@@ -115,7 +115,11 @@ class DoctorIndex extends Component {
 			pain = [...pain, select];
 			pain = Array.from(new Set(pain));
 		}
-		this.setState({pain})
+		this.setState({
+			page: 1,
+			chatList: [],
+			pain
+		});
 	};
 
 	render() {
@@ -199,9 +203,7 @@ class DoctorIndex extends Component {
 					onClose={this.onClose('modal')}
 					title={'病症'}
 					wrapProps={{onTouchStart: this.onWrapTouchStart}}
-					afterClose={() => {
-						alert('afterClose');
-					}}
+					afterClose={this.getChatList}
 				>
 					<div style={{height: 300, overflow: 'scroll'}}>
 						<div className='list'>
