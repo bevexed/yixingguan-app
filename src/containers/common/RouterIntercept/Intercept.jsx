@@ -14,9 +14,6 @@ import RegisterIndex from "../Register/RegisterIndex";
 
 import {GetQueryString} from "../../../utils";
 import {reqCode, reqToken} from "../../../api";
-
-import {Toast} from "antd-mobile";
-
 import Loading from "../../../components/Loading/Loading";
 
 class Intercept extends Component {

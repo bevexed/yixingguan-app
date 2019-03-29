@@ -9,6 +9,7 @@ import {
 	SEND_MESSAGE
 } from "../action-types";
 import {Toast} from "antd-mobile";
+import {reqNotification} from "../../api";
 
 require('../../static/strophe.js');
 const WebIM = require('easemob-websdk');
@@ -175,7 +176,7 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 
 const sendMessage = msg => ({type: SEND_MESSAGE, data: msg});
 // 发送群消息
-export const sendRoomText = (message, chat_room, username) => {
+export const sendRoomText = (message, chat_room, username, only_no) => {
 	return async dispatch => {
 		let id = conn.getUniqueId();         // 生成本地消息id
 		let msg = new WebIM.message('txt', id); // 创建文本消息
@@ -186,6 +187,7 @@ export const sendRoomText = (message, chat_room, username) => {
 			chatType: 'chatRoom',
 			success: function () {
 				const msg = {chat_room, message, time: new Date().valueOf(), username};
+				reqNotification({only_no, url: window.location.href});
 				dispatch(sendMessage(msg));
 				console.log('send room text success');
 			},
