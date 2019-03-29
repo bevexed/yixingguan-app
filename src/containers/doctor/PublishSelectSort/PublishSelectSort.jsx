@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Icon, NavBar, WhiteSpace, List, Modal} from "antd-mobile";
-import './PublicSelectSort.less'
+import './PublishSelectSort.less'
 
 import {allCanSee} from "../../../redux/publish/action";
 

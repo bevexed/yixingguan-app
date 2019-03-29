@@ -18,8 +18,6 @@ import {
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const pains = [1, 2, 3, 4];
-
 function closest(el, selector) {
 	// noinspection JSUnresolvedVariable
 	const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
@@ -31,8 +29,6 @@ function closest(el, selector) {
 	}
 	return null;
 }
-
-// todo:根据标签筛选病人
 
 // fixMe: 病人列表
 
@@ -126,6 +122,10 @@ class DoctorIndex extends Component {
 		const {name, avatar} = this.props.user;
 		const {chatMsg} = this.props;
 		const {chatList, page, loading, total} = this.state;
+		const {labelList} = this.props;
+		const labels = labelList.map(label => {
+			if (label.label_name) {return {label_name: label.label_name, id: label.id}} else {return {label_name: null, id: null}}
+		});
 
 		return (
 			<div className="doctor-index">
@@ -204,12 +204,12 @@ class DoctorIndex extends Component {
 					}}
 				>
 					<div style={{height: 300, overflow: 'scroll'}}>
-						<div className={'list'}>
-							{pains.map(pain =>
-								<div className={this.state.pain.includes(pain) ? 'item active' : 'item'}
-										 key={pain}
-										 onClick={() => this.selectPain(pain)}
-								>心脏病
+						<div className='list'>
+							{labels.map(({id, label_name}) =>
+								<div className={this.state.pain.includes(label_name) ? 'item active' : 'item'}
+										 key={id}
+										 onClick={() => this.selectPain(label_name)}
+								>{label_name}
 								</div>)
 							}
 						</div>
@@ -243,7 +243,8 @@ function
 mapStateToProps(state) {
 	return {
 		user: state.user,
-		chatMsg: state.chatMsg
+		chatMsg: state.chatMsg,
+		labelList: state.labelList,
 	};
 }
 

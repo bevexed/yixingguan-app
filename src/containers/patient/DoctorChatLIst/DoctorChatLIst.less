@@ -1,3 +1,5 @@
+@import "../../../static/common";
+
 .doctors {
 	position: relative;
 
@@ -87,16 +89,18 @@
 		padding: 9px;
 		display: flex;
 		justify-content: space-around;
+
 		a {
 			width: 103px;
 			height: 34Px;
 			font-size: 15px;
 			line-height: 34Px;
-			background-color: #68e3ce;
+			background-color: @themeColor;
 			color: white;
-			box-shadow:0 2px 4px 0 rgba(0,0,0,0.19);
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
 		}
-		a:last-child{
+
+		a:last-child {
 			background: #f8f8f8;
 			color: #999999;
 		}
