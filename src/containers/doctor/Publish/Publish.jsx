@@ -11,7 +11,7 @@ const Item = List.Item;
 class Publish extends Component {
 
 	onChange = (files, type, index) => {
-		this.props.updataPubliceArticleImg({img: files})
+		this.props.updataPubliceArticleImg({img: files.splice(0, 9)})
 	};
 
 	onTextChange = idea => {
@@ -63,7 +63,7 @@ class Publish extends Component {
 							length={3}
 							// onImageClick={(index, fs) => console.log(index, fs)}
 							selectable={article_img.img.length < 9}
-							// multiple={true}
+							multiple={true}
 						/>
 					</WingBlank>
 

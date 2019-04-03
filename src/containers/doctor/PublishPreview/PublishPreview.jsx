@@ -41,23 +41,30 @@ class PublishPreview extends Component {
 
 				<List>
 					<WingBlank>
-						<TextareaItem
-							placeholder={'想说些什么'}
-							autoHeight
-							onChange={idea => this.onTextChange(idea)}
-							defaultValue={article_content.content}
-						/>
+						<div className='content'>
+							{article_content.content}
+						</div>
+						{/*	<TextareaItem*/}
+						{/*		placeholder={'想说些什么'}*/}
+						{/*		autoHeight*/}
+						{/*		disabled*/}
+						{/*		onChange={idea => this.onTextChange(idea)}*/}
+						{/*		defaultValue={article_content.content}*/}
+						{/*	/>*/}
 					</WingBlank>
 
 					<WingBlank>
-						<ImagePicker
-							files={article_img.img}
-							onChange={this.onChange}
-							length={3}
-							// onImageClick={(index, fs) => console.log(index, fs)}
-							selectable={false}
-							// multiple={true}
-						/>
+						{/*<ImagePicker*/}
+						{/*	files={article_img.img}*/}
+						{/*	// onChange={this.onChange}*/}
+						{/*	length={3}*/}
+						{/*	// onImageClick={(index, fs) => console.log(index, fs)}*/}
+						{/*	selectable={false}*/}
+						{/*	// multiple={true}*/}
+						{/*/>*/}
+						<div>
+							{picture.map(item => <img src={item} alt=""/>)}
+						</div>
 					</WingBlank>
 
 					<WhiteSpace/>
