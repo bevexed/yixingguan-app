@@ -37,7 +37,7 @@ class Message extends Component {
 	sendMessage(e, username, only_no) {
 		const {input} = this.state;
 		if ((e === 'sendMsg' || e.key === 'Enter' || e.keyCode === 13) && input) {
-			const id = this.props.match.params.to;
+			const id = this.props.match.params.chat_room;
 			this.setState({input: ''});
 			this.props.sendRoomText(input, id, username, only_no);
 		}
@@ -48,7 +48,7 @@ class Message extends Component {
 	};
 
 	sendImg = (username, type) => {
-		const id = this.props.match.params.to;
+		const id = this.props.match.params.chat_room;
 		this.props.doSendImg(id, username, type);
 		this.setState({
 			menuShow: false
@@ -64,7 +64,7 @@ class Message extends Component {
 	};
 
 	deleteRelation = () => {
-		const chat_room = this.props.match.params.to;
+		const chat_room = this.props.match.params.chat_room;
 		reqDelete(chat_room)
 			.then(
 				res => {
@@ -107,7 +107,7 @@ class Message extends Component {
 		const only_no_patient = users.filter(user => user.identity === '1')[0].only_no;
 		const only_no_doctor = users.filter(user => user.identity === '2')[0].only_no;
 		const only_no = identity === 'patient' ? only_no_patient : only_no_doctor;
-		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.to);
+		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
 		const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
