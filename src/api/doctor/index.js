@@ -57,3 +57,6 @@ export const reqChatNote = ({id, note}) => ajax('/api/chat/chat_note', {id, note
 
 // 医生转诊通知
 export const reqReferrals = ({only_no, url}) => ajax('/api/relation/referrals', {only_no, url});
+
+// 申请提现
+export const reqApplyFor = money => ajax('/api/withdrawal/apply_for', {money});

@@ -8,10 +8,12 @@ import {
 	Result,
 	WhiteSpace,
 	List,
-	Accordion
+	Accordion, Toast
 } from "antd-mobile";
 
 import {reqExceptionalAccount, reqExceptionalLogs} from "../../../api/doctor";
+
+import {reqApplyFor} from "../../../api/doctor";
 
 const Item = List.Item;
 const Panel = Accordion.Panel;
@@ -53,9 +55,25 @@ class DoctorWallet extends Component {
 		this.getExceptionalLogs()
 	}
 
+	applyFor = async () => {
+		const money = parseFloat(this.state.available);
+		if (money <= 0) {
+			Toast.fail('暂无可提现金额', 1);
+			return
+		}
+		let res = await reqApplyFor(money);
+		console.log(res);
+		if (res.code === 1) {
+			this.setState({available: 0});
+			Toast.success(res.message, 1)
+		} else {
+			Toast.fail(res.message)
+		}
+	};
+
 	getExceptionalLogs = () => {
 		const {page} = this.state;
-		reqExceptionalLogs( page).then(
+		reqExceptionalLogs(page).then(
 			res => {
 				if (res.code === 1) {
 					this.setState({logs: res.data})
@@ -86,7 +104,7 @@ class DoctorWallet extends Component {
 						title={<span className={'big'}>{available}</span>}
 						message={<div className={'small'}>账户余额</div>}
 						buttonText={<span>提现到微信支付</span>}
-						onButtonClick={() => alert(1)}
+						onButtonClick={this.applyFor}
 					/>
 				</div>
 
@@ -121,5 +139,6 @@ class DoctorWallet extends Component {
 		);
 	}
 }
+
 export default DoctorWallet
 

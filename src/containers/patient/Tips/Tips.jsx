@@ -59,11 +59,11 @@ class Tips extends Component {
 	};
 
 	Pay = () => {
-		const money = parseInt(this.state.money);
+		const money = parseFloat(this.state.money);
 		console.log(money);
 		const chat_room = this.props.match.params.chat_room;
-		if (money < 0) {
-			Toast.fail('请输入金额');
+		if (money <= 0) {
+			Toast.fail('请输入金额', 1);
 			return
 		}
 		wxPay({chat_room, money})
@@ -76,7 +76,6 @@ class Tips extends Component {
 	};
 
 	onSelectMoney = (name, val, money) => {
-		const {moneyList} = this.state;
 		this.setState({
 			[name]: val,
 			money,
