@@ -52,7 +52,7 @@ class PublishPersonSelect extends Component {
 		const allow_users = whoCanSee.allow_users.filter(sort => sort.label === label_name);
 		const seletPerson = allow_users[0] ? allow_users[0].user : [];
 		this.user = [...seletPerson];
-		// todo: 左侧标签栏
+		// 66todo: 左侧标签栏
 		const initials = Object.keys(patientList);
 
 		return (

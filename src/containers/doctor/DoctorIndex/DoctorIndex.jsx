@@ -30,9 +30,7 @@ function closest(el, selector) {
 	return null;
 }
 
-// fixMe: 病人列表
-
-
+// fixMe: 病人列表 => 忘记啥问题了。。。
 class DoctorIndex extends Component {
 	state = {
 		page: 1,

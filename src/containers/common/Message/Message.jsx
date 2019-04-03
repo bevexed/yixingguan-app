@@ -17,8 +17,8 @@ class Message extends Component {
 	};
 
 	componentDidMount() {
-		const id = this.props.match.params.to;
-		reqChatUserInfo(id)
+		const chat_room = this.props.match.params.chat_room;
+		reqChatUserInfo(chat_room)
 			.then(
 				res => {
 					this.setState({users: res.data})
@@ -97,8 +97,6 @@ class Message extends Component {
 		})
 	};
 
-	// todo: 消息提示
-
 	render() {
 		const {input, inputType, menuShow, users} = this.state;
 		const {identity} = this.props.user;
@@ -167,7 +165,7 @@ class Message extends Component {
 				<div className={'bottom-input'}>
 					{identity === 'patient' ?
 						<div className={'tip'}
-								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.to)}
+								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.chat_room)}
 						>
 							<img src={require('./img/分组@3x.png')} alt=""/>
 						</div>

@@ -36,3 +36,8 @@ export const reqDelete = chat_room => ajax('/api/relation/delete', {chat_room});
 // 消息通知
 export const reqNotification = ({only_no, url}) => ajax('/api/relation/notification', {only_no, url});
 
+// wx jssdk
+export const reqWxConfig = url => ajax('/api/wx/permission_to_verify?url=http://mp.weixin.qq.com?params=value', {url}, 'GET');
+
+// wx pay
+export const reqWxPay = ({chat_room, money}) => ajax('/api/pay/wx_pay', {chat_room, money});

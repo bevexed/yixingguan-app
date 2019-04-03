@@ -13,9 +13,7 @@ import {doctorNav, doctorRoute} from "../../../router/doctor";
 import {getPatientList, getLabelList} from "../../../redux/doctor/action";
 import {listen, receiveTextMessage, receiveImg} from "../../../redux/chat/action";
 
-
 import {open_chat} from "../../../redux/chat/action";
-
 
 class Main extends Component {
 	state = {

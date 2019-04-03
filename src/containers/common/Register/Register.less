@@ -40,13 +40,16 @@
 		background: transparent !important;
 	}
 
+	@height: 36PX;
+
 	.am-list-item .am-input-control input {
+		height: @height;
 		color: #000;
 		font-size: 17px;
 		width: 100%;
 		border: 1Px solid #e6e6e6;
 		background-color: white;
-		line-height: 1;
+		line-height: @height;
 		box-sizing: border-box;
 		padding: 4px 10px;
 	}
@@ -56,6 +59,10 @@
 
 		.am-input-extra {
 			position: absolute;
+			height: @height;
+			top: 0;
+			bottom: 0;
+			margin: auto;
 			right: 24px;
 
 			.code {
@@ -127,6 +134,7 @@
 		font-size: 16px;
 		color: white;
 	}
+
 	.name {
 		width: 60px;
 		padding: 0 4px;

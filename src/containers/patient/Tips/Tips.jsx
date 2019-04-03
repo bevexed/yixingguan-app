@@ -6,15 +6,18 @@ import {
 	WhiteSpace,
 	Stepper,
 	Radio,
+	Toast
 } from "antd-mobile";
 
 import './Tips.less'
+
+import {getWxConfig, wxPay} from "../../../wx-jssdk";
+import {reqGetPayAmounts} from "../../../api/patient";
 
 const RadioItem = Radio.RadioItem;
 
 const Item = List.Item;
 
-const money = [5, 7, 10, 20, 5, 7, 10, 20];
 
 const pays = [
 	{
@@ -22,11 +25,11 @@ const pays = [
 		value: 0,
 		img: '微信.svg'
 	},
-	{
-		label: '支付宝',
-		value: 1,
-		img: '支付宝.svg'
-	}
+	// {
+	// 	label: '支付宝',
+	// 	value: 1,
+	// 	img: '支付宝.svg'
+	// }
 ];
 
 
@@ -36,9 +39,35 @@ class Tips extends Component {
 		payType: 0,
 		moneyIndex: -1,
 		money: 0,
-		disabled: false
+		disabled: false,
+		moneyList: []
 	};
 
+	componentDidMount() {
+		getWxConfig();
+		this.getPayAmount();
+	}
+
+	getPayAmount = () => {
+		reqGetPayAmounts().then(
+			res => {
+				if (res.code === 1) {
+					this.setState({moneyList: res.data})
+				}
+			}
+		)
+	};
+
+	Pay = () => {
+		const money = parseInt(this.state.money);
+		console.log(money);
+		const chat_room = this.props.match.params.chat_room;
+		if (money < 0) {
+			Toast.fail('请输入金额');
+			return
+		}
+		wxPay({chat_room, money})
+	};
 
 	onHandleChange = (name, val) => {
 		this.setState({
@@ -46,15 +75,17 @@ class Tips extends Component {
 		});
 	};
 
-	onSelectMoney = (name, val) => {
+	onSelectMoney = (name, val, money) => {
+		const {moneyList} = this.state;
 		this.setState({
 			[name]: val,
-			money: money[val],
+			money,
 			disabled: true
 		});
 	};
 
 	render() {
+		const {moneyList} = this.state;
 		return (
 			<div className={'tips'}>
 				<NavBar
@@ -95,11 +126,11 @@ class Tips extends Component {
 
 					<div className={'select-money'}>
 						{
-							money.map((item, index) =>
+							moneyList.map(item =>
 								<span
-									className={this.state.moneyIndex === index ? 'active' : null}
-									onClick={() => this.onSelectMoney('moneyIndex', index)}
-									key={index}>{item}元</span>
+									className={this.state.moneyIndex === item.id ? 'active' : null}
+									onClick={() => this.onSelectMoney('moneyIndex', item.id, item.title)}
+									key={item.id}>{item.title}</span>
 							)
 						}
 					</div>
@@ -122,8 +153,9 @@ class Tips extends Component {
 				<WhiteSpace/>
 				<div
 					className={'button'}
-					onClick={()=>this.props.history.replace('/pay-success/'+this.state.money)}
-				>确认支付</div>
+					onClick={this.Pay}
+				>确认支付
+				</div>
 			</div>
 		);
 	}

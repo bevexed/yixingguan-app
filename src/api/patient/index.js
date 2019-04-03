@@ -23,4 +23,7 @@ export const subscribes = ({name, d_id, phone, auth_code, symptoms_described, in
 export const reqSubscribeLists = () => ajax('/api/patient/appoint/subscribe_lists', {token});
 
 // 患者端 聊天列表API
-export const reqPatientList = () =>ajax('/api/patient/chat/patient_lists',{},'GET');
+export const reqPatientList = () => ajax('/api/patient/chat/patient_lists', {}, 'GET');
+
+// 获取支付金额
+export const reqGetPayAmounts = () => ajax('/api/pay/get_pay_amounts');

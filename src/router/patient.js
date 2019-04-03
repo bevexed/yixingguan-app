@@ -43,7 +43,7 @@ export const patientRoute = [
 		component: OrderDoctor,
 	},
 	{
-		pathname: '/tips/:docId',
+		pathname: '/tips/:chat_room',
 		component: Tips
 	},
 	{

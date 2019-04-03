@@ -52,7 +52,6 @@ class DoctorList extends Component {
 		this.getDoctor(page);
 	}
 
-	// todo：被转诊 医生 ID
 	doReferrals = url => {
 		const only_no = this.props.match.params.only_no;
 		reqReferrals({only_no, url})

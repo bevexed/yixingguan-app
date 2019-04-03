@@ -5,7 +5,7 @@ import SearchResult from "../containers/common/SearchResult/SearchResult";
 
 export const commonRoute = [
 	{
-		pathname: '/message/:to',
+		pathname: '/message/:chat_room',
 		component: Message,
 	},
 	{
