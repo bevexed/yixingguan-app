@@ -121,7 +121,7 @@ class MyComponent extends Component {
 
 	render() {
 		const {code_show, uri, title} = this.state;
-		const {is_audit, name, avatar, only_no} = this.props.user;
+		const {is_audit, name, avatar, only_no, assistant} = this.props.user;
 
 		return (
 			<div className='personal-doctor'>
@@ -133,18 +133,20 @@ class MyComponent extends Component {
 				</div>
 
 				<WhiteSpace/>
-				<Grid data={is_audit === 2 ? grid : grid2}
-							columnNum={3}
-							onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit, only_no) : () => null}
-							renderItem={dataItem => (
-								<div className={'item'}>
-									<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
-									<div style={{color: is_audit === 2 ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
-										<span>{dataItem.name}</span>
+				{assistant === 0 ?
+					<Grid data={is_audit === 2 ? grid : grid2}
+								columnNum={3}
+								onClick={dataItem => dataItem.onClick ? dataItem.onClick(this, is_audit, only_no) : () => null}
+								renderItem={dataItem => (
+									<div className={'item'}>
+										<img className={'icon'} src={require('./img/' + dataItem.icon + '.png')} alt=""/>
+										<div style={{color: is_audit === 2 ? '#000' : '#888', fontSize: '14px', marginTop: '12px'}}>
+											<span>{dataItem.name}</span>
+										</div>
 									</div>
-								</div>
-							)}
-				/>
+								)}
+					/> : null
+				}
 
 				{code_show ?
 					<div

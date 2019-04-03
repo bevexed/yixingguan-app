@@ -151,7 +151,7 @@ class Message extends Component {
 										{chat.message}
 										{users.filter(user => user.username === chat.username)[0].identity === '2' && identity === 'patient' ? <div className={'reminder'}>郑重提示：线上咨询不能代替面诊，医生建议仅供参考!</div> : null}
 									</span> : null}
-									{chat.imgUrl ? <img className='message-img' src={chat.imgUrl} alt="图片已过期"/> : null}
+									{chat.imgUrl ? <img className='message-img' src={chat.imgUrl} alt="为了您的隐私，图片已销毁"/> : null}
 								</div> : null
 							}
 							<WhiteSpace/>
