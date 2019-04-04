@@ -30,15 +30,20 @@ export const GetQueryString = function (name) {
 
 // 合并带有数组的对象
 export const contactObject = function (target, sources) {
+	if (!Object.keys(target).length) {
+		return sources
+	}
+
 	Object.entries(sources).forEach(([sou_name, sou_value]) => {
 		Object.entries(target).forEach(([tar_name, tar_value]) => {
 			if (tar_name === sou_name) {
 				Array.isArray(sou_value) && JSON.stringify(tar_value) !== JSON.stringify(sou_value) && (sou_value = [...tar_value, ...sou_value]);
 			}
-			Object.assign(sources, {[sou_name]: sou_value})
+			Object.assign(target, {[sou_name]: sou_value});
 		})
 	});
-	return sources;
+
+	return target;
 };
 
 // 函数防抖
