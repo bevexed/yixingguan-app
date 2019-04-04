@@ -6,6 +6,7 @@ export const RESET_USER = 'reset_user';
 
 // 患者端
 export const RECEIVE_DOCTOR_LIST = 'receive_doctor_list';
+export const RESET_DOCTOR_LIST = 'reset_doctor_list';
 export const SEEK_DOCTOR_LIST = 'seek_doctor_list';
 export const RECEIVE_DOCTOR_DETAILS = 'receive_doctor_details';
 

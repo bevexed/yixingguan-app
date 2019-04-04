@@ -2,6 +2,7 @@ import {
 	RECEIVE_DOCTOR_LIST,
 	RECEIVE_DOCTOR_DETAILS,
 	SEEK_DOCTOR_LIST,
+	RESET_DOCTOR_LIST,
 } from "../action-types";
 import {contactObject} from "../../utils";
 
@@ -29,6 +30,8 @@ export const doctorList = (state = initDoctorList, action) => {
 	switch (action.type) {
 		case RECEIVE_DOCTOR_LIST:
 			return contactObject(state, action.data);
+		case RESET_DOCTOR_LIST:
+			return initDoctorList;
 		default:
 			return state;
 	}

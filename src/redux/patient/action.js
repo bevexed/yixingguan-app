@@ -7,7 +7,7 @@ import {
 import {
 	RECEIVE_DOCTOR_LIST,
 	RECEIVE_DOCTOR_DETAILS,
-	SEEK_DOCTOR_LIST,
+	SEEK_DOCTOR_LIST, RESET_DOCTOR_LIST,
 } from "../action-types";
 
 // 获取 医生 列表
@@ -24,6 +24,9 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 		)
 	}
 };
+
+// 重置医生列表
+export const resetDoctorList = () => ({type: RESET_DOCTOR_LIST, data: {}});
 
 const seekDoctorList = doctorList => ({type: SEEK_DOCTOR_LIST, data: doctorList});
 

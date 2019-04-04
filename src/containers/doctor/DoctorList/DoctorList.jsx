@@ -18,6 +18,7 @@ import DocList from '../../../components/DocList/DocList'
 import {
 	getDoctorList,
 	getSeekDoctorList,
+	resetDoctorList
 } from "../../../redux/patient/action";
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqReferrals} from "../../../api/doctor";
@@ -87,7 +88,7 @@ class DoctorList extends Component {
 	};
 
 
-	// 单选框修改
+	// 按选项检索医生
 	onChange = (value) => {
 		const {which, show, departmentList, department, cityList, locating_city} = this.state;
 		let label = '';
@@ -103,13 +104,15 @@ class DoctorList extends Component {
 				}
 			}
 		});
+
 		this.setState({
 			show: !show,
 			page: 1,
 			total: 100,
 			department: which === departmentList ? label : department,
 			locating_city: which === cityList ? label : locating_city
-		}, () => this.getDoctor(1));
+		}, this.props.resetDoctorList);
+		this.getDoctor()
 	};
 
 	getCity = (e) => {
@@ -238,7 +241,8 @@ export default connect(
 	mapStateToProps,
 	{
 		getDoctorList,
-		getSeekDoctorList
+		getSeekDoctorList,
+		resetDoctorList
 	}
 )(DoctorList);
 
