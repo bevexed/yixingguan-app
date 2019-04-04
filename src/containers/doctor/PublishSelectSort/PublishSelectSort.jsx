@@ -13,11 +13,13 @@ class PublishSelectSort extends Component {
 	};
 
 	render() {
-		const {is_open} = this.props.whoCanSee;
+		const {is_open, allow_users} = this.props.whoCanSee;
 		const {labelList} = this.props;
 		const labels = labelList.map(label => {
 			if (label.label_name) {return {label_name: label.label_name, id: label.id}} else {return {label_name: null, id: null}}
 		});
+
+		console.log(allow_users);
 
 
 		return (
@@ -29,7 +31,7 @@ class PublishSelectSort extends Component {
 					onLeftClick={() => this.props.history.goBack()}
 					rightContent={<div
 						className={'button'}
-						onClick={()=>this.props.history.goBack()}
+						onClick={() => this.props.history.goBack()}
 					>完成</div>}
 				>谁可以看</NavBar>
 				<WhiteSpace/>
@@ -61,13 +63,16 @@ class PublishSelectSort extends Component {
 						>
 							<Item
 								thumb={<img src={require('./img/fenzu@3x.png')} alt=""/>}
-								extra={<span>{null}</span>}
+								extra={allow_users.filter(patient => patient.label === label.label_name).length ?
+									allow_users.filter(patient => patient.label === label.label_name)[0].names.map(item =>
+										<span key={item} className={allow_users.filter(patient => patient.label === label.label_name).length ? 'is_open' : null}>{item}</span>
+									) : null}
 								multipleLine
 								disabled={is_open}
 								arrow={'horizontal'}
 								onClick={() => this.props.history.push('/publish-person-select/' + label.id)}
 							>
-								{label.label_name}
+								<span className={allow_users.filter(patient => patient.label === label.label_name).length ? 'is_open' : null}>	{label.label_name}</span>
 							</Item>
 						</List>)
 				}
