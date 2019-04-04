@@ -141,14 +141,19 @@ class Message extends Component {
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
 		if (!users.length) { return null }
+		// 导航栏 显示的名字
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
+		// only_no
 		const only_no_patient = users.filter(user => user.identity === '1')[0].only_no;
 		const only_no_doctor = users.filter(user => user.identity === '2')[0].only_no;
 		const only_no = identity === 'patient' ? only_no_patient : only_no_doctor;
+		// 当前聊天室的聊天信息
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
+		// 聊天（环信）的名字
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
 		const patientName = users.filter(user => user.identity === '1')[0].username;
+		// 医生发信息的需要打赏的匹配时间
 		const doctorBackInformationTime = msg.filter(chat => chat.username !== patientName).filter((item, index) => index % 3 === 2).map(show => show.time);
 		// const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
 
@@ -184,7 +189,8 @@ class Message extends Component {
 							{users.filter(user => user.username === chat.username).length ?
 								<div className={username === chat.username ? 'to' : 'from'}>
 									<div className='avatar'>
-										<img src={users.filter(user => user.username === chat.username)[0].avatar} alt=""/>
+										{/*聊天头像*/}
+										<img src={chat.username === patientName ? users.filter(user => user.username === patientName)[0].avatar : users.filter(user => user.username === doctorName)[0].avatar} alt=""/>
 										{/*<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>*/}
 									</div>
 									{chat.message ? <span className='message-data'>
