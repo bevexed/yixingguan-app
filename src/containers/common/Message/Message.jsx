@@ -5,27 +5,6 @@ import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 import {sendRoomText, doSendImg, deleteChat} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
 
-/*
-todo
- 1、短信验证码问题
-
-2、医生真实姓名问题
-
-3、医生头像调用微信
-
-4、完善医生信息保存无响应
-
-6、发布图文选择标签后点击完成，页面还是显示：所有患者可看
-
-7、将患者选择标签后，不能切换标签
-
-8、患者姓名搜索，无法搜索患者备注
-
-9、已认证医生查看工作室，职业证书上传是是纵向，查看就变成横向（安卓）
-
-10、医生头像未显示（安卓）
-*  */
-
 import './Message.less';
 
 class Message extends Component {
