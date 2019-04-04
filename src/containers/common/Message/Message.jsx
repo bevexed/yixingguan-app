@@ -34,10 +34,6 @@ todo
 
 2、聊天“拒绝推送”显示：非法操作
 
-3、聊天记录医生发三条后未显示推荐打赏的话术
-
-4、助手回复患者，显示的身份不是医生
-
 5、科室筛选无用
 
 6、城市筛选不用
@@ -213,7 +209,7 @@ class Message extends Component {
 				{/*打赏*/}
 				<div className={'bottom-input'}>
 					{identity === 'patient' ?
-						<div className={'tip'}
+						<div className='tip'
 								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.chat_room)}
 						>
 							<img src={require('./img/分组@3x.png')} alt=""/>

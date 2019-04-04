@@ -156,8 +156,21 @@
 			right: 20px;
 			top: -70px;
 
+			&:before {
+				@size: 8PX;
+				content: '';
+				position: absolute;
+				right: 8PX;
+				top: 2PX;
+				background: red;
+				width: @size;
+				height: @size;
+				border-radius: @size;
+			}
+
 			> img {
 				height: 50px;
+
 			}
 		}
 	}
