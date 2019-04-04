@@ -5,7 +5,45 @@ import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 import {sendRoomText, doSendImg, deleteChat} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
 
+/*
+todo
+ 1、短信验证码问题
 
+2、医生真实姓名问题
+
+3、医生头像调用微信
+
+4、完善医生信息保存无响应
+
+5、将患者设为“结束”显示：非法操作
+
+6、发布图文选择标签后点击完成，页面还是显示：所有患者可看
+
+7、将患者选择标签后，不能切换标签
+
+8、患者姓名搜索，无法搜索患者备注
+
+9、已认证医生查看工作室，职业证书上传是是纵向，查看就变成横向（安卓）
+
+10、医生头像未显示（安卓）
+*  */
+
+/* todo:
+    患者
+1、医生头像问题
+
+2、聊天“拒绝推送”显示：非法操作
+
+3、聊天记录医生发三条后未显示推荐打赏的话术
+
+4、助手回复患者，显示的身份不是医生
+
+5、科室筛选无用
+
+6、城市筛选不用
+
+7、选择预约医生的城市，太卡顿
+*/
 import './Message.less';
 
 class Message extends Component {
@@ -110,7 +148,9 @@ class Message extends Component {
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
 		const doctorName = users.filter(user => user.identity === '2')[0].username;
-		const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
+		const patientName = users.filter(user => user.identity === '1')[0].username;
+		const doctorBackInformationTime = msg.filter(chat => chat.username !== patientName).filter((item, index) => index % 3 === 2).map(show => show.time);
+		// const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
 
 		return (
 			<div className={'message'}>
@@ -138,7 +178,7 @@ class Message extends Component {
 					{msg.map(chat =>
 						<div key={chat.time}>
 							{/*打赏提醒*/}
-							{doctorBackInformationTime === chat.time ? <span className='tips-alert'>医生那么辛苦打赏一点小费吧</span> : null}
+							{identity === 'patient' && doctorBackInformationTime.includes(chat.time) ? <span className='tips-alert'>医生那么辛苦打赏一点小费吧</span> : null}
 							{/*聊天内容*/}
 							<WhiteSpace/>
 							{users.filter(user => user.username === chat.username).length ?

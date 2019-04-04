@@ -33,7 +33,7 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 
 			// 加载 loading 动画
 			if (loading) {
-				Toast.loading('数据加载中...', 5, () => {
+				Toast.loading('数据加载中...', 60, () => {
 				}, true);
 			}
 
@@ -60,6 +60,7 @@ export default function ajax(url, data = {}, type = "POST", loading = true) {
 			// window.location.replace('/');
 			// 提示 数据加载失败
 			console.log(error);
+			Toast.hide();
 			// Toast.fail(error, 1);
 
 			return Promise.reject(error);
