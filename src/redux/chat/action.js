@@ -145,13 +145,13 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 			console.log('链接成功');
 		},                  //本机网络连接成功
 		onOffline() {
-			Toast.fail('您已经掉线', 1, () => {
-				window.location.reload(true)
-			});
+			// Toast.fail('您已经掉线', 1, () => {
+			// 	window.location.reload(true)
+			// });
 			console.log('掉线');
 		},                 //本机网络掉线
 		onError(message) {
-			Toast.fail('链接错误', 1);
+			// Toast.fail('链接错误', 1);
 			console.log('onError:' + message);
 		},          //失败回调
 		onBlacklistUpdate(list) {       //黑名单变动

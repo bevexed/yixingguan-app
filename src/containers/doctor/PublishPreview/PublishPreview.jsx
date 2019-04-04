@@ -62,8 +62,8 @@ class PublishPreview extends Component {
 						{/*	selectable={false}*/}
 						{/*	// multiple={true}*/}
 						{/*/>*/}
-						<div>
-							{picture.map(item => <img src={item} alt=""/>)}
+						<div className='img'>
+							{picture.map((item, index) => <img src={item} key={index} alt=""/>)}
 						</div>
 					</WingBlank>
 
