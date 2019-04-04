@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, ImagePicker, List, NavBar, TextareaItem, WhiteSpace, WingBlank} from "antd-mobile";
+import {Icon, List, NavBar, WhiteSpace, WingBlank} from "antd-mobile";
 import './PublishPreview.less'
 import {pubulish, updataPubliceArticleImg, updataPubliceArticle} from "../../../redux/publish/action";
 
@@ -8,12 +8,8 @@ const Item = List.Item;
 
 class PublishPreview extends Component {
 
-	onChange = (files, type, index) => {
+	onChange = (files) => {
 		this.props.updataPubliceArticleImg({img: files})
-	};
-
-	onTextChange = idea => {
-		this.props.updataPubliceArticle({content: idea})
 	};
 
 	render() {
@@ -44,24 +40,9 @@ class PublishPreview extends Component {
 						<div className='content'>
 							{article_content.content}
 						</div>
-						{/*	<TextareaItem*/}
-						{/*		placeholder={'想说些什么'}*/}
-						{/*		autoHeight*/}
-						{/*		disabled*/}
-						{/*		onChange={idea => this.onTextChange(idea)}*/}
-						{/*		defaultValue={article_content.content}*/}
-						{/*	/>*/}
 					</WingBlank>
 
 					<WingBlank>
-						{/*<ImagePicker*/}
-						{/*	files={article_img.img}*/}
-						{/*	// onChange={this.onChange}*/}
-						{/*	length={3}*/}
-						{/*	// onImageClick={(index, fs) => console.log(index, fs)}*/}
-						{/*	selectable={false}*/}
-						{/*	// multiple={true}*/}
-						{/*/>*/}
 						<div className='img'>
 							{picture.map((item, index) => <img src={item} key={index} alt=""/>)}
 						</div>
@@ -88,10 +69,7 @@ class PublishPreview extends Component {
 							</Item>
 						) : null
 					}
-
-
 				</List>
-
 			</div>
 		);
 	}
