@@ -3,16 +3,17 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Result} from "antd-mobile";
 
-import {reqArticleBrief} from "../../../api";
+import {reqArticleBrief, reqLogo} from "../../../api";
 
 import './Author.less'
 
 class Author extends Component {
 	state = {
-		content: ''
+		content: '',
+		src: ''
 	};
 
-	propTypes = {
+	static propTypes = {
 		Author: PropTypes.func.isRequired
 	};
 
@@ -22,15 +23,22 @@ class Author extends Component {
 				if (res.code === 1) {
 					this.setState({content: res.data.content})
 				}
+			});
+
+		reqLogo()
+			.then(res => {
+				if (res.code === 1) {
+					this.setState({src: res.data})
+				}
 			})
 	}
 
 	render() {
-		const {content} = this.state;
+		const {content, src} = this.state;
 		return (
 			<div className='author'>
 				<Result
-					img={<img src={require('./img/biaoqing@3x.png')} alt=""/>}
+					img={<img src={src} alt=""/>}
 					title={<div
 						className={'button'}
 						onClick={() => this.props.Author()}

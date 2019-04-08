@@ -19,6 +19,7 @@ import {
 	TextareaItem,
 	Toast
 } from "antd-mobile";
+import {getUser} from "../../../redux/user/action";
 
 const Item = List.Item;
 
@@ -91,7 +92,9 @@ class DoctorCompleteInformation extends Component {
 		reqDoctorInformation({...DoctorInformation}).then(
 			res => {
 				if (res.code === 1) {
-					Toast.success(res.message, 1,()=>{
+					const token = sessionStorage.token;
+					Toast.success(res.message, 3, () => {
+						this.props.getUser(token);
 						this.props.history.push('/doctor-personal')
 					});
 				} else {
@@ -126,7 +129,7 @@ class DoctorCompleteInformation extends Component {
 						arrow='horizontal'
 						onClick={() => this.props.history.push('/avatar')}
 					>
-						 <img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
+						<img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
 					</Item>
 				</List>
 
@@ -192,7 +195,7 @@ class DoctorCompleteInformation extends Component {
 
 				<List>
 					<Item>
-						<div className={'doctor-certificate'}>医生职业证书</div>
+						<div className={'doctor-certificate'}>医生执业证书</div>
 						<ImagePicker
 							files={files}
 							onChange={files => this.setState({files})}
@@ -208,6 +211,7 @@ class DoctorCompleteInformation extends Component {
 					autoHeight
 					onChange={val => this.handelChange('introduction', val)}
 					rows={4}
+					count={256}
 				/>
 
 				<WhiteSpace/>
@@ -236,4 +240,7 @@ function mapStateToProps(state) {
 
 export default connect(
 	mapStateToProps,
+	{
+		getUser,
+	}
 )(DoctorCompleteInformation);

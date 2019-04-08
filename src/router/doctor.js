@@ -14,7 +14,6 @@ import PublishSelectSort from "../containers/doctor/PublishSelectSort/PublishSel
 import PublishPersonSelect from "../containers/doctor/PublishPersonSelect/PublishPersonSelect";
 import PublishPreview from "../containers/doctor/PublishPreview/PublishPreview";
 import Published from "../containers/doctor/Published/Published";
-import PublishDetail from "../containers/doctor/PublishDetail/PublishDetail";
 import PatientRemark from "../containers/doctor/PatientRemark/PatientRemark";
 import DoctorList from "../containers/doctor/DoctorList/DoctorList";
 
@@ -89,10 +88,6 @@ export const doctorRoute = [
 	{
 		pathname: '/publish-preview',
 		component: PublishPreview
-	},
-	{
-		pathname: '/publish-detail/:article_id',
-		component: PublishDetail
 	},
 	{
 		pathname: '/patient-remark/:patientId',

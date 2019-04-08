@@ -81,7 +81,7 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 
 				<Item>
-					医生职业证书
+					医生执业证书
 					<Item.Brief>
 						<img className={'certificate'} src={vocational_certificate} alt=""/>
 					</Item.Brief>

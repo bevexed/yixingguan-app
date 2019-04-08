@@ -41,3 +41,6 @@ export const reqWxConfig = url => ajax('/api/wx/permission_to_verify?url=http://
 
 // wx pay
 export const reqWxPay = ({chat_room, money}) => ajax('/api/pay/wx_pay', {chat_room, money});
+
+// 获取logo
+export const reqLogo = () => ajax('/api/get_logo');

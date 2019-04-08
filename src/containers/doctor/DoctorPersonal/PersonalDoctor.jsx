@@ -148,6 +148,13 @@ class MyComponent extends Component {
 					/> : null
 				}
 
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
+				<WhiteSpace/>
 				{code_show ?
 					<div
 						className='qrcode-react'

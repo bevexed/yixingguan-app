@@ -106,7 +106,7 @@ class Avatar extends Component {
 
 				<div className="center">
 					{!src && <div className='avatar' onClick={() => document.querySelector('#avatar').click()}>请选择头像</div>}
-					<input type="file" hidden id='avatar' onChange={this.onSelectFile}/>
+					<input type="file" hidden id='avatar' capture={false} onChange={this.onSelectFile}/>
 				</div>
 
 				<div className='center'>
