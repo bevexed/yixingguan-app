@@ -2,7 +2,7 @@
 const online = {
 	wx: {
 		"appID": "wx44c79818819144cb",
-		"redirect_uri": "dayao.tianyue0571.cn",
+		"redirect_uri": "http://dayao.tianyue0571.cn",
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
 	},
