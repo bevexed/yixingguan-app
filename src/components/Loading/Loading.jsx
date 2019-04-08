@@ -7,9 +7,9 @@ class Loading extends PureComponent {
 	render() {
 		return (
 			<div className='loading'>
-				<div className="lds-rolling img">
-					<div>{null}</div>
-				</div>
+				{/*<div className="lds-rolling img">*/}
+				{/*	<div>{null}</div>*/}
+				{/*</div>*/}
 			</div>
 		);
 	}

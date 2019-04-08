@@ -2,7 +2,7 @@
 const online = {
 	wx: {
 		"appID": "wx44c79818819144cb",
-		"redirect_uri": "http://47.75.74.89",
+		"redirect_uri": "http://dayao.tianyue0571.cn/",
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
 	},
@@ -16,7 +16,7 @@ const offline = {
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
 	},
-	host: 'http://47.75.74.89:82'
+	host: 'http://47.75.74.89:81'
 };
 
 export const dev = window.location.href.indexOf('192.168.1') > -1 ? offline : online;

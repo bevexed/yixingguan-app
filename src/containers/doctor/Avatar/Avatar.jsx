@@ -1,27 +1,93 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, ImagePicker, NavBar, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace} from "antd-mobile";
+
+import './Avatar.less'
+
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 import {receiveUser} from "../../../redux/user/action";
 
 class Avatar extends Component {
 	state = {
-		avatar: []
+		crop: {
+			aspect: 1,
+			width: 50,
+			x: 0,
+			y: 0,
+		},
+		pixelCrop: '',
+		src: null
 	};
 
 	selectAvatar = avatar => {
-		this.setState({
-			avatar
-		});
-
 		if (avatar.length) {
-			console.log(avatar[0].file);
-			this.props.receiveUser({avatar: avatar[0].url, selectAvatar: avatar[0].url})
+			this.props.receiveUser({avatar, selectAvatar: avatar});
+		}
+		this.props.history.replace('/doctor-complete-information')
+	};
+
+	onChange = (crop, pixelCrop) => {
+		this.setState({crop, pixelCrop});
+	};
+
+	onSelectFile = e => {
+		if (e.target.files && e.target.files.length > 0) {
+			const reader = new FileReader();
+			reader.addEventListener('load', () =>
+				this.setState({src: reader.result}),
+			);
+			reader.readAsDataURL(e.target.files[0]);
 		}
 	};
 
+	onImageLoaded = (image, pixelCrop) => {
+		this.imageRef = image;
+	};
+
+	onCropComplete = (crop, pixelCrop) => {
+		this.makeClientCrop(crop, pixelCrop);
+	};
+
+	onCropChange = crop => this.setState({crop});
+
+	async makeClientCrop(crop, pixelCrop) {
+		if (this.imageRef && crop.width && crop.height) {
+			const croppedImageUrl = await Avatar.getCroppedImg(
+				this.imageRef,
+				pixelCrop,
+				'newFile.jpeg',
+			);
+			this.setState({croppedImageUrl});
+		}
+	}
+
+	static getCroppedImg(image, pixelCrop) {
+		const canvas = document.createElement('canvas');
+		canvas.width = pixelCrop.width;
+		canvas.height = pixelCrop.height;
+		const ctx = canvas.getContext('2d');
+
+		ctx.drawImage(
+			image,
+			pixelCrop.x,
+			pixelCrop.y,
+			pixelCrop.width,
+			pixelCrop.height,
+			0,
+			0,
+			pixelCrop.width,
+			pixelCrop.height
+		);
+
+		// As Base64 string
+		return canvas.toDataURL('image/jpeg');
+	}
+
+
 	render() {
-		const {avatar} = this.state;
+		const {crop, croppedImageUrl, src} = this.state;
 
 		return (
 			<div>
@@ -37,13 +103,23 @@ class Avatar extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<ImagePicker
-					length={1}
-					files={avatar}
-					onChange={avatar => this.selectAvatar(avatar)}
-					selectable={avatar.length < 1}
-				/>
 
+				<div className="center">
+					{!src && <div className='avatar' onClick={() => document.querySelector('#avatar').click()}>请选择头像</div>}
+					<input type="file" hidden id='avatar' onChange={this.onSelectFile}/>
+				</div>
+
+				<div className='center'>
+					{src && (
+						<ReactCrop
+							src={src}
+							crop={crop}
+							onImageLoaded={this.onImageLoaded}
+							onComplete={this.onCropComplete}
+							onChange={this.onCropChange}
+						/>
+					)}
+				</div>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -52,7 +128,7 @@ class Avatar extends Component {
 				<WhiteSpace/>
 				<div
 					className={'button'}
-					onClick={() => this.props.history.replace('/doctor-complete-information')}
+					onClick={() => this.selectAvatar(croppedImageUrl)}
 				>确认
 				</div>
 				<WhiteSpace/>

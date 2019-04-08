@@ -12,6 +12,10 @@ class Author extends Component {
 		content: ''
 	};
 
+	propTypes = {
+		Author: PropTypes.func.isRequired
+	};
+
 	componentDidMount() {
 		reqArticleBrief()
 			.then(res => {
@@ -34,18 +38,14 @@ class Author extends Component {
 				/>
 
 				<div className={'wrap'}>
-					<p className={'content'}>
-						{content}
+					<p className='content' dangerouslySetInnerHTML={{__html: content}}>
+						{/*{content}*/}
 					</p>
 				</div>
 			</div>
 		);
 	}
 }
-
-Author.propTypes = {
-	Author: PropTypes.func.isRequired
-};
 
 export default Author;
 

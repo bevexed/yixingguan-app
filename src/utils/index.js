@@ -56,3 +56,4 @@ export const debounce = function (method, delay) {
 		}, delay);
 	}
 };
+
