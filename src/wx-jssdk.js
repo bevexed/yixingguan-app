@@ -40,6 +40,7 @@ export const wxPay = ({chat_room, money}) => {
 					package: 'prepay_id=' + result.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
 					signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
 					paySign: result.sign, // 支付签名
+					sign: result.sign,
 					success: function (res) {
 						// 支付成功后的回调函数
 						if (res.errMsg === "chooseWXPay:ok") {
