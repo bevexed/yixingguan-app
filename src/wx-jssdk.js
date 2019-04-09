@@ -52,9 +52,7 @@ export const wxPay = ({chat_room, money}) => {
 					},
 					cancel: function (res) {
 						//支付取消
-						that.$message({
-							message: "您已取消支付"
-						})
+						console.log('cancel', res);
 					}
 				});
 			}
