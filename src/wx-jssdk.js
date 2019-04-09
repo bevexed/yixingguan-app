@@ -32,9 +32,7 @@ export const wxPay = ({chat_room, money}) => {
 	reqWxPay({chat_room, money})
 		.then(
 			res => {
-				console.log(wechatObj);
 				let result = res.data;
-				console.log('pay', pay);
 				wx.chooseWXPay({
 					appId: result.appid,
 					// appId: 'wx6ae88e9a0dcb59b1',
@@ -47,16 +45,9 @@ export const wxPay = ({chat_room, money}) => {
 						// 支付成功后的回调函数
 						if (res.errMsg === "chooseWXPay:ok") {
 							//支付成功
-							that.$message({
-								message: '支付成功',
-								type: 'success'
-							});
-							console.log(res);
+							console.log('success', res);
 						} else {
-							that.$message({
-								message: "支付失败",
-								type: 'error'
-							})
+							console.log('err', res);
 						}
 					},
 					cancel: function (res) {
