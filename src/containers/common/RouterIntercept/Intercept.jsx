@@ -22,17 +22,22 @@ class Intercept extends Component {
 	};
 
 	componentDidMount() {
+		// 微信授权后，通过 state 获取 only_no 和 assistant
+		let code = GetQueryString('code');
 		let state = GetQueryString('state');
-		console.log(state);
+
+		// 第一次进入时，从地址中截取 only_no 和 assistant 参数
 		let only_no = GetQueryString('only_no');
 		let assistant = GetQueryString('assistant');
-		let code = GetQueryString('code');
+		// 第一次进入肯定没有 token
 		if (!sessionStorage.token) {
-			// 授权邀请 code 入口
+			// 微信授权邀请 code 入口 将 only_no 和 assistant 通过 state 传递
+			// 这次 只是 去 获取 code 所以 内存中依旧 无 token
 			if (!code) {
 				reqCode(only_no + ',' + assistant);
 				return
 			}
+			// 第二次 进入时 获取token 并且 接收 授权
 			reqToken(code, ...state.split(',')).then(
 				res => {
 					if (res.code === 1) {

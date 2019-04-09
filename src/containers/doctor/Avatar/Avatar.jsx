@@ -90,7 +90,7 @@ class Avatar extends Component {
 		const {crop, croppedImageUrl, src} = this.state;
 
 		return (
-			<div>
+			<div className='doctor-avatar'>
 				<NavBar
 					mode="light"
 					className={'nav-bar'}
