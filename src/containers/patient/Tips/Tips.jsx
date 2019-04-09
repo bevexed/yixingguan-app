@@ -66,7 +66,7 @@ class Tips extends Component {
 			Toast.fail('请输入金额', 1);
 			return
 		}
-		wxPay({chat_room, money})
+		wxPay({chat_room, money, history: this.props.history})
 	};
 
 	onHandleChange = (name, val) => {

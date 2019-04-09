@@ -28,7 +28,7 @@ export const getWxConfig = async () => {
 	});
 };
 
-export const wxPay = ({chat_room, money}) => {
+export const wxPay = ({chat_room, money, history}) => {
 	reqWxPay({chat_room, money})
 		.then(
 			res => {
@@ -48,8 +48,10 @@ export const wxPay = ({chat_room, money}) => {
 						if (res.errMsg === "chooseWXPay:ok") {
 							//支付成功
 							console.log('success', res);
+							history.push('/pay-success/' + money)
 						} else {
 							console.log('err', res);
+							alert('支付失败');
 						}
 					},
 					cancel: function (res) {
