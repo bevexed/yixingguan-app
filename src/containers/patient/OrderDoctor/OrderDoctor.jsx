@@ -272,7 +272,6 @@ class OrderDoctor extends Component {
 					</div>
 				</List>
 
-				<div className={'phone'}>客服热线：400-XXX-XXXX</div>
 				<div style={{height: 50}}>{null}</div>
 				<div className={'footer'}>
 					<span

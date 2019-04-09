@@ -64,7 +64,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) =>
 			el.setState({
 				code_show: true, title: '邀请病人',
-				uri: 'http://' + window.location.host + '/doctor-chat-list?only_no=' + only_no + '&assistant=' + 3
+				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 3 + '#/doctor-chat-list'
 			})
 	}
 ];
@@ -155,21 +155,21 @@ class MyComponent extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				{code_show ?
-					<div
-						className='qrcode-react'
-						onClick={() => this.setState({code_show: false})}
-					>
-						<p>{title}</p>
-						<Qrcode
-							value={uri}
-							renderAs='svg'
-							size={200}
-							bgColor='#FFFFFF'
-							fgColor={'#244b3f'}
-							level='H'
-						/>
-					</div> : null
+				{code_show &&
+				<div
+					className='qrcode-react'
+					onClick={() => this.setState({code_show: false})}
+				>
+					<p>{title}</p>
+					<Qrcode
+						value={uri}
+						renderAs='svg'
+						size={200}
+						bgColor='#FFFFFF'
+						fgColor={'#244b3f'}
+						level='H'
+					/>
+				</div>
 				}
 			</div>
 		);

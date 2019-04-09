@@ -27,3 +27,6 @@ export const reqPatientList = () => ajax('/api/patient/chat/patient_lists', {}, 
 
 // 获取支付金额
 export const reqGetPayAmounts = () => ajax('/api/pay/get_pay_amounts');
+
+// 客服二维码
+export const reqGetQrCode = () => ajax('/api/get_qr_code', {}, 'POST');

@@ -20,9 +20,12 @@ import {
 	resetDoctorList
 } from "../../../redux/patient/action";
 
+import {reqGetQrCode} from "../../../api/patient";
+
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqBanner} from "../../../api/patient";
 import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
+import Qrcode from "qrcode.react";
 
 const Item = List.Item;
 
@@ -48,13 +51,23 @@ class PatientIndex extends Component {
 		page: 1,
 		total: 100,
 		department: '',
-		locating_city: ''
+		locating_city: '',
+
+		code: ''
 	};
 
 
 	componentDidMount() {
 		const {lcurrent_page: page} = this.props.doctorList;
 		this.getDoctor(page);
+
+		reqGetQrCode().then(
+			res => {
+				if (res.code === 1) {
+					this.setState({code: res.data})
+				}
+			}
+		);
 
 		reqBanner().then(
 			res => {
@@ -168,7 +181,7 @@ class PatientIndex extends Component {
 	};
 
 	render() {
-		const {show, code_show, which} = this.state;
+		const {show, code_show, which, code} = this.state;
 		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
 
@@ -254,13 +267,21 @@ class PatientIndex extends Component {
 					联系客服
 				</div>
 
-				{code_show ?
-					<div
-						className='code'
-						onClick={() => this.setState({code_show: false})}
-					>
-						<img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=977147320,1756285936&fm=26&gp=0.jpg" alt=""/>
-					</div> : null
+				{code_show &&
+				<div
+					className='qrcode-react'
+					onClick={() => this.setState({code_show: false})}
+				>
+					<p>{title}</p>
+					<Qrcode
+						value={code}
+						renderAs='svg'
+						size={200}
+						bgColor='#FFFFFF'
+						fgColor={'#244b3f'}
+						level='H'
+					/>
+				</div>
 				}
 
 			</div>
