@@ -102,7 +102,7 @@ class Tips extends Component {
 
 				<List
 					renderHeader={() => '打赏金额'}
-					renderFooter={() => '您与李薇薇医生共聊了18分钟'}
+					// renderFooter={() => '您与李薇薇医生共聊了18分钟'}
 				>
 					<Item
 						activeStyle={{}}
