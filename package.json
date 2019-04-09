@@ -80,6 +80,7 @@
 		"webpack-dev-server": "3.1.14",
 		"webpack-manifest-plugin": "2.0.4",
 		"wechat-jssdk": "^4.0.2",
+		"weixin-js-sdk": "^1.4.0-test",
 		"workbox-webpack-plugin": "3.6.3"
 	},
 	"devDependencies": {
