@@ -3,16 +3,10 @@ import wx from 'weixin-js-sdk';
 import {reqWxConfig, reqWxPay} from "./api";
 
 export const getWxConfig = async () => {
-	if (typeof window.entryUrl === 'undefined' || window.entryUrl === '') {
-		window.entryUrl = window.location.href.split('#')[0]
-	}
-	// 进行签名的时候  Android 不用使用之前的链接， ios 需要
-	let url = /(Android)/i.test(navigator.userAgent) ? window.location.href.split('#')[0] : window.entryUrl;
-
-	console.log(url, url);
+	let url = window.location.href.split('#')[0];
 	let result = await reqWxConfig(url);
 	result = result.data;
-	console.log('config', result);
+	console.log(result);
 	let jssdkconfig = result;
 
 	wx.config({
