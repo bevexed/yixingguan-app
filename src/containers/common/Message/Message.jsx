@@ -172,7 +172,7 @@ class Message extends Component {
 				<WhiteSpace/>
 
 				{/*打赏*/}
-				<div className={'bottom-input'}>
+				<div className='bottom-input'>
 					{identity === 'patient' ?
 						<div className='tip'
 								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.chat_room)}
