@@ -272,7 +272,7 @@ class PatientIndex extends Component {
 					className='qrcode-react'
 					onClick={() => this.setState({code_show: false})}
 				>
-					<p>{title}</p>
+					<p>客服</p>
 					<Qrcode
 						value={code}
 						renderAs='svg'

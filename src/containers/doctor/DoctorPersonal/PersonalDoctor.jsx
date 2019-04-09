@@ -160,7 +160,7 @@ class MyComponent extends Component {
 					className='qrcode-react'
 					onClick={() => this.setState({code_show: false})}
 				>
-					<p>联系客服</p>
+					<p>{title}</p>
 					<Qrcode
 						value={uri}
 						renderAs='svg'
