@@ -24,16 +24,16 @@ class Intercept extends Component {
 	componentDidMount() {
 		let state = GetQueryString('state');
 		console.log(state);
+		let only_no = GetQueryString('only_no');
+		let assistant = GetQueryString('assistant');
+		let code = GetQueryString('code');
 		if (!sessionStorage.token) {
 			// 授权邀请 code 入口
-			let only_no = GetQueryString('only_no');
-			let assistant = GetQueryString('assistant');
-			let code = GetQueryString('code');
 			if (!code) {
-				reqCode(only_no, assistant);
-				return false
+				reqCode(only_no + ',' + assistant);
+				return
 			}
-			reqToken(code, only_no, assistant).then(
+			reqToken(code, ...state.split(',')).then(
 				res => {
 					if (res.code === 1) {
 						sessionStorage.token = res.data;
