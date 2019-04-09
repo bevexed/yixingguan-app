@@ -19,7 +19,7 @@ export const getWxConfig = () => {
 		'customUrl': '' //自定义微信js链接
 	};
 	const url = window.location.href;
-
+	console.log(url);
 	reqWxConfig(url)
 		.then(
 			res => {

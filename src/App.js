@@ -26,7 +26,7 @@ class App extends Component {
 					<script src="https://bevexed.top/frontEnd/yixingguan-app/src/static/flexible.js">{null}</script>
 					<script src="https://www.w3cways.com/demo/vconsole/vconsole.min.js?v=2.2.0">{null}</script>
 
-					<title>医星馆</title>
+					<title>星医馆</title>
 
 				</Helmet>
 
