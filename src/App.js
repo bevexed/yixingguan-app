@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {Provider} from 'react-redux';
 
 import store from './redux/store'
-import {HashRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Intercept from './containers/common/RouterIntercept/Intercept'
 
@@ -31,11 +31,11 @@ class App extends Component {
 				</Helmet>
 
 				<Provider store={store}>
-					<HashRouter forceRefresh={false} basename={'/'}>
+					<BrowserRouter forceRefresh={false} basename={'/'}>
 						<Switch>
 							<Route component={Intercept}/>
 						</Switch>
-					</HashRouter>
+					</BrowserRouter>
 				</Provider>
 			</div>
 		);
