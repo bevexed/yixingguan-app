@@ -4,13 +4,14 @@ import {reqWxConfig, reqWxPay} from "./api";
 
 export const getWxConfig = async () => {
 	let url = window.location.href.split('#')[0];
+	console.log(url, url);
 	let result = await reqWxConfig(url);
 	result = result.data;
-	console.log(result);
+	console.log('config', result);
 	let jssdkconfig = result;
 
 	wx.config({
-		debug: false,
+		debug: true,
 		appId: jssdkconfig.appId,
 		timestamp: jssdkconfig.timestamp,
 		nonceStr: jssdkconfig.nonceStr,
