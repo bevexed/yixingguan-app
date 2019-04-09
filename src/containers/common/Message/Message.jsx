@@ -177,7 +177,7 @@ class Message extends Component {
 						<div className='tip'
 								 onClick={() => this.props.history.push('/tips/' + this.props.match.params.chat_room)}
 						>
-							<img src={require('./img/qiabbao.png')} alt=""/>
+							<img src={require('./img/qianbao.png')} alt=""/>
 						</div>
 						: null
 					}
@@ -214,7 +214,7 @@ class Message extends Component {
 
 						{/*弹出框*/}
 						<div className='alert' style={{maxHeight: menuShow ? 300 : 0}}>
-							<img src={require('./img/qiabbao.png')} alt="" onClick={this.camera}/>
+							<img src={require('./img/xiangji.png')} alt="" onClick={this.camera}/>
 							<input id='camera' type="file" name="cover" accept="image/*" capture="camera" hidden onChange={() => this.sendImg(username, 'camera')}/>
 
 							<img src={require('./img/相册@3x.png')} alt="" onClick={this.selectImg}/>
