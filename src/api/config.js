@@ -1,7 +1,7 @@
 // 开发环境
 const online = {
 	wx: {
-		"appID": "wx6ad3262297242b11",
+		"appID": "wxccaff9d71833a8b2",
 		"redirect_uri": "http://dayao.tianyue0571.cn",
 		"un-scope": "snsapi_base",
 		"scope": "snsapi_userinfo"
