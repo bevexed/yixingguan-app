@@ -4,10 +4,10 @@ import {reqWxConfig, reqWxPay} from "./api";
 
 export const getWxConfig = async () => {
 	if (typeof window.entryUrl === 'undefined' || window.entryUrl === '') {
-		window.entryUrl = location.href.split('#')[0]
+		window.entryUrl = window.location.href.split('#')[0]
 	}
 	// 进行签名的时候  Android 不用使用之前的链接， ios 需要
-	let url = /(Android)/i.test(navigator.userAgent) ? location.href.split('#')[0] : window.entryUrl;
+	let url = /(Android)/i.test(navigator.userAgent) ? window.location.href.split('#')[0] : window.entryUrl;
 
 	console.log(url, url);
 	let result = await reqWxConfig(url);
