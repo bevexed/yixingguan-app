@@ -22,12 +22,17 @@ class Intercept extends Component {
 	};
 
 	componentDidMount() {
+		let state = GetQueryString('state');
+		console.log(state);
 		if (!sessionStorage.token) {
 			// 授权邀请 code 入口
-			let code = GetQueryString('code');
 			let only_no = GetQueryString('only_no');
 			let assistant = GetQueryString('assistant');
-			if (!code) {reqCode(window.location.search)}
+			let code = GetQueryString('code');
+			if (!code) {
+				reqCode(only_no, assistant);
+				return false
+			}
 			reqToken(code, only_no, assistant).then(
 				res => {
 					if (res.code === 1) {
