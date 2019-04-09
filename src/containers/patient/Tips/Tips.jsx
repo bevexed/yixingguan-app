@@ -44,7 +44,7 @@ class Tips extends Component {
 	};
 
 	componentDidMount() {
-		getWxConfig();
+		setTimeout(getWxConfig, 200);
 		this.getPayAmount();
 	}
 
