@@ -126,8 +126,8 @@ class PatientIndex extends Component {
 			show: !show,
 			// page: 1,
 			// total: 100,
-			// department: which === departmentList ? label : department,
-			// locating_city: which === cityList ? label : locating_city
+			department: which === departmentList ? label : department,
+			locating_city: which === cityList ? label : locating_city
 		});
 	};
 
