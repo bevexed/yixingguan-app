@@ -118,13 +118,14 @@ class PatientIndex extends Component {
 			}
 		});
 
-		this.setState({
-			show: !show,
-			page: 1,
-			total: 100,
-			department: which === departmentList ? label : department,
-			locating_city: which === cityList ? label : locating_city
-		}, this.props.resetDoctorList({locating_city, page: 1, city: locating_city, department}));
+		// this.setState({
+		// 	show: !show,
+		// 	page: 1,
+		// 	total: 100,
+		// 	department: which === departmentList ? label : department,
+		// 	locating_city: which === cityList ? label : locating_city
+		// })
+		this.props.resetDoctorList({locating_city, page: 1, city: locating_city, department})
 	};
 
 	// 获取城市列表
