@@ -41,7 +41,7 @@ class LoadingMore extends PureComponent {
 			<div className='loading-more'>
 				<ActivityIndicator
 					color={'#68e3ce'}
-					animating={loading}
+					animating={loading ? false : loading}
 				/>
 			</div>
 		)
