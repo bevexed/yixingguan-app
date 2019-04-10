@@ -31,7 +31,22 @@ export const doctorList = (state = initDoctorList, action) => {
 		case RECEIVE_DOCTOR_LIST:
 			return contactObject(state, action.data);
 		case RESET_DOCTOR_LIST:
-			return initDoctorList;
+			console.log('initDoctorList', initDoctorList);
+			return {
+				current_page: 0,
+				total: 0,
+				list: [{
+					"id": 0,
+					"avatar": "",
+					"name": "",
+					"department": "",
+					"with_title": "",
+					"hospital_level": "",
+					"affiliated_hospital": "",
+					"introduction": "",
+					"is_reference": 0
+				}]
+			};
 		default:
 			return state;
 	}
