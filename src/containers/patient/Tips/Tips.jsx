@@ -123,7 +123,7 @@ class Tips extends Component {
 					</Item>
 
 
-					<div className={'select-money'}>
+					<div className='select-money'>
 						{
 							moneyList.map(item =>
 								<span

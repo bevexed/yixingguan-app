@@ -209,7 +209,7 @@ class PatientIndex extends Component {
 					infinite
 					beforeChange={(from, to) => to}
 					afterChange={index => index}
-					style={{minHeight: '170Px'}}
+					style={{minHeight: '170Px', maxHeight: '500PX'}}
 				>
 					{this.state.bannerData.map(val => (
 						<a
