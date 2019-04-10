@@ -46,7 +46,7 @@ export const getSeekDoctorList = (title, history) => {
 		reqSeeks(title).then(
 			res => {
 				if (res.code === 1 && res.data) {
-					history.push('./search-result');
+					history.push('/search-result');
 					dispatch(seekDoctorList(res.data))
 				}
 			}
