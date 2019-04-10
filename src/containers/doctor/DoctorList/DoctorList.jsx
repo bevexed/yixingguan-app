@@ -90,7 +90,7 @@ class DoctorList extends Component {
 
 	// 按选项检索医生
 	onChange = (value) => {
-		const {which, show, departmentList, department, cityList, locating_city} = this.state;
+		let {which, show, departmentList, department, cityList, locating_city} = this.state;
 		let label = '';
 		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
@@ -105,14 +105,17 @@ class DoctorList extends Component {
 			}
 		});
 
+		department = which === departmentList ? label : department;
+		locating_city = which === cityList ? label : locating_city;
+		this.props.resetDoctorList({locating_city, page: 1, city: locating_city, department});
+
 		this.setState({
 			show: !show,
-			page: 1,
-			total: 100,
-			department: which === departmentList ? label : department,
-			locating_city: which === cityList ? label : locating_city
-		}, this.props.resetDoctorList);
-		this.getDoctor()
+			// page: 1,
+			// total: 100,
+			// department: which === departmentList ? label : department,
+			// locating_city: which === cityList ? label : locating_city
+		});
 	};
 
 	getCity = (e) => {
