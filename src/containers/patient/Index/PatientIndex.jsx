@@ -103,7 +103,7 @@ class PatientIndex extends Component {
 
 	// 按选项检索医生
 	onChange = (value) => {
-		const {which, show, departmentList, department, cityList, locating_city} = this.state;
+		let {which, show, departmentList, department, cityList, locating_city} = this.state;
 		let label = '';
 		which.forEach((dataItem) => {
 			if (dataItem.value === value[0]) {
