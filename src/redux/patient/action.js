@@ -26,7 +26,18 @@ export const getDoctorList = ({locating_city, page, city, department}) => {
 };
 
 // 重置医生列表
-export const resetDoctorList = () => ({type: RESET_DOCTOR_LIST, data: {}});
+const resetDoctorLists = (doctorList) => ({type: RESET_DOCTOR_LIST, data: doctorList});
+export const resetDoctorList = ({locating_city, page, city, department}) => {
+	return async dispatch => {
+		reqDoctorList({locating_city, page, city, department}).then(
+			res => {
+				if (res.code === 1) {
+					dispatch(resetDoctorLists(res.data))
+				}
+			}
+		)
+	}
+};
 
 const seekDoctorList = doctorList => ({type: SEEK_DOCTOR_LIST, data: doctorList});
 
