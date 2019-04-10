@@ -177,6 +177,7 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 const sendMessage = msg => ({type: SEND_MESSAGE, data: msg});
 // 发送群消息
 export const sendRoomText = (message, chat_room, username, only_no) => {
+	console.log('only_no', only_no);
 	return async dispatch => {
 		let id = conn.getUniqueId();         // 生成本地消息id
 		let msg = new WebIM.message('txt', id); // 创建文本消息
