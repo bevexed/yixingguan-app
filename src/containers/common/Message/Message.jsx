@@ -108,6 +108,7 @@ class Message extends Component {
 		const only_no_patient = users.filter(user => user.identity === '1')[0].only_no;
 		const only_no_doctor = users.filter(user => user.identity === '2')[0].only_no;
 		const only_no = identity === 'patient' ? only_no_patient : only_no_doctor;
+		console.log('message_only_no', only_no);
 		// 当前聊天室的聊天信息
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
@@ -197,7 +198,7 @@ class Message extends Component {
 											onChange={val => this.handleChange('input', val)}
 											onFocus={this.showKeyboard}
 											onBlur={this.showKeyboard}
-											onKeyDown={e => this.sendMessage(e, username)}
+											onKeyDown={e => this.sendMessage(e, username, only_no)}
 											value={input}
 										/>
 									</div> :
