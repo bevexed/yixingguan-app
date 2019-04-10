@@ -34,7 +34,7 @@ export const reqChatUserInfo = chat_room => ajax('/api/chat/chat_user_info', {ch
 export const reqDelete = chat_room => ajax('/api/relation/delete', {chat_room});
 
 // 消息通知
-export const reqNotification = ({only_no, url}) => ajax('/api/relation/notification', {only_no, url});
+export const reqNotification = ({only_no, url, chat_room}) => ajax('/api/relation/notification', {only_no, url, chat_room});
 
 // wx jssdk
 export const reqWxConfig = url => ajax('/api/wx/permission_to_verify', {url}, 'GET');

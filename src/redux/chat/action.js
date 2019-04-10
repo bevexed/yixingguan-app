@@ -188,7 +188,7 @@ export const sendRoomText = (message, chat_room, username, only_no) => {
 			chatType: 'chatRoom',
 			success: function () {
 				const msg = {chat_room, message, time: new Date().valueOf(), username};
-				reqNotification({only_no, url: window.location.href});
+				reqNotification({only_no, chat_room, url: window.location.href});
 				dispatch(sendMessage(msg));
 				console.log('send room text success');
 			},
