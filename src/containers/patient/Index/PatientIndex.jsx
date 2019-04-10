@@ -118,6 +118,10 @@ class PatientIndex extends Component {
 			}
 		});
 
+		department = which === departmentList ? label : department;
+		locating_city = which === cityList ? label : locating_city;
+		this.props.resetDoctorList({locating_city, page: 1, city: locating_city, department});
+
 		this.setState({
 			show: !show,
 			// page: 1,
@@ -125,9 +129,6 @@ class PatientIndex extends Component {
 			// department: which === departmentList ? label : department,
 			// locating_city: which === cityList ? label : locating_city
 		});
-		department = which === departmentList ? label : department;
-		locating_city = which === cityList ? label : locating_city;
-		this.props.resetDoctorList({locating_city, page: 1, city: locating_city, department})
 	};
 
 	// 获取城市列表
