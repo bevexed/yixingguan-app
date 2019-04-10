@@ -34,7 +34,7 @@ class DoctorDetail extends Component {
 				<WhiteSpace/>
 				<List>
 					<Item
-						extra={'李医生'}
+						extra={name}
 					>
 						姓名
 					</Item>
