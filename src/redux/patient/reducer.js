@@ -32,7 +32,8 @@ export const doctorList = (state = initDoctorList, action) => {
 			return contactObject(state, action.data);
 		case RESET_DOCTOR_LIST:
 			console.log('initDoctorList', initDoctorList);
-			return contactObject({}, action.data);
+			// return contactObject({}, action.data);
+			return initDoctorList;
 		default:
 			return state;
 	}
