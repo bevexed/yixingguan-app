@@ -81,7 +81,9 @@ class Message extends Component {
 			)
 	};
 
-	showBigPic = img_url => {
+	showBigPic = (e, img_url) => {
+		e.cancelBubble = true;
+		e.stopPropagation();
 		let {show_big_pic} = this.state;
 		this.setState({
 			show_big_pic: !show_big_pic,
@@ -172,8 +174,8 @@ class Message extends Component {
 										{chat.message}
 										{users.filter(user => user.username === chat.username)[0].username !== patientName && identity === 'patient' ? <div className={'reminder'}>郑重提示：线上咨询不能代替面诊，医生建议仅供参考!</div> : null}
 									</span> : null}
-									{chat.imgUrl ? <img className={chat.imgUrl === big_pic_url && show_big_pic ? 'big-img message-img' : 'message-img'} onClick={() => this.showBigPic(chat.imgUrl)} src={chat.imgUrl} alt="图片已失效"/> : null}
-									{chat.imgUrl === big_pic_url && show_big_pic && <div className='big-img-back' onTouchStart={() => this.setState({show_big_pic: false})}>{null}</div>}
+									{chat.imgUrl ? <img className={chat.imgUrl === big_pic_url && show_big_pic ? 'big-img message-img' : 'message-img'} onTouchEnd={e => this.showBigPic(e, chat.imgUrl)} src={chat.imgUrl} alt="图片已失效"/> : null}
+									{chat.imgUrl === big_pic_url && show_big_pic && <div className='big-img-back' onTouchEnd={e => this.showBigPic(e, '')}>{null}</div>}
 								</div> : null
 							}
 							<WhiteSpace/>
