@@ -102,7 +102,7 @@ class OrderDoctor extends Component {
 
 
 	orderDoctor = () => {
-		let only_no = GetQueryString(only_no);
+		let only_no = GetQueryString('only_no');
 
 		const {name, phone, auth_code, symptoms_described, files} = this.state;
 		const inspection_report = files.map(img => img.url);
