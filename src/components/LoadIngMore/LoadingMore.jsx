@@ -26,7 +26,8 @@ class LoadingMore extends PureComponent {
 			}
 			const {scrollTop, scrollHeight, clientHeight} = document.body || document.documentElement;
 			if (scrollTop + clientHeight + 60 > scrollHeight) {
-				callback()
+				callback();
+				window.onscroll = null
 			}
 		}, 200)
 	}
