@@ -1,3 +1,4 @@
+/*eslint-disable*/
 (function () {
 
 	var debug = false;
@@ -641,7 +642,7 @@
 
 	function getStringFromDB(buffer, start, length) {
 		var outstr = "";
-		for (n = start; n < start + length; n++) {
+		for (var n = start; n < start + length; n++) {
 			outstr += String.fromCharCode(buffer.getUint8(n));
 		}
 		return outstr;
