@@ -42,7 +42,7 @@ class Avatar extends Component {
 		}
 	};
 
-	onImageLoaded = (image, pixelCrop, e) => {
+	onImageLoaded = (image, pixelCrop) => {
 		this.imageRef = image;
 	};
 
