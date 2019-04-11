@@ -206,6 +206,7 @@ export const sendRoomText = (message, chat_room, username, only_no) => {
 const sendImg = img => ({type: SEND_IMG, data: img});
 export const doSendImg = (chat_room, username, type) => {
 	return async dispatch => {
+		let imgUrl;
 		let id = conn.getUniqueId();                   // 生成本地消息id
 		let msg = new WebIM.message('img', id);        // 创建图片消息
 		let input = type === 'image' ? document.getElementById('image') : document.getElementById('camera');// 选择图片的input
@@ -232,9 +233,10 @@ export const doSendImg = (chat_room, username, type) => {
 				},
 				onFileUploadComplete: function (res) {   // 消息上传成功
 					console.log('onFileUploadComplete', res);
+					imgUrl = res.uri + res.entities[0].uuid;
 				},
 				success: function (res) {                // 消息发送成功
-					const img = {chat_room, imgUrl: file.data.path, time: new Date().valueOf(), username};
+					const img = {chat_room, imgUrl, time: new Date().valueOf(), username};
 					dispatch(sendImg(img));
 					console.log(img);
 					console.log('图片发送Success', res);
