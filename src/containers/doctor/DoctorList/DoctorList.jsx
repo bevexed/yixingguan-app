@@ -49,8 +49,6 @@ class DoctorList extends Component {
 
 	componentDidMount() {
 		this.getDoctor(0);
-		this.onChange();
-		this.onChange();
 	}
 
 	doReferrals = url => {
@@ -170,6 +168,7 @@ class DoctorList extends Component {
 	render() {
 		const {show, which} = this.state;
 		const {list: doctorList, total, current_page: page} = this.props.doctorList;
+		console.log(doctorList, total, page);
 
 		const menuEl = (
 			<Menu
