@@ -9,7 +9,7 @@ import {reqReferrals} from "../../../api/doctor";
 class SearchResult extends Component {
 
 	doReferrals = url => {
-		const only_no = sessionStorage.only_no_doctor;
+		const only_no = sessionStorage.only_no_patient;
 		reqReferrals({only_no, url})
 			.then(res => {
 				if (res.code === 1) {

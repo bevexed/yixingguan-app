@@ -123,6 +123,7 @@ class Message extends Component {
 		const only_no_doctor = users.filter(user => user.identity === '2')[0].only_no;
 		// 存储only_no 转诊页面使用
 		sessionStorage.only_no_doctor = only_no_doctor;
+		sessionStorage.only_no_patient = only_no_patient;
 		const only_no = identity === 'patient' ? only_no_patient : only_no_doctor;
 		// 当前聊天室的聊天信息
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
