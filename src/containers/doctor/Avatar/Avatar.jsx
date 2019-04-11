@@ -65,7 +65,12 @@ class Avatar extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return {};
+}
+
 export default connect(
+	mapStateToProps,
 	{
 		receiveUser
 	}
