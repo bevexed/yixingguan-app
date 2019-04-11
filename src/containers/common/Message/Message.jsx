@@ -107,7 +107,7 @@ class Message extends Component {
 	};
 
 	render() {
-		const {input, inputType, menuShow, users, big_pic_url} = this.state;
+		const {input, inputType, menuShow, users, big_pic_url, show_big_pic} = this.state;
 		const {identity} = this.props.user;
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
@@ -118,7 +118,6 @@ class Message extends Component {
 		const only_no_patient = users.filter(user => user.identity === '1')[0].only_no;
 		const only_no_doctor = users.filter(user => user.identity === '2')[0].only_no;
 		const only_no = identity === 'patient' ? only_no_patient : only_no_doctor;
-		console.log('message_only_no', only_no);
 		// 当前聊天室的聊天信息
 		const msg = chatMsg.filter(chat => chat.chat_room === this.props.match.params.chat_room);
 		const patientId = users.filter(user => user.identity === '2')[0].id;
@@ -169,7 +168,7 @@ class Message extends Component {
 										{chat.message}
 										{users.filter(user => user.username === chat.username)[0].username !== patientName && identity === 'patient' ? <div className={'reminder'}>郑重提示：线上咨询不能代替面诊，医生建议仅供参考!</div> : null}
 									</span> : null}
-									{chat.imgUrl ? <img className={chat.imgUrl === big_pic_url ? 'big-img message-img' : 'message-img'} onClick={() => this.showBigPic(chat.imgUrl)} src={chat.imgUrl} alt="为了您的隐私，图片已销毁"/> : null}
+									{chat.imgUrl ? <img className={chat.imgUrl === big_pic_url && show_big_pic ? 'big-img message-img' : 'message-img'} onClick={() => this.showBigPic(chat.imgUrl)} src={chat.imgUrl} alt="为了您的隐私，图片已销毁"/> : null}
 								</div> : null
 							}
 							<WhiteSpace/>
@@ -201,21 +200,21 @@ class Message extends Component {
 							{/*onClick={() => this.changeInputType(inputType)}*/}
 							{/*alt=""/>*/}
 							{/*{*/}
-							{/*	inputType === 'input' ? <div style={{width: '70%'}}>*/}
-							{/*			<InputItem*/}
-							{/*				type='text'*/}
-							{/*				placeholder={'请输入...'}*/}
-							{/*				onChange={val => this.handleChange('input', val)}*/}
-							{/*				onFocus={this.showKeyboard}*/}
-							{/*				onBlur={this.showKeyboard}*/}
-							{/*				onKeyDown={e => this.sendMessage(e, username, only_no)}*/}
-							{/*				value={input}*/}
-							{/*			/>*/}
-							{/*		</div> :*/}
-							{/*		<div className={'speak'}>*/}
-							{/*			按住说话*/}
-							{/*		</div>*/}
-							{/*}*/}
+							inputType === 'input' ? <div style={{width: '70%'}}>
+							<InputItem
+								type='text'
+								placeholder={'请输入...'}
+								onChange={val => this.handleChange('input', val)}
+								onFocus={this.showKeyboard}
+								onBlur={this.showKeyboard}
+								onKeyDown={e => this.sendMessage(e, username, only_no)}
+								value={input}
+							/>
+						</div> :
+							<div className={'speak'}>
+								按住说话
+							</div>
+							}
 							{/*<img src={require('./img/biaoqing@3x.png')} alt=""/>*/}
 							<img src={require('./img/tianjia-3@3x.png')}
 									 onClick={() => this.setState({menuShow: !menuShow})}
