@@ -86,7 +86,7 @@ class DoctorList extends Component {
 			.then(res => {
 				if (res.code === 1) {
 					Toast.success(res.message, 1);
-					const {id, username, only_no} = sessionStorage;
+					const {id, username, only_no} = localStorage;
 					this.props.sendRoomText(url, id, username, only_no);
 				} else {
 					Toast.fail(res.message, 1)

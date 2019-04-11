@@ -24,7 +24,7 @@ class Message extends Component {
 				res => {
 					this.setState({users: res.data})
 				}
-			)
+			);
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
@@ -42,9 +42,6 @@ class Message extends Component {
 		if ((e === 'sendMsg' || e.key === 'Enter' || e.keyCode === 13) && input) {
 			const id = this.props.match.params.chat_room;
 			this.setState({input: ''});
-			localStorage.username = username;
-			localStorage.id = id;
-			localStorage.only_no = only_no;
 			this.props.sendRoomText(input, id, username, only_no);
 		}
 	}
@@ -137,6 +134,10 @@ class Message extends Component {
 		// 医生发信息的需要打赏的匹配时间
 		const doctorBackInformationTime = msg.filter(chat => chat.username !== patientName).filter((item, index) => index % 3 === 2).map(show => show.time);
 		// const doctorBackInformationTime = msg.filter(chat => chat.username === doctorName).length >= 4 ? msg.filter(chat => chat.username === doctorName)[3].time : null;
+
+		localStorage.username = username;
+		localStorage.only_no = only_no;
+		localStorage.id = this.props.match.params.chat_room;
 
 		return (
 			<div className={'message'}>
