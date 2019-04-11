@@ -199,21 +199,21 @@ class Message extends Component {
 							{/*src={require('./img/jianpan-@3x.png')}*/}
 							{/*onClick={() => this.changeInputType(inputType)}*/}
 							{/*alt=""/>*/}
-							{/*{*/}
-							inputType === 'input' ? <div style={{width: '70%'}}>
-							<InputItem
-								type='text'
-								placeholder={'请输入...'}
-								onChange={val => this.handleChange('input', val)}
-								onFocus={this.showKeyboard}
-								onBlur={this.showKeyboard}
-								onKeyDown={e => this.sendMessage(e, username, only_no)}
-								value={input}
-							/>
-						</div> :
-							<div className={'speak'}>
-								按住说话
-							</div>
+							{
+								inputType === 'input' ? <div style={{width: '70%'}}>
+										<InputItem
+											type='text'
+											placeholder={'请输入...'}
+											onChange={val => this.handleChange('input', val)}
+											onFocus={this.showKeyboard}
+											onBlur={this.showKeyboard}
+											onKeyDown={e => this.sendMessage(e, username, only_no)}
+											value={input}
+										/>
+									</div> :
+									<div className={'speak'}>
+										按住说话
+									</div>
 							}
 							{/*<img src={require('./img/biaoqing@3x.png')} alt=""/>*/}
 							<img src={require('./img/tianjia-3@3x.png')}
