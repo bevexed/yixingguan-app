@@ -44,7 +44,9 @@ class DoctorList extends Component {
 		page: 1,
 		total: 100,
 		department: '',
-		locating_city: ''
+		locating_city: '',
+
+		refresh: ''
 	};
 
 
@@ -73,6 +75,7 @@ class DoctorList extends Component {
 			department: department || null
 		};
 		this.props.getDoctorList(params);
+		this.setState({refresh: 1});
 	};
 
 	// SearchInput 输入
