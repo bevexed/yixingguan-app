@@ -58,8 +58,7 @@ class PatientIndex extends Component {
 
 
 	componentDidMount() {
-		const {lcurrent_page: page} = this.props.doctorList;
-		this.getDoctor(page);
+		this.getDoctor(0);
 
 		reqGetQrCode().then(
 			res => {
