@@ -226,7 +226,7 @@ export const doSendImg = (chat_room, username, type) => {
 				roomType: false,
 				chatType: 'chatRoom',
 				onFileUploadError: function () {      // 消息上传失败
-					Toast.fail('图片过大', 1);
+					Toast.fail('图片上传失败', 1);
 					console.log('onFileUploadError');
 				},
 				onFileUploadComplete: function (res) {   // 消息上传成功

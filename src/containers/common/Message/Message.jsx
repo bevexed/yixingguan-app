@@ -80,7 +80,7 @@ class Message extends Component {
 	};
 
 	showBigPic = img_url => {
-		let show_big_pic = this.state;
+		let {show_big_pic} = this.state;
 		this.setState({
 			show_big_pic: !show_big_pic,
 			big_pic_url: img_url
