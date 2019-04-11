@@ -24,7 +24,7 @@ class SearchResult extends Component {
 
 	render() {
 		const {doctorList} = this.props;
-		const {identity} = this.props.user;
+		const {identity, only_no: only_no_doctor} = this.props.user;
 
 		return (
 			<div>
@@ -42,7 +42,7 @@ class SearchResult extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 
-				<DocList doctorList={doctorList} doReferrals={this.doReferrals} identity={identity}/>
+				<DocList doctorList={doctorList} doReferrals={this.doReferrals} identity={identity} only_no_doctor={only_no_doctor}/>
 			</div>
 		);
 	}

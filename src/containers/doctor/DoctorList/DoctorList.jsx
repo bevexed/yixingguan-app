@@ -187,6 +187,7 @@ class DoctorList extends Component {
 	};
 
 	render() {
+		const {only_no: only_no_doctor} = this.props.user;
 		const {show, which} = this.state;
 		const {list: doctorList, total, current_page: page} = this.props.doctorList;
 
@@ -244,7 +245,7 @@ class DoctorList extends Component {
 						</div>
 					</List>
 					{show ? which ? menuEl : loadingEl : null}
-					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList} identity={'doctor'} doReferrals={this.doReferrals}/>}
+					{show ? <div className="menu-mask" onClick={this.onMaskClick}/> : <DocList doctorList={doctorList} identity={'doctor'} doReferrals={this.doReferrals} only_no_doctor={only_no_doctor}/>}
 				</div>
 
 				<LoadingMore page={page} total={total} callback={() => this.getDoctor(page, total)}/>
@@ -256,7 +257,8 @@ class DoctorList extends Component {
 
 function mapStateToProps(state) {
 	return {
-		doctorList: state.doctorList
+		doctorList: state.doctorList,
+		user: state.user,
 	};
 }
 

@@ -17,11 +17,12 @@ class DocList extends Component {
 	static propTypes = {
 		doctorList: PropTypes.array.isRequired,
 		identity: PropTypes.string,
-		doReferrals: PropTypes.func
+		doReferrals: PropTypes.func,
+		only_no_doctor: PropTypes.string
 	};
 
 	render() {
-		const {doctorList, identity, doReferrals} = this.props;
+		const {doctorList, identity, doReferrals, only_no_doctor} = this.props;
 		// noinspection JSUnresolvedVariable
 		return (
 			<div>
@@ -58,7 +59,7 @@ class DocList extends Component {
 											<Button
 												size="small"
 												style={{width: 65, backgroundColor: '#68e3ce', color: '#fff', height: 30, borderRadius: 15}}
-												onClick={() => doReferrals('http://' + window.location.host + '/#/order-doctor/' + doctor.id)}
+												onClick={() => doReferrals('http://' + window.location.host + '?only_no=' + only_no_doctor + '/#/order-doctor/' + doctor.id)}
 											>
 												转诊
 											</Button>

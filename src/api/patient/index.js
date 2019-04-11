@@ -17,7 +17,7 @@ export const reqDoctorDetail = id => ajax('/api/patient/home/doctor_details', {i
 export const reqSeeks = title => ajax('/api/patient/home/seeks', {title}, 'POST');
 
 // 用户预约
-export const subscribes = ({name, d_id, phone, auth_code, symptoms_described, inspection_report}) => ajax('/api/patient/appoint/subscribes', {token, name, d_id, phone, auth_code, symptoms_described, inspection_report});
+export const subscribes = ({name, d_id, phone, auth_code, symptoms_described, inspection_report, only_no}) => ajax('/api/patient/appoint/subscribes', {token, name, d_id, phone, auth_code, symptoms_described, inspection_report, only_no});
 
 // 用户预约列表
 export const reqSubscribeLists = () => ajax('/api/patient/appoint/subscribe_lists', {token});
