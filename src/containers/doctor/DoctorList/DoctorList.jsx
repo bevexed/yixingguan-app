@@ -22,6 +22,7 @@ import {
 } from "../../../redux/patient/action";
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqReferrals} from "../../../api/doctor";
+import {reqBanner, reqGetQrCode} from "../../../api/patient";
 
 const Item = List.Item;
 
@@ -49,7 +50,34 @@ class DoctorList extends Component {
 
 	componentDidMount() {
 		this.getDoctor(0);
+
+		reqGetQrCode().then(
+			res => {
+				if (res.code === 1) {
+					this.setState({code: res.data})
+				}
+			}
+		);
+
+		reqBanner().then(
+			res => {
+				if (res.code === 1) {
+					this.setState({bannerData: res.data})
+				}
+			}
+		)
 	}
+
+	getDoctor = (page) => {
+		const {city, locating_city, department} = this.state;
+		const params = {
+			locating_city: locating_city || '北京',
+			page: page + 1,
+			city: city || null,
+			department: department || null
+		};
+		this.props.getDoctorList(params);
+	};
 
 	doReferrals = url => {
 		const only_no = this.props.match.params.only_no;
@@ -63,16 +91,6 @@ class DoctorList extends Component {
 			})
 	};
 
-	getDoctor = (page) => {
-		const {city, locating_city, department} = this.state;
-		const params = {
-			locating_city: locating_city || '北京',
-			page: page + 1,
-			city: city || null,
-			department: department || null
-		};
-		this.props.getDoctorList(params);
-	};
 
 	// SearchInput 输入
 	handleChange = (name, val) => {
@@ -168,7 +186,7 @@ class DoctorList extends Component {
 	render() {
 		const {show, which} = this.state;
 		const {list: doctorList, total, current_page: page} = this.props.doctorList;
-		console.log(doctorList, total, page);
+
 
 		const menuEl = (
 			<Menu
