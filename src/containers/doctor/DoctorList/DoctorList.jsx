@@ -23,6 +23,7 @@ import {
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqReferrals} from "../../../api/doctor";
 import {reqBanner, reqGetQrCode} from "../../../api/patient";
+import {sendRoomText} from "../../../redux/chat/action";
 
 const Item = List.Item;
 
@@ -84,7 +85,9 @@ class DoctorList extends Component {
 		reqReferrals({only_no, url})
 			.then(res => {
 				if (res.code === 1) {
-					Toast.success(res.message, 1)
+					Toast.success(res.message, 1);
+					const {id, username, only_no} = sessionStorage;
+					this.props.sendRoomText(url, id, username, only_no);
 				} else {
 					Toast.fail(res.message, 1)
 				}
@@ -262,7 +265,8 @@ export default connect(
 	{
 		getDoctorList,
 		getSeekDoctorList,
-		resetDoctorList
+		resetDoctorList,
+		sendRoomText
 	}
 )(DoctorList);
 

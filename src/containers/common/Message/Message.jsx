@@ -42,6 +42,9 @@ class Message extends Component {
 		if ((e === 'sendMsg' || e.key === 'Enter' || e.keyCode === 13) && input) {
 			const id = this.props.match.params.chat_room;
 			this.setState({input: ''});
+			localStorage.username = username;
+			localStorage.id = id;
+			localStorage.only_no = only_no;
 			this.props.sendRoomText(input, id, username, only_no);
 		}
 	}
