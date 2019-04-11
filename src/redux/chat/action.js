@@ -212,6 +212,7 @@ export const doSendImg = (chat_room, username, type) => {
 		console.log('选择图片文件', input);
 		let file = WebIM.utils.getFileUrl(input);      // 将图片转化为二进制文件
 		console.log('处理过的图片文件', file);
+		console.log('图片大小', file.data.size);
 		let allowType = {
 			'jpg': true,
 			'gif': true,
@@ -233,7 +234,7 @@ export const doSendImg = (chat_room, username, type) => {
 					console.log('onFileUploadComplete', res);
 				},
 				success: function (res) {                // 消息发送成功
-					const img = {chat_room, imgUrl: file.url, time: new Date().valueOf(), username};
+					const img = {chat_room, imgUrl: file.data.path, time: new Date().valueOf(), username};
 					dispatch(sendImg(img));
 					console.log(img);
 					console.log('图片发送Success', res);
