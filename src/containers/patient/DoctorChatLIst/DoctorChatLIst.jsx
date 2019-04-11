@@ -90,7 +90,7 @@ class DoctorChatLIst extends Component {
 								<div className={'content'}
 										 onClick={el => this.toMessage(el, doc.chat_room)}
 								>
-									<img className={'header-img'} src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2825443055,3654672452&fm=27&gp=0.jpg" alt=""/>
+									<img className={'header-img'} src={doc.avatar} alt=""/>
 									<div className='doc-brief ellipsis'>
 										<span className={'name'}>{doc.name}</span>
 										<span className={'subject'}>{doc.department}</span>
