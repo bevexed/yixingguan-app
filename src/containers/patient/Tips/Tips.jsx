@@ -137,7 +137,7 @@ class Tips extends Component {
 
 				<WhiteSpace/>
 
-				<List renderHeader={() => 'RadioItem demo'}>
+				<List renderHeader={() => '支付方式'}>
 					{pays.map((pay, index) => (
 						<RadioItem key={index} checked={this.state.payType === pay.value} onChange={() => this.onHandleChange('payType', pay.value)}>
 							<img className={'img'} src={require('./img/' + pay.img)} alt=""/>{pay.label}
