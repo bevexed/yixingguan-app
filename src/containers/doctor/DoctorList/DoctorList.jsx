@@ -49,8 +49,7 @@ class DoctorList extends Component {
 
 
 	componentDidMount() {
-		const {lcurrent_page: page} = this.props.doctorList;
-		this.getDoctor(page);
+		this.getDoctor(0);
 	}
 
 	doReferrals = url => {
