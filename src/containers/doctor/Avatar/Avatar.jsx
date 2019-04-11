@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, NavBar, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, ImagePicker} from "antd-mobile";
 
 import './Avatar.less'
 
@@ -8,6 +8,8 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
 import {receiveUser} from "../../../redux/user/action";
+
+import EXIF from '../../../static/exif'
 
 class Avatar extends Component {
 	state = {
@@ -104,31 +106,45 @@ class Avatar extends Component {
 				<WhiteSpace/>
 
 
-				<div className="center">
-					{!src && <div className='avatar' onClick={() => document.querySelector('#avatar').click()}>请选择头像</div>}
-					<input type="file" hidden id='avatar' capture={false} onChange={this.onSelectFile}/>
-				</div>
+				{/*<div className="center">*/}
+				{/*	{!src && <div className='avatar' onClick={() => document.querySelector('#avatar').click()}>请选择头像</div>}*/}
+				{/*	<input type="file" hidden id='avatar' capture={false} onChange={this.onSelectFile}/>*/}
+				{/*</div>*/}
 
-				<div className='center'>
-					{src && (
-						<ReactCrop
-							src={src}
-							crop={crop}
-							onImageLoaded={this.onImageLoaded}
-							onComplete={this.onCropComplete}
-							onChange={this.onCropChange}
-						/>
-					)}
-				</div>
+				{/*<div className='center'>*/}
+				{/*	{src && (*/}
+				{/*		<ReactCrop*/}
+				{/*			src={src}*/}
+				{/*			crop={crop}*/}
+				{/*			onImageLoaded={this.onImageLoaded}*/}
+				{/*			onComplete={this.onCropComplete}*/}
+				{/*			onChange={this.onCropChange}*/}
+				{/*		/>*/}
+				{/*	)}*/}
+				{/*</div>*/}
+
+				<ImagePicker
+					length={1}
+					files={avatar}
+					onChange={avatar => this.selectAvatar(avatar)}
+					selectable={avatar.length < 1}
+				/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
+
+				{/*<div*/}
+				{/*	className={'button'}*/}
+				{/*	onClick={() => this.selectAvatar(croppedImageUrl)}*/}
+				{/*>确认*/}
+				{/*</div>*/}
+
 				<div
 					className={'button'}
-					onClick={() => this.selectAvatar(croppedImageUrl)}
+					onClick={() => this.props.history.replace('/doctor-complete-information')}
 				>确认
 				</div>
 				<WhiteSpace/>

@@ -63,8 +63,7 @@ export const debounce = function (method, delay) {
 
 export const rotates = (e) => {
 	console.log(e.target);
-	console.log(e.target.file);
-	EXIF.getData(e.target.file, function () {
+	EXIF.getData(e.target, function () {
 		let Orientation = EXIF.getAllTags(this).Orientation;
 		console.log(Orientation);
 		if (Orientation === 6) {
