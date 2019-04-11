@@ -1,3 +1,5 @@
+import EXIF from '../static/exif'
+
 // 生成重定向路径
 export const getRedirectTo = (type) => {
 	let path = '';
@@ -59,3 +61,16 @@ export const debounce = function (method, delay) {
 	}
 };
 
+export const rotates = (e) => {
+	console.log(e.target);
+	let a = document.querySelector("#img");
+	EXIF.getData(e.target, function () {
+		let Orientation = EXIF.getAllTags(this).Orientation;
+		console.log(Orientation);
+		if (Orientation === 6) {
+			this.rotate = 90
+		} else {
+			this.rotate = 0
+		}
+	})
+};

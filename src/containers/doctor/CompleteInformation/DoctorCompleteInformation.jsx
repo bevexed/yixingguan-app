@@ -21,6 +21,9 @@ import {
 } from "antd-mobile";
 import {getUser} from "../../../redux/user/action";
 
+import {rotates} from "../../../utils";
+
+
 const Item = List.Item;
 
 class DoctorCompleteInformation extends Component {
@@ -111,7 +114,7 @@ class DoctorCompleteInformation extends Component {
 		const {files} = this.state;
 
 		return (
-			<div className={'doctor-complete-information'}>
+			<div className='doctor-complete-information'>
 				<NavBar
 					mode="light"
 					className={'nav-bar'}
@@ -129,7 +132,7 @@ class DoctorCompleteInformation extends Component {
 						arrow='horizontal'
 						onClick={() => this.props.history.push('/avatar')}
 					>
-						<img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt=""/>
+						<img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt="" onLoad={e => rotates(e)}/>
 					</Item>
 				</List>
 
