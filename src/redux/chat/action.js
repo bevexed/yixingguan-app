@@ -205,6 +205,7 @@ export const sendRoomText = (message, chat_room, username, only_no) => {
 
 const sendImg = img => ({type: SEND_IMG, data: img});
 export const doSendImg = (chat_room, username, type) => {
+	Toast.loading('图片发送中');
 	return async dispatch => {
 		let imgUrl;
 		let id = conn.getUniqueId();                   // 生成本地消息id
@@ -233,11 +234,12 @@ export const doSendImg = (chat_room, username, type) => {
 				},
 				onFileUploadComplete: function (res) {   // 消息上传成功
 					console.log('onFileUploadComplete', res);
-					imgUrl = res.uri + res.entities[0].uuid;
+					imgUrl = res.uri + '/' + res.entities[0].uuid;
 				},
 				success: function (res) {                // 消息发送成功
 					const img = {chat_room, imgUrl, time: new Date().valueOf(), username};
 					dispatch(sendImg(img));
+					Toast.success('图片发送成功', 1);
 					console.log(img);
 					console.log('图片发送Success', res);
 				},
