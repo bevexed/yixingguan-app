@@ -28,6 +28,8 @@ class Message extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
+		window.onscroll = () => {
+		};
 		window.scrollTo(0, document.documentElement.scrollHeight);
 	}
 

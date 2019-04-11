@@ -50,6 +50,7 @@ class DoctorIndex extends Component {
 		this.setState = () => null
 	}
 
+
 	getChatList = () => {
 		const {chatList, page, pain: lavel, name} = this.state;
 		reqChatList({page, name, lavel: lavel[0]})
