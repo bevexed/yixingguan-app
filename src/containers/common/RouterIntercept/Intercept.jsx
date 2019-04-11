@@ -22,9 +22,6 @@ class Intercept extends Component {
 	};
 
 	componentDidMount() {
-		if (window.location.hash) {
-			sessionStorage.path = window.location.hash
-		}
 		// 微信授权后，通过 state 获取 only_no 和 assistant
 		let code = GetQueryString('code');
 		let state = GetQueryString('state');
