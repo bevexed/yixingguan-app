@@ -209,7 +209,9 @@ export const doSendImg = (chat_room, username, type) => {
 		let id = conn.getUniqueId();                   // 生成本地消息id
 		let msg = new WebIM.message('img', id);        // 创建图片消息
 		let input = type === 'image' ? document.getElementById('image') : document.getElementById('camera');// 选择图片的input
+		console.log('选择图片文件', input);
 		let file = WebIM.utils.getFileUrl(input);      // 将图片转化为二进制文件
+		console.log('处理过的图片文件', file);
 		let allowType = {
 			'jpg': true,
 			'gif': true,
