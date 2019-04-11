@@ -19,6 +19,7 @@ import {
 	NavBar, Toast
 } from "antd-mobile";
 import {reqSendMessage} from "../../../api";
+import {GetQueryString} from "../../../utils";
 
 const Header = Card.Header;
 const Footer = Card.Footer;
@@ -38,7 +39,7 @@ class OrderDoctor extends Component {
 	};
 
 	componentDidMount() {
-		this.props.getDoctorDetail(this.props.match.params.docId,this.props.history);
+		this.props.getDoctorDetail(this.props.match.params.docId, this.props.history);
 	}
 
 	componentWillUnmount() {
@@ -101,9 +102,12 @@ class OrderDoctor extends Component {
 
 
 	orderDoctor = () => {
+		let only_no = GetQueryString(only_no);
+
 		const {name, phone, auth_code, symptoms_described, files} = this.state;
 		const inspection_report = files.map(img => img.url);
 		const patientData = {
+			only_no,
 			name,
 			d_id: this.props.match.params.docId,
 			phone: phone.replace(/\s+/g, ""),
@@ -205,9 +209,9 @@ class OrderDoctor extends Component {
 
 				<List>
 					{/*<Item*/}
-						{/*multipleLine*/}
+					{/*multipleLine*/}
 					{/*>擅长:*/}
-						{/*<Brief>{doctorDetail.good_at}</Brief>*/}
+					{/*<Brief>{doctorDetail.good_at}</Brief>*/}
 					{/*</Item>*/}
 
 					<Item
@@ -217,13 +221,13 @@ class OrderDoctor extends Component {
 					</Item>
 
 					{/*<Accordion defaultActiveKey="" onChange={this.onChange}>*/}
-						{/*<Accordion.Panel header={<span className={'accordion-header'}>查看详情</span>}>*/}
-							{/*<List className="my-list">*/}
-								{/*<List.Item>content 1</List.Item>*/}
-								{/*<List.Item>content 2</List.Item>*/}
-								{/*<List.Item>content 3</List.Item>*/}
-							{/*</List>*/}
-						{/*</Accordion.Panel>*/}
+					{/*<Accordion.Panel header={<span className={'accordion-header'}>查看详情</span>}>*/}
+					{/*<List className="my-list">*/}
+					{/*<List.Item>content 1</List.Item>*/}
+					{/*<List.Item>content 2</List.Item>*/}
+					{/*<List.Item>content 3</List.Item>*/}
+					{/*</List>*/}
+					{/*</Accordion.Panel>*/}
 					{/*</Accordion>*/}
 				</List>
 
