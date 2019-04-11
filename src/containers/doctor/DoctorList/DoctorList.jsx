@@ -27,8 +27,6 @@ const Item = List.Item;
 
 class DoctorList extends Component {
 	state = {
-		bannerData: [],
-		imgHeight: 170,
 		// 搜索
 		searchWord: '',
 
@@ -46,11 +44,11 @@ class DoctorList extends Component {
 		department: '',
 		locating_city: '',
 
+		time: 1,
 	};
 
 
 	componentDidMount() {
-		this.getDoctor(0);
 		this.getDoctor(0);
 	}
 
@@ -75,6 +73,9 @@ class DoctorList extends Component {
 			department: department || null
 		};
 		this.props.getDoctorList(params);
+		this.setState({
+			time: Math.random()
+		})
 	};
 
 	// SearchInput 输入
