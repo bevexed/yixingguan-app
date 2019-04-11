@@ -44,12 +44,13 @@ class DoctorList extends Component {
 		department: '',
 		locating_city: '',
 
-		time: 1,
 	};
 
 
 	componentDidMount() {
 		this.getDoctor(0);
+		this.onChange();
+		this.onChange();
 	}
 
 	doReferrals = url => {
@@ -73,9 +74,6 @@ class DoctorList extends Component {
 			department: department || null
 		};
 		this.props.getDoctorList(params);
-		this.setState({
-			time: Math.random()
-		})
 	};
 
 	// SearchInput 输入
