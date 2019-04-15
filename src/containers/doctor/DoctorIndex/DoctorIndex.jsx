@@ -183,7 +183,7 @@ class DoctorIndex extends Component {
 									<Badge dot={chatMsg.some(chat => chat.chat_room === item.chat_room) && chatMsg
 										.filter(chat => chat.chat_room === item.chat_room)
 										.some(msg => msg.read === false)}>
-										<img className={'patient-avator'} src={item.avatar} alt=""/>
+										<img className='patient-avator' src={item.avatar} alt=""/>
 									</Badge>}
 								multipleLine
 							>
