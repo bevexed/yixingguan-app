@@ -10,8 +10,11 @@ import {
 	// Icon,
 	NavBar,
 	Button,
-	WhiteSpace, Toast
+	WhiteSpace,
+	Toast
+	, Badge
 } from "antd-mobile";
+import {readMessage} from "../../../redux/chat/action";
 
 const Panel = Accordion.Panel;
 
@@ -88,9 +91,16 @@ class DoctorChatLIst extends Component {
 							key={doc.id}
 							header={
 								<div className={'content'}
-										 onClick={el => this.toMessage(el, doc.chat_room)}
+										 onClick={el => {
+											 this.props.readMessage(doc.chat_room);
+											 this.toMessage(el, doc.chat_room)
+										 }}
 								>
-									<img className={'header-img'} src={doc.avatar} alt=""/>
+									<Badge dot={chatMsg.some(chat => chat.chat_room === doc.chat_room) && chatMsg
+										.filter(chat => chat.chat_room === doc.chat_room)
+										.some(msg => msg.read === false)}>
+										<img className={'header-img'} src={doc.avatar} alt=""/>
+									</Badge>}
 									<div className='doc-brief ellipsis'>
 										<span className={'name'}>{doc.name}</span>
 										<span className={'subject'}>{doc.department}</span>
@@ -113,23 +123,23 @@ class DoctorChatLIst extends Component {
 
 						</Panel>
 					)}
-				</Accordion>
+					< /Accordion>
 
 
-			</div>
-		);
+			</div>;
+	);
 	}
-}
+	}
 
-function mapStateToProps(state) {
-	return {
+	function mapStateToProps(state) {
+		return {
 		chatMsg: state.chatMsg
 	};
-}
+	}
 
-export default connect(
+	export default connect(
 	mapStateToProps,
 	{
 		deleteChat
 	}
-)(DoctorChatLIst);
+	)(DoctorChatLIst);

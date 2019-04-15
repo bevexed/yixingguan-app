@@ -13,8 +13,10 @@ import {
 	// Badge,
 	SearchBar,
 	Modal,
+	Badge
 } from 'antd-mobile';
-import Badge from "antd-mobile/es/badge";
+import {readMessage} from "../../../redux/chat/action";
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -173,8 +175,16 @@ class DoctorIndex extends Component {
 						chatList.map(item =>
 							<Item
 								key={item.id}
-								onClick={() => this.props.history.push('/message/' + item.chat_room)}
-								thumb={<Badge dot={true}><img className={'patient-avator'} src={item.avatar} alt=""/></Badge>}
+								onClick={() => {
+									this.props.readMessage(item.chat_room);
+									this.props.history.push('/message/' + item.chat_room)
+								}}
+								thumb={
+									<Badge dot={chatMsg.some(chat => chat.chat_room === item.chat_room) && chatMsg
+										.filter(chat => chat.chat_room === item.chat_room)
+										.some(msg => msg.read === false)}>
+										<img className={'patient-avator'} src={item.avatar} alt=""/>
+									</Badge>}
 								multipleLine
 							>
 								{item.name}
@@ -251,5 +261,7 @@ mapStateToProps(state) {
 }
 
 export default connect(
-	mapStateToProps,
+	mapStateToProps, {
+		readMessage
+	}
 )(DoctorIndex);

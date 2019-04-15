@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 
-import {sendRoomText, doSendImg, deleteChat} from "../../../redux/chat/action";
+import {sendRoomText, doSendImg, deleteChat, readMessage} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
 
 import './Message.less';
@@ -144,7 +144,10 @@ class Message extends Component {
 				<NavBar
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
-					onLeftClick={() => this.props.history.push(identity === 'patient' ? '/doctor-chat-list' : '/doctor-index')}
+					onLeftClick={() => {
+						this.props.readMessage(item.chat_room);
+						this.props.history.push(identity === 'patient' ? '/doctor-chat-list' : '/doctor-index')
+					}}
 					rightContent={
 						identity === 'doctor' ?
 							<Icon
@@ -270,6 +273,7 @@ export default connect(
 	{
 		sendRoomText,
 		doSendImg,
-		deleteChat
+		deleteChat,
+		readMessage
 	}
 )(Message);
