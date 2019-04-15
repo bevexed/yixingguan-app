@@ -100,7 +100,7 @@ class DoctorChatLIst extends Component {
 										.filter(chat => chat.chat_room === doc.chat_room)
 										.some(msg => msg.read === false)}>
 										<img className={'header-img'} src={doc.avatar} alt=""/>
-									</Badge>}
+									</Badge>
 									<div className='doc-brief ellipsis'>
 										<span className={'name'}>{doc.name}</span>
 										<span className={'subject'}>{doc.department}</span>

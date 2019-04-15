@@ -57,7 +57,7 @@ export const chatMsg = (state = initMessage, action) => {
 		case READ_MESSAGE:
 			const chat_room = action.data;
 			state.forEach(chat => {
-				if (chat.chat_room === chat_room) { chat.read = false }
+				if (chat.chat_room === chat_room) { chat.read = true }
 			});
 			return state;
 		default:
