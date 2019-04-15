@@ -60,7 +60,7 @@ class DoctorChatLIst extends Component {
 		const {chatMsg} = this.props;
 
 		return (
-			<div className={'doctors'}>
+			<div className='doctors'>
 				<NavBar
 					mode={'light'}
 					// rightContent={
