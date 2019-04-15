@@ -123,23 +123,24 @@ class DoctorChatLIst extends Component {
 
 						</Panel>
 					)}
-					< /Accordion>
+				</Accordion>
 
 
-			</div>;
-	);
+			</div>
+		);
 	}
-	}
+}
 
-	function mapStateToProps(state) {
-		return {
+function mapStateToProps(state) {
+	return {
 		chatMsg: state.chatMsg
 	};
-	}
+}
 
-	export default connect(
+export default connect(
 	mapStateToProps,
 	{
-		deleteChat
+		deleteChat,
+		readMessage
 	}
-	)(DoctorChatLIst);
+)(DoctorChatLIst);
