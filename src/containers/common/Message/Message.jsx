@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavBar, Icon, WhiteSpace, InputItem, Toast} from "antd-mobile";
 
-import {sendRoomText, doSendImg, deleteChat, readMessage, open_chat} from "../../../redux/chat/action";
+import {sendRoomText, doSendImg, deleteChat, readMessage} from "../../../redux/chat/action";
 import {reqChatUserInfo, reqDelete} from "../../../api";
 
 import './Message.less';
@@ -31,13 +31,6 @@ class Message extends Component {
 		window.onscroll = () => {
 		};
 		window.scrollTo(0, document.documentElement.scrollHeight);
-	}
-
-	componentWillReceiveProps(nextProps, nextContext) {
-		const {username, password} = nextProps.user;
-		if (sessionStorage.already_get_user) {
-			this.props.open_chat(username, password)
-		}
 	}
 
 	camera = () => {
@@ -283,6 +276,5 @@ export default connect(
 		doSendImg,
 		deleteChat,
 		readMessage,
-		open_chat,
 	}
 )(Message);
