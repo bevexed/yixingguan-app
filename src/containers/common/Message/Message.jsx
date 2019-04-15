@@ -115,6 +115,7 @@ class Message extends Component {
 		const {identity} = this.props.user;
 		const {username} = this.props.user;
 		const {chatMsg} = this.props;
+		const chat_room = this.props.match.params.chat_room;
 		if (!users.length) { return null }
 		// 导航栏 显示的名字
 		const person = identity === 'patient' ? users.filter(user => user.identity === '2')[0].name : users.filter(user => user.identity === '1')[0].name;
@@ -145,7 +146,7 @@ class Message extends Component {
 					mode="light"
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => {
-						this.props.readMessage(item.chat_room);
+						this.props.readMessage(chat_room);
 						this.props.history.push(identity === 'patient' ? '/doctor-chat-list' : '/doctor-index')
 					}}
 					rightContent={
