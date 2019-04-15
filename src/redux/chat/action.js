@@ -91,7 +91,7 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 			if (message.error) {
 				Toast.fail(message.errorText, 1)
 			}
-			let msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from};
+			let msg = {chat_room: message.to, message: message.data, time: new Date().valueOf(), username: message.from, read: false};
 			receiveTextMessage && receiveTextMessage(msg);
 		},    //收到文本消息
 		onEmojiMessage(message) {
@@ -101,7 +101,7 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 			if (message.error) {
 				Toast.fail(message.errorText, 1)
 			}
-			let img = {chat_room: message.to, imgUrl: message.url, time: new Date().valueOf(), username: message.from};
+			let img = {chat_room: message.to, imgUrl: message.url, time: new Date().valueOf(), username: message.from, read: false};
 			receiveImg && receiveImg(img);
 			console.log('pic', message);
 		}, //收到图片消息
