@@ -34,4 +34,5 @@ export const SEND_IMG = 'send_img';
 export const RECEIVE_IMG = 'receive_img';
 export const SEND_AUDIO = 'send_audio';
 export const RECEIVE_AUDIO = 'receive_audio';
+export const READ_MESSAGE = 'read_message';
 export const DELETE_CHAT = 'delete_chat';

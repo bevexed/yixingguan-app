@@ -14,6 +14,7 @@ import {
 	SearchBar,
 	Modal,
 } from 'antd-mobile';
+import Badge from "antd-mobile/es/badge";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -173,7 +174,7 @@ class DoctorIndex extends Component {
 							<Item
 								key={item.id}
 								onClick={() => this.props.history.push('/message/' + item.chat_room)}
-								thumb={<img className={'patient-avator'} src={item.avatar} alt=""/>}
+								thumb={<Badge dot={true}><img className={'patient-avator'} src={item.avatar} alt=""/></Badge>}
 								multipleLine
 							>
 								{item.name}

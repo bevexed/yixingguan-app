@@ -1,7 +1,10 @@
 import {
 	DELETE_CHAT,
-	LOGIN_SUCCESS_CHAT, RECEIVE_IMG,
-	RECEIVE_TEXT_MESSAGE, SEND_IMG,
+	LOGIN_SUCCESS_CHAT,
+	READ_MESSAGE,
+	RECEIVE_IMG,
+	RECEIVE_TEXT_MESSAGE,
+	SEND_IMG,
 	SEND_MESSAGE
 } from "../action-types";
 
@@ -21,7 +24,8 @@ const initMessage = [{
 	message: '',
 	time: '',
 	username: '',
-	imgUrl: ''
+	imgUrl: '',
+	read: true
 }];
 
 export const chatMsg = (state = initMessage, action) => {
@@ -49,6 +53,12 @@ export const chatMsg = (state = initMessage, action) => {
 		case DELETE_CHAT:
 			state = state.filter(chat => chat.chat_room !== action.data);
 			localStorage.message = JSON.stringify(state);
+			return state;
+		case READ_MESSAGE:
+			const chat_room = action.data;
+			state.forEach(chat => {
+				if (chat.chat_room === chat_room) { chat.read = false }
+			});
 			return state;
 		default:
 			return state;

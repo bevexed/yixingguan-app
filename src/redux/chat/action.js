@@ -2,7 +2,7 @@ import {
 	DELETE_CHAT,
 	// SEND_AUDIO,
 	// RECEIVE_AUDIO,
-	LOGIN_SUCCESS_CHAT,
+	LOGIN_SUCCESS_CHAT, READ_MESSAGE,
 	RECEIVE_IMG,
 	RECEIVE_TEXT_MESSAGE,
 	SEND_IMG,
@@ -294,6 +294,8 @@ export const dosendAudio = (img, chat_room, username) => {
 */
 
 export const deleteChat = chat_room => ({type: DELETE_CHAT, data: chat_room});
+
+export const readMessage = chat_room => ({type: READ_MESSAGE, data: chat_room});
 
 listen({});
 
