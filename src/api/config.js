@@ -5,7 +5,7 @@ const online = {
 		"redirect_uri": window.location.href,
 		"scope": "snsapi_userinfo"
 	},
-	host: 'http://admin.xingyiguan.cn'
+	host: 'http://admin.tianyue0571.cn'
 };
 
 const offline = {
