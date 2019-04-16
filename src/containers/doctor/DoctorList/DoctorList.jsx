@@ -72,7 +72,7 @@ class DoctorList extends Component {
 	getDoctor = (page) => {
 		const {city, locating_city, department} = this.state;
 		const params = {
-			locating_city: locating_city || '北京',
+			locating_city: locating_city || '上海',
 			page: page + 1,
 			city: city || null,
 			department: department || null
