@@ -61,6 +61,7 @@ export const open_chat = (user, pwd) => {
 			appKey: WebIM.config.appkey,
 			success(res) {
 				console.log('auth', res);
+				sessionStorage.open_chat = 'open';
 				dispatch(loginSuccessChat(res));
 			},
 			error(err) {

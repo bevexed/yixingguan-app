@@ -9,6 +9,7 @@ import Main from "../Main/Main";
 import Login from '../Login/Login'
 
 import {getUser} from "../../../redux/user/action";
+import {open_chat} from "../../../redux/chat/action";
 
 import RegisterIndex from "../Register/RegisterIndex";
 
@@ -44,7 +45,7 @@ class Intercept extends Component {
 						sessionStorage.token = res.data;
 						const token = sessionStorage.token;
 						this.setState({token});
-						this.props.getUser(token);
+						this.props.getUser(token, this.props.open_chat);
 					} else {
 						// Toast.fail(res.message, 3, () => {
 						setTimeout(() => {
@@ -60,7 +61,7 @@ class Intercept extends Component {
 			if (sessionStorage.token) {
 				const token = sessionStorage.token;
 				this.setState({token});
-				this.props.getUser(token);
+				this.props.getUser(token, this.props.open_chat);
 			}
 		}
 	}
@@ -93,5 +94,6 @@ export default connect(
 	mapStateToProps,
 	{
 		getUser,
+		open_chat
 	}
 )(Intercept);

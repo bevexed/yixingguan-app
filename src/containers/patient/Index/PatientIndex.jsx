@@ -274,15 +274,17 @@ class PatientIndex extends Component {
 					className='qrcode-react'
 					onClick={() => this.setState({code_show: false})}
 				>
-					<p>客服</p>
-					<Qrcode
-						value={code}
-						renderAs='svg'
-						size={200}
-						bgColor='#FFFFFF'
-						fgColor={'#244b3f'}
-						level='H'
-					/>
+					<div className='qrcode-padding'>
+						<p>客服</p>
+						<Qrcode
+							value={code}
+							renderAs='svg'
+							size={200}
+							bgColor='#FFFFFF'
+							fgColor={'#244b3f'}
+							level='H'
+						/>
+					</div>
 				</div>
 				}
 

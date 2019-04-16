@@ -24,14 +24,16 @@ import Cookies from 'js-cookie';
 
 const receiveDoctorDetails = doctor => ({type: RECEIVE_DOCTOR_DETAILS, data: doctor});
 
-export const getDoctorDetail = (doctorId,history) => {
+export const getDoctorDetail = (doctorId, history) => {
 	return async dispatch => {
 		reqDoctorDetail(doctorId).then(
 			res => {
 				if (res.code === 1) {
 					dispatch(receiveDoctorDetails(res.data))
-				}else {
-					Toast.fail(res.message,1,()=>{history.replace('/patient-index')})
+				} else {
+					Toast.fail(res.message, 1, () => {
+						history.replace('/patient-index')
+					})
 				}
 			}
 		)
@@ -93,6 +95,8 @@ export const getUser = (token, callbacks) => {
 			res => {
 				if (res.code === 1) {
 					let identity = res.data.identity;
+					sessionStorage.username = res.data.username;
+					sessionStorage.password = res.data.password;
 					if (identity === 1 || identity === 2) {
 						identity = identity === 1 ? 'patient' : 'doctor';
 						// identity 有值 ，不在进行登录验证
@@ -101,9 +105,9 @@ export const getUser = (token, callbacks) => {
 					} else {
 						sessionStorage.removeItem('already_get_user');
 					}
-					if (callbacks) {
+					if (callbacks && sessionStorage.open_chat !== 'open') {
 						// 聊天
-						callbacks.map(callback => callback(token))
+						callbacks(res.data.username, res.data.password)
 					}
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));

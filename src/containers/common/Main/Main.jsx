@@ -33,7 +33,7 @@ class Main extends Component {
 
 	componentWillReceiveProps(nextProps, nextContext) {
 		const {username, password} = nextProps.user;
-		if (sessionStorage.already_get_user) {
+		if (sessionStorage.already_get_user && sessionStorage.open_chat !== 'open') {
 			this.props.open_chat(username, password)
 		}
 	}
