@@ -1,0 +1,42 @@
+@import "../../../static/common";
+
+.qrcode-react {
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99998;
+	background-image: url("./imgs/2.png");
+	background-color: @themeColor;
+	background-size: 100vw;
+	background-repeat: no-repeat;
+	text-align: center;
+
+
+	@margin-top: 8%;
+
+	div.qrcode-padding {
+		padding-top: @gold - @margin-top;
+
+		p {
+			text-align: center;
+		}
+
+		p.share-content {
+			font-size: 20px;
+			color: @themeColor;
+			margin-bottom: 20px;
+			margin-top: 10px;
+		}
+
+		p.content {
+			margin-top: 10px;
+			font-size: 16px;
+			color: #000000;
+		}
+
+		svg {
+			margin-top: @margin-top;
+		}
+	}
+}

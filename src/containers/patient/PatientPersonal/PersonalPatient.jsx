@@ -8,7 +8,6 @@ import {
 	List,
 	WhiteSpace
 } from "antd-mobile";
-import Qrcode from "qrcode.react";
 
 
 const Header = Card.Header;
@@ -56,30 +55,17 @@ class PersonalPatient extends Component {
 				<WhiteSpace size={'lg'}/>
 
 				<List
-					onClick={() => this.setState({code_show: true})}
+					onClick={() => {
+						localStorage.shareUrl = window.location.origin;
+						localStorage.shareContent = '扫码即可邀请好友哦！';
+						this.props.history.push('/qrcode')
+					}}
 				>
 					<Item
 						// extra={<Badge dot/>}
 						arrow={'horizontal'}
 					>邀请朋友</Item>
 				</List>
-
-				{code_show ?
-					<div
-						className='qrcode-react'
-						onClick={() => this.setState({code_show: false})}
-					>
-						<p>邀请朋友</p>
-						<Qrcode
-							value={'http://' + window.location.host}
-							renderAs='svg'
-							size={200}
-							bgColor='#FFFFFF'
-							fgColor={'#162c25'}
-							level='H'
-						/>
-					</div> : null
-				}
 			</div>
 
 		);

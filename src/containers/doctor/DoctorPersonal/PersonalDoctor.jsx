@@ -8,8 +8,6 @@ import {
 	Toast
 } from "antd-mobile";
 
-import Qrcode from 'qrcode.react';
-
 import './PersonalDoctor.less'
 
 const grid = [
@@ -43,29 +41,26 @@ const grid = [
 	{
 		icon: 6,
 		name: '邀请同行',
-		onClick: (el, is_audit, only_no) =>
-			el.setState({
-				code_show: true, title: '邀请同行',
-				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 1
-			})
+		onClick: (el, is_audit, only_no) => {
+			localStorage.shareContent = '扫码即可邀请同行哦!';
+			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 1
+		}
 	},
 	{
 		icon: 12,
 		name: '邀请助手',
-		onClick: (el, is_audit, only_no) =>
-			el.setState({
-				code_show: true, title: '邀请助手',
-				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 2
-			})
+		onClick: (el, is_audit, only_no) => {
+			localStorage.shareContent = '扫码即可邀请助手哦！';
+			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 2
+		}
 	},
 	{
 		icon: 14,
 		name: '邀请病人',
-		onClick: (el, is_audit, only_no) =>
-			el.setState({
-				code_show: true, title: '邀请病人',
-				uri: 'http://' + window.location.host + '?only_no=' + only_no + '&assistant=' + 3 + '#/doctor-chat-list'
-			})
+		onClick: (el, is_audit, only_no) => {
+			localStorage.shareContent = '扫码即可邀请病人哦！';
+			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 3 + '#/doctor-chat-list'
+		}
 	}
 ];
 
@@ -155,22 +150,6 @@ class MyComponent extends Component {
 				<WhiteSpace/>
 				<WhiteSpace/>
 				<WhiteSpace/>
-				{code_show &&
-				<div
-					className='qrcode-react'
-					onClick={() => this.setState({code_show: false})}
-				>
-					<p>{title}</p>
-					<Qrcode
-						value={uri}
-						renderAs='svg'
-						size={200}
-						bgColor='#FFFFFF'
-						fgColor={'#244b3f'}
-						level='H'
-					/>
-				</div>
-				}
 			</div>
 		);
 	}

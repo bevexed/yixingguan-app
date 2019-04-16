@@ -279,7 +279,7 @@ class OrderDoctor extends Component {
 						/>
 					</div>
 				</List>
-				<div className='detail'><a onClick={this.toDetail} download='预约就医服务细则.doc'>预约前请先查《看就医服务细则》</a></div>
+				<div className='detail'><a onClick={this.toDetail} download='预约就医服务细则.doc'>预约前请先查看《就医服务细则》</a></div>
 				<div style={{height: 50}}>{null}</div>
 				<div className='footer'>
 					<span
