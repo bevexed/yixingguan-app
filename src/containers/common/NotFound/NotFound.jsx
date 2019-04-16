@@ -16,16 +16,16 @@ class NotFound extends Component {
 
 		return (
 			<div className='not-found'>
-				<p>
-					404 <br/>
-					网页走丢了
-				</p>
-				{button_show ?
-					<div
-						className='button'
-						onClick={() => this.props.history.replace('/')}>回到首页
-					</div> : null
-				}
+				{/*<p>*/}
+				{/*	404 <br/>*/}
+				{/*	网页走丢了*/}
+				{/*</p>*/}
+				{/*{button_show ?*/}
+				{/*	<div*/}
+				{/*		className='button'*/}
+				{/*		onClick={() => this.props.history.replace('/')}>回到首页*/}
+				{/*	</div> : null*/}
+				{/*}*/}
 			</div>
 		);
 	}
