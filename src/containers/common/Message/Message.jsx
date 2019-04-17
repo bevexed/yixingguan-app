@@ -169,7 +169,8 @@ class Message extends Component {
 					{msg.map(chat =>
 						<div key={chat.time}>
 							{/*时间显示*/}
-							{chat.time && <span className='chat-time tips-alert'>{chat.time}</span>}
+							{chat.time && <span className='chat-time tips-alert'>{new Date(chat.time).toLocaleString()}</span>}
+							<br/>
 							{/*打赏提醒*/}
 							{identity === 'patient' && doctorBackInformationTime.includes(chat.time) ? <span className='tips-alert'>如果您觉得医生的回复对您有帮助，请赞赏一下吧！</span> : null}
 							{/*聊天内容*/}

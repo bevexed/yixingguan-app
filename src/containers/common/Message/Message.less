@@ -1,6 +1,10 @@
 @import "../../../static/common";
 
 .message {
+	position: relative;
+	z-index: -2;
+	background: rgb(248, 248, 248);
+
 	* {
 		transition: all .6s ease;
 	}
@@ -23,7 +27,7 @@
 		}
 
 		.chat-time {
-			background-color: #999999;
+			background-color: #d8d8d8;
 			color: #000;
 		}
 
@@ -31,17 +35,6 @@
 			line-height: 1.5;
 			font-size: 16px;
 			color: white;
-		}
-
-		.message-data {
-			text-align: left;
-			//position: relative;
-			background-color: #68e3ce;
-			color: white;
-			padding: 8Px;
-			max-width: 70%;
-			border-radius: 6Px;
-			word-break: break-all;
 		}
 
 		.message-img {
@@ -59,6 +52,7 @@
 				height: auto
 			}
 		}
+
 
 		.big-img-back {
 			position: fixed;
@@ -107,6 +101,18 @@
 				transform: rotate(45deg);
 				z-index: -1;
 			}
+
+			.message-data {
+				position: relative;
+				text-align: left;
+				//position: relative;
+				background-color: #68e3ce;
+				color: white;
+				padding: 8Px;
+				max-width: 70%;
+				border-radius: 6Px;
+				word-break: break-all;
+			}
 		}
 
 		.from {
@@ -124,6 +130,18 @@
 				background-color: white;
 				transform: rotate(45deg);
 				z-index: -1;
+			}
+
+			.message-data {
+				position: relative;
+				text-align: left;
+				//position: relative;
+				background-color: white;
+				color: black;
+				padding: 8Px;
+				max-width: 70%;
+				border-radius: 6Px;
+				word-break: break-all;
 			}
 		}
 	}
