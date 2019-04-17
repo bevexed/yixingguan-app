@@ -53,10 +53,7 @@ class Published extends Component {
 							size={'md'}
 							color={'#000'}
 							style={{transform: 'rotate(45deg)'}}
-							onClick={() => {
-								let identity = window.sessionStorage.identity;
-								this.props.history.push(identity === 'patient' ? '/' : '/publish')
-							}}
+							onClick={() => this.props.history.push('/publish')}
 						/>}
 				>
 					发布图文

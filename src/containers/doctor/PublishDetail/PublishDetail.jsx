@@ -37,7 +37,11 @@ class PublishDetail extends Component {
 					mode="light"
 					className={'nav-bar'}
 					icon={<Icon type="left" color={'#000'}/>}
-					onLeftClick={() => this.props.history.push('/published')}
+					onLeftClick={() => {
+						let identity = window.sessionStorage.identity;
+						console.log(identity);
+						this.props.history.push(identity === 'patient' ? '/patient-index' : '/publish')
+					}}
 				>文章详情</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -63,7 +67,7 @@ class PublishDetail extends Component {
 
 					<WingBlank>
 						<div className='img'>
-							{picture.map((item,key) =>
+							{picture.map((item, key) =>
 								<img key={key} src={item} alt=""/>)
 							}
 						</div>
