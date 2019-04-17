@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Published.less'
-import {NavBar, Icon, WhiteSpace, WingBlank} from "antd-mobile";
+import {NavBar, Icon, WhiteSpace, WingBlank, Toast} from "antd-mobile";
 import LoadingMore from '../../../components/LoadIngMore/LoadingMore'
 import {reqShareLists} from "../../../api/doctor";
 import {contactObject} from "../../../utils";
@@ -30,6 +30,8 @@ class Published extends Component {
 								total: res.data.total
 							}
 						)
+					} else {
+						Toast.fail(res.message, 3, () => window.location.href = window.location.origin)
 					}
 				}
 			)
@@ -51,7 +53,10 @@ class Published extends Component {
 							size={'md'}
 							color={'#000'}
 							style={{transform: 'rotate(45deg)'}}
-							onClick={() => this.props.history.push('/publish')}
+							onClick={() => {
+								let identity = window.sessionStorage.identity;
+								this.props.history.push(identity === 'patient' ? '/' : '/publish')
+							}}
 						/>}
 				>
 					发布图文
