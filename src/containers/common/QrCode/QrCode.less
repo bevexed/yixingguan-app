@@ -3,14 +3,17 @@
 .qrcode-react {
 	position: absolute;
 	top: 0;
-	width: 100vw;
+	width: 100%;
+	min-width: 375px;
+	max-width: @maxWrapWith;
 	height: 100vh;
 	z-index: 99998;
 	background-image: url("./imgs/2.png");
-	background-color: @themeColor;
-	background-size: 100vw;
+	background-color: #68e3ce;
+	background-size: 100%;
 	background-repeat: no-repeat;
 	text-align: center;
+	margin: auto;
 
 
 	@margin-top: 8%;
@@ -37,7 +40,7 @@
 
 		.share-img {
 			width: 60%;
-			margin-top: 10%;
+			margin-top: 5%;
 
 		}
 

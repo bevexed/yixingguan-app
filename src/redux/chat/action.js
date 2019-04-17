@@ -151,10 +151,12 @@ export const listen = ({receiveTextMessage, receiveImg}) => {
 			// 	window.location.reload(true)
 			// });
 			console.log('掉线');
+			alert('对不起，您与服务器已断开连接，请重新登录')
 		},                 //本机网络掉线
 		onError(message) {
 			// Toast.fail('链接错误', 1);
 			console.log('onError:' + message);
+			alert('对不起，您与服务器已断开连接，请重新登录')
 		},          //失败回调
 		onBlacklistUpdate(list) {       //黑名单变动
 			// 查询黑名单，将好友拉黑，将好友从黑名单移除都会回调这个函数，list则是黑名单现有的所有好友信息

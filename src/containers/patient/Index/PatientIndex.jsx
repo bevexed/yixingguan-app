@@ -10,7 +10,7 @@ import {
 	ActivityIndicator,
 	Button,
 	Icon,
-	List
+	List, NavBar, WhiteSpace
 } from "antd-mobile";
 
 import DocList from '../../../components/DocList/DocList'
@@ -270,10 +270,15 @@ class PatientIndex extends Component {
 				</div>
 
 				{code_show &&
-				<div
-					className='qrcode-react'
-					onClick={() => this.setState({code_show: false})}
-				>
+				<div className='qrcode-react'>
+					<NavBar
+						mode="light"
+						icon={<Icon type="left" color={'#000'} size={'md'}/>}
+						onLeftClick={() => this.setState({code_show: false})}
+					>
+						联系客服
+					</NavBar>
+
 					<div className='qrcode-padding'>
 						<p className='share-content'>扫描即可联系客服！</p>
 						<p className='content'>点击右上角按钮即可分享</p>
