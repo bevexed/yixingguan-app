@@ -276,14 +276,7 @@ class PatientIndex extends Component {
 				>
 					<div className='qrcode-padding'>
 						<p className='share-content'>扫描即可联系客服</p>
-						<Qrcode
-							value={'联系客服'}
-							renderAs='svg'
-							size={200}
-							bgColor='#FFFFFF'
-							fgColor={'#162c25'}
-							level='H'
-						/>
+						<img src={code} alt=""/>
 						}
 					</div>
 				</div>
