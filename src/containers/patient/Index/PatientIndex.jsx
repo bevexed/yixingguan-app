@@ -275,9 +275,10 @@ class PatientIndex extends Component {
 					onClick={() => this.setState({code_show: false})}
 				>
 					<div className='qrcode-padding'>
-						<p className='share-content'>扫描即可联系客服</p>
-						<img src={code} alt=""/>
-						}
+						<p className='share-content'>扫描即可联系客服！</p>
+						<p className='content'>点击右上角按钮即可分享</p>
+						<p className='content'>扫描或长按关注</p>
+						<img className='share-img' src={code} alt=""/>
 					</div>
 				</div>
 				}
