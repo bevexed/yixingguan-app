@@ -7,7 +7,7 @@ class RegisterIndex extends Component {
 		return (
 			<div className={'register'}>
 				<span className={'title'}>
-					为一千二百万患者提供问诊服务
+					为您的健康保驾护航！
 				</span>
 				<img className={'background'} src={require('./img/78-01@3x.png')} alt=""/>
 				<div

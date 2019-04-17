@@ -92,7 +92,7 @@ class Tips extends Component {
 					icon={<Icon type="left" color={'#000'} size={'md'}/>}
 					onLeftClick={() => this.props.history.goBack()}
 				>
-					打赏他
+					赞赏他（她）
 				</NavBar>
 				<WhiteSpace/>
 				<WhiteSpace/>
@@ -101,7 +101,7 @@ class Tips extends Component {
 				<WhiteSpace/>
 
 				<List
-					renderHeader={() => '打赏金额'}
+					renderHeader={() => '赞赏金额'}
 					// renderFooter={() => '您与李薇薇医生共聊了18分钟'}
 				>
 					<Item
@@ -119,7 +119,7 @@ class Tips extends Component {
 								onChange={val => this.setState({money: val})}
 							/>}
 					>
-						打赏金额
+						赞赏金额
 					</Item>
 
 
