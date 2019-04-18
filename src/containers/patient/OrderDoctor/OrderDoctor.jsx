@@ -16,7 +16,9 @@ import {
 	InputItem,
 	TextareaItem,
 	ImagePicker,
-	NavBar, Toast
+	NavBar,
+	Radio,
+	Toast
 } from "antd-mobile";
 import {reqSendMessage} from "../../../api";
 import {GetQueryString} from "../../../utils";
@@ -35,7 +37,8 @@ class OrderDoctor extends Component {
 		symptoms_described: '',
 		name: '',
 
-		sendable: true
+		sendable: true,
+		checked: false,
 	};
 
 	componentDidMount() {
@@ -104,7 +107,7 @@ class OrderDoctor extends Component {
 	orderDoctor = () => {
 		let only_no = GetQueryString('only_no');
 
-		const {name, phone, auth_code, symptoms_described, files} = this.state;
+		const {name, phone, auth_code, symptoms_described, files, checked} = this.state;
 		const inspection_report = files.map(img => img.url);
 		const patientData = {
 			only_no,
@@ -138,6 +141,11 @@ class OrderDoctor extends Component {
 			return
 		}
 
+		if (!checked) {
+			Toast.fail('轻阅读《就医服务细则》', 1);
+			return
+		}
+
 		subscribes({...patientData}).then(
 			res => {
 				if (res.code === 1) {
@@ -150,12 +158,12 @@ class OrderDoctor extends Component {
 	};
 
 	toDetail = () => {
-		this.props.history.push('/DOC')
+		this.props.history.push('/DOC/reqServiceDetails')
 	};
 
 
 	render() {
-		const {files, sendable} = this.state;
+		const {files, sendable, checked} = this.state;
 		const {doctorDetail} = this.props;
 		return (
 			<div className={'order-doc'}>
@@ -279,7 +287,9 @@ class OrderDoctor extends Component {
 						/>
 					</div>
 				</List>
-				<div className='detail'><a onClick={this.toDetail} download='预约就医服务细则.doc'>预约前请先查看《就医服务细则》</a></div>
+				<div className='detail'>
+					<Radio className="my-radio" checked={checked} onChange={() => this.setState({checked: !checked})}>我已阅读<a onClick={this.toDetail}>《就医服务细则》</a>并同意</Radio>
+				</div>
 				<div style={{height: 50}}>{null}</div>
 				<div className='footer'>
 					<span

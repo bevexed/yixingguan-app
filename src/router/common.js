@@ -28,7 +28,7 @@ export const commonRoute = [
 		component: QrCode
 	},
 	{
-		pathname: '/DOC',
+		pathname: '/DOC/:doc_name',
 		component: DOC
 	}
 ];

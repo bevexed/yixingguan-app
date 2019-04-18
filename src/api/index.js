@@ -44,3 +44,9 @@ export const reqWxPay = ({chat_room, money}) => ajax('/api/pay/wx_pay', {chat_ro
 
 // 获取logo
 export const reqLogo = () => ajax('/api/get_logo');
+
+// 获取软件许可及服务协议
+export const reqSoftwareLicense = () => ajax('/api/software_license');
+
+// 获取预约就医服务细则
+export const reqServiceDetails = () => ajax('/api/service_details');
