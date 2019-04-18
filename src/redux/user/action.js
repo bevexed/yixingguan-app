@@ -17,9 +17,6 @@ import {
 
 
 import {Toast} from "antd-mobile";
-
-import Cookies from 'js-cookie';
-
 // order-doc 医生详情
 
 const receiveDoctorDetails = doctor => ({type: RECEIVE_DOCTOR_DETAILS, data: doctor});
@@ -112,7 +109,6 @@ export const getUser = (token, callbacks) => {
 					let userData = {...res.data, identity};
 					dispatch(authSuccess(userData));
 				} else {
-					Cookies.remove('token');
 					window.location.reload(true);
 					dispatch(errorMsg(res.message));
 				}
