@@ -17,7 +17,7 @@ import {
 	TextareaItem,
 	ImagePicker,
 	NavBar,
-	Radio,
+	Checkbox,
 	Toast
 } from "antd-mobile";
 import {reqSendMessage} from "../../../api";
@@ -157,13 +157,9 @@ class OrderDoctor extends Component {
 		)
 	};
 
-	toDetail = () => {
-		this.props.history.push('/DOC/reqServiceDetails')
-	};
-
-
 	render() {
-		const {files, sendable, checked} = this.state;
+		let {files, sendable, checked} = this.state;
+		console.log(checked);
 		const {doctorDetail} = this.props;
 		return (
 			<div className={'order-doc'}>
@@ -288,7 +284,13 @@ class OrderDoctor extends Component {
 					</div>
 				</List>
 				<div className='detail'>
-					<Radio className="my-radio" checked={checked} onChange={() => this.setState({checked: !checked})}>我已阅读<a onClick={this.toDetail}>《就医服务细则》</a>并同意</Radio>
+					<Checkbox
+						className="my-radio"
+						checked={checked}
+						onChange={e => this.setState({checked: e.target.checked})}
+					>
+						我已阅读并同意 <a onClick={() => this.props.history.push('/DOC/reqServiceDetails')}>《预约就医服务细则》</a>
+					</Checkbox>
 				</div>
 				<div style={{height: 50}}>{null}</div>
 				<div className='footer'>

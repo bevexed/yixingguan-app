@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import PropTypes from 'prop-types';
-import {Result} from "antd-mobile";
+import {Checkbox, Result, Toast} from "antd-mobile";
 
 import {reqArticleBrief, reqLogo} from "../../../api";
 
@@ -10,7 +10,8 @@ import './Author.less'
 class Author extends Component {
 	state = {
 		content: '',
-		src: ''
+		src: '',
+		checked: false
 	};
 
 	static propTypes = {
@@ -34,14 +35,20 @@ class Author extends Component {
 	}
 
 	render() {
-		const {content, src} = this.state;
+		const {content, src, checked} = this.state;
 		return (
 			<div className='author'>
 				<Result
 					img={<img src={src} alt=""/>}
 					title={<div
 						className={'button'}
-						onClick={() => this.props.Author()}
+						onClick={() => {
+							if (!checked) {
+								Toast.fail('请先阅读《软件许可及服务协议》');
+								return
+							}
+							this.props.Author()
+						}}
 					>登录/注册</div>}
 				/>
 
@@ -49,6 +56,16 @@ class Author extends Component {
 					<p className='content' dangerouslySetInnerHTML={{__html: content}}>
 						{/*{content}*/}
 					</p>
+				</div>
+
+				<div className='detail'>
+					<Checkbox
+						className="my-radio"
+						checked={checked}
+						onChange={e => this.setState({checked: e.target.checked})}
+					>
+						我已阅读并同意 <a onClick={() => this.props.history.push('/DOC/reqSoftwareLicense')}>《软件许可及服务协议》</a>
+					</Checkbox>
 				</div>
 			</div>
 		);

@@ -1,3 +1,5 @@
+@import "../../../static/common";
+
 .author {
 	height: 100VH;
 	background-color: white;
@@ -18,6 +20,7 @@
 	.wrap {
 		background-color: #f8f8f8;
 		padding: 20px;
+
 		.content {
 			background-color: white;
 			padding: 8Px;
@@ -26,6 +29,28 @@
 			overflow: scroll;
 			font-size: 14px;
 			line-height: 1.5;
+		}
+	}
+
+
+	.detail {
+		@height: 60Px;
+		line-height: @height;
+		height: @height;
+		font-size: 16px;
+		text-align: center;
+		padding: 4px 0;
+		color: @themeColor;
+
+		.my-radio .am-radio {
+			padding: 2.5px;
+			border: 1px solid #ccc;
+			border-radius: 50%;
+			margin-right: 5px;
+		}
+
+		a {
+			color: skyblue;
 		}
 	}
 }

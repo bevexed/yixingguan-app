@@ -59,6 +59,7 @@ export const chatMsg = (state = initMessage, action) => {
 			state.forEach(chat => {
 				if (chat.chat_room === chat_room) { chat.read = true }
 			});
+			localStorage.message = JSON.stringify(state);
 			return state;
 		default:
 			return state;
