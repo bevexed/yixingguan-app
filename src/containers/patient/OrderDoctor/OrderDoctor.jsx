@@ -289,7 +289,7 @@ class OrderDoctor extends Component {
 						checked={checked}
 						onChange={e => this.setState({checked: e.target.checked})}
 					>
-						我已阅读并同意 <a onClick={() => this.props.history.push('/DOC/reqServiceDetails')}>《预约就医服务细则》</a>
+						&nbsp;我已阅读并同意 <a onClick={() => this.props.history.push('/DOC/reqServiceDetails')}>《预约就医服务细则》</a>
 					</Checkbox>
 				</div>
 				<div style={{height: 50}}>{null}</div>

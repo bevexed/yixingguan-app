@@ -22,7 +22,10 @@ class Doc extends Component {
 	render() {
 		const {content} = this.state;
 		return (
-			<div className='doc-content' dangerouslySetInnerHTML={{__html: content}}>
+			<div className='doc-content'>
+				<div dangerouslySetInnerHTML={{__html: content}}>
+
+				</div>
 
 			</div>
 		);

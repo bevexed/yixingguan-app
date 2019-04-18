@@ -16,6 +16,8 @@ import RegisterIndex from "../Register/RegisterIndex";
 import {GetQueryString} from "../../../utils";
 import {reqCode, reqToken} from "../../../api";
 import Loading from "../../../components/Loading/Loading";
+import DOC from '../../../containers/common/DOC/DOC'
+
 
 class Intercept extends Component {
 	state = {
@@ -81,6 +83,7 @@ class Intercept extends Component {
 				<Switch>
 					<Route exact path='/' component={RegisterIndex}/>
 					<Route exact path='/login' component={Login}/>
+					<Route exact path='/DOC/:doc_name' component={DOC}/>
 					<Route component={Main}/>
 				</Switch>
 			</div>
