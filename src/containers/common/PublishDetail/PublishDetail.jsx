@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, List, NavBar, WhiteSpace, WingBlank} from "antd-mobile";
+import {Icon, List, NavBar, WhiteSpace, WingBlank} from "antd-mobile/lib/index";
 import './PublishDetail.less'
 import {reqShareDetail} from "../../../api/doctor";
 

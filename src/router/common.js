@@ -1,8 +1,9 @@
 import Message from "../containers/common/Message/Message";
 import Avatar from "../containers/doctor/Avatar/Avatar";
 import SearchResult from "../containers/common/SearchResult/SearchResult";
-import PublishDetail from "../containers/doctor/PublishDetail/PublishDetail";
+import PublishDetail from "../containers/common/PublishDetail/PublishDetail";
 import QrCode from '../containers/common/QrCode/QrCode'
+import DOC from '../containers/common/DOC/DOC'
 
 
 export const commonRoute = [
@@ -25,6 +26,10 @@ export const commonRoute = [
 	{
 		pathname: '/qrcode',
 		component: QrCode
+	},
+	{
+		pathname: '/DOC',
+		component: DOC
 	}
 ];
 
