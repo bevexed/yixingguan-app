@@ -30,6 +30,7 @@ class Intercept extends Component {
 		// 第一次进入时，从地址中截取 only_no 和 assistant 参数
 		let only_no = GetQueryString('only_no');
 		let assistant = GetQueryString('assistant');
+
 		// 第一次进入肯定没有 token
 		if (!sessionStorage.token) {
 			// 微信授权邀请 code 入口 将 only_no 和 assistant 通过 state 传递
@@ -38,9 +39,12 @@ class Intercept extends Component {
 				reqCode(only_no + ',' + assistant);
 				return
 			}
+
+			console.log('code', code);
 			// 第二次 进入时 获取token 并且 接收 授权
 			reqToken(code, ...state.split(',')).then(
 				res => {
+					console.log('reqToken', res);
 					if (res.code === 1) {
 						sessionStorage.token = res.data;
 						const token = sessionStorage.token;

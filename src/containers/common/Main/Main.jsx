@@ -58,6 +58,8 @@ class Main extends Component {
 		 */
 
 		if (!sessionStorage.already_get_user) {
+			// 为 文档页面 开启特权
+			if (this.props.location.pathname === '/DOC/reqSoftwareLicense') return <Redirect to={'/DOC/reqSoftwareLicense'}/>;
 			if (!phone || !identity) {
 				return <Redirect to={'/login'}/>
 			}

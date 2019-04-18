@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from "react-router-dom";
 
 import PropTypes from 'prop-types';
 import {Checkbox, Result, Toast} from "antd-mobile";
@@ -52,25 +53,34 @@ class Author extends Component {
 					>登录/注册</div>}
 				/>
 
+				<div className='detail'>
+					<Checkbox
+						className="my-radio"
+						checked={checked}
+						onChange={e => {
+							this.setState({checked: e.target.checked})
+						}}
+					>
+						&nbsp;我已阅读并同意
+						<a onClick={e => {
+							e.cancelBubble = true;
+							this.props.history.push('/DOC/reqSoftwareLicense')
+						}}
+						>《软件许可及服务协议》</a>
+					</Checkbox>
+				</div>
+
 				<div className={'wrap'}>
 					<p className='content' dangerouslySetInnerHTML={{__html: content}}>
 						{/*{content}*/}
 					</p>
 				</div>
 
-				<div className='detail'>
-					<Checkbox
-						className="my-radio"
-						checked={checked}
-						onChange={e => this.setState({checked: e.target.checked})}
-					>
-						我已阅读并同意 <a onClick={() => this.props.history.push('/DOC/reqSoftwareLicense')}>《软件许可及服务协议》</a>
-					</Checkbox>
-				</div>
 			</div>
 		);
 	}
 }
 
-export default Author;
+export default withRouter(Author);
+
 
