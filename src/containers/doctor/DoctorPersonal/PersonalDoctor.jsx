@@ -44,7 +44,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) => {
 			localStorage.shareContent = '扫码即可邀请同行哦!';
 			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 1;
-			el.props.history.push('/qrcode')
+			el.props.history.push('/qrcode/' + localStorage.shareContent + ',' + encodeURIComponent(window.localStorage.shareUrl))
 		}
 	},
 	{
@@ -53,7 +53,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) => {
 			localStorage.shareContent = '扫码即可邀请助手哦！';
 			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 2;
-			el.props.history.push('/qrcode')
+			el.props.history.push('/qrcode/' + localStorage.shareContent + ',' + encodeURIComponent(window.localStorage.shareUrl))
 		}
 	},
 	{
@@ -62,7 +62,7 @@ const grid = [
 		onClick: (el, is_audit, only_no) => {
 			localStorage.shareContent = '扫码即可邀请病人哦！';
 			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 3 + '#/doctor-chat-list';
-			el.props.history.push('/qrcode')
+			el.props.history.push('/qrcode/' + localStorage.shareContent + ',' + encodeURIComponent(window.localStorage.shareUrl))
 		}
 	}
 ];

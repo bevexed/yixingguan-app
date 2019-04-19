@@ -24,7 +24,7 @@ export const commonRoute = [
 		component: PublishDetail
 	},
 	{
-		pathname: '/qrcode',
+		pathname: '/qrcode/:state',
 		component: QrCode
 	},
 	{
