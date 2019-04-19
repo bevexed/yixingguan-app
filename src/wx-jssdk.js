@@ -62,3 +62,20 @@ export const wxPay = ({chat_room, money, history}) => {
 			}
 		)
 };
+
+export const wxShare = ({title, desc, link, imgUrl, type}) => {
+	wx.onMenuShareAppMessage({
+		title, // 分享标题
+		desc, // 分享描述
+		link, // 分享链接
+		imgUrl, // 分享图标
+		type, // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function (res) {
+			console.log('shareSuccess', res);
+		},
+		cancel: function () {
+			// 用户取消分享后执行的回调函数
+		}
+	})
+};

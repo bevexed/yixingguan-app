@@ -7,6 +7,7 @@ import store from './redux/store'
 import {HashRouter, Route, Switch} from "react-router-dom";
 
 import Intercept from './containers/common/RouterIntercept/Intercept'
+import qrCode from './containers/common/QrCode/QrCode'
 
 // mate 标签
 // require('./static/font');
@@ -33,6 +34,7 @@ class App extends Component {
 				<Provider store={store}>
 					<HashRouter forceRefresh={false} basename={'/'}>
 						<Switch>
+							<Route exact component={qrCode} path='/qrcode/:state'/>
 							<Route component={Intercept}/>
 						</Switch>
 					</HashRouter>
