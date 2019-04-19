@@ -12,7 +12,7 @@ class NotFound extends Component {
 	}
 
 	render() {
-		const {button_show} = this.state;
+		// const {button_show} = this.state;
 
 		return (
 			<div className='not-found'>

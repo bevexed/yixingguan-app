@@ -62,11 +62,11 @@ class Author extends Component {
 						}}
 					>
 						&nbsp;我已阅读并同意
-						<a onClick={e => {
+						<span onClick={e => {
 							e.cancelBubble = true;
 							this.props.history.push('/DOC/reqSoftwareLicense')
 						}}
-						>《软件许可及服务协议》</a>
+						>《软件许可及服务协议》</span>
 					</Checkbox>
 				</div>
 

@@ -50,3 +50,6 @@ export const reqSoftwareLicense = () => ajax('/api/software_license');
 
 // 获取预约就医服务细则
 export const reqServiceDetails = () => ajax('/api/service_details');
+
+// 获取分享二维码
+export const reqQrCode = url => ajax('/api/generateQRFromGoogle', {url}, 'GET');

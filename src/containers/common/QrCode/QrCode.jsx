@@ -4,11 +4,13 @@ import Qrcode from "qrcode.react";
 import './QrCode.less'
 import {getWxConfig, wxShare} from "../../../wx-jssdk";
 import {Toast} from "antd-mobile";
+import {reqQrCode} from "../../../api";
 
 class QrCode extends Component {
 	state = {
 		shareUrl: '',
-		shareContent: ''
+		shareContent: '',
+		url: ''
 	};
 
 	componentDidMount() {
@@ -16,8 +18,14 @@ class QrCode extends Component {
 		let shareUrl = decodeURIComponent(state.split(',')[1]);
 		let shareContent = decodeURIComponent(state.split(',')[0]);
 		console.log(state);
-		console.log(shareContent, decodeURIComponent(shareUrl));
+		console.log(shareContent, shareUrl);
 		this.setState({shareContent, shareUrl});
+
+		reqQrCode(shareUrl).then(
+			url => this.setState({url})
+		);
+
+		// 获取授权
 		getWxConfig();
 		setTimeout(() => wxShare({
 			title: '星医馆',
@@ -33,11 +41,11 @@ class QrCode extends Component {
 			Toast.fail('医生不能邀请自己哦！', 3);
 			return
 		}
-		window.location.href = shareUrl
+		window.location.assign(shareUrl)
 	};
 
 	render() {
-		const {shareContent, shareUrl} = this.state;
+		const {shareContent, shareUrl, url} = this.state;
 		return (
 			<div
 				className='qrcode-react'
@@ -45,16 +53,17 @@ class QrCode extends Component {
 				<div className='qrcode-padding'>
 					<p className='share-content'>{shareContent}</p>
 					<p className='content'>点击右上角按钮即可分享</p>
-					<p className='content'>扫描或<a onClick={() => this.doShare(shareUrl)}>点击</a>关注</p>
-					{shareUrl &&
-					<Qrcode
-						value={shareUrl}
-						renderAs='svg'
-						size={200}
-						bgColor='#FFFFFF'
-						fgColor={'#162c25'}
-						level='H'
-					/>
+					<p className='content'>扫描或<span onClick={() => this.doShare(shareUrl)}>点击</span>关注</p>
+					{
+						url ? <img className='share-img' src={url} alt=""/> :
+							<Qrcode
+								value={shareUrl}
+								renderAs='svg'
+								size={200}
+								bgColor='#FFFFFF'
+								fgColor={'#162c25'}
+								level='H'
+							/>
 					}
 				</div>
 			</div>

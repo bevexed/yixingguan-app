@@ -10,7 +10,8 @@ import {
 	ActivityIndicator,
 	Button,
 	Icon,
-	List, NavBar, WhiteSpace
+	List,
+	NavBar,
 } from "antd-mobile";
 
 import DocList from '../../../components/DocList/DocList'
@@ -25,7 +26,6 @@ import {reqGetQrCode} from "../../../api/patient";
 import {reqGetCity, reqGetDepartments} from "../../../api";
 import {reqBanner} from "../../../api/patient";
 import LoadingMore from "../../../components/LoadIngMore/LoadingMore";
-import Qrcode from "qrcode.react";
 
 const Item = List.Item;
 

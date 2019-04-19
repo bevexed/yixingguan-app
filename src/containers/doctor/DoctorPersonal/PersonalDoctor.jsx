@@ -111,14 +111,7 @@ const grid2 = [
 ];
 
 class MyComponent extends Component {
-	state = {
-		code_show: false,
-		uri: '',
-		title: ''
-	};
-
 	render() {
-		const {code_show, uri, title} = this.state;
 		const {is_audit, name, avatar, only_no, assistant} = this.props.user;
 
 		return (
