@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Qrcode from "qrcode.react";
 import './QrCode.less'
 import {getWxConfig, wxShare} from "../../../wx-jssdk";
+import {Toast} from "antd-mobile";
 
 class QrCode extends Component {
 	state = {
@@ -27,6 +28,14 @@ class QrCode extends Component {
 		}), 200);
 	}
 
+	doShare = (shareUrl) => {
+		if (sessionStorage.identity === 'doctor') {
+			Toast.fail('医生不能邀请自己哦！', 3);
+			return
+		}
+		window.location.href = shareUrl
+	};
+
 	render() {
 		const {shareContent, shareUrl} = this.state;
 		return (
@@ -36,7 +45,7 @@ class QrCode extends Component {
 				<div className='qrcode-padding'>
 					<p className='share-content'>{shareContent}</p>
 					<p className='content'>点击右上角按钮即可分享</p>
-					<p className='content'>扫描关注</p>
+					<p className='content'>扫描或<a onClick={() => this.doShare(shareUrl)}>点击</a>关注</p>
 					{shareUrl &&
 					<Qrcode
 						value={shareUrl}

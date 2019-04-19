@@ -21,7 +21,6 @@ class PersonalPatient extends Component {
 
 	render() {
 		const {user} = this.props;
-		const {code_show} = this.state;
 
 		return (
 			<div className={'personal-patient'}>
@@ -58,7 +57,8 @@ class PersonalPatient extends Component {
 					onClick={() => {
 						localStorage.shareUrl = window.location.origin;
 						localStorage.shareContent = '扫码即可邀请好友哦！';
-						this.props.history.push('/qrcode')
+						this.props.history.push('/qrcode/' + "%E6%89%AB%E7%A0%81%E5%8D%B3%E5%8F%AF%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B%E5%93%A6%EF%BC%81" + ',' + encodeURIComponent(window.localStorage.shareUrl))
+
 					}}
 				>
 					<Item
