@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 
 import './DoctorCompleteInformation.less'
 
-import config from '../../../../package.json'
-
 import {reqDoctorInformation} from "../../../api/doctor";
 
 import {

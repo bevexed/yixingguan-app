@@ -58,7 +58,7 @@ class RegisterPhone extends Component {
 	getCode = () => {
 
 		const {phone: mobile, sendable} = this.state;
-		const template_id_code = 'SMS_162110918';
+		const template_id_code = 'SMS_164150041';
 
 		if (!mobile || mobile.length < 11) {
 			Toast.fail('手机号格式有误', 1);

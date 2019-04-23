@@ -64,51 +64,58 @@ const grid = [
 			localStorage.shareUrl = window.location.origin + '?only_no=' + only_no + '&assistant=' + 3 + '#/doctor-chat-list';
 			el.props.history.push('/qrcode/' + "%E6%89%AB%E7%A0%81%E5%8D%B3%E5%8F%AF%E9%82%80%E8%AF%B7%E7%97%85%E4%BA%BA%E5%93%A6%EF%BC%81" + ',' + encodeURIComponent(window.localStorage.shareUrl))
 		}
+	},
+	{
+		icon: 16,
+		name: '修改个人资料',
+		onClick: (el) => {
+			el.props.history.push(`/doctor-complete-information`)
+		}
 	}
 ];
 
 const grid2 = [
-	{
-		icon: 7,
-		name: '统计',
-	},
-	{
-		icon: 8,
-		name: '我的助手'
-	},
-	{
-		icon: 9,
-		name: '钱包'
-	},
-	{
-		icon: 4,
-		name: '申请工作室',
-		onClick: (el, is) => {
-			if (is === 1) {
-				Toast.fail('正在审核中', 1);
-				return
+		{
+			icon: 7,
+			name: '统计',
+		},
+		{
+			icon: 8,
+			name: '我的助手'
+		},
+		{
+			icon: 9,
+			name: '钱包'
+		},
+		{
+			icon: 4,
+			name: '申请工作室',
+			onClick: (el, is) => {
+				if (is === 1) {
+					Toast.fail('正在审核中', 1);
+					return
+				}
+				el.props.history.push(`/doctor-complete-information`)
 			}
-			el.props.history.push(`/doctor-complete-information`)
-		}
-	},
-	{
-		icon: 10,
-		name: '发布图文'
-	},
-	{
-		icon: 11,
-		name: '邀请同行'
-	},
-	{
-		icon: 13,
-		name: '邀请助手'
-	},
-	{
-		icon: 15,
-		name: '邀请病人'
-	},
-
-];
+		},
+		{
+			icon: 10,
+			name: '发布图文'
+		},
+		{
+			icon: 11,
+			name: '邀请同行'
+		},
+		{
+			icon: 13,
+			name: '邀请助手'
+		},
+		{
+			icon: 15,
+			name: '邀请病人'
+		},
+	]
+;
 
 class MyComponent extends Component {
 	render() {
