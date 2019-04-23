@@ -30,3 +30,6 @@ export const reqGetPayAmounts = () => ajax('/api/pay/get_pay_amounts');
 
 // 客服二维码
 export const reqGetQrCode = () => ajax('/api/get_qr_code', {}, 'POST');
+
+// 患者端修改 病人 头像 和 名字
+export const reqUpdateInfo = ({name, avatar}) => ajax('api/patient/home/update_info', {name, avatar});

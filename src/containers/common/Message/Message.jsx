@@ -179,7 +179,13 @@ class Message extends Component {
 								<div className={username === chat.username ? 'to' : 'from'}>
 									<div className='avatar'>
 										{/*聊天头像*/}
-										<img onError={require('./img/biaoqing@3x.png')} src={chat.username === patientName ? users.filter(user => user.username === patientName)[0].avatar : users.filter(user => user.username === doctorName)[0].avatar} alt=""/>
+										<img
+											onError={require('./img/biaoqing@3x.png')}
+											src={chat.username === patientName ? users.filter(user => user.username === patientName)[0].avatar
+												: users.filter(user => user.username === doctorName)[0].avatar}
+											alt=""
+											onClick={() => this.props.history.push('/change-avatar-and-name')}
+										/>
 										{/*<span className='name'>{users.filter(user => user.username === chat.username)[0].name}</span>*/}
 									</div>
 									{chat.message ? <span className='message-data'>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Icon, ImagePicker, NavBar, WhiteSpace} from "antd-mobile";
+import {Icon, ImagePicker, NavBar, WhiteSpace} from "antd-mobile/lib/index";
 import {receiveUser} from "../../../redux/user/action";
 
 class Avatar extends Component {
@@ -51,7 +51,7 @@ class Avatar extends Component {
 				<WhiteSpace/>
 				<div
 					className={'button'}
-					onClick={() => this.props.history.replace('/doctor-complete-information')}
+					onClick={() => this.props.history.goBack()}
 				>确认
 				</div>
 				<WhiteSpace/>

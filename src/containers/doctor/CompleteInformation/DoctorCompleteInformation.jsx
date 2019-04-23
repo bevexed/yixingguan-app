@@ -40,7 +40,7 @@ class DoctorCompleteInformation extends Component {
 
 	state = {
 		data: null,
-		name: 123,
+		name: '',
 		sex: [1],
 		birth: null,
 		affiliated_hospital: '',
@@ -132,7 +132,7 @@ class DoctorCompleteInformation extends Component {
 						arrow='horizontal'
 						onClick={() => this.props.history.push('/avatar')}
 					>
-						<img className='avator' src={selectAvatar ? selectAvatar : config.img + avatar} alt="" onLoad={e => rotates(e)}/>
+						<img className='avator' src={selectAvatar ? selectAvatar : avatar} alt="" onLoad={e => rotates(e)}/>
 					</Item>
 				</List>
 
