@@ -136,8 +136,15 @@ class DoctorIndex extends Component {
 		return (
 			<div className="doctor-index">
 				<Result
-					img={<img className='avator' src={avatar} alt=""/>}
+					img={<img
+						className='avator'
+						src={avatar}
+						alt=""
+					/>}
 					title={<p className={'name'}>{name} <img className={'sex'} src={require('./img/male@3x.png')} alt=""/></p>}
+					onClick={() => {
+						this.props.history.push('/change-avatar-and-name')
+					}}
 				/>
 				<WhiteSpace/>
 

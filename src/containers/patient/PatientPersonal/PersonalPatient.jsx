@@ -43,6 +43,19 @@ class PersonalPatient extends Component {
 				<WhiteSpace size={'lg'}/>
 
 				<List
+					onClick={() => {
+						this.props.history.push('/change-avatar-and-name')
+					}}
+				>
+					<Item
+						// extra={<Badge dot/>}
+						arrow={'horizontal'}
+					>修改个人信息</Item>
+				</List>
+
+				<WhiteSpace size={'lg'}/>
+
+				<List
 					onClick={() => this.props.history.push('/record-list')}
 				>
 					<Item

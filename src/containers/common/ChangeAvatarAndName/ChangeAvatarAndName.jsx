@@ -36,7 +36,7 @@ class ChangeAvatarAndName extends Component {
 			return
 		}
 		if (identity === 'patient') {
-			reqUpdateInfo({avatar: avatar[0], name}).then(
+			reqUpdateInfo({...Information}).then(
 				res => {
 					if (res.code === 1) {
 						Toast.success('修改成功', 3, () => {
