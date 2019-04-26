@@ -11,7 +11,7 @@ import RecordList from "../containers/patient/RecordList/RecordList";
 export const patientNav = [
 	{
 		pathname: '/doctor-chat-list',
-		path: '医生',
+		path: '我的医生',
 		isActive: false,
 		icon: 'home.svg',
 		selectedIcon: 'home-s.svg',

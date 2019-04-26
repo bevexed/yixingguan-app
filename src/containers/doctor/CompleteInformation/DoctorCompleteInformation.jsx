@@ -60,34 +60,34 @@ class DoctorCompleteInformation extends Component {
 		const {birth, sex, affiliated_hospital, department, with_title, introduction} = this.state;
 		const DoctorInformation = {avatar, birth, sex: sex[0], affiliated_hospital, department, with_title, vocational_certificate, introduction};
 
-		if (!avatar.length) {
-			Toast.fail('请选择头像', 1);
-			return
-		}
-		if (!birth) {
-			Toast.fail('请选择出生年月日', 1);
-			return
-		}
-		if (!affiliated_hospital) {
-			Toast.fail('请填写所属医院', 1);
-			return
-		}
-		if (!department) {
-			Toast.fail('请填写所属科室', 1);
-			return
-		}
-		if (!with_title) {
-			Toast.fail('请填写职称', 1);
-			return
-		}
-		if (!vocational_certificate.length) {
-			Toast.fail('请上传职业证书', 1);
-			return
-		}
-		if (!introduction) {
-			Toast.fail('请填写自我描述', 1);
-			return
-		}
+		// if (!avatar.length) {
+		// 	Toast.fail('请选择头像', 1);
+		// 	return
+		// }
+		// if (!birth) {
+		// 	Toast.fail('请选择出生年月日', 1);
+		// 	return
+		// }
+		// if (!affiliated_hospital) {
+		// 	Toast.fail('请填写所属医院', 1);
+		// 	return
+		// }
+		// if (!department) {
+		// 	Toast.fail('请填写所属科室', 1);
+		// 	return
+		// }
+		// if (!with_title) {
+		// 	Toast.fail('请填写职称', 1);
+		// 	return
+		// }
+		// if (!vocational_certificate.length) {
+		// 	Toast.fail('请上传职业证书', 1);
+		// 	return
+		// }
+		// if (!introduction) {
+		// 	Toast.fail('请填写自我描述', 1);
+		// 	return
+		// }
 
 
 		reqDoctorInformation({...DoctorInformation}).then(
