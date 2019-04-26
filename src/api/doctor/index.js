@@ -60,3 +60,9 @@ export const reqReferrals = ({only_no, url}) => ajax('/api/relation/referrals', 
 
 // 申请提现
 export const reqApplyFor = money => ajax('/api/withdrawal/apply_for', {money});
+
+// 医生端邀请同行列表接口
+export const reqPeerList = () => ajax('/api/doctor/list/peer_list', {}, 'GET');
+
+// 医生端邀请病人列表接口
+export const reqInvitePatientList = () => ajax('/api/doctor/list/invite_patient_list', {}, 'GET');

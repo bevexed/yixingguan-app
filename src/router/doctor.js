@@ -16,6 +16,8 @@ import PublishPreview from "../containers/doctor/PublishPreview/PublishPreview";
 import Published from "../containers/doctor/Published/Published";
 import PatientRemark from "../containers/doctor/PatientRemark/PatientRemark";
 import DoctorList from "../containers/doctor/DoctorList/DoctorList";
+import InviteDoctorList from '../containers/doctor/InviteDoctorList/InviteDoctorList'
+import InvitePatientList from '../containers/doctor/InvitePatientList/InvitePatientList'
 
 export const doctorNav = [
 	{
@@ -96,5 +98,13 @@ export const doctorRoute = [
 	{
 		pathname: '/doctor-list/:only_no',
 		component: DoctorList
+	},
+	{
+		pathname: '/invite-doctor-list',
+		component: InviteDoctorList
+	},
+	{
+		pathname: '/invite-patient-list',
+		component: InvitePatientList
 	}
 ];

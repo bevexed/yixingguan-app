@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import './Statistics.less'
 
 import Echarts from '../../../components/Echart/Echart'
-import {Icon, NavBar, WhiteSpace} from "antd-mobile";
+import {Icon, NavBar, WhiteSpace, List,} from "antd-mobile";
+
+const Item = List.Item;
 
 class Statistics extends Component {
 	render() {
@@ -24,6 +26,24 @@ class Statistics extends Component {
 				<WhiteSpace/>
 
 				<Echarts/>
+
+				<List>
+					<Item
+						onClick={() => this.props.history.push('/invite-doctor-list')}
+						arrow={'horizontal'}
+					>
+						查看邀请同行详情
+					</Item>
+
+					<WhiteSpace/>
+
+					<Item
+						onClick={() => this.props.history.push('/invite-patient-list')}
+						arrow={'horizontal'}
+					>
+						查看邀请病人详情
+					</Item>
+				</List>
 
 
 			</div>

@@ -135,6 +135,7 @@ class DoctorWallet extends Component {
 							</Panel>)
 					}
 				</Accordion>
+
 			</div>
 		);
 	}
