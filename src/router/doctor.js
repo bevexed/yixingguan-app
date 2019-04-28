@@ -22,7 +22,7 @@ import InvitePatientList from '../containers/doctor/InvitePatientList/InvitePati
 export const doctorNav = [
 	{
 		pathname: '/doctor-index',
-		path: '患者',
+		path: '我的患者',
 		isActive: false,
 		icon: 'patient-@3x.png',
 		selectedIcon: 'patient-s@3x.png',
